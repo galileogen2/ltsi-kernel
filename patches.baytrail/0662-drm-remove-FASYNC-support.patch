@@ -62,39 +62,37 @@ Conflicts:
 	(driver not in this tree)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- Documentation/DocBook/drm.tmpl           |  1 -
- drivers/gpu/drm/ast/ast_drv.c            |  1 -
- drivers/gpu/drm/cirrus/cirrus_drv.c      |  1 -
- drivers/gpu/drm/drm_fops.c               | 14 --------------
- drivers/gpu/drm/gma500/psb_drv.c         |  1 -
- drivers/gpu/drm/i810/i810_dma.c          |  1 -
- drivers/gpu/drm/i810/i810_drv.c          |  1 -
- drivers/gpu/drm/i915/i915_drv.c          |  1 -
- drivers/gpu/drm/mga/mga_drv.c            |  1 -
- drivers/gpu/drm/mgag200/mgag200_drv.c    |  1 -
- drivers/gpu/drm/nouveau/nouveau_drm.c    |  1 -
- drivers/gpu/drm/omapdrm/omap_drv.c       |  1 -
- drivers/gpu/drm/qxl/qxl_drv.c            |  1 -
- drivers/gpu/drm/r128/r128_drv.c          |  1 -
- drivers/gpu/drm/radeon/radeon_drv.c      |  2 --
- drivers/gpu/drm/savage/savage_drv.c      |  1 -
- drivers/gpu/drm/shmobile/shmob_drm_drv.c |  1 -
- drivers/gpu/drm/sis/sis_drv.c            |  1 -
- drivers/gpu/drm/tdfx/tdfx_drv.c          |  1 -
- drivers/gpu/drm/tilcdc/tilcdc_drv.c      |  1 -
- drivers/gpu/drm/udl/udl_drv.c            |  1 -
- drivers/gpu/drm/via/via_drv.c            |  1 -
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c      |  1 -
- drivers/gpu/host1x/drm/drm.c             |  1 -
- drivers/staging/imx-drm/imx-drm-core.c   |  1 -
- include/drm/drmP.h                       |  3 ---
+ Documentation/DocBook/drm.tmpl           |    1 -
+ drivers/gpu/drm/ast/ast_drv.c            |    1 -
+ drivers/gpu/drm/cirrus/cirrus_drv.c      |    1 -
+ drivers/gpu/drm/drm_fops.c               |   14 --------------
+ drivers/gpu/drm/gma500/psb_drv.c         |    1 -
+ drivers/gpu/drm/i810/i810_dma.c          |    1 -
+ drivers/gpu/drm/i810/i810_drv.c          |    1 -
+ drivers/gpu/drm/i915/i915_drv.c          |    1 -
+ drivers/gpu/drm/mga/mga_drv.c            |    1 -
+ drivers/gpu/drm/mgag200/mgag200_drv.c    |    1 -
+ drivers/gpu/drm/nouveau/nouveau_drm.c    |    1 -
+ drivers/gpu/drm/omapdrm/omap_drv.c       |    1 -
+ drivers/gpu/drm/qxl/qxl_drv.c            |    1 -
+ drivers/gpu/drm/r128/r128_drv.c          |    1 -
+ drivers/gpu/drm/radeon/radeon_drv.c      |    2 --
+ drivers/gpu/drm/savage/savage_drv.c      |    1 -
+ drivers/gpu/drm/shmobile/shmob_drm_drv.c |    1 -
+ drivers/gpu/drm/sis/sis_drv.c            |    1 -
+ drivers/gpu/drm/tdfx/tdfx_drv.c          |    1 -
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c      |    1 -
+ drivers/gpu/drm/udl/udl_drv.c            |    1 -
+ drivers/gpu/drm/via/via_drv.c            |    1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c      |    1 -
+ drivers/gpu/host1x/drm/drm.c             |    1 -
+ drivers/staging/imx-drm/imx-drm-core.c   |    1 -
+ include/drm/drmP.h                       |    3 ---
  26 files changed, 42 deletions(-)
 
-diff --git a/Documentation/DocBook/drm.tmpl b/Documentation/DocBook/drm.tmpl
-index ba664d7c5a89..da1e28263002 100644
 --- a/Documentation/DocBook/drm.tmpl
 +++ b/Documentation/DocBook/drm.tmpl
-@@ -2339,7 +2339,6 @@ void (*postclose) (struct drm_device *, struct drm_file *);</synopsis>
+@@ -2339,7 +2339,6 @@ void (*postclose) (struct drm_device *,
  	<programlisting>
  	.poll = drm_poll,
  	.read = drm_read,
@@ -102,11 +100,9 @@ index ba664d7c5a89..da1e28263002 100644
  	.llseek = no_llseek,
  	</programlisting>
        </para>
-diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
-index a144fb044852..60f1ce3998c3 100644
 --- a/drivers/gpu/drm/ast/ast_drv.c
 +++ b/drivers/gpu/drm/ast/ast_drv.c
-@@ -190,7 +190,6 @@ static const struct file_operations ast_fops = {
+@@ -190,7 +190,6 @@ static const struct file_operations ast_
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = ast_mmap,
  	.poll = drm_poll,
@@ -114,11 +110,9 @@ index a144fb044852..60f1ce3998c3 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/cirrus/cirrus_drv.c b/drivers/gpu/drm/cirrus/cirrus_drv.c
-index d35d99c15f84..dd9c908ab3fc 100644
 --- a/drivers/gpu/drm/cirrus/cirrus_drv.c
 +++ b/drivers/gpu/drm/cirrus/cirrus_drv.c
-@@ -85,7 +85,6 @@ static const struct file_operations cirrus_driver_fops = {
+@@ -85,7 +85,6 @@ static const struct file_operations cirr
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
@@ -126,11 +120,9 @@ index d35d99c15f84..dd9c908ab3fc 100644
  };
  static struct drm_driver driver = {
  	.driver_features = DRIVER_MODESET | DRIVER_GEM | DRIVER_USE_MTRR,
-diff --git a/drivers/gpu/drm/drm_fops.c b/drivers/gpu/drm/drm_fops.c
-index 8b3eac08b48d..88e80c37f568 100644
 --- a/drivers/gpu/drm/drm_fops.c
 +++ b/drivers/gpu/drm/drm_fops.c
-@@ -79,8 +79,6 @@ static int drm_setup(struct drm_device * dev)
+@@ -79,8 +79,6 @@ static int drm_setup(struct drm_device *
  	dev->last_context = 0;
  	dev->if_version = 0;
  
@@ -139,7 +131,7 @@ index 8b3eac08b48d..88e80c37f568 100644
  	DRM_DEBUG("\n");
  
  	/*
-@@ -363,18 +361,6 @@ static int drm_open_helper(struct inode *inode, struct file *filp,
+@@ -363,18 +361,6 @@ static int drm_open_helper(struct inode
  	return ret;
  }
  
@@ -158,11 +150,9 @@ index 8b3eac08b48d..88e80c37f568 100644
  static void drm_master_release(struct drm_device *dev, struct file *filp)
  {
  	struct drm_file *file_priv = filp->private_data;
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index d13c2fc848bc..99b5293972c6 100644
 --- a/drivers/gpu/drm/gma500/psb_drv.c
 +++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -622,7 +622,6 @@ static const struct file_operations psb_gem_fops = {
+@@ -622,7 +622,6 @@ static const struct file_operations psb_
  	.unlocked_ioctl = psb_unlocked_ioctl,
  	.mmap = drm_gem_mmap,
  	.poll = drm_poll,
@@ -170,11 +160,9 @@ index d13c2fc848bc..99b5293972c6 100644
  	.read = drm_read,
  };
  
-diff --git a/drivers/gpu/drm/i810/i810_dma.c b/drivers/gpu/drm/i810/i810_dma.c
-index 926ac7d48381..7f8b7a469ff8 100644
 --- a/drivers/gpu/drm/i810/i810_dma.c
 +++ b/drivers/gpu/drm/i810/i810_dma.c
-@@ -113,7 +113,6 @@ static const struct file_operations i810_buffer_fops = {
+@@ -113,7 +113,6 @@ static const struct file_operations i810
  	.release = drm_release,
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = i810_mmap_buffers,
@@ -182,11 +170,9 @@ index 926ac7d48381..7f8b7a469ff8 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/i810/i810_drv.c b/drivers/gpu/drm/i810/i810_drv.c
-index 2e91fc3580b4..d85c05b4877d 100644
 --- a/drivers/gpu/drm/i810/i810_drv.c
 +++ b/drivers/gpu/drm/i810/i810_drv.c
-@@ -49,7 +49,6 @@ static const struct file_operations i810_driver_fops = {
+@@ -49,7 +49,6 @@ static const struct file_operations i810
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -194,11 +180,9 @@ index 2e91fc3580b4..d85c05b4877d 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 13457e3e9cad..9411a745adaf 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -994,7 +994,6 @@ static const struct file_operations i915_driver_fops = {
+@@ -994,7 +994,6 @@ static const struct file_operations i915
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_gem_mmap,
  	.poll = drm_poll,
@@ -206,11 +190,9 @@ index 13457e3e9cad..9411a745adaf 100644
  	.read = drm_read,
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = i915_compat_ioctl,
-diff --git a/drivers/gpu/drm/mga/mga_drv.c b/drivers/gpu/drm/mga/mga_drv.c
-index 17d0a637e4fb..fe71e1e44e48 100644
 --- a/drivers/gpu/drm/mga/mga_drv.c
 +++ b/drivers/gpu/drm/mga/mga_drv.c
-@@ -50,7 +50,6 @@ static const struct file_operations mga_driver_fops = {
+@@ -50,7 +50,6 @@ static const struct file_operations mga_
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -218,11 +200,9 @@ index 17d0a637e4fb..fe71e1e44e48 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = mga_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag200/mgag200_drv.c
-index bd9196478735..b570127ae3b2 100644
 --- a/drivers/gpu/drm/mgag200/mgag200_drv.c
 +++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
-@@ -81,7 +81,6 @@ static const struct file_operations mgag200_driver_fops = {
+@@ -81,7 +81,6 @@ static const struct file_operations mgag
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = mgag200_mmap,
  	.poll = drm_poll,
@@ -230,11 +210,9 @@ index bd9196478735..b570127ae3b2 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 421815b1ef93..375ccf75fd73 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -664,7 +664,6 @@ nouveau_driver_fops = {
+@@ -667,7 +667,6 @@ nouveau_driver_fops = {
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = nouveau_ttm_mmap,
  	.poll = drm_poll,
@@ -242,11 +220,9 @@ index 421815b1ef93..375ccf75fd73 100644
  	.read = drm_read,
  #if defined(CONFIG_COMPAT)
  	.compat_ioctl = nouveau_compat_ioctl,
-diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
-index f69f9f6785e8..04b94dc38e2c 100644
 --- a/drivers/gpu/drm/omapdrm/omap_drv.c
 +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
-@@ -583,7 +583,6 @@ static const struct file_operations omapdriver_fops = {
+@@ -583,7 +583,6 @@ static const struct file_operations omap
  		.release = drm_release,
  		.mmap = omap_gem_mmap,
  		.poll = drm_poll,
@@ -254,11 +230,9 @@ index f69f9f6785e8..04b94dc38e2c 100644
  		.read = drm_read,
  		.llseek = noop_llseek,
  };
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
-index 60cb159c4f7d..c0302c5a397c 100644
 --- a/drivers/gpu/drm/qxl/qxl_drv.c
 +++ b/drivers/gpu/drm/qxl/qxl_drv.c
-@@ -86,7 +86,6 @@ static const struct file_operations qxl_fops = {
+@@ -86,7 +86,6 @@ static const struct file_operations qxl_
  	.release = drm_release,
  	.unlocked_ioctl = drm_ioctl,
  	.poll = drm_poll,
@@ -266,11 +240,9 @@ index 60cb159c4f7d..c0302c5a397c 100644
  	.mmap = qxl_mmap,
  };
  
-diff --git a/drivers/gpu/drm/r128/r128_drv.c b/drivers/gpu/drm/r128/r128_drv.c
-index 472c38fe123f..c2338cbc56ad 100644
 --- a/drivers/gpu/drm/r128/r128_drv.c
 +++ b/drivers/gpu/drm/r128/r128_drv.c
-@@ -48,7 +48,6 @@ static const struct file_operations r128_driver_fops = {
+@@ -48,7 +48,6 @@ static const struct file_operations r128
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -278,11 +250,9 @@ index 472c38fe123f..c2338cbc56ad 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = r128_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index cb84df3114a6..3c5f6420319e 100644
 --- a/drivers/gpu/drm/radeon/radeon_drv.c
 +++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -259,7 +259,6 @@ static const struct file_operations radeon_driver_old_fops = {
+@@ -259,7 +259,6 @@ static const struct file_operations rade
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -290,7 +260,7 @@ index cb84df3114a6..3c5f6420319e 100644
  	.read = drm_read,
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = radeon_compat_ioctl,
-@@ -368,7 +367,6 @@ static const struct file_operations radeon_driver_kms_fops = {
+@@ -368,7 +367,6 @@ static const struct file_operations rade
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = radeon_mmap,
  	.poll = drm_poll,
@@ -298,11 +268,9 @@ index cb84df3114a6..3c5f6420319e 100644
  	.read = drm_read,
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = radeon_kms_compat_ioctl,
-diff --git a/drivers/gpu/drm/savage/savage_drv.c b/drivers/gpu/drm/savage/savage_drv.c
-index 71b2081e7835..9135c8bd6fbc 100644
 --- a/drivers/gpu/drm/savage/savage_drv.c
 +++ b/drivers/gpu/drm/savage/savage_drv.c
-@@ -42,7 +42,6 @@ static const struct file_operations savage_driver_fops = {
+@@ -42,7 +42,6 @@ static const struct file_operations sava
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -310,11 +278,9 @@ index 71b2081e7835..9135c8bd6fbc 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-index 946bd28bf5da..6ae63613cfe1 100644
 --- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
 +++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-@@ -267,7 +267,6 @@ static const struct file_operations shmob_drm_fops = {
+@@ -267,7 +267,6 @@ static const struct file_operations shmo
  #endif
  	.poll		= drm_poll,
  	.read		= drm_read,
@@ -322,11 +288,9 @@ index 946bd28bf5da..6ae63613cfe1 100644
  	.llseek		= no_llseek,
  	.mmap		= drm_gem_cma_mmap,
  };
-diff --git a/drivers/gpu/drm/sis/sis_drv.c b/drivers/gpu/drm/sis/sis_drv.c
-index 5a5325e6b759..b88b2d302105 100644
 --- a/drivers/gpu/drm/sis/sis_drv.c
 +++ b/drivers/gpu/drm/sis/sis_drv.c
-@@ -72,7 +72,6 @@ static const struct file_operations sis_driver_fops = {
+@@ -72,7 +72,6 @@ static const struct file_operations sis_
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -334,11 +298,9 @@ index 5a5325e6b759..b88b2d302105 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/tdfx/tdfx_drv.c b/drivers/gpu/drm/tdfx/tdfx_drv.c
-index ddfa743459d0..951ec13e4e5c 100644
 --- a/drivers/gpu/drm/tdfx/tdfx_drv.c
 +++ b/drivers/gpu/drm/tdfx/tdfx_drv.c
-@@ -48,7 +48,6 @@ static const struct file_operations tdfx_driver_fops = {
+@@ -48,7 +48,6 @@ static const struct file_operations tdfx
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -346,11 +308,9 @@ index ddfa743459d0..951ec13e4e5c 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-index bba8daf9230c..cf4f0237a053 100644
 --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
 +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -468,7 +468,6 @@ static const struct file_operations fops = {
+@@ -468,7 +468,6 @@ static const struct file_operations fops
  #endif
  	.poll               = drm_poll,
  	.read               = drm_read,
@@ -358,11 +318,9 @@ index bba8daf9230c..cf4f0237a053 100644
  	.llseek             = no_llseek,
  	.mmap               = drm_gem_cma_mmap,
  };
-diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
-index bb0af58c769a..7650dc0d78ce 100644
 --- a/drivers/gpu/drm/udl/udl_drv.c
 +++ b/drivers/gpu/drm/udl/udl_drv.c
-@@ -65,7 +65,6 @@ static const struct file_operations udl_driver_fops = {
+@@ -65,7 +65,6 @@ static const struct file_operations udl_
  	.read = drm_read,
  	.unlocked_ioctl	= drm_ioctl,
  	.release = drm_release,
@@ -370,11 +328,9 @@ index bb0af58c769a..7650dc0d78ce 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/via/via_drv.c b/drivers/gpu/drm/via/via_drv.c
-index f4ae20327941..448799968a06 100644
 --- a/drivers/gpu/drm/via/via_drv.c
 +++ b/drivers/gpu/drm/via/via_drv.c
-@@ -64,7 +64,6 @@ static const struct file_operations via_driver_fops = {
+@@ -64,7 +64,6 @@ static const struct file_operations via_
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_mmap,
  	.poll = drm_poll,
@@ -382,11 +338,9 @@ index f4ae20327941..448799968a06 100644
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-index 46ebf7312dc9..6993713588e3 100644
 --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
 +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-@@ -1129,7 +1129,6 @@ static const struct file_operations vmwgfx_driver_fops = {
+@@ -1129,7 +1129,6 @@ static const struct file_operations vmwg
  	.mmap = vmw_mmap,
  	.poll = vmw_fops_poll,
  	.read = vmw_fops_read,
@@ -394,11 +348,9 @@ index 46ebf7312dc9..6993713588e3 100644
  #if defined(CONFIG_COMPAT)
  	.compat_ioctl = drm_compat_ioctl,
  #endif
-diff --git a/drivers/gpu/host1x/drm/drm.c b/drivers/gpu/host1x/drm/drm.c
-index c114080d0d58..26dc190fd4fe 100644
 --- a/drivers/gpu/host1x/drm/drm.c
 +++ b/drivers/gpu/host1x/drm/drm.c
-@@ -500,7 +500,6 @@ static const struct file_operations tegra_drm_fops = {
+@@ -500,7 +500,6 @@ static const struct file_operations tegr
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = tegra_drm_mmap,
  	.poll = drm_poll,
@@ -406,11 +358,9 @@ index c114080d0d58..26dc190fd4fe 100644
  	.read = drm_read,
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
-diff --git a/drivers/staging/imx-drm/imx-drm-core.c b/drivers/staging/imx-drm/imx-drm-core.c
-index f2a07af5cd5e..33eb04e79dfe 100644
 --- a/drivers/staging/imx-drm/imx-drm-core.c
 +++ b/drivers/staging/imx-drm/imx-drm-core.c
-@@ -207,7 +207,6 @@ static const struct file_operations imx_drm_driver_fops = {
+@@ -207,7 +207,6 @@ static const struct file_operations imx_
  	.unlocked_ioctl = drm_ioctl,
  	.mmap = drm_gem_cma_mmap,
  	.poll = drm_poll,
@@ -418,8 +368,6 @@ index f2a07af5cd5e..33eb04e79dfe 100644
  	.read = drm_read,
  	.llseek = noop_llseek,
  };
-diff --git a/include/drm/drmP.h b/include/drm/drmP.h
-index f8ad91bc0f94..7c1570d815aa 100644
 --- a/include/drm/drmP.h
 +++ b/include/drm/drmP.h
 @@ -1169,8 +1169,6 @@ struct drm_device {
@@ -431,7 +379,7 @@ index f8ad91bc0f94..7c1570d815aa 100644
  	struct drm_agp_head *agp;	/**< AGP data */
  
  	struct device *dev;             /**< Device structure */
-@@ -1306,7 +1304,6 @@ extern int drm_lastclose(struct drm_device *dev);
+@@ -1306,7 +1304,6 @@ extern int drm_lastclose(struct drm_devi
  extern struct mutex drm_global_mutex;
  extern int drm_open(struct inode *inode, struct file *filp);
  extern int drm_stub_open(struct inode *inode, struct file *filp);
@@ -439,6 +387,3 @@ index f8ad91bc0f94..7c1570d815aa 100644
  extern ssize_t drm_read(struct file *filp, char __user *buffer,
  			size_t count, loff_t *offset);
  extern int drm_release(struct inode *inode, struct file *filp);
--- 
-1.8.5.rc3
-

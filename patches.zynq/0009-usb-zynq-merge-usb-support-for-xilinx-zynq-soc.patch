@@ -153,7 +153,7 @@ Signed-off-by: Yoshitake Kobayashi <yoshitake.kobayashi@toshiba.co.jp>
  	/* GRR this is run-once init(), being done every time the HC starts.
  	 * So long as they're part of class devices, we can't do it init()
  	 * since the class device isn't created that early.
-@@ -691,6 +713,29 @@ static irqreturn_t ehci_irq (struct usb_
+@@ -698,6 +720,29 @@ static irqreturn_t ehci_irq (struct usb_
  
  	status = ehci_readl(ehci, &ehci->regs->status);
  
@@ -183,7 +183,7 @@ Signed-off-by: Yoshitake Kobayashi <yoshitake.kobayashi@toshiba.co.jp>
  	/* e.g. cardbus physical eject */
  	if (status == ~(u32) 0) {
  		ehci_dbg (ehci, "device removed\n");
-@@ -1246,6 +1291,11 @@ MODULE_LICENSE ("GPL");
+@@ -1253,6 +1298,11 @@ MODULE_LICENSE ("GPL");
  #define XILINX_OF_PLATFORM_DRIVER	ehci_hcd_xilinx_of_driver
  #endif
  

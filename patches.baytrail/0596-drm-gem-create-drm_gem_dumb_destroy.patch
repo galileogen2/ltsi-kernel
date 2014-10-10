@@ -410,7 +410,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -714,7 +714,7 @@ driver = {
+@@ -717,7 +717,7 @@ driver = {
  
  	.dumb_create = nouveau_display_dumb_create,
  	.dumb_map_offset = nouveau_display_dumb_map_offset,
