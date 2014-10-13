@@ -20,14 +20,12 @@ Signed-off-by: Sarah Sharp <sarah.a.sharp@linux.intel.com>
 (cherry picked from commit 26b76798e0507429506b93cd49f8c4cfdab06896)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/usb/host/ehci-pci.c   | 42 -------------------------------------
- drivers/usb/host/pci-quirks.c | 48 ++++++++++++++++---------------------------
- drivers/usb/host/pci-quirks.h |  3 +--
- drivers/usb/host/xhci-pci.c   | 14 +++++++------
+ drivers/usb/host/ehci-pci.c   |   42 ------------------------------------
+ drivers/usb/host/pci-quirks.c |   48 +++++++++++++++---------------------------
+ drivers/usb/host/pci-quirks.h |    3 --
+ drivers/usb/host/xhci-pci.c   |   14 +++++++-----
  4 files changed, 27 insertions(+), 80 deletions(-)
 
-diff --git a/drivers/usb/host/ehci-pci.c b/drivers/usb/host/ehci-pci.c
-index 8fe401c7d152..854c2ec7b699 100644
 --- a/drivers/usb/host/ehci-pci.c
 +++ b/drivers/usb/host/ehci-pci.c
 @@ -315,53 +315,11 @@ done:
@@ -84,11 +82,9 @@ index 8fe401c7d152..854c2ec7b699 100644
  	if (ehci_resume(hcd, hibernated) != 0)
  		(void) ehci_pci_reinit(ehci, pdev);
  	return 0;
-diff --git a/drivers/usb/host/pci-quirks.c b/drivers/usb/host/pci-quirks.c
-index 4c338ec03a07..1e25aadb4fd0 100644
 --- a/drivers/usb/host/pci-quirks.c
 +++ b/drivers/usb/host/pci-quirks.c
-@@ -722,32 +722,6 @@ static int handshake(void __iomem *ptr, u32 mask, u32 done,
+@@ -722,32 +722,6 @@ static int handshake(void __iomem *ptr,
  	return -ETIMEDOUT;
  }
  
@@ -121,7 +117,7 @@ index 4c338ec03a07..1e25aadb4fd0 100644
  /*
   * Intel's Panther Point chipset has two host controllers (EHCI and xHCI) that
   * share some number of ports.  These ports can be switched between either
-@@ -766,9 +740,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchable_xhci);
+@@ -766,9 +740,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchabl
   * terminations before switching the USB 2.0 wires over, so that USB 3.0
   * devices connect at SuperSpeed, rather than at USB 2.0 speeds.
   */
@@ -146,7 +142,7 @@ index 4c338ec03a07..1e25aadb4fd0 100644
  
  	/* Don't switchover the ports if the user hasn't compiled the xHCI
  	 * driver.  Otherwise they will see "dead" USB ports that don't power
-@@ -827,7 +815,7 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
+@@ -827,7 +815,7 @@ void usb_enable_xhci_ports(struct pci_de
  	dev_dbg(&xhci_pdev->dev, "USB 2.0 ports that are now switched over "
  			"to xHCI: 0x%x\n", ports_available);
  }
@@ -155,7 +151,7 @@ index 4c338ec03a07..1e25aadb4fd0 100644
  
  void usb_disable_xhci_ports(struct pci_dev *xhci_pdev)
  {
-@@ -908,8 +896,8 @@ static void quirk_usb_handoff_xhci(struct pci_dev *pdev)
+@@ -908,8 +896,8 @@ static void quirk_usb_handoff_xhci(struc
  	writel(val, base + ext_cap_offset + XHCI_LEGACY_CONTROL_OFFSET);
  
  hc_init:
@@ -166,8 +162,6 @@ index 4c338ec03a07..1e25aadb4fd0 100644
  
  	op_reg_base = base + XHCI_HC_LENGTH(readl(base));
  
-diff --git a/drivers/usb/host/pci-quirks.h b/drivers/usb/host/pci-quirks.h
-index 7f69a39163ce..1da0b5bfb7b8 100644
 --- a/drivers/usb/host/pci-quirks.h
 +++ b/drivers/usb/host/pci-quirks.h
 @@ -8,8 +8,7 @@ int usb_amd_find_chipset_info(void);
@@ -180,11 +174,9 @@ index 7f69a39163ce..1da0b5bfb7b8 100644
  void usb_disable_xhci_ports(struct pci_dev *xhci_pdev);
  #else
  static inline void usb_amd_quirk_pll_disable(void) {}
-diff --git a/drivers/usb/host/xhci-pci.c b/drivers/usb/host/xhci-pci.c
-index 159e3c6d92b9..08335bafc8f7 100644
 --- a/drivers/usb/host/xhci-pci.c
 +++ b/drivers/usb/host/xhci-pci.c
-@@ -249,13 +249,15 @@ static int xhci_pci_resume(struct usb_hcd *hcd, bool hibernated)
+@@ -254,13 +254,15 @@ static int xhci_pci_resume(struct usb_hc
  	 * writers.
  	 *
  	 * Unconditionally switch the ports back to xHCI after a system resume.
@@ -206,6 +198,3 @@ index 159e3c6d92b9..08335bafc8f7 100644
  
  	retval = xhci_resume(xhci, hibernated);
  	return retval;
--- 
-1.8.5.rc3
-

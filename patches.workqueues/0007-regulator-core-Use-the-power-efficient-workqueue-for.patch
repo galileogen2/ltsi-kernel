@@ -18,7 +18,7 @@ Acked-by: Liam Girdwood <liam.r.girdwood@intel.com>
 
 --- a/drivers/regulator/core.c
 +++ b/drivers/regulator/core.c
-@@ -1891,8 +1891,9 @@ int regulator_disable_deferred(struct re
+@@ -1887,8 +1887,9 @@ int regulator_disable_deferred(struct re
  	rdev->deferred_disables++;
  	mutex_unlock(&rdev->mutex);
  
