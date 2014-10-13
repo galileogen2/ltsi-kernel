@@ -860,7 +860,6 @@ patches.renesas/0218-spi-rspi-use-platform-drvdata-correctly-in-rspi_remo.patch
 patches.renesas/0219-spi-sh-msiof-Remove-unneeded-empty-runtime-PM-callba.patch
 patches.renesas/0220-spi-use-dev_get_platdata.patch
 patches.renesas/0221-ARM-7863-1-Let-arm_add_memory-always-use-64-bit-argu.patch
-patches.renesas/0222-ARM-7864-1-Handle-64-bit-memory-in-case-of-32-bit-ph.patch
 patches.renesas/0224-usb-renesas_usbhs-gadget-remove-extra-check-on-udc_s.patch
 patches.renesas/0225-usb-renesas_usbhs-tidyup-original-usbhsx_for_each_xx.patch
 patches.renesas/0226-usb-renesas-use-dev_get_platdata.patch

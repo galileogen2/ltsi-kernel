@@ -21,16 +21,14 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 Conflicts:
 	arch/arm/include/asm/arch_timer.h
 ---
- arch/arm/include/asm/arch_timer.h | 27 ++++++++++++++++++++++++---
- arch/arm/include/uapi/asm/hwcap.h |  1 +
- arch/arm/kernel/setup.c           |  1 +
+ arch/arm/include/asm/arch_timer.h |   27 ++++++++++++++++++++++++---
+ arch/arm/include/uapi/asm/hwcap.h |    1 +
+ arch/arm/kernel/setup.c           |    1 +
  3 files changed, 26 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/include/asm/arch_timer.h b/arch/arm/include/asm/arch_timer.h
-index c78c4cbd329e..0704e0cf5571 100644
 --- a/arch/arm/include/asm/arch_timer.h
 +++ b/arch/arm/include/asm/arch_timer.h
-@@ -87,11 +87,21 @@ static inline u64 arch_counter_get_cntvct(void)
+@@ -87,11 +87,21 @@ static inline u64 arch_counter_get_cntvc
  	return cval;
  }
  
@@ -54,7 +52,7 @@ index c78c4cbd329e..0704e0cf5571 100644
  
  	/* Disable user access to both physical/virtual counters/timers */
  	/* Also disable virtual event stream */
-@@ -100,9 +110,20 @@ static inline void __cpuinit arch_counter_set_user_access(void)
+@@ -100,9 +110,20 @@ static inline void __cpuinit arch_counte
  			| ARCH_TIMER_VIRT_EVT_EN
  			| ARCH_TIMER_USR_VCT_ACCESS_EN
  			| ARCH_TIMER_USR_PCT_ACCESS_EN);
@@ -76,8 +74,6 @@ index c78c4cbd329e..0704e0cf5571 100644
  #endif
  
  #endif
-diff --git a/arch/arm/include/uapi/asm/hwcap.h b/arch/arm/include/uapi/asm/hwcap.h
-index 6d34d080372a..7dcc10d67253 100644
 --- a/arch/arm/include/uapi/asm/hwcap.h
 +++ b/arch/arm/include/uapi/asm/hwcap.h
 @@ -26,5 +26,6 @@
@@ -87,11 +83,9 @@ index 6d34d080372a..7dcc10d67253 100644
 +#define HWCAP_EVTSTRM	(1 << 21)
  
  #endif /* _UAPI__ASMARM_HWCAP_H */
-diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-index 6cc3db43e897..d62772f49907 100644
 --- a/arch/arm/kernel/setup.c
 +++ b/arch/arm/kernel/setup.c
-@@ -878,6 +878,7 @@ static const char *hwcap_str[] = {
+@@ -900,6 +900,7 @@ static const char *hwcap_str[] = {
  	"idiva",
  	"idivt",
  	"lpae",
@@ -99,6 +93,3 @@ index 6cc3db43e897..d62772f49907 100644
  	NULL
  };
  
--- 
-1.8.5.rc3
-

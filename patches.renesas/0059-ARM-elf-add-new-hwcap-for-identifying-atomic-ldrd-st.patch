@@ -15,12 +15,10 @@ Signed-off-by: Will Deacon <will.deacon@arm.com>
 (cherry picked from commit a469abd0f868c902b75532579bf87553dcf1b360)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/arm/include/uapi/asm/hwcap.h | 2 +-
- arch/arm/kernel/setup.c           | 8 +++++++-
+ arch/arm/include/uapi/asm/hwcap.h |    2 +-
+ arch/arm/kernel/setup.c           |    8 +++++++-
  2 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/include/uapi/asm/hwcap.h b/arch/arm/include/uapi/asm/hwcap.h
-index 3688fd15a32d..6d34d080372a 100644
 --- a/arch/arm/include/uapi/asm/hwcap.h
 +++ b/arch/arm/include/uapi/asm/hwcap.h
 @@ -25,6 +25,6 @@
@@ -31,11 +29,9 @@ index 3688fd15a32d..6d34d080372a 100644
 +#define HWCAP_LPAE	(1 << 20)
  
  #endif /* _UAPI__ASMARM_HWCAP_H */
-diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-index b4b1d397592b..6cc3db43e897 100644
 --- a/arch/arm/kernel/setup.c
 +++ b/arch/arm/kernel/setup.c
-@@ -355,7 +355,7 @@ void __init early_print(const char *str, ...)
+@@ -355,7 +355,7 @@ void __init early_print(const char *str,
  
  static void __init cpuid_init_hwcaps(void)
  {
@@ -44,7 +40,7 @@ index b4b1d397592b..6cc3db43e897 100644
  
  	if (cpu_architecture() < CPU_ARCH_ARMv7)
  		return;
-@@ -368,6 +368,11 @@ static void __init cpuid_init_hwcaps(void)
+@@ -368,6 +368,11 @@ static void __init cpuid_init_hwcaps(voi
  	case 1:
  		elf_hwcap |= HWCAP_IDIVT;
  	}
@@ -56,7 +52,7 @@ index b4b1d397592b..6cc3db43e897 100644
  }
  
  static void __init feat_v6_fixup(void)
-@@ -872,6 +877,7 @@ static const char *hwcap_str[] = {
+@@ -894,6 +899,7 @@ static const char *hwcap_str[] = {
  	"vfpv4",
  	"idiva",
  	"idivt",
@@ -64,6 +60,3 @@ index b4b1d397592b..6cc3db43e897 100644
  	NULL
  };
  
--- 
-1.8.5.rc3
-
