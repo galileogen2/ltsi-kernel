@@ -14,14 +14,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit 7fb8c56c7fa0fa11168d3788d4591951bec27f4b)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/tty/serial/8250/8250_dw.c | 14 ++++++++++++++
+ drivers/tty/serial/8250/8250_dw.c |   14 ++++++++++++++
  1 file changed, 14 insertions(+)
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index d7a405b12600..8edf7697fdb2 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -154,6 +154,14 @@ dw8250_do_pm(struct uart_port *port, unsigned int state, unsigned int old)
+@@ -178,6 +178,14 @@ dw8250_do_pm(struct uart_port *port, uns
  		pm_runtime_put_sync_suspend(port->dev);
  }
  
@@ -36,7 +34,7 @@ index d7a405b12600..8edf7697fdb2 100644
  static void dw8250_setup_port(struct uart_8250_port *up)
  {
  	struct uart_port	*p = &up->port;
-@@ -314,6 +322,12 @@ static int dw8250_probe(struct platform_device *pdev)
+@@ -338,6 +346,12 @@ static int dw8250_probe(struct platform_
  		uart.port.uartclk = clk_get_rate(data->clk);
  	}
  
@@ -49,6 +47,3 @@ index d7a405b12600..8edf7697fdb2 100644
  	uart.port.iotype = UPIO_MEM;
  	uart.port.serial_in = dw8250_serial_in;
  	uart.port.serial_out = dw8250_serial_out;
--- 
-1.8.5.rc3
-

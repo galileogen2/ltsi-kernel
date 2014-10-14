@@ -242,7 +242,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		dev_priv->display.crtc_mode_set = i9xx_crtc_mode_set;
  		dev_priv->display.crtc_enable = i9xx_crtc_enable;
  		dev_priv->display.crtc_disable = i9xx_crtc_disable;
-@@ -10567,15 +10574,6 @@ static void intel_modeset_readout_hw_sta
+@@ -10569,15 +10576,6 @@ static void intel_modeset_readout_hw_sta
  			      pipe);
  	}
  

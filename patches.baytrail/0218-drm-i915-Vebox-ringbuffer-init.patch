@@ -55,7 +55,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define RING_IMR(base)		((base)+0xa8)
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -915,7 +915,8 @@ void intel_ring_setup_status_page(struct
+@@ -918,7 +918,8 @@ void intel_ring_setup_status_page(struct
  			mmio = BSD_HWS_PGA_GEN7;
  			break;
  		case VECS:
@@ -65,7 +65,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		}
  	} else if (IS_GEN6(ring->dev)) {
  		mmio = RING_HWS_PGA_GEN6(ring->mmio_base);
-@@ -1922,6 +1923,38 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1925,6 +1926,38 @@ int intel_init_blt_ring_buffer(struct dr
  	ring->init = init_ring_common;
  
  	return intel_init_ring_buffer(dev, ring);

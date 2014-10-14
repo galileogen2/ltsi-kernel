@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1030,6 +1030,48 @@ gen6_ring_put_irq(struct intel_ring_buff
+@@ -1033,6 +1033,48 @@ gen6_ring_put_irq(struct intel_ring_buff
  	gen6_gt_force_wake_put(dev_priv);
  }
  
@@ -68,7 +68,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int
  i965_dispatch_execbuffer(struct intel_ring_buffer *ring,
  			 u32 offset, u32 length,
-@@ -1943,8 +1985,8 @@ int intel_init_vebox_ring_buffer(struct
+@@ -1946,8 +1988,8 @@ int intel_init_vebox_ring_buffer(struct
  	ring->get_seqno = gen6_ring_get_seqno;
  	ring->set_seqno = ring_set_seqno;
  	ring->irq_enable_mask = 0;

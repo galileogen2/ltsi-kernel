@@ -125,7 +125,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #include <linux/platform_device.h>
  #include <linux/slab.h>
  #include <linux/platform_data/dma-atmel.h>
-@@ -775,8 +774,6 @@ static int at91_twi_probe(struct platfor
+@@ -795,8 +794,6 @@ static int at91_twi_probe(struct platfor
  		return rc;
  	}
  
@@ -213,7 +213,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	dev_info(&pdev->dev, "using pins %u (SDA) and %u (SCL%s)\n",
 --- a/drivers/i2c/busses/i2c-i801.c
 +++ b/drivers/i2c/busses/i2c-i801.c
-@@ -87,7 +87,6 @@
+@@ -89,7 +89,6 @@
  #include <linux/slab.h>
  #include <linux/wait.h>
  #include <linux/err.h>
@@ -221,7 +221,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  #if (defined CONFIG_I2C_MUX_GPIO || defined CONFIG_I2C_MUX_GPIO_MODULE) && \
  		defined CONFIG_DMI
-@@ -1230,7 +1229,6 @@ static int i801_probe(struct pci_dev *de
+@@ -1236,7 +1235,6 @@ static int i801_probe(struct pci_dev *de
  		goto exit_free_irq;
  	}
  

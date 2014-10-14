@@ -17,7 +17,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -9814,6 +9814,9 @@ int intel_modeset_vga_set_state(struct d
+@@ -9816,6 +9816,9 @@ int intel_modeset_vga_set_state(struct d
  #include <linux/seq_file.h>
  
  struct intel_display_error_state {
@@ -27,7 +27,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	struct intel_cursor_error_state {
  		u32 control;
  		u32 position;
-@@ -9822,6 +9825,7 @@ struct intel_display_error_state {
+@@ -9824,6 +9827,7 @@ struct intel_display_error_state {
  	} cursor[I915_MAX_PIPES];
  
  	struct intel_pipe_error_state {
@@ -35,7 +35,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		u32 conf;
  		u32 source;
  
-@@ -9856,8 +9860,12 @@ intel_display_capture_error_state(struct
+@@ -9858,8 +9862,12 @@ intel_display_capture_error_state(struct
  	if (error == NULL)
  		return NULL;
  
@@ -48,7 +48,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  		if (INTEL_INFO(dev)->gen <= 6 || IS_VALLEYVIEW(dev)) {
  			error->cursor[i].control = I915_READ(CURCNTR(i));
-@@ -9903,8 +9911,13 @@ intel_display_print_error_state(struct s
+@@ -9905,8 +9913,13 @@ intel_display_print_error_state(struct s
  	int i;
  
  	seq_printf(m, "Num Pipes: %d\n", INTEL_INFO(dev)->num_pipes);

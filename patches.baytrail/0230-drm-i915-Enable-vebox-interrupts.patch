@@ -92,7 +92,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1<<18)
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1984,7 +1984,8 @@ int intel_init_vebox_ring_buffer(struct
+@@ -1987,7 +1987,8 @@ int intel_init_vebox_ring_buffer(struct
  	ring->add_request = gen6_add_request;
  	ring->get_seqno = gen6_ring_get_seqno;
  	ring->set_seqno = ring_set_seqno;

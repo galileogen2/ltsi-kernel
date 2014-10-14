@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/i2c/busses/Kconfig
 +++ b/drivers/i2c/busses/Kconfig
-@@ -509,10 +509,11 @@ config I2C_MPC
+@@ -511,10 +511,11 @@ config I2C_MPC
  
  config I2C_MV64XXX
  	tristate "Marvell mv64xxx I2C Controller"

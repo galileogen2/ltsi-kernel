@@ -21,50 +21,48 @@ Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 (cherry picked from commit 5070158804b5339c71809f5e673cea1cfacd804d)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- Documentation/cpu-freq/cpu-drivers.txt             |  10 +-
- arch/arm/mach-davinci/da850.c                      |   8 +-
- arch/arm/mach-s3c24xx/cpufreq-utils.c              |   2 +-
- arch/arm/mach-s3c24xx/cpufreq.c                    |   4 +-
- arch/arm/mach-s3c24xx/pll-s3c2410.c                |  54 +++++-----
- arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c       |  54 +++++-----
- arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c       | 110 ++++++++++-----------
- arch/arm/mach-shmobile/clock-sh7372.c              |   6 +-
- arch/arm/plat-samsung/include/plat/cpu-freq-core.h |   2 +-
- arch/mips/loongson/lemote-2f/clock.c               |   3 +-
- arch/powerpc/platforms/pasemi/cpufreq.c            |   5 +-
- drivers/base/power/opp.c                           |   4 +-
- drivers/cpufreq/acpi-cpufreq.c                     |   6 +-
- drivers/cpufreq/blackfin-cpufreq.c                 |  10 +-
- drivers/cpufreq/e_powersaver.c                     |   8 +-
- drivers/cpufreq/freq_table.c                       |  26 ++---
- drivers/cpufreq/ia64-acpi-cpufreq.c                |   2 +-
- drivers/cpufreq/kirkwood-cpufreq.c                 |   2 +-
- drivers/cpufreq/longhaul.c                         |  16 +--
- drivers/cpufreq/loongson2_cpufreq.c                |   2 +-
- drivers/cpufreq/p4-clockmod.c                      |   4 +-
- drivers/cpufreq/powernow-k6.c                      |   8 +-
- drivers/cpufreq/powernow-k7.c                      |  16 +--
- drivers/cpufreq/powernow-k8.c                      |  18 ++--
- drivers/cpufreq/ppc_cbe_cpufreq.c                  |   4 +-
- drivers/cpufreq/pxa2xx-cpufreq.c                   |   8 +-
- drivers/cpufreq/pxa3xx-cpufreq.c                   |   4 +-
- drivers/cpufreq/s3c2416-cpufreq.c                  |   2 +-
- drivers/cpufreq/s3c64xx-cpufreq.c                  |   2 +-
- drivers/cpufreq/sc520_freq.c                       |   2 +-
- drivers/cpufreq/sparc-us2e-cpufreq.c               |  12 +--
- drivers/cpufreq/sparc-us3-cpufreq.c                |   8 +-
- drivers/cpufreq/spear-cpufreq.c                    |   4 +-
- drivers/cpufreq/speedstep-centrino.c               |   8 +-
- drivers/mfd/db8500-prcmu.c                         |  10 +-
- drivers/sh/clk/core.c                              |   4 +-
- include/linux/cpufreq.h                            |   2 +-
+ Documentation/cpu-freq/cpu-drivers.txt             |   10 -
+ arch/arm/mach-davinci/da850.c                      |    8 -
+ arch/arm/mach-s3c24xx/cpufreq-utils.c              |    2 
+ arch/arm/mach-s3c24xx/cpufreq.c                    |    4 
+ arch/arm/mach-s3c24xx/pll-s3c2410.c                |   54 +++++-----
+ arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c       |   54 +++++-----
+ arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c       |  110 ++++++++++-----------
+ arch/arm/mach-shmobile/clock-sh7372.c              |    6 -
+ arch/arm/plat-samsung/include/plat/cpu-freq-core.h |    2 
+ arch/mips/loongson/lemote-2f/clock.c               |    3 
+ arch/powerpc/platforms/pasemi/cpufreq.c            |    5 
+ drivers/base/power/opp.c                           |    4 
+ drivers/cpufreq/acpi-cpufreq.c                     |    6 -
+ drivers/cpufreq/blackfin-cpufreq.c                 |   10 -
+ drivers/cpufreq/e_powersaver.c                     |    8 -
+ drivers/cpufreq/freq_table.c                       |   26 ++--
+ drivers/cpufreq/ia64-acpi-cpufreq.c                |    2 
+ drivers/cpufreq/kirkwood-cpufreq.c                 |    2 
+ drivers/cpufreq/longhaul.c                         |   16 +--
+ drivers/cpufreq/loongson2_cpufreq.c                |    2 
+ drivers/cpufreq/p4-clockmod.c                      |    4 
+ drivers/cpufreq/powernow-k6.c                      |    8 -
+ drivers/cpufreq/powernow-k7.c                      |   16 +--
+ drivers/cpufreq/powernow-k8.c                      |   18 +--
+ drivers/cpufreq/ppc_cbe_cpufreq.c                  |    4 
+ drivers/cpufreq/pxa2xx-cpufreq.c                   |    8 -
+ drivers/cpufreq/pxa3xx-cpufreq.c                   |    4 
+ drivers/cpufreq/s3c2416-cpufreq.c                  |    2 
+ drivers/cpufreq/s3c64xx-cpufreq.c                  |    2 
+ drivers/cpufreq/sc520_freq.c                       |    2 
+ drivers/cpufreq/sparc-us2e-cpufreq.c               |   12 +-
+ drivers/cpufreq/sparc-us3-cpufreq.c                |    8 -
+ drivers/cpufreq/spear-cpufreq.c                    |    4 
+ drivers/cpufreq/speedstep-centrino.c               |    8 -
+ drivers/mfd/db8500-prcmu.c                         |   10 -
+ drivers/sh/clk/core.c                              |    4 
+ include/linux/cpufreq.h                            |    2 
  37 files changed, 223 insertions(+), 227 deletions(-)
 
-diff --git a/Documentation/cpu-freq/cpu-drivers.txt b/Documentation/cpu-freq/cpu-drivers.txt
-index a3585eac..19fa98e0 100644
 --- a/Documentation/cpu-freq/cpu-drivers.txt
 +++ b/Documentation/cpu-freq/cpu-drivers.txt
-@@ -186,7 +186,7 @@ As most cpufreq processors only allow for being set to a few specific
+@@ -186,7 +186,7 @@ As most cpufreq processors only allow fo
  frequencies, a "frequency table" with some functions might assist in
  some work of the processor driver. Such a "frequency table" consists
  of an array of struct cpufreq_frequency_table entries, with any value in
@@ -73,7 +71,7 @@ index a3585eac..19fa98e0 100644
  "frequency". At the end of the table, you need to add a
  cpufreq_frequency_table entry with frequency set to CPUFREQ_TABLE_END. And
  if you want to skip one entry in the table, set the frequency to 
-@@ -214,10 +214,4 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
+@@ -214,10 +214,4 @@ int cpufreq_frequency_table_target(struc
  is the corresponding frequency table helper for the ->target
  stage. Just pass the values to this function, and the unsigned int
  index returns the number of the frequency table entry which contains
@@ -85,11 +83,9 @@ index a3585eac..19fa98e0 100644
 -cpufreq_table[index].index.
 -
 +the frequency the CPU shall be set to.
-diff --git a/arch/arm/mach-davinci/da850.c b/arch/arm/mach-davinci/da850.c
-index 4d693384..a0d4f603 100644
 --- a/arch/arm/mach-davinci/da850.c
 +++ b/arch/arm/mach-davinci/da850.c
-@@ -1004,7 +1004,7 @@ static const struct da850_opp da850_opp_96 = {
+@@ -1004,7 +1004,7 @@ static const struct da850_opp da850_opp_
  
  #define OPP(freq) 		\
  	{				\
@@ -98,7 +94,7 @@ index 4d693384..a0d4f603 100644
  		.frequency = freq * 1000, \
  	}
  
-@@ -1016,7 +1016,7 @@ static struct cpufreq_frequency_table da850_freq_table[] = {
+@@ -1016,7 +1016,7 @@ static struct cpufreq_frequency_table da
  	OPP(200),
  	OPP(96),
  	{
@@ -107,7 +103,7 @@ index 4d693384..a0d4f603 100644
  		.frequency	= CPUFREQ_TABLE_END,
  	},
  };
-@@ -1044,7 +1044,7 @@ static int da850_set_voltage(unsigned int index)
+@@ -1044,7 +1044,7 @@ static int da850_set_voltage(unsigned in
  	if (!cvdd)
  		return -ENODEV;
  
@@ -116,7 +112,7 @@ index 4d693384..a0d4f603 100644
  
  	return regulator_set_voltage(cvdd, opp->cvdd_min, opp->cvdd_max);
  }
-@@ -1125,7 +1125,7 @@ static int da850_set_pll0rate(struct clk *clk, unsigned long index)
+@@ -1125,7 +1125,7 @@ static int da850_set_pll0rate(struct clk
  	struct pll_data *pll = clk->pll_data;
  	int ret;
  
@@ -125,22 +121,18 @@ index 4d693384..a0d4f603 100644
  	prediv = opp->prediv;
  	mult = opp->mult;
  	postdiv = opp->postdiv;
-diff --git a/arch/arm/mach-s3c24xx/cpufreq-utils.c b/arch/arm/mach-s3c24xx/cpufreq-utils.c
-index ddd8280e..2a0aa568 100644
 --- a/arch/arm/mach-s3c24xx/cpufreq-utils.c
 +++ b/arch/arm/mach-s3c24xx/cpufreq-utils.c
-@@ -60,5 +60,5 @@ void s3c2410_cpufreq_setrefresh(struct s3c_cpufreq_config *cfg)
+@@ -60,5 +60,5 @@ void s3c2410_cpufreq_setrefresh(struct s
   */
  void s3c2410_set_fvco(struct s3c_cpufreq_config *cfg)
  {
 -	__raw_writel(cfg->pll.index, S3C2410_MPLLCON);
 +	__raw_writel(cfg->pll.driver_data, S3C2410_MPLLCON);
  }
-diff --git a/arch/arm/mach-s3c24xx/cpufreq.c b/arch/arm/mach-s3c24xx/cpufreq.c
-index 3c0e78ed..3513e747 100644
 --- a/arch/arm/mach-s3c24xx/cpufreq.c
 +++ b/arch/arm/mach-s3c24xx/cpufreq.c
-@@ -70,7 +70,7 @@ static void s3c_cpufreq_getcur(struct s3c_cpufreq_config *cfg)
+@@ -70,7 +70,7 @@ static void s3c_cpufreq_getcur(struct s3
  	cfg->freq.pclk = pclk = clk_get_rate(clk_pclk);
  	cfg->freq.armclk = armclk = clk_get_rate(clk_arm);
  
@@ -158,8 +150,6 @@ index 3c0e78ed..3513e747 100644
  	suspend_freq = s3c_cpufreq_get(0) * 1000;
  
  	return 0;
-diff --git a/arch/arm/mach-s3c24xx/pll-s3c2410.c b/arch/arm/mach-s3c24xx/pll-s3c2410.c
-index dcf3420a..5e37d368 100644
 --- a/arch/arm/mach-s3c24xx/pll-s3c2410.c
 +++ b/arch/arm/mach-s3c24xx/pll-s3c2410.c
 @@ -33,36 +33,36 @@
@@ -226,8 +216,6 @@ index dcf3420a..5e37d368 100644
  };
  
  static int s3c2410_plls_add(struct device *dev, struct subsys_interface *sif)
-diff --git a/arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c b/arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c
-index 67378175..a19460e6 100644
 --- a/arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c
 +++ b/arch/arm/mach-s3c24xx/pll-s3c2440-12000000.c
 @@ -21,33 +21,33 @@
@@ -291,8 +279,6 @@ index 67378175..a19460e6 100644
  };
  
  static int s3c2440_plls12_add(struct device *dev, struct subsys_interface *sif)
-diff --git a/arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c b/arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c
-index debfa106..1191b290 100644
 --- a/arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c
 +++ b/arch/arm/mach-s3c24xx/pll-s3c2440-16934400.c
 @@ -21,61 +21,61 @@
@@ -412,11 +398,9 @@ index debfa106..1191b290 100644
  };
  
  static int s3c2440_plls169344_add(struct device *dev,
-diff --git a/arch/arm/mach-shmobile/clock-sh7372.c b/arch/arm/mach-shmobile/clock-sh7372.c
-index 7e105932..5390c6bb 100644
 --- a/arch/arm/mach-shmobile/clock-sh7372.c
 +++ b/arch/arm/mach-shmobile/clock-sh7372.c
-@@ -142,15 +142,15 @@ static void pllc2_table_rebuild(struct clk *clk)
+@@ -142,15 +142,15 @@ static void pllc2_table_rebuild(struct c
  	/* Initialise PLLC2 frequency table */
  	for (i = 0; i < ARRAY_SIZE(pllc2_freq_table) - 2; i++) {
  		pllc2_freq_table[i].frequency = clk->parent->rate * (i + 20) * 2;
@@ -435,11 +419,9 @@ index 7e105932..5390c6bb 100644
  }
  
  static unsigned long pllc2_recalc(struct clk *clk)
-diff --git a/arch/arm/plat-samsung/include/plat/cpu-freq-core.h b/arch/arm/plat-samsung/include/plat/cpu-freq-core.h
-index 95509d8e..a8a760dd 100644
 --- a/arch/arm/plat-samsung/include/plat/cpu-freq-core.h
 +++ b/arch/arm/plat-samsung/include/plat/cpu-freq-core.h
-@@ -285,7 +285,7 @@ static inline int s3c_cpufreq_addfreq(struct cpufreq_frequency_table *table,
+@@ -285,7 +285,7 @@ static inline int s3c_cpufreq_addfreq(st
  		s3c_freq_dbg("%s: { %d = %u kHz }\n",
  			     __func__, index, freq);
  
@@ -448,11 +430,9 @@ index 95509d8e..a8a760dd 100644
  		table[index].frequency = freq;
  	}
  
-diff --git a/arch/mips/loongson/lemote-2f/clock.c b/arch/mips/loongson/lemote-2f/clock.c
-index bc739d4b..4dc2f5fa 100644
 --- a/arch/mips/loongson/lemote-2f/clock.c
 +++ b/arch/mips/loongson/lemote-2f/clock.c
-@@ -121,7 +121,8 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
+@@ -121,7 +121,8 @@ int clk_set_rate(struct clk *clk, unsign
  	clk->rate = rate;
  
  	regval = LOONGSON_CHIPCFG0;
@@ -462,11 +442,9 @@ index bc739d4b..4dc2f5fa 100644
  	LOONGSON_CHIPCFG0 = regval;
  
  	return ret;
-diff --git a/arch/powerpc/platforms/pasemi/cpufreq.c b/arch/powerpc/platforms/pasemi/cpufreq.c
-index be1e7958..b704da40 100644
 --- a/arch/powerpc/platforms/pasemi/cpufreq.c
 +++ b/arch/powerpc/platforms/pasemi/cpufreq.c
-@@ -204,7 +204,8 @@ static int pas_cpufreq_cpu_init(struct cpufreq_policy *policy)
+@@ -204,7 +204,8 @@ static int pas_cpufreq_cpu_init(struct c
  
  	/* initialize frequency table */
  	for (i=0; pas_freqs[i].frequency!=CPUFREQ_TABLE_END; i++) {
@@ -476,7 +454,7 @@ index be1e7958..b704da40 100644
  		pr_debug("%d: %d\n", i, pas_freqs[i].frequency);
  	}
  
-@@ -280,7 +281,7 @@ static int pas_cpufreq_target(struct cpufreq_policy *policy,
+@@ -280,7 +281,7 @@ static int pas_cpufreq_target(struct cpu
  	pr_debug("setting frequency for cpu %d to %d kHz, 1/%d of max frequency\n",
  		 policy->cpu,
  		 pas_freqs[pas_astate_new].frequency,
@@ -485,11 +463,9 @@ index be1e7958..b704da40 100644
  
  	current_astate = pas_astate_new;
  
-diff --git a/drivers/base/power/opp.c b/drivers/base/power/opp.c
-index f0077cb8..c8ec1863 100644
 --- a/drivers/base/power/opp.c
 +++ b/drivers/base/power/opp.c
-@@ -648,14 +648,14 @@ int opp_init_cpufreq_table(struct device *dev,
+@@ -648,14 +648,14 @@ int opp_init_cpufreq_table(struct device
  
  	list_for_each_entry(opp, &dev_opp->opp_list, node) {
  		if (opp->available) {
@@ -506,11 +482,9 @@ index f0077cb8..c8ec1863 100644
  	freq_table[i].frequency = CPUFREQ_TABLE_END;
  
  	*table = &freq_table[0];
-diff --git a/drivers/cpufreq/acpi-cpufreq.c b/drivers/cpufreq/acpi-cpufreq.c
-index edc089e9..c24cba1c 100644
 --- a/drivers/cpufreq/acpi-cpufreq.c
 +++ b/drivers/cpufreq/acpi-cpufreq.c
-@@ -232,7 +232,7 @@ static unsigned extract_msr(u32 msr, struct acpi_cpufreq_data *data)
+@@ -232,7 +232,7 @@ static unsigned extract_msr(u32 msr, str
  	perf = data->acpi_data;
  
  	for (i = 0; data->freq_table[i].frequency != CPUFREQ_TABLE_END; i++) {
@@ -519,7 +493,7 @@ index edc089e9..c24cba1c 100644
  			return data->freq_table[i].frequency;
  	}
  	return data->freq_table[0].frequency;
-@@ -442,7 +442,7 @@ static int acpi_cpufreq_target(struct cpufreq_policy *policy,
+@@ -442,7 +442,7 @@ static int acpi_cpufreq_target(struct cp
  		goto out;
  	}
  
@@ -528,7 +502,7 @@ index edc089e9..c24cba1c 100644
  	if (perf->state == next_perf_state) {
  		if (unlikely(data->resume)) {
  			pr_debug("Called after resume, resetting to P%d\n",
-@@ -811,7 +811,7 @@ static int acpi_cpufreq_cpu_init(struct cpufreq_policy *policy)
+@@ -811,7 +811,7 @@ static int acpi_cpufreq_cpu_init(struct
  		    data->freq_table[valid_states-1].frequency / 1000)
  			continue;
  
@@ -537,8 +511,6 @@ index edc089e9..c24cba1c 100644
  		data->freq_table[valid_states].frequency =
  		    perf->states[i].core_frequency * 1000;
  		valid_states++;
-diff --git a/drivers/cpufreq/blackfin-cpufreq.c b/drivers/cpufreq/blackfin-cpufreq.c
-index 995511e80..9cdbbd27 100644
 --- a/drivers/cpufreq/blackfin-cpufreq.c
 +++ b/drivers/cpufreq/blackfin-cpufreq.c
 @@ -20,23 +20,23 @@
@@ -570,11 +542,9 @@ index 995511e80..9cdbbd27 100644
  	},
  };
  
-diff --git a/drivers/cpufreq/e_powersaver.c b/drivers/cpufreq/e_powersaver.c
-index 37380fb9..324aff20 100644
 --- a/drivers/cpufreq/e_powersaver.c
 +++ b/drivers/cpufreq/e_powersaver.c
-@@ -188,7 +188,7 @@ static int eps_target(struct cpufreq_policy *policy,
+@@ -188,7 +188,7 @@ static int eps_target(struct cpufreq_pol
  	}
  
  	/* Make frequency transition */
@@ -583,7 +553,7 @@ index 37380fb9..324aff20 100644
  	ret = eps_set_state(centaur, policy, dest_state);
  	if (ret)
  		printk(KERN_ERR "eps: Timeout!\n");
-@@ -380,9 +380,9 @@ static int eps_cpu_init(struct cpufreq_policy *policy)
+@@ -380,9 +380,9 @@ static int eps_cpu_init(struct cpufreq_p
  	f_table = &centaur->freq_table[0];
  	if (brand != EPS_BRAND_C7M) {
  		f_table[0].frequency = fsb * min_multiplier;
@@ -595,7 +565,7 @@ index 37380fb9..324aff20 100644
  		f_table[2].frequency = CPUFREQ_TABLE_END;
  	} else {
  		k = 0;
-@@ -391,7 +391,7 @@ static int eps_cpu_init(struct cpufreq_policy *policy)
+@@ -391,7 +391,7 @@ static int eps_cpu_init(struct cpufreq_p
  		for (i = min_multiplier; i <= max_multiplier; i++) {
  			voltage = (k * step) / 256 + min_voltage;
  			f_table[k].frequency = fsb * i;
@@ -604,11 +574,9 @@ index 37380fb9..324aff20 100644
  			k++;
  		}
  		f_table[k].frequency = CPUFREQ_TABLE_END;
-diff --git a/drivers/cpufreq/freq_table.c b/drivers/cpufreq/freq_table.c
-index d7a79662..f0d87412 100644
 --- a/drivers/cpufreq/freq_table.c
 +++ b/drivers/cpufreq/freq_table.c
-@@ -34,8 +34,8 @@ int cpufreq_frequency_table_cpuinfo(struct cpufreq_policy *policy,
+@@ -34,8 +34,8 @@ int cpufreq_frequency_table_cpuinfo(stru
  
  			continue;
  		}
@@ -619,7 +587,7 @@ index d7a79662..f0d87412 100644
  		if (freq < min_freq)
  			min_freq = freq;
  		if (freq > max_freq)
-@@ -97,11 +97,11 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
+@@ -97,11 +97,11 @@ int cpufreq_frequency_table_target(struc
  				   unsigned int *index)
  {
  	struct cpufreq_frequency_table optimal = {
@@ -633,7 +601,7 @@ index d7a79662..f0d87412 100644
  		.frequency = 0,
  	};
  	unsigned int i;
-@@ -129,12 +129,12 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
+@@ -129,12 +129,12 @@ int cpufreq_frequency_table_target(struc
  			if (freq <= target_freq) {
  				if (freq >= optimal.frequency) {
  					optimal.frequency = freq;
@@ -648,7 +616,7 @@ index d7a79662..f0d87412 100644
  				}
  			}
  			break;
-@@ -142,26 +142,26 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
+@@ -142,26 +142,26 @@ int cpufreq_frequency_table_target(struc
  			if (freq >= target_freq) {
  				if (freq <= optimal.frequency) {
  					optimal.frequency = freq;
@@ -682,8 +650,6 @@ index d7a79662..f0d87412 100644
  
  	return 0;
  }
-diff --git a/drivers/cpufreq/ia64-acpi-cpufreq.c b/drivers/cpufreq/ia64-acpi-cpufreq.c
-index c0075dba..573c14ea 100644
 --- a/drivers/cpufreq/ia64-acpi-cpufreq.c
 +++ b/drivers/cpufreq/ia64-acpi-cpufreq.c
 @@ -326,7 +326,7 @@ acpi_cpufreq_cpu_init (
@@ -695,11 +661,9 @@ index c0075dba..573c14ea 100644
  		if (i < data->acpi_data.state_count) {
  			data->freq_table[i].frequency =
  			      data->acpi_data.states[i].core_frequency * 1000;
-diff --git a/drivers/cpufreq/kirkwood-cpufreq.c b/drivers/cpufreq/kirkwood-cpufreq.c
-index b2644af9..c233ea61 100644
 --- a/drivers/cpufreq/kirkwood-cpufreq.c
 +++ b/drivers/cpufreq/kirkwood-cpufreq.c
-@@ -59,7 +59,7 @@ static void kirkwood_cpufreq_set_cpu_state(struct cpufreq_policy *policy,
+@@ -59,7 +59,7 @@ static void kirkwood_cpufreq_set_cpu_sta
  		unsigned int index)
  {
  	struct cpufreq_freqs freqs;
@@ -708,11 +672,9 @@ index b2644af9..c233ea61 100644
  	unsigned long reg;
  
  	freqs.old = kirkwood_cpufreq_get_cpu_frequency(0);
-diff --git a/drivers/cpufreq/longhaul.c b/drivers/cpufreq/longhaul.c
-index b448638e..b6a0a7a4 100644
 --- a/drivers/cpufreq/longhaul.c
 +++ b/drivers/cpufreq/longhaul.c
-@@ -254,7 +254,7 @@ static void longhaul_setstate(struct cpufreq_policy *policy,
+@@ -254,7 +254,7 @@ static void longhaul_setstate(struct cpu
  	u32 bm_timeout = 1000;
  	unsigned int dir = 0;
  
@@ -721,7 +683,7 @@ index b448638e..b6a0a7a4 100644
  	/* Safety precautions */
  	mult = mults[mults_index & 0x1f];
  	if (mult == -1)
-@@ -487,7 +487,7 @@ static int __cpuinit longhaul_get_ranges(void)
+@@ -487,7 +487,7 @@ static int __cpuinit longhaul_get_ranges
  		if (ratio > maxmult || ratio < minmult)
  			continue;
  		longhaul_table[k].frequency = calc_speed(ratio);
@@ -730,7 +692,7 @@ index b448638e..b6a0a7a4 100644
  		k++;
  	}
  	if (k <= 1) {
-@@ -508,8 +508,8 @@ static int __cpuinit longhaul_get_ranges(void)
+@@ -508,8 +508,8 @@ static int __cpuinit longhaul_get_ranges
  		if (min_i != j) {
  			swap(longhaul_table[j].frequency,
  			     longhaul_table[min_i].frequency);
@@ -741,7 +703,7 @@ index b448638e..b6a0a7a4 100644
  		}
  	}
  
-@@ -517,7 +517,7 @@ static int __cpuinit longhaul_get_ranges(void)
+@@ -517,7 +517,7 @@ static int __cpuinit longhaul_get_ranges
  
  	/* Find index we are running on */
  	for (j = 0; j < k; j++) {
@@ -750,7 +712,7 @@ index b448638e..b6a0a7a4 100644
  			longhaul_index = j;
  			break;
  		}
-@@ -613,7 +613,7 @@ static void __cpuinit longhaul_setup_voltagescaling(void)
+@@ -613,7 +613,7 @@ static void __cpuinit longhaul_setup_vol
  			pos = (speed - min_vid_speed) / kHz_step + minvid.pos;
  		else
  			pos = minvid.pos;
@@ -759,7 +721,7 @@ index b448638e..b6a0a7a4 100644
  		vid = vrm_mV_table[mV_vrm_table[pos]];
  		printk(KERN_INFO PFX "f: %d kHz, index: %d, vid: %d mV\n",
  				speed, j, vid.mV);
-@@ -656,12 +656,12 @@ static int longhaul_target(struct cpufreq_policy *policy,
+@@ -656,12 +656,12 @@ static int longhaul_target(struct cpufre
  		 * this in hardware, C3 is old and we need to do this
  		 * in software. */
  		i = longhaul_index;
@@ -774,11 +736,9 @@ index b448638e..b6a0a7a4 100644
  			if (vid != current_vid) {
  				longhaul_setstate(policy, i);
  				current_vid = vid;
-diff --git a/drivers/cpufreq/loongson2_cpufreq.c b/drivers/cpufreq/loongson2_cpufreq.c
-index f92b02ae..9536852c 100644
 --- a/drivers/cpufreq/loongson2_cpufreq.c
 +++ b/drivers/cpufreq/loongson2_cpufreq.c
-@@ -72,7 +72,7 @@ static int loongson2_cpufreq_target(struct cpufreq_policy *policy,
+@@ -72,7 +72,7 @@ static int loongson2_cpufreq_target(stru
  
  	freq =
  	    ((cpu_clock_freq / 1000) *
@@ -787,11 +747,9 @@ index f92b02ae..9536852c 100644
  	if (freq < policy->min || freq > policy->max)
  		return -EINVAL;
  
-diff --git a/drivers/cpufreq/p4-clockmod.c b/drivers/cpufreq/p4-clockmod.c
-index 421ef37d..9ee78170 100644
 --- a/drivers/cpufreq/p4-clockmod.c
 +++ b/drivers/cpufreq/p4-clockmod.c
-@@ -118,7 +118,7 @@ static int cpufreq_p4_target(struct cpufreq_policy *policy,
+@@ -118,7 +118,7 @@ static int cpufreq_p4_target(struct cpuf
  		return -EINVAL;
  
  	freqs.old = cpufreq_p4_get(policy->cpu);
@@ -800,7 +758,7 @@ index 421ef37d..9ee78170 100644
  
  	if (freqs.new == freqs.old)
  		return 0;
-@@ -131,7 +131,7 @@ static int cpufreq_p4_target(struct cpufreq_policy *policy,
+@@ -131,7 +131,7 @@ static int cpufreq_p4_target(struct cpuf
  	 * Developer's Manual, Volume 3
  	 */
  	for_each_cpu(i, policy->cpus)
@@ -809,21 +767,19 @@ index 421ef37d..9ee78170 100644
  
  	/* notifiers */
  	cpufreq_notify_transition(policy, &freqs, CPUFREQ_POSTCHANGE);
-diff --git a/drivers/cpufreq/powernow-k6.c b/drivers/cpufreq/powernow-k6.c
-index ea0222a4..ea8e1038 100644
 --- a/drivers/cpufreq/powernow-k6.c
 +++ b/drivers/cpufreq/powernow-k6.c
-@@ -58,7 +58,7 @@ static int powernow_k6_get_cpu_multiplier(void)
- 	msrval = POWERNOW_IOPORT + 0x0;
- 	wrmsr(MSR_K6_EPMR, msrval, 0); /* disable it again */
+@@ -94,7 +94,7 @@ static int powernow_k6_get_cpu_multiplie
  
--	return clock_ratio[(invalue >> 5)&7].index;
-+	return clock_ratio[(invalue >> 5)&7].driver_data;
+ 	local_irq_enable();
+ 
+-	return clock_ratio[register_to_index[(invalue >> 5)&7]].index;
++	return clock_ratio[register_to_index[(invalue >> 5)&7]].driver_data;
  }
  
- 
-@@ -75,13 +75,13 @@ static void powernow_k6_set_state(struct cpufreq_policy *policy,
- 	unsigned long msrval;
+ static void powernow_k6_set_cpu_multiplier(unsigned int best_i)
+@@ -140,13 +140,13 @@ static void powernow_k6_set_state(struct
+ {
  	struct cpufreq_freqs freqs;
  
 -	if (clock_ratio[best_i].index > max_multiplier) {
@@ -838,7 +794,7 @@ index ea0222a4..ea8e1038 100644
  
  	cpufreq_notify_transition(policy, &freqs, CPUFREQ_PRECHANGE);
  
-@@ -156,7 +156,7 @@ static int powernow_k6_cpu_init(struct cpufreq_policy *policy)
+@@ -249,7 +249,7 @@ have_busfreq:
  
  	/* table init */
  	for (i = 0; (clock_ratio[i].frequency != CPUFREQ_TABLE_END); i++) {
@@ -847,11 +803,9 @@ index ea0222a4..ea8e1038 100644
  		if (f > max_multiplier)
  			clock_ratio[i].frequency = CPUFREQ_ENTRY_INVALID;
  		else
-diff --git a/drivers/cpufreq/powernow-k7.c b/drivers/cpufreq/powernow-k7.c
-index 53888dac..b9f80b71 100644
 --- a/drivers/cpufreq/powernow-k7.c
 +++ b/drivers/cpufreq/powernow-k7.c
-@@ -186,7 +186,7 @@ static int get_ranges(unsigned char *pst)
+@@ -186,7 +186,7 @@ static int get_ranges(unsigned char *pst
  		fid = *pst++;
  
  		powernow_table[j].frequency = (fsb * fid_codes[fid]) / 10;
@@ -860,7 +814,7 @@ index 53888dac..b9f80b71 100644
  
  		speed = powernow_table[j].frequency;
  
-@@ -203,7 +203,7 @@ static int get_ranges(unsigned char *pst)
+@@ -203,7 +203,7 @@ static int get_ranges(unsigned char *pst
  			maximum_speed = speed;
  
  		vid = *pst++;
@@ -869,7 +823,7 @@ index 53888dac..b9f80b71 100644
  
  		pr_debug("   FID: 0x%x (%d.%dx [%dMHz])  "
  			 "VID: 0x%x (%d.%03dV)\n", fid, fid_codes[fid] / 10,
-@@ -212,7 +212,7 @@ static int get_ranges(unsigned char *pst)
+@@ -212,7 +212,7 @@ static int get_ranges(unsigned char *pst
  			 mobile_vid_table[vid]%1000);
  	}
  	powernow_table[number_scales].frequency = CPUFREQ_TABLE_END;
@@ -878,7 +832,7 @@ index 53888dac..b9f80b71 100644
  
  	return 0;
  }
-@@ -260,8 +260,8 @@ static void change_speed(struct cpufreq_policy *policy, unsigned int index)
+@@ -260,8 +260,8 @@ static void change_speed(struct cpufreq_
  	 * vid are the upper 8 bits.
  	 */
  
@@ -909,11 +863,9 @@ index 53888dac..b9f80b71 100644
  
  	/* notify BIOS that we exist */
  	acpi_processor_notify_smm(THIS_MODULE);
-diff --git a/drivers/cpufreq/powernow-k8.c b/drivers/cpufreq/powernow-k8.c
-index b828efe4..51343a12 100644
 --- a/drivers/cpufreq/powernow-k8.c
 +++ b/drivers/cpufreq/powernow-k8.c
-@@ -584,9 +584,9 @@ static void print_basics(struct powernow_k8_data *data)
+@@ -584,9 +584,9 @@ static void print_basics(struct powernow
  				CPUFREQ_ENTRY_INVALID) {
  				printk(KERN_INFO PFX
  					"fid 0x%x (%d MHz), vid 0x%x\n",
@@ -925,7 +877,7 @@ index b828efe4..51343a12 100644
  		}
  	}
  	if (data->batps)
-@@ -632,13 +632,13 @@ static int fill_powernow_table(struct powernow_k8_data *data,
+@@ -632,13 +632,13 @@ static int fill_powernow_table(struct po
  
  	for (j = 0; j < data->numps; j++) {
  		int freq;
@@ -942,7 +894,7 @@ index b828efe4..51343a12 100644
  
  	if (query_current_values_with_pending_wait(data)) {
  		kfree(powernow_table);
-@@ -810,7 +810,7 @@ static int powernow_k8_cpu_init_acpi(struct powernow_k8_data *data)
+@@ -810,7 +810,7 @@ static int powernow_k8_cpu_init_acpi(str
  
  	powernow_table[data->acpi_data.state_count].frequency =
  		CPUFREQ_TABLE_END;
@@ -951,7 +903,7 @@ index b828efe4..51343a12 100644
  	data->powernow_table = powernow_table;
  
  	if (cpumask_first(cpu_core_mask(data->cpu)) == data->cpu)
-@@ -865,7 +865,7 @@ static int fill_powernow_table_fidvid(struct powernow_k8_data *data,
+@@ -865,7 +865,7 @@ static int fill_powernow_table_fidvid(st
  		pr_debug("   %d : fid 0x%x, vid 0x%x\n", i, fid, vid);
  
  		index = fid | (vid<<8);
@@ -960,7 +912,7 @@ index b828efe4..51343a12 100644
  
  		freq = find_khz_freq_from_fid(fid);
  		powernow_table[i].frequency = freq;
-@@ -941,8 +941,8 @@ static int transition_frequency_fidvid(struct powernow_k8_data *data,
+@@ -941,8 +941,8 @@ static int transition_frequency_fidvid(s
  	 * the cpufreq frequency table in find_psb_table, vid
  	 * are the upper 8 bits.
  	 */
@@ -971,11 +923,9 @@ index b828efe4..51343a12 100644
  
  	pr_debug("table matched fid 0x%x, giving vid 0x%x\n", fid, vid);
  
-diff --git a/drivers/cpufreq/ppc_cbe_cpufreq.c b/drivers/cpufreq/ppc_cbe_cpufreq.c
-index e577a1db..5936f8d6 100644
 --- a/drivers/cpufreq/ppc_cbe_cpufreq.c
 +++ b/drivers/cpufreq/ppc_cbe_cpufreq.c
-@@ -106,7 +106,7 @@ static int cbe_cpufreq_cpu_init(struct cpufreq_policy *policy)
+@@ -106,7 +106,7 @@ static int cbe_cpufreq_cpu_init(struct c
  
  	/* initialize frequency table */
  	for (i=0; cbe_freqs[i].frequency!=CPUFREQ_TABLE_END; i++) {
@@ -984,7 +934,7 @@ index e577a1db..5936f8d6 100644
  		pr_debug("%d: %d\n", i, cbe_freqs[i].frequency);
  	}
  
-@@ -165,7 +165,7 @@ static int cbe_cpufreq_target(struct cpufreq_policy *policy,
+@@ -165,7 +165,7 @@ static int cbe_cpufreq_target(struct cpu
  		 "1/%d of max frequency\n",
  		 policy->cpu,
  		 cbe_freqs[cbe_pmode_new].frequency,
@@ -993,11 +943,9 @@ index e577a1db..5936f8d6 100644
  
  	rc = set_pmode(policy->cpu, cbe_pmode_new);
  
-diff --git a/drivers/cpufreq/pxa2xx-cpufreq.c b/drivers/cpufreq/pxa2xx-cpufreq.c
-index 9e5bc8e3..fb3981ac 100644
 --- a/drivers/cpufreq/pxa2xx-cpufreq.c
 +++ b/drivers/cpufreq/pxa2xx-cpufreq.c
-@@ -420,7 +420,7 @@ static int pxa_cpufreq_init(struct cpufreq_policy *policy)
+@@ -420,7 +420,7 @@ static int pxa_cpufreq_init(struct cpufr
  	/* Generate pxa25x the run cpufreq_frequency_table struct */
  	for (i = 0; i < NUM_PXA25x_RUN_FREQS; i++) {
  		pxa255_run_freq_table[i].frequency = pxa255_run_freqs[i].khz;
@@ -1006,7 +954,7 @@ index 9e5bc8e3..fb3981ac 100644
  	}
  	pxa255_run_freq_table[i].frequency = CPUFREQ_TABLE_END;
  
-@@ -428,7 +428,7 @@ static int pxa_cpufreq_init(struct cpufreq_policy *policy)
+@@ -428,7 +428,7 @@ static int pxa_cpufreq_init(struct cpufr
  	for (i = 0; i < NUM_PXA25x_TURBO_FREQS; i++) {
  		pxa255_turbo_freq_table[i].frequency =
  			pxa255_turbo_freqs[i].khz;
@@ -1015,7 +963,7 @@ index 9e5bc8e3..fb3981ac 100644
  	}
  	pxa255_turbo_freq_table[i].frequency = CPUFREQ_TABLE_END;
  
-@@ -440,9 +440,9 @@ static int pxa_cpufreq_init(struct cpufreq_policy *policy)
+@@ -440,9 +440,9 @@ static int pxa_cpufreq_init(struct cpufr
  		if (freq > pxa27x_maxfreq)
  			break;
  		pxa27x_freq_table[i].frequency = freq;
@@ -1027,11 +975,9 @@ index 9e5bc8e3..fb3981ac 100644
  	pxa27x_freq_table[i].frequency = CPUFREQ_TABLE_END;
  
  	/*
-diff --git a/drivers/cpufreq/pxa3xx-cpufreq.c b/drivers/cpufreq/pxa3xx-cpufreq.c
-index 15d60f85..9c92ef03 100644
 --- a/drivers/cpufreq/pxa3xx-cpufreq.c
 +++ b/drivers/cpufreq/pxa3xx-cpufreq.c
-@@ -98,10 +98,10 @@ static int setup_freqs_table(struct cpufreq_policy *policy,
+@@ -98,10 +98,10 @@ static int setup_freqs_table(struct cpuf
  		return -ENOMEM;
  
  	for (i = 0; i < num; i++) {
@@ -1044,11 +990,9 @@ index 15d60f85..9c92ef03 100644
  	table[num].frequency = CPUFREQ_TABLE_END;
  
  	pxa3xx_freqs = freqs;
-diff --git a/drivers/cpufreq/s3c2416-cpufreq.c b/drivers/cpufreq/s3c2416-cpufreq.c
-index 4f1881ee..69f2e558 100644
 --- a/drivers/cpufreq/s3c2416-cpufreq.c
 +++ b/drivers/cpufreq/s3c2416-cpufreq.c
-@@ -244,7 +244,7 @@ static int s3c2416_cpufreq_set_target(struct cpufreq_policy *policy,
+@@ -244,7 +244,7 @@ static int s3c2416_cpufreq_set_target(st
  	if (ret != 0)
  		goto out;
  
@@ -1057,11 +1001,9 @@ index 4f1881ee..69f2e558 100644
  
  	if (idx == SOURCE_HCLK)
  		to_dvs = 1;
-diff --git a/drivers/cpufreq/s3c64xx-cpufreq.c b/drivers/cpufreq/s3c64xx-cpufreq.c
-index 27cacb52..306d395d 100644
 --- a/drivers/cpufreq/s3c64xx-cpufreq.c
 +++ b/drivers/cpufreq/s3c64xx-cpufreq.c
-@@ -87,7 +87,7 @@ static int s3c64xx_cpufreq_set_target(struct cpufreq_policy *policy,
+@@ -87,7 +87,7 @@ static int s3c64xx_cpufreq_set_target(st
  	freqs.old = clk_get_rate(armclk) / 1000;
  	freqs.new = s3c64xx_freq_table[i].frequency;
  	freqs.flags = 0;
@@ -1070,11 +1012,9 @@ index 27cacb52..306d395d 100644
  
  	if (freqs.old == freqs.new)
  		return 0;
-diff --git a/drivers/cpufreq/sc520_freq.c b/drivers/cpufreq/sc520_freq.c
-index f740b134..77a21097 100644
 --- a/drivers/cpufreq/sc520_freq.c
 +++ b/drivers/cpufreq/sc520_freq.c
-@@ -71,7 +71,7 @@ static void sc520_freq_set_cpu_state(struct cpufreq_policy *policy,
+@@ -71,7 +71,7 @@ static void sc520_freq_set_cpu_state(str
  	local_irq_disable();
  
  	clockspeed_reg = *cpuctl & ~0x03;
@@ -1083,11 +1023,9 @@ index f740b134..77a21097 100644
  
  	local_irq_enable();
  
-diff --git a/drivers/cpufreq/sparc-us2e-cpufreq.c b/drivers/cpufreq/sparc-us2e-cpufreq.c
-index 306ae462..93061a40 100644
 --- a/drivers/cpufreq/sparc-us2e-cpufreq.c
 +++ b/drivers/cpufreq/sparc-us2e-cpufreq.c
-@@ -308,17 +308,17 @@ static int __init us2e_freq_cpu_init(struct cpufreq_policy *policy)
+@@ -308,17 +308,17 @@ static int __init us2e_freq_cpu_init(str
  	struct cpufreq_frequency_table *table =
  		&us2e_freq_table[cpu].table[0];
  
@@ -1111,11 +1049,9 @@ index 306ae462..93061a40 100644
  	table[3].frequency = CPUFREQ_TABLE_END;
  
  	policy->cpuinfo.transition_latency = 0;
-diff --git a/drivers/cpufreq/sparc-us3-cpufreq.c b/drivers/cpufreq/sparc-us3-cpufreq.c
-index c71ee142..880ee293 100644
 --- a/drivers/cpufreq/sparc-us3-cpufreq.c
 +++ b/drivers/cpufreq/sparc-us3-cpufreq.c
-@@ -169,13 +169,13 @@ static int __init us3_freq_cpu_init(struct cpufreq_policy *policy)
+@@ -169,13 +169,13 @@ static int __init us3_freq_cpu_init(stru
  	struct cpufreq_frequency_table *table =
  		&us3_freq_table[cpu].table[0];
  
@@ -1133,11 +1069,9 @@ index c71ee142..880ee293 100644
  	table[3].frequency = CPUFREQ_TABLE_END;
  
  	policy->cpuinfo.transition_latency = 0;
-diff --git a/drivers/cpufreq/spear-cpufreq.c b/drivers/cpufreq/spear-cpufreq.c
-index 156829f4..c3efa7f2 100644
 --- a/drivers/cpufreq/spear-cpufreq.c
 +++ b/drivers/cpufreq/spear-cpufreq.c
-@@ -250,11 +250,11 @@ static int spear_cpufreq_driver_init(void)
+@@ -250,11 +250,11 @@ static int spear_cpufreq_driver_init(voi
  	}
  
  	for (i = 0; i < cnt; i++) {
@@ -1151,11 +1085,9 @@ index 156829f4..c3efa7f2 100644
  	freq_tbl[i].frequency = CPUFREQ_TABLE_END;
  
  	spear_cpufreq.freq_tbl = freq_tbl;
-diff --git a/drivers/cpufreq/speedstep-centrino.c b/drivers/cpufreq/speedstep-centrino.c
-index 618e6f41..0915e712 100644
 --- a/drivers/cpufreq/speedstep-centrino.c
 +++ b/drivers/cpufreq/speedstep-centrino.c
-@@ -79,11 +79,11 @@ static struct cpufreq_driver centrino_driver;
+@@ -79,11 +79,11 @@ static struct cpufreq_driver centrino_dr
  
  /* Computes the correct form for IA32_PERF_CTL MSR for a particular
     frequency/voltage operating point; frequency in MHz, volts in mV.
@@ -1169,7 +1101,7 @@ index 618e6f41..0915e712 100644
  	}
  
  /*
-@@ -307,7 +307,7 @@ static unsigned extract_clock(unsigned msr, unsigned int cpu, int failsafe)
+@@ -307,7 +307,7 @@ static unsigned extract_clock(unsigned m
  		per_cpu(centrino_model, cpu)->op_points[i].frequency
  							!= CPUFREQ_TABLE_END;
  	     i++) {
@@ -1178,7 +1110,7 @@ index 618e6f41..0915e712 100644
  			return per_cpu(centrino_model, cpu)->
  							op_points[i].frequency;
  	}
-@@ -501,7 +501,7 @@ static int centrino_target (struct cpufreq_policy *policy,
+@@ -501,7 +501,7 @@ static int centrino_target (struct cpufr
  			break;
  		}
  
@@ -1187,11 +1119,9 @@ index 618e6f41..0915e712 100644
  
  		if (first_cpu) {
  			rdmsr_on_cpu(good_cpu, MSR_IA32_PERF_CTL, &oldmsr, &h);
-diff --git a/drivers/mfd/db8500-prcmu.c b/drivers/mfd/db8500-prcmu.c
-index 66f80973..ed79d7b7 100644
 --- a/drivers/mfd/db8500-prcmu.c
 +++ b/drivers/mfd/db8500-prcmu.c
-@@ -1724,9 +1724,9 @@ static long round_clock_rate(u8 clock, unsigned long rate)
+@@ -1724,9 +1724,9 @@ static long round_clock_rate(u8 clock, u
  
  /* CPU FREQ table, may be changed due to if MAX_OPP is supported. */
  static struct cpufreq_frequency_table db8500_cpufreq_table[] = {
@@ -1204,7 +1134,7 @@ index 66f80973..ed79d7b7 100644
  	{ .frequency = CPUFREQ_TABLE_END,}, /* To be used for MAX_OPP. */
  	{ .frequency = CPUFREQ_TABLE_END,},
  };
-@@ -1901,7 +1901,7 @@ static int set_armss_rate(unsigned long rate)
+@@ -1901,7 +1901,7 @@ static int set_armss_rate(unsigned long
  		return -EINVAL;
  
  	/* Set the new arm opp. */
@@ -1213,7 +1143,7 @@ index 66f80973..ed79d7b7 100644
  }
  
  static int set_plldsi_rate(unsigned long rate)
-@@ -3105,7 +3105,7 @@ static void db8500_prcmu_update_cpufreq(void)
+@@ -3105,7 +3105,7 @@ static void db8500_prcmu_update_cpufreq(
  {
  	if (prcmu_has_arm_maxopp()) {
  		db8500_cpufreq_table[3].frequency = 1000000;
@@ -1222,11 +1152,9 @@ index 66f80973..ed79d7b7 100644
  	}
  }
  
-diff --git a/drivers/sh/clk/core.c b/drivers/sh/clk/core.c
-index 7715de26..74727851 100644
 --- a/drivers/sh/clk/core.c
 +++ b/drivers/sh/clk/core.c
-@@ -63,12 +63,12 @@ void clk_rate_table_build(struct clk *clk,
+@@ -63,12 +63,12 @@ void clk_rate_table_build(struct clk *cl
  		else
  			freq = clk->parent->rate * mult / div;
  
@@ -1241,11 +1169,9 @@ index 7715de26..74727851 100644
  	freq_table[i].frequency = CPUFREQ_TABLE_END;
  }
  
-diff --git a/include/linux/cpufreq.h b/include/linux/cpufreq.h
-index 037d36ae..09ba2460 100644
 --- a/include/linux/cpufreq.h
 +++ b/include/linux/cpufreq.h
-@@ -404,7 +404,7 @@ extern struct cpufreq_governor cpufreq_gov_conservative;
+@@ -405,7 +405,7 @@ extern struct cpufreq_governor cpufreq_g
  #define CPUFREQ_TABLE_END     ~1
  
  struct cpufreq_frequency_table {
@@ -1254,6 +1180,3 @@ index 037d36ae..09ba2460 100644
  	unsigned int	frequency; /* kHz - doesn't need to be in ascending
  				    * order */
  };
--- 
-1.8.4.3.gca3854a
-

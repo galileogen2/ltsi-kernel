@@ -2316,7 +2316,6 @@ patches.baytrail/1148-tty-8250_dw-Add-support-for-OCTEON-UARTS.patch
 patches.baytrail/1149-i2c-mv64xxx-Document-the-newly-introduced-allwinner-.patch
 patches.baytrail/1150-spi-pxa2xx-enable-DMA-on-newer-Intel-LPSS-silicon.patch
 patches.baytrail/1151-Intel-xhci-refactor-EHCI-xHCI-port-switching.patch
-patches.baytrail/1152-serial-8250_dw-Report-CTS-asserted-for-auto-flow.patch
 patches.baytrail/1153-pinctrl-baytrail-fix-indentations.patch
 patches.baytrail/1154-pinctrl-baytrail-change-lvl-to-level.patch
 patches.baytrail/1155-pinctrl-baytrail-remove-redundant-ptr-variable.patch

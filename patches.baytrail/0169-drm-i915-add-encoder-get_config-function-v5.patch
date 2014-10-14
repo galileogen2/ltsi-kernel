@@ -69,7 +69,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* Note: The caller is required to filter out dpms modes not supported by the
   * platform. */
  static void intel_crt_set_dpms(struct intel_encoder *encoder, int mode)
-@@ -778,6 +800,7 @@ void intel_crt_init(struct drm_device *d
+@@ -786,6 +808,7 @@ void intel_crt_init(struct drm_device *d
  	crt->base.compute_config = intel_crt_compute_config;
  	crt->base.disable = intel_disable_crt;
  	crt->base.enable = intel_enable_crt;
@@ -160,7 +160,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		pipe_config.cpu_transcoder = crtc->config.cpu_transcoder;
  		active = dev_priv->display.get_pipe_config(crtc,
  							   &pipe_config);
-@@ -9636,8 +9648,10 @@ setup_pipes:
+@@ -9638,8 +9650,10 @@ setup_pipes:
  		pipe = 0;
  
  		if (encoder->get_hw_state(encoder, &pipe)) {

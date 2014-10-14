@@ -11,14 +11,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 30e984df4c5633363b45108473b0561e7d89476d)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 20 +++++++++++++++-----
+ drivers/gpu/drm/i915/intel_display.c |   20 +++++++++++++++-----
  1 file changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index aba95868a7cb..aeff32e5c547 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -9740,14 +9740,10 @@ void i915_redisable_vga(struct drm_device *dev)
+@@ -9742,14 +9742,10 @@ void i915_redisable_vga(struct drm_devic
  	}
  }
  
@@ -34,7 +32,7 @@ index aba95868a7cb..aeff32e5c547 100644
  	struct intel_crtc *crtc;
  	struct intel_encoder *encoder;
  	struct intel_connector *connector;
-@@ -9823,6 +9819,20 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9825,6 +9821,20 @@ void intel_modeset_setup_hw_state(struct
  			      drm_get_connector_name(&connector->base),
  			      connector->base.encoder ? "enabled" : "disabled");
  	}
@@ -55,6 +53,3 @@ index aba95868a7cb..aeff32e5c547 100644
  
  	/* HW state is read out, now we need to sanitize this mess. */
  	list_for_each_entry(encoder, &dev->mode_config.encoder_list,
--- 
-1.8.5.rc3
-

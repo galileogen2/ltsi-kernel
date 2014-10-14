@@ -25,14 +25,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit c0b0341121f2e2b329e60986aee766e4d1d80fde)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 74 +++++++++++++++++++++---------------
+ drivers/gpu/drm/i915/intel_display.c |   74 ++++++++++++++++++++---------------
  1 file changed, 44 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 371cd327b6ea..c953cc46f208 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -3523,18 +3523,12 @@ static void i9xx_pfit_enable(struct intel_crtc *crtc)
+@@ -3523,18 +3523,12 @@ static void i9xx_pfit_enable(struct inte
  	if (!crtc->config.gmch_pfit.control)
  		return;
  
@@ -55,7 +53,7 @@ index 371cd327b6ea..c953cc46f208 100644
  
  	I915_WRITE(PFIT_PGM_RATIOS, pipe_config->gmch_pfit.pgm_ratios);
  	I915_WRITE(PFIT_CONTROL, pipe_config->gmch_pfit.control);
-@@ -4857,9 +4851,6 @@ static int i9xx_crtc_mode_set(struct drm_crtc *crtc,
+@@ -4857,9 +4851,6 @@ static int i9xx_crtc_mode_set(struct drm
  			dspcntr |= DISPPLANE_SEL_PIPE_B;
  	}
  
@@ -65,7 +63,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	intel_set_pipe_timings(intel_crtc, mode, adjusted_mode);
  
  	/* pipesrc and dspsize control the size that is scaled from,
-@@ -5661,9 +5652,6 @@ static int ironlake_crtc_mode_set(struct drm_crtc *crtc,
+@@ -5661,9 +5652,6 @@ static int ironlake_crtc_mode_set(struct
  	/* Ensure that the cursor is valid for the new mode before changing... */
  	intel_crtc_update_cursor(crtc, true);
  
@@ -75,7 +73,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	/* CPU eDP is the only output that doesn't need a PCH PLL of its own. */
  	if (intel_crtc->config.has_pch_encoder) {
  		struct intel_pch_pll *pll;
-@@ -5874,9 +5862,6 @@ static int haswell_crtc_mode_set(struct drm_crtc *crtc,
+@@ -5874,9 +5862,6 @@ static int haswell_crtc_mode_set(struct
  	/* Ensure that the cursor is valid for the new mode before changing... */
  	intel_crtc_update_cursor(crtc, true);
  
@@ -85,7 +83,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	if (intel_crtc->config.has_dp_encoder)
  		intel_dp_set_m_n(intel_crtc);
  
-@@ -7689,6 +7674,35 @@ pipe_config_set_bpp(struct drm_crtc *crtc,
+@@ -7689,6 +7674,35 @@ pipe_config_set_bpp(struct drm_crtc *crt
  	return bpp;
  }
  
@@ -130,7 +128,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	pipe_config->dither = pipe_config->pipe_bpp != plane_bpp;
  	DRM_DEBUG_KMS("plane bpp: %i, pipe bpp: %i, dithering: %i\n",
  		      plane_bpp, pipe_config->pipe_bpp, pipe_config->dither);
-@@ -8122,9 +8134,14 @@ intel_modeset_check_state(struct drm_device *dev)
+@@ -8122,9 +8134,14 @@ intel_modeset_check_state(struct drm_dev
  		     "crtc active state doesn't match with hw state "
  		     "(expected %i, found %i)\n", crtc->active, active);
  
@@ -148,7 +146,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	}
  }
  
-@@ -8164,6 +8181,8 @@ static int __intel_set_mode(struct drm_crtc *crtc,
+@@ -8164,6 +8181,8 @@ static int __intel_set_mode(struct drm_c
  
  			goto out;
  		}
@@ -157,7 +155,7 @@ index 371cd327b6ea..c953cc46f208 100644
  	}
  
  	for_each_intel_crtc_masked(dev, disable_pipes, intel_crtc)
-@@ -8523,12 +8542,6 @@ static int intel_crtc_set_config(struct drm_mode_set *set)
+@@ -8523,12 +8542,6 @@ static int intel_crtc_set_config(struct
  		goto fail;
  
  	if (config->mode_changed) {
@@ -170,7 +168,7 @@ index 371cd327b6ea..c953cc46f208 100644
  		ret = intel_set_mode(set->crtc, set->mode,
  				     set->x, set->y, set->fb);
  	} else if (config->fb_changed) {
-@@ -9563,6 +9576,7 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9565,6 +9578,7 @@ void intel_modeset_setup_hw_state(struct
  	for_each_pipe(pipe) {
  		crtc = to_intel_crtc(dev_priv->pipe_to_crtc_mapping[pipe]);
  		intel_sanitize_crtc(crtc);
@@ -178,6 +176,3 @@ index 371cd327b6ea..c953cc46f208 100644
  	}
  
  	if (force_restore) {
--- 
-1.8.5.rc3
-

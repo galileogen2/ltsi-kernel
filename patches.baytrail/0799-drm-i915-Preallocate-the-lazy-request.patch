@@ -16,16 +16,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 3c0e234c847318304c12f9e7fffac7e1cf3db3ff)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_gem.c         |  9 ++++-----
- drivers/gpu/drm/i915/intel_ringbuffer.c | 10 ++++++++++
- drivers/gpu/drm/i915/intel_ringbuffer.h |  1 +
+ drivers/gpu/drm/i915/i915_gem.c         |    9 ++++-----
+ drivers/gpu/drm/i915/intel_ringbuffer.c |   10 ++++++++++
+ drivers/gpu/drm/i915/intel_ringbuffer.h |    1 +
  3 files changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 858e78886637..399e159016e2 100644
 --- a/drivers/gpu/drm/i915/i915_gem.c
 +++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -2041,8 +2041,8 @@ int __i915_add_request(struct intel_ring_buffer *ring,
+@@ -2041,8 +2041,8 @@ int __i915_add_request(struct intel_ring
  	if (ret)
  		return ret;
  
@@ -36,7 +34,7 @@ index 858e78886637..399e159016e2 100644
  		return -ENOMEM;
  
  	/* Record the position of the start of the request so that
-@@ -2053,10 +2053,8 @@ int __i915_add_request(struct intel_ring_buffer *ring,
+@@ -2053,10 +2053,8 @@ int __i915_add_request(struct intel_ring
  	request_ring_position = intel_ring_get_tail(ring);
  
  	ret = ring->add_request(ring);
@@ -48,7 +46,7 @@ index 858e78886637..399e159016e2 100644
  
  	request->seqno = intel_ring_get_seqno(ring);
  	request->ring = ring;
-@@ -2095,6 +2093,7 @@ int __i915_add_request(struct intel_ring_buffer *ring,
+@@ -2095,6 +2093,7 @@ int __i915_add_request(struct intel_ring
  
  	trace_i915_gem_request_add(ring, request->seqno);
  	ring->outstanding_lazy_seqno = 0;
@@ -56,11 +54,9 @@ index 858e78886637..399e159016e2 100644
  
  	if (!dev_priv->ums.mm_suspended) {
  		i915_queue_hangcheck(ring->dev);
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
-index a83ff1863a5e..284afaf5d6ff 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1498,6 +1498,16 @@ intel_ring_alloc_seqno(struct intel_ring_buffer *ring)
+@@ -1501,6 +1501,16 @@ intel_ring_alloc_seqno(struct intel_ring
  	if (ring->outstanding_lazy_seqno)
  		return 0;
  
@@ -77,8 +73,6 @@ index a83ff1863a5e..284afaf5d6ff 100644
  	return i915_gem_get_seqno(ring->dev, &ring->outstanding_lazy_seqno);
  }
  
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.h b/drivers/gpu/drm/i915/intel_ringbuffer.h
-index c6aa2b3c8c26..ad2dd65c63f8 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.h
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.h
 @@ -140,6 +140,7 @@ struct  intel_ring_buffer {
@@ -89,6 +83,3 @@ index c6aa2b3c8c26..ad2dd65c63f8 100644
  	u32 outstanding_lazy_seqno;
  	bool gpu_caches_dirty;
  	bool fbc_dirty;
--- 
-1.8.5.rc3
-

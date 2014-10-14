@@ -24,14 +24,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 6acab15a7b0d2722924c5d671cb29974791beece)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h   |  6 +++
- drivers/gpu/drm/i915/intel_bios.c | 77 +++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_bios.h | 13 +++++++
- drivers/gpu/drm/i915/intel_ddi.c  | 24 +++++++++++-
+ drivers/gpu/drm/i915/i915_drv.h   |    6 ++
+ drivers/gpu/drm/i915/intel_bios.c |   77 ++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_bios.h |   13 ++++++
+ drivers/gpu/drm/i915/intel_ddi.c  |   24 ++++++++++-
  4 files changed, 118 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9868a66ef59c..2eca286b57ff 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
 @@ -1057,6 +1057,10 @@ enum modeset_restore {
@@ -54,11 +52,9 @@ index 9868a66ef59c..2eca286b57ff 100644
  };
  
  enum intel_ddb_partitioning {
-diff --git a/drivers/gpu/drm/i915/intel_bios.c b/drivers/gpu/drm/i915/intel_bios.c
-index 33003b97f1f0..2f434297246e 100644
 --- a/drivers/gpu/drm/i915/intel_bios.c
 +++ b/drivers/gpu/drm/i915/intel_bios.c
-@@ -583,6 +583,76 @@ parse_mipi(struct drm_i915_private *dev_priv, struct bdb_header *bdb)
+@@ -583,6 +583,76 @@ parse_mipi(struct drm_i915_private *dev_
  	dev_priv->vbt.dsi.panel_id = mipi->panel_id;
  }
  
@@ -143,7 +139,7 @@ index 33003b97f1f0..2f434297246e 100644
  
  	dev_priv->vbt.crt_ddc_pin = GMBUS_PORT_VGADDC;
  
-@@ -670,6 +741,11 @@ init_vbt_defaults(struct drm_i915_private *dev_priv)
+@@ -670,6 +741,11 @@ init_vbt_defaults(struct drm_i915_privat
  	dev_priv->vbt.lvds_use_ssc = 1;
  	dev_priv->vbt.lvds_ssc_freq = intel_bios_ssc_frequency(dev, 1);
  	DRM_DEBUG_KMS("Set default to SSC at %dMHz\n", dev_priv->vbt.lvds_ssc_freq);
@@ -154,7 +150,7 @@ index 33003b97f1f0..2f434297246e 100644
 +	}
  }
  
- static int __init intel_no_opregion_vbt_callback(const struct dmi_system_id *id)
+ static int intel_no_opregion_vbt_callback(const struct dmi_system_id *id)
 @@ -761,6 +837,7 @@ intel_parse_bios(struct drm_device *dev)
  	parse_driver_features(dev_priv, bdb);
  	parse_edp(dev_priv, bdb);
@@ -163,11 +159,9 @@ index 33003b97f1f0..2f434297246e 100644
  
  	if (bios)
  		pci_unmap_rom(pdev, bios);
-diff --git a/drivers/gpu/drm/i915/intel_bios.h b/drivers/gpu/drm/i915/intel_bios.h
-index 1da2bf208299..287cc5a21c2e 100644
 --- a/drivers/gpu/drm/i915/intel_bios.h
 +++ b/drivers/gpu/drm/i915/intel_bios.h
-@@ -648,6 +648,19 @@ int intel_parse_bios(struct drm_device *dev);
+@@ -648,6 +648,19 @@ int intel_parse_bios(struct drm_device *
  #define		PORT_IDPC	8
  #define		PORT_IDPD	9
  
@@ -187,11 +181,9 @@ index 1da2bf208299..287cc5a21c2e 100644
  /* MIPI DSI panel info */
  struct bdb_mipi {
  	u16 panel_id;
-diff --git a/drivers/gpu/drm/i915/intel_ddi.c b/drivers/gpu/drm/i915/intel_ddi.c
-index 351e21a0be07..963245a104e4 100644
 --- a/drivers/gpu/drm/i915/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/intel_ddi.c
-@@ -42,7 +42,6 @@ static const u32 hsw_ddi_translations_dp[] = {
+@@ -42,7 +42,6 @@ static const u32 hsw_ddi_translations_dp
  	0x80C30FFF, 0x000B0000,
  	0x00FFFFFF, 0x00040006,
  	0x80D75FFF, 0x000B0000,
@@ -199,7 +191,7 @@ index 351e21a0be07..963245a104e4 100644
  };
  
  static const u32 hsw_ddi_translations_fdi[] = {
-@@ -55,7 +54,22 @@ static const u32 hsw_ddi_translations_fdi[] = {
+@@ -55,7 +54,22 @@ static const u32 hsw_ddi_translations_fd
  	0x00C30FFF, 0x001E0000,
  	0x00FFFFFF, 0x00060006,
  	0x00D75FFF, 0x001E0000,
@@ -223,7 +215,7 @@ index 351e21a0be07..963245a104e4 100644
  };
  
  enum port intel_ddi_get_encoder_port(struct intel_encoder *intel_encoder)
-@@ -92,12 +106,18 @@ static void intel_prepare_ddi_buffers(struct drm_device *dev, enum port port)
+@@ -92,12 +106,18 @@ static void intel_prepare_ddi_buffers(st
  	const u32 *ddi_translations = (port == PORT_E) ?
  		hsw_ddi_translations_fdi :
  		hsw_ddi_translations_dp;
@@ -242,6 +234,3 @@ index 351e21a0be07..963245a104e4 100644
  }
  
  /* Program DDI buffers translations for DP. By default, program ports A-D in DP
--- 
-1.8.5.rc3
-

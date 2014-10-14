@@ -11,14 +11,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit 058555739166561b97313123521574f0a9b2c9d7)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/tty/serial/8250/8250_dw.c | 3 ++-
+ drivers/tty/serial/8250/8250_dw.c |    3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index 8edf7697fdb2..d04a037d6b6f 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -278,7 +278,8 @@ static int dw8250_probe_acpi(struct uart_8250_port *up,
+@@ -302,7 +302,8 @@ static int dw8250_probe_acpi(struct uart
  	return 0;
  }
  #else
@@ -28,6 +26,3 @@ index 8edf7697fdb2..d04a037d6b6f 100644
  {
  	return -ENODEV;
  }
--- 
-1.8.5.rc3
-

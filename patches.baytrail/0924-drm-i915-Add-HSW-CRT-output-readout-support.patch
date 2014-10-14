@@ -83,7 +83,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* Note: The caller is required to filter out dpms modes not supported by the
   * platform. */
  static void intel_crt_set_dpms(struct intel_encoder *encoder, int mode)
-@@ -804,7 +823,10 @@ void intel_crt_init(struct drm_device *d
+@@ -812,7 +831,10 @@ void intel_crt_init(struct drm_device *d
  	crt->base.mode_set = intel_crt_mode_set;
  	crt->base.disable = intel_disable_crt;
  	crt->base.enable = intel_enable_crt;

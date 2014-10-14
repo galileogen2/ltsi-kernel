@@ -48,7 +48,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   * 3D instructions used by the kernel
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1686,9 +1686,9 @@ int intel_init_render_ring_buffer(struct
+@@ -1689,9 +1689,9 @@ int intel_init_render_ring_buffer(struct
  		ring->get_seqno = gen6_ring_get_seqno;
  		ring->set_seqno = ring_set_seqno;
  		ring->sync_to = gen6_ring_sync;
@@ -61,7 +61,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ring->signal_mbox[0] = GEN6_VRSYNC;
  		ring->signal_mbox[1] = GEN6_BRSYNC;
  	} else if (IS_GEN5(dev)) {
-@@ -1845,9 +1845,9 @@ int intel_init_bsd_ring_buffer(struct dr
+@@ -1848,9 +1848,9 @@ int intel_init_bsd_ring_buffer(struct dr
  		ring->irq_put = gen6_ring_put_irq;
  		ring->dispatch_execbuffer = gen6_ring_dispatch_execbuffer;
  		ring->sync_to = gen6_ring_sync;
@@ -74,7 +74,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ring->signal_mbox[0] = GEN6_RVSYNC;
  		ring->signal_mbox[1] = GEN6_BVSYNC;
  	} else {
-@@ -1891,9 +1891,9 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1894,9 +1894,9 @@ int intel_init_blt_ring_buffer(struct dr
  	ring->irq_put = gen6_ring_put_irq;
  	ring->dispatch_execbuffer = gen6_ring_dispatch_execbuffer;
  	ring->sync_to = gen6_ring_sync;

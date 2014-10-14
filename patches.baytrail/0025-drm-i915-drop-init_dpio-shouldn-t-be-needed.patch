@@ -35,7 +35,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static const intel_limit_t *intel_ironlake_limit(struct drm_crtc *crtc,
  						int refclk)
  {
-@@ -9486,9 +9475,6 @@ void intel_modeset_cleanup(struct drm_de
+@@ -9488,9 +9477,6 @@ void intel_modeset_cleanup(struct drm_de
  
  	ironlake_teardown_rc6(dev);
  

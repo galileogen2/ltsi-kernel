@@ -17,11 +17,9 @@ Conflicts:
 	(context changes)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 24 ++++++++++++++----------
+ drivers/gpu/drm/i915/intel_display.c |   24 ++++++++++++++----------
  1 file changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 1910cc9725fa..87c5d76a7361 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
 @@ -8380,14 +8380,13 @@ check_crtc_state(struct drm_device *dev)
@@ -43,7 +41,7 @@ index 1910cc9725fa..87c5d76a7361 100644
  		WARN(crtc->active != active,
  		     "crtc active state doesn't match with hw state "
  		     "(expected %i, found %i)\n", crtc->active, active);
-@@ -9980,12 +9979,8 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+@@ -9982,12 +9981,8 @@ static void intel_modeset_readout_hw_sta
  		if (encoder->get_hw_state(encoder, &pipe)) {
  			crtc = to_intel_crtc(dev_priv->pipe_to_crtc_mapping[pipe]);
  			encoder->base.crtc = &crtc->base;
@@ -57,7 +55,7 @@ index 1910cc9725fa..87c5d76a7361 100644
  		} else {
  			encoder->base.crtc = NULL;
  		}
-@@ -9998,6 +9993,15 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+@@ -10000,6 +9995,15 @@ static void intel_modeset_readout_hw_sta
  			      pipe);
  	}
  
@@ -73,6 +71,3 @@ index 1910cc9725fa..87c5d76a7361 100644
  	list_for_each_entry(connector, &dev->mode_config.connector_list,
  			    base.head) {
  		if (connector->get_hw_state(connector)) {
--- 
-1.8.5.rc3
-

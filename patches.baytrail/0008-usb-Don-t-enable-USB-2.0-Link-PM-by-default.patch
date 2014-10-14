@@ -85,7 +85,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/core/driver.c
 +++ b/drivers/usb/core/driver.c
-@@ -1773,6 +1773,9 @@ int usb_set_usb2_hardware_lpm(struct usb
+@@ -1794,6 +1794,9 @@ int usb_set_usb2_hardware_lpm(struct usb
  	struct usb_hcd *hcd = bus_to_hcd(udev->bus);
  	int ret = -EPERM;
  
@@ -97,7 +97,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		if (!ret)
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -5160,6 +5160,7 @@ static int usb_reset_and_verify_device(s
+@@ -5240,6 +5240,7 @@ static int usb_reset_and_verify_device(s
  
  done:
  	/* Now that the alt settings are re-installed, enable LTM and LPM. */
@@ -140,7 +140,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	int size;
  	int i, j, num_ports;
  
-@@ -1824,13 +1822,6 @@ void xhci_mem_cleanup(struct xhci_hcd *x
+@@ -1834,13 +1832,6 @@ void xhci_mem_cleanup(struct xhci_hcd *x
  
  	scratchpad_free(xhci);
  
@@ -164,7 +164,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	page_size = xhci_readl(xhci, &xhci->op_regs->page_size);
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3943,133 +3943,6 @@ static int xhci_calculate_usb2_hw_lpm_pa
+@@ -3955,133 +3955,6 @@ static int xhci_calculate_usb2_hw_lpm_pa
  	return PORT_BESLD(besld) | PORT_L1_TIMEOUT(l1) | PORT_HIRDM(hirdm);
  }
  
@@ -298,7 +298,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  int xhci_set_usb2_hardware_lpm(struct usb_hcd *hcd,
  			struct usb_device *udev, int enable)
  {
-@@ -4197,24 +4070,26 @@ static int xhci_check_usb2_port_capabili
+@@ -4209,24 +4082,26 @@ static int xhci_check_usb2_port_capabili
  int xhci_update_device(struct usb_hcd *hcd, struct usb_device *udev)
  {
  	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);

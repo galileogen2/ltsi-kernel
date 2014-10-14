@@ -10,14 +10,12 @@ Signed-off-by: Sarah Sharp <sarah.a.sharp@linux.intel.com>
 (cherry picked from commit eae5b17621d1053c81bec24e5dd5094bf50b31c6)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/usb/host/xhci-hub.c | 210 +++++++++++++++++++++++++-------------------
+ drivers/usb/host/xhci-hub.c |  210 ++++++++++++++++++++++++--------------------
  1 file changed, 119 insertions(+), 91 deletions(-)
 
-diff --git a/drivers/usb/host/xhci-hub.c b/drivers/usb/host/xhci-hub.c
-index 7cdcfd024744..458a89119aab 100644
 --- a/drivers/usb/host/xhci-hub.c
 +++ b/drivers/usb/host/xhci-hub.c
-@@ -534,6 +534,118 @@ void xhci_del_comp_mod_timer(struct xhci_hcd *xhci, u32 status, u16 wIndex)
+@@ -536,6 +536,118 @@ void xhci_del_comp_mod_timer(struct xhci
  	}
  }
  
@@ -120,7 +118,7 @@ index 7cdcfd024744..458a89119aab 100644
 +	}
 +	/* Update Port Link State for super speed ports*/
 +	if (hcd->speed == HCD_USB3) {
-+		xhci_hub_report_link_state(&status, raw_port_status);
++		xhci_hub_report_link_state(xhci, &status, raw_port_status);
 +		/*
 +		 * Verify if all USB3 Ports Have entered U0 already.
 +		 * Delete Compliance Mode Timer if so.
@@ -136,7 +134,7 @@ index 7cdcfd024744..458a89119aab 100644
  int xhci_hub_control(struct usb_hcd *hcd, u16 typeReq, u16 wValue,
  		u16 wIndex, char *buf, u16 wLength)
  {
-@@ -598,104 +710,20 @@ int xhci_hub_control(struct usb_hcd *hcd, u16 typeReq, u16 wValue,
+@@ -600,104 +712,20 @@ int xhci_hub_control(struct usb_hcd *hcd
  		if (!wIndex || wIndex > max_ports)
  			goto error;
  		wIndex--;
@@ -232,7 +230,7 @@ index 7cdcfd024744..458a89119aab 100644
 -		}
 -		/* Update Port Link State for super speed ports*/
 -		if (hcd->speed == HCD_USB3) {
--			xhci_hub_report_link_state(&status, temp);
+-			xhci_hub_report_link_state(xhci, &status, temp);
 -			/*
 -			 * Verify if all USB3 Ports Have entered U0 already.
 -			 * Delete Compliance Mode Timer if so.
@@ -248,6 +246,3 @@ index 7cdcfd024744..458a89119aab 100644
  		put_unaligned(cpu_to_le32(status), (__le32 *) buf);
  		break;
  	case SetPortFeature:
--- 
-1.8.5.rc3
-

@@ -11,14 +11,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 56b085a01befc7907d270e9acb349580015e7bad)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_ringbuffer.c | 6 ++++--
+ drivers/gpu/drm/i915/intel_ringbuffer.c |    6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
-index df0b7c7ac166..4295400a39ac 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -464,9 +464,11 @@ init_pipe_control(struct intel_ring_buffer *ring)
+@@ -467,9 +467,11 @@ init_pipe_control(struct intel_ring_buff
  		goto err_unref;
  
  	pc->gtt_offset = obj->gtt_offset;
@@ -32,6 +30,3 @@ index df0b7c7ac166..4295400a39ac 100644
  
  	DRM_DEBUG_DRIVER("%s pipe control offset: 0x%08x\n",
  			 ring->name, pc->gtt_offset);
--- 
-1.8.5.rc3
-

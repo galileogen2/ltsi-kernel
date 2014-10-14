@@ -15,14 +15,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 2b9966771d3b84da6383e8695350beea3213f848)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 3 ---
+ drivers/gpu/drm/i915/intel_display.c |    3 ---
  1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 4a78809804ff..55557cee56bd 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10636,7 +10636,6 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -10638,7 +10638,6 @@ void intel_modeset_setup_hw_state(struct
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	enum pipe pipe;
@@ -30,7 +28,7 @@ index 4a78809804ff..55557cee56bd 100644
  	struct intel_crtc *crtc;
  	struct intel_encoder *encoder;
  	int i;
-@@ -10697,8 +10696,6 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -10699,8 +10698,6 @@ void intel_modeset_setup_hw_state(struct
  			__intel_set_mode(crtc, &crtc->mode, crtc->x, crtc->y,
  					 crtc->fb);
  		}
@@ -39,6 +37,3 @@ index 4a78809804ff..55557cee56bd 100644
  	} else {
  		intel_modeset_update_staged_output_state(dev);
  	}
--- 
-1.8.5.rc3
-

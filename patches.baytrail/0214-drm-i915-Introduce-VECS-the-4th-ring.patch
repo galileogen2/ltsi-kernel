@@ -18,15 +18,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 4a3dd19d94c65323d71b2ffc7e63940f00acfb47)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_ringbuffer.c | 2 ++
- drivers/gpu/drm/i915/intel_ringbuffer.h | 3 ++-
+ drivers/gpu/drm/i915/intel_ringbuffer.c |    2 ++
+ drivers/gpu/drm/i915/intel_ringbuffer.h |    3 ++-
  2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
-index 97555b7d4d0c..4f51e8da8dfe 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -914,6 +914,8 @@ void intel_ring_setup_status_page(struct intel_ring_buffer *ring)
+@@ -917,6 +917,8 @@ void intel_ring_setup_status_page(struct
  		case VCS:
  			mmio = BSD_HWS_PGA_GEN7;
  			break;
@@ -35,8 +33,6 @@ index 97555b7d4d0c..4f51e8da8dfe 100644
  		}
  	} else if (IS_GEN6(ring->dev)) {
  		mmio = RING_HWS_PGA_GEN6(ring->mmio_base);
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.h b/drivers/gpu/drm/i915/intel_ringbuffer.h
-index f55d92eb6c2a..73619cb34631 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.h
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.h
 @@ -47,8 +47,9 @@ struct  intel_ring_buffer {
@@ -50,6 +46,3 @@ index f55d92eb6c2a..73619cb34631 100644
  	u32		mmio_base;
  	void		__iomem *virtual_start;
  	struct		drm_device *dev;
--- 
-1.8.5.rc3
-

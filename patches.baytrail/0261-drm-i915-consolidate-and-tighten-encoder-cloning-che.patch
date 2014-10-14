@@ -46,17 +46,15 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit accfc0c50659c330cfde684017e5c1b58eee2857)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 64 ++++++++++++++----------------------
- drivers/gpu/drm/i915/intel_drv.h     |  1 -
- drivers/gpu/drm/i915/intel_lvds.c    |  3 --
- drivers/gpu/drm/i915/intel_tv.c      |  3 --
+ drivers/gpu/drm/i915/intel_display.c |   64 +++++++++++++----------------------
+ drivers/gpu/drm/i915/intel_drv.h     |    1 
+ drivers/gpu/drm/i915/intel_lvds.c    |    3 -
+ drivers/gpu/drm/i915/intel_tv.c      |    3 -
  4 files changed, 24 insertions(+), 47 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 83864bda87ac..f8bfd510d2ff 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -5868,27 +5868,9 @@ static int haswell_crtc_mode_set(struct drm_crtc *crtc,
+@@ -5868,27 +5868,9 @@ static int haswell_crtc_mode_set(struct
  	struct drm_device *dev = crtc->dev;
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
@@ -84,7 +82,7 @@ index 83864bda87ac..f8bfd510d2ff 100644
  	if (!intel_ddi_pll_mode_set(crtc))
  		return -EINVAL;
  
-@@ -7568,28 +7550,6 @@ static struct drm_crtc_helper_funcs intel_helper_funcs = {
+@@ -7568,28 +7550,6 @@ static struct drm_crtc_helper_funcs inte
  	.load_lut = intel_crtc_load_lut,
  };
  
@@ -113,7 +111,7 @@ index 83864bda87ac..f8bfd510d2ff 100644
  static bool intel_encoder_crtc_ok(struct drm_encoder *encoder,
  				  struct drm_crtc *crtc)
  {
-@@ -7773,6 +7733,25 @@ static void intel_dump_pipe_config(struct intel_crtc *crtc,
+@@ -7773,6 +7733,25 @@ static void intel_dump_pipe_config(struc
  	DRM_DEBUG_KMS("ips: %i\n", pipe_config->ips_enabled);
  }
  
@@ -139,7 +137,7 @@ index 83864bda87ac..f8bfd510d2ff 100644
  static struct intel_crtc_config *
  intel_modeset_pipe_config(struct drm_crtc *crtc,
  			  struct drm_framebuffer *fb,
-@@ -7785,6 +7764,11 @@ intel_modeset_pipe_config(struct drm_crtc *crtc,
+@@ -7785,6 +7764,11 @@ intel_modeset_pipe_config(struct drm_crt
  	int plane_bpp, ret = -EINVAL;
  	bool retry = true;
  
@@ -151,11 +149,9 @@ index 83864bda87ac..f8bfd510d2ff 100644
  	pipe_config = kzalloc(sizeof(*pipe_config), GFP_KERNEL);
  	if (!pipe_config)
  		return ERR_PTR(-ENOMEM);
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index b0b5ea70af18..baa217d89c59 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
-@@ -629,7 +629,6 @@ extern void intel_crtc_load_lut(struct drm_crtc *crtc);
+@@ -629,7 +629,6 @@ extern void intel_crtc_load_lut(struct d
  extern void intel_crtc_update_dpms(struct drm_crtc *crtc);
  extern void intel_encoder_destroy(struct drm_encoder *encoder);
  extern void intel_encoder_dpms(struct intel_encoder *encoder, int mode);
@@ -163,11 +159,9 @@ index b0b5ea70af18..baa217d89c59 100644
  extern void intel_connector_dpms(struct drm_connector *, int mode);
  extern bool intel_connector_get_hw_state(struct intel_connector *connector);
  extern void intel_modeset_check_state(struct drm_device *dev);
-diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
-index 0b67e89cac9c..7feaba3de45f 100644
 --- a/drivers/gpu/drm/i915/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/intel_lvds.c
-@@ -264,9 +264,6 @@ static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+@@ -264,9 +264,6 @@ static bool intel_lvds_compute_config(st
  		return false;
  	}
  
@@ -177,11 +171,9 @@ index 0b67e89cac9c..7feaba3de45f 100644
  	if ((I915_READ(lvds_encoder->reg) & LVDS_A3_POWER_MASK) ==
  	    LVDS_A3_POWER_UP)
  		lvds_bpp = 8*3;
-diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
-index a2fb39dede3c..d7fe4f89f7fc 100644
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -914,9 +914,6 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+@@ -918,9 +918,6 @@ intel_tv_compute_config(struct intel_enc
  	if (!tv_mode)
  		return false;
  
@@ -191,6 +183,3 @@ index a2fb39dede3c..d7fe4f89f7fc 100644
  	pipe_config->adjusted_mode.clock = tv_mode->clock;
  	DRM_DEBUG_KMS("forcing bpc to 8 for TV\n");
  	pipe_config->pipe_bpp = 8*3;
--- 
-1.8.5.rc3
-

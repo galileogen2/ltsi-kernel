@@ -18,14 +18,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from drm-intel-next-queued)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 37 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_display.c |   37 +++++++++++++++++++++++++++++++++++
  1 file changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 2841c79525db..3199691d6a51 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -4712,6 +4712,27 @@ static void intel_get_pipe_timings(struct intel_crtc *crtc,
+@@ -4712,6 +4712,27 @@ static void intel_get_pipe_timings(struc
  	pipe_config->requested_mode.hdisplay = ((tmp >> 16) & 0xffff) + 1;
  }
  
@@ -53,7 +51,7 @@ index 2841c79525db..3199691d6a51 100644
  static void i9xx_set_pipeconf(struct intel_crtc *intel_crtc)
  {
  	struct drm_device *dev = intel_crtc->base.dev;
-@@ -9986,6 +10007,22 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9988,6 +10009,22 @@ void intel_modeset_setup_hw_state(struct
  
  	intel_modeset_readout_hw_state(dev);
  
@@ -76,6 +74,3 @@ index 2841c79525db..3199691d6a51 100644
  	/* HW state is read out, now we need to sanitize this mess. */
  	list_for_each_entry(encoder, &dev->mode_config.encoder_list,
  			    base.head) {
--- 
-1.8.5.rc3
-

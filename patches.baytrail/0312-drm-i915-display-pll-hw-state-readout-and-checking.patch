@@ -24,12 +24,10 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 5358901f99153085db59c3644db00b8753b50ac1)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h      |  7 ++++
- drivers/gpu/drm/i915/intel_display.c | 77 +++++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/i915/i915_drv.h      |    7 +++
+ drivers/gpu/drm/i915/intel_display.c |   77 ++++++++++++++++++++++++++++++++---
  2 files changed, 79 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 24b5e25412be..41ec967a97bb 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
 @@ -142,6 +142,9 @@ enum intel_dpll_id {
@@ -57,11 +55,9 @@ index 24b5e25412be..41ec967a97bb 100644
  };
  
  /* Used by dp and fdi links */
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index e21c1466a97d..aba95868a7cb 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -925,8 +925,8 @@ static void assert_shared_dpll(struct drm_i915_private *dev_priv,
+@@ -925,8 +925,8 @@ static void assert_shared_dpll(struct dr
  			       struct intel_shared_dpll *pll,
  			       bool state)
  {
@@ -71,7 +67,7 @@ index e21c1466a97d..aba95868a7cb 100644
  
  	if (HAS_PCH_LPT(dev_priv->dev)) {
  		DRM_DEBUG_DRIVER("LPT detected: skipping PCH PLL test\n");
-@@ -937,11 +937,10 @@ static void assert_shared_dpll(struct drm_i915_private *dev_priv,
+@@ -937,11 +937,10 @@ static void assert_shared_dpll(struct dr
  		  "asserting DPLL %s with no DPLL\n", state_string(state)))
  		return;
  
@@ -86,7 +82,7 @@ index e21c1466a97d..aba95868a7cb 100644
  }
  #define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d, p, true)
  #define assert_shared_dpll_disabled(d, p) assert_shared_dpll(d, p, false)
-@@ -8151,6 +8150,8 @@ intel_modeset_check_state(struct drm_device *dev)
+@@ -8151,6 +8150,8 @@ intel_modeset_check_state(struct drm_dev
  	struct intel_encoder *encoder;
  	struct intel_connector *connector;
  	struct intel_crtc_config pipe_config;
@@ -95,7 +91,7 @@ index e21c1466a97d..aba95868a7cb 100644
  
  	list_for_each_entry(connector, &dev->mode_config.connector_list,
  			    base.head) {
-@@ -8270,6 +8271,41 @@ intel_modeset_check_state(struct drm_device *dev)
+@@ -8270,6 +8271,41 @@ intel_modeset_check_state(struct drm_dev
  					       "[sw state]");
  		}
  	}
@@ -137,7 +133,7 @@ index e21c1466a97d..aba95868a7cb 100644
  }
  
  static int __intel_set_mode(struct drm_crtc *crtc,
-@@ -8711,6 +8747,17 @@ static void intel_cpu_pll_init(struct drm_device *dev)
+@@ -8711,6 +8747,17 @@ static void intel_cpu_pll_init(struct dr
  		intel_ddi_pll_init(dev);
  }
  
@@ -155,7 +151,7 @@ index e21c1466a97d..aba95868a7cb 100644
  static void ibx_pch_dpll_enable(struct drm_i915_private *dev_priv,
  				struct intel_shared_dpll *pll)
  {
-@@ -8765,6 +8812,8 @@ static void ibx_pch_dpll_init(struct drm_device *dev)
+@@ -8765,6 +8812,8 @@ static void ibx_pch_dpll_init(struct drm
  		dev_priv->shared_dplls[i].name = ibx_pch_dpll_names[i];
  		dev_priv->shared_dplls[i].enable = ibx_pch_dpll_enable;
  		dev_priv->shared_dplls[i].disable = ibx_pch_dpll_disable;
@@ -164,7 +160,7 @@ index e21c1466a97d..aba95868a7cb 100644
  	}
  }
  
-@@ -9702,6 +9751,7 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9704,6 +9753,7 @@ void intel_modeset_setup_hw_state(struct
  	struct intel_crtc *crtc;
  	struct intel_encoder *encoder;
  	struct intel_connector *connector;
@@ -172,7 +168,7 @@ index e21c1466a97d..aba95868a7cb 100644
  
  	list_for_each_entry(crtc, &dev->mode_config.crtc_list,
  			    base.head) {
-@@ -9717,9 +9767,26 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9719,9 +9769,26 @@ void intel_modeset_setup_hw_state(struct
  			      crtc->active ? "enabled" : "disabled");
  	}
  
@@ -199,6 +195,3 @@ index e21c1466a97d..aba95868a7cb 100644
  	list_for_each_entry(encoder, &dev->mode_config.encoder_list,
  			    base.head) {
  		pipe = 0;
--- 
-1.8.5.rc3
-

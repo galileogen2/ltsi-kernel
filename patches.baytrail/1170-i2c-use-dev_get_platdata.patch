@@ -228,7 +228,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	struct resource *res = NULL;
 --- a/drivers/i2c/busses/i2c-rcar.c
 +++ b/drivers/i2c/busses/i2c-rcar.c
-@@ -650,7 +650,7 @@ MODULE_DEVICE_TABLE(of, rcar_i2c_dt_ids)
+@@ -657,7 +657,7 @@ MODULE_DEVICE_TABLE(of, rcar_i2c_dt_ids)
  
  static int rcar_i2c_probe(struct platform_device *pdev)
  {

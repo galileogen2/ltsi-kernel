@@ -43,13 +43,11 @@ Conflicts:
 	(context changes)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h      |   1 +
- drivers/gpu/drm/i915/intel_display.c | 126 ++++++++++++++++++++++++++++++++---
- drivers/gpu/drm/i915/intel_dp.c      |   7 ++
+ drivers/gpu/drm/i915/i915_drv.h      |    1 
+ drivers/gpu/drm/i915/intel_display.c |  126 +++++++++++++++++++++++++++++++----
+ drivers/gpu/drm/i915/intel_dp.c      |    7 +
  3 files changed, 123 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 45da73925d02..e90b919c0d32 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
 @@ -367,6 +367,7 @@ struct drm_i915_display_funcs {
@@ -60,11 +58,9 @@ index 45da73925d02..e90b919c0d32 100644
  	int (*crtc_mode_set)(struct drm_crtc *crtc,
  			     int x, int y,
  			     struct drm_framebuffer *old_fb);
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 8345c2441047..2841c79525db 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -45,6 +45,11 @@ bool intel_pipe_has_type(struct drm_crtc *crtc, int type);
+@@ -45,6 +45,11 @@ bool intel_pipe_has_type(struct drm_crtc
  static void intel_increase_pllclock(struct drm_crtc *crtc);
  static void intel_crtc_update_cursor(struct drm_crtc *crtc, bool on);
  
@@ -76,7 +72,7 @@ index 8345c2441047..2841c79525db 100644
  typedef struct {
  	int	min, max;
  } intel_range_t;
-@@ -6854,11 +6859,12 @@ void intel_release_load_detect_pipe(struct drm_connector *connector,
+@@ -6854,11 +6859,12 @@ void intel_release_load_detect_pipe(stru
  }
  
  /* Returns the clock of the currently programmed mode of the given pipe. */
@@ -92,7 +88,7 @@ index 8345c2441047..2841c79525db 100644
  	u32 dpll = I915_READ(DPLL(pipe));
  	u32 fp;
  	intel_clock_t clock;
-@@ -6897,7 +6903,8 @@ static int intel_crtc_clock_get(struct drm_device *dev, struct drm_crtc *crtc)
+@@ -6897,7 +6903,8 @@ static int intel_crtc_clock_get(struct d
  		default:
  			DRM_DEBUG_KMS("Unknown DPLL mode %08x in programmed "
  				  "mode\n", (int)(dpll & DPLL_MODE_MASK));
@@ -102,7 +98,7 @@ index 8345c2441047..2841c79525db 100644
  		}
  
  		if (IS_PINEVIEW(dev))
-@@ -6934,12 +6941,55 @@ static int intel_crtc_clock_get(struct drm_device *dev, struct drm_crtc *crtc)
+@@ -6934,12 +6941,55 @@ static int intel_crtc_clock_get(struct d
  		}
  	}
  
@@ -162,7 +158,7 @@ index 8345c2441047..2841c79525db 100644
  }
  
  /** Returns the currently programmed mode of the given pipe. */
-@@ -6950,6 +7000,7 @@ struct drm_display_mode *intel_crtc_mode_get(struct drm_device *dev,
+@@ -6950,6 +7000,7 @@ struct drm_display_mode *intel_crtc_mode
  	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
  	enum transcoder cpu_transcoder = intel_crtc->config.cpu_transcoder;
  	struct drm_display_mode *mode;
@@ -170,7 +166,7 @@ index 8345c2441047..2841c79525db 100644
  	int htot = I915_READ(HTOTAL(cpu_transcoder));
  	int hsync = I915_READ(HSYNC(cpu_transcoder));
  	int vtot = I915_READ(VTOTAL(cpu_transcoder));
-@@ -6959,7 +7010,18 @@ struct drm_display_mode *intel_crtc_mode_get(struct drm_device *dev,
+@@ -6959,7 +7010,18 @@ struct drm_display_mode *intel_crtc_mode
  	if (!mode)
  		return NULL;
  
@@ -190,7 +186,7 @@ index 8345c2441047..2841c79525db 100644
  	mode->hdisplay = (htot & 0xffff) + 1;
  	mode->htotal = ((htot & 0xffff0000) >> 16) + 1;
  	mode->hsync_start = (hsync & 0xffff) + 1;
-@@ -8020,6 +8082,28 @@ intel_modeset_update_state(struct drm_device *dev, unsigned prepare_pipes)
+@@ -8020,6 +8082,28 @@ intel_modeset_update_state(struct drm_de
  
  }
  
@@ -219,7 +215,7 @@ index 8345c2441047..2841c79525db 100644
  #define for_each_intel_crtc_masked(dev, mask, intel_crtc) \
  	list_for_each_entry((intel_crtc), \
  			    &(dev)->mode_config.crtc_list, \
-@@ -8125,6 +8209,15 @@ intel_pipe_config_compare(struct drm_device *dev,
+@@ -8125,6 +8209,15 @@ intel_pipe_config_compare(struct drm_dev
  #undef PIPE_CONF_CHECK_FLAGS
  #undef PIPE_CONF_QUIRK
  
@@ -249,7 +245,7 @@ index 8345c2441047..2841c79525db 100644
  		}
  
  		WARN(crtc->active != active,
-@@ -9261,6 +9358,7 @@ static void intel_init_display(struct drm_device *dev)
+@@ -9261,6 +9358,7 @@ static void intel_init_display(struct dr
  		dev_priv->display.update_plane = ironlake_update_plane;
  	} else if (HAS_PCH_SPLIT(dev)) {
  		dev_priv->display.get_pipe_config = ironlake_get_pipe_config;
@@ -257,7 +253,7 @@ index 8345c2441047..2841c79525db 100644
  		dev_priv->display.crtc_mode_set = ironlake_crtc_mode_set;
  		dev_priv->display.crtc_enable = ironlake_crtc_enable;
  		dev_priv->display.crtc_disable = ironlake_crtc_disable;
-@@ -9268,6 +9366,7 @@ static void intel_init_display(struct drm_device *dev)
+@@ -9268,6 +9366,7 @@ static void intel_init_display(struct dr
  		dev_priv->display.update_plane = ironlake_update_plane;
  	} else if (IS_VALLEYVIEW(dev)) {
  		dev_priv->display.get_pipe_config = i9xx_get_pipe_config;
@@ -265,7 +261,7 @@ index 8345c2441047..2841c79525db 100644
  		dev_priv->display.crtc_mode_set = i9xx_crtc_mode_set;
  		dev_priv->display.crtc_enable = valleyview_crtc_enable;
  		dev_priv->display.crtc_disable = i9xx_crtc_disable;
-@@ -9275,6 +9374,7 @@ static void intel_init_display(struct drm_device *dev)
+@@ -9275,6 +9374,7 @@ static void intel_init_display(struct dr
  		dev_priv->display.update_plane = i9xx_update_plane;
  	} else {
  		dev_priv->display.get_pipe_config = i9xx_get_pipe_config;
@@ -273,7 +269,7 @@ index 8345c2441047..2841c79525db 100644
  		dev_priv->display.crtc_mode_set = i9xx_crtc_mode_set;
  		dev_priv->display.crtc_enable = i9xx_crtc_enable;
  		dev_priv->display.crtc_disable = i9xx_crtc_disable;
-@@ -9837,8 +9937,12 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+@@ -9839,8 +9939,12 @@ static void intel_modeset_readout_hw_sta
  		if (encoder->get_hw_state(encoder, &pipe)) {
  			crtc = to_intel_crtc(dev_priv->pipe_to_crtc_mapping[pipe]);
  			encoder->base.crtc = &crtc->base;
@@ -287,11 +283,9 @@ index 8345c2441047..2841c79525db 100644
  		} else {
  			encoder->base.crtc = NULL;
  		}
-diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
-index 3aed1fe0aa51..9d90d4350ebf 100644
 --- a/drivers/gpu/drm/i915/intel_dp.c
 +++ b/drivers/gpu/drm/i915/intel_dp.c
-@@ -1371,6 +1371,13 @@ static void intel_dp_get_config(struct intel_encoder *encoder,
+@@ -1371,6 +1371,13 @@ static void intel_dp_get_config(struct i
  	}
  
  	pipe_config->adjusted_mode.flags |= flags;
@@ -305,6 +299,3 @@ index 3aed1fe0aa51..9d90d4350ebf 100644
  }
  
  static void intel_disable_dp(struct intel_encoder *encoder)
--- 
-1.8.5.rc3
-

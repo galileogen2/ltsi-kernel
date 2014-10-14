@@ -28,7 +28,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/host/ehci-pci.c
 +++ b/drivers/usb/host/ehci-pci.c
-@@ -315,53 +315,11 @@ done:
+@@ -340,53 +340,11 @@ done:
   * Also they depend on separate root hub suspend/resume.
   */
  
@@ -84,7 +84,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	return 0;
 --- a/drivers/usb/host/pci-quirks.c
 +++ b/drivers/usb/host/pci-quirks.c
-@@ -722,32 +722,6 @@ static int handshake(void __iomem *ptr,
+@@ -735,32 +735,6 @@ static int handshake(void __iomem *ptr,
  	return -ETIMEDOUT;
  }
  
@@ -117,7 +117,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /*
   * Intel's Panther Point chipset has two host controllers (EHCI and xHCI) that
   * share some number of ports.  These ports can be switched between either
-@@ -766,9 +740,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchabl
+@@ -779,9 +753,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchabl
   * terminations before switching the USB 2.0 wires over, so that USB 3.0
   * devices connect at SuperSpeed, rather than at USB 2.0 speeds.
   */
@@ -142,7 +142,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	/* Don't switchover the ports if the user hasn't compiled the xHCI
  	 * driver.  Otherwise they will see "dead" USB ports that don't power
-@@ -827,7 +815,7 @@ void usb_enable_xhci_ports(struct pci_de
+@@ -840,7 +828,7 @@ void usb_enable_xhci_ports(struct pci_de
  	dev_dbg(&xhci_pdev->dev, "USB 2.0 ports that are now switched over "
  			"to xHCI: 0x%x\n", ports_available);
  }
@@ -151,7 +151,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  void usb_disable_xhci_ports(struct pci_dev *xhci_pdev)
  {
-@@ -908,8 +896,8 @@ static void quirk_usb_handoff_xhci(struc
+@@ -921,8 +909,8 @@ static void quirk_usb_handoff_xhci(struc
  	writel(val, base + ext_cap_offset + XHCI_LEGACY_CONTROL_OFFSET);
  
  hc_init:
@@ -176,7 +176,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static inline void usb_amd_quirk_pll_disable(void) {}
 --- a/drivers/usb/host/xhci-pci.c
 +++ b/drivers/usb/host/xhci-pci.c
-@@ -254,13 +254,15 @@ static int xhci_pci_resume(struct usb_hc
+@@ -265,13 +265,15 @@ static int xhci_pci_resume(struct usb_hc
  	 * writers.
  	 *
  	 * Unconditionally switch the ports back to xHCI after a system resume.

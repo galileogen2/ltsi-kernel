@@ -20,17 +20,15 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 1dba99f495fb2b8712d83f53a769a7393ea127d3)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 16 ++++++++--------
- drivers/gpu/drm/i915/intel_drv.h     |  2 +-
- drivers/gpu/drm/i915/intel_pm.c      |  2 +-
- drivers/gpu/drm/i915/intel_tv.c      |  4 ++--
+ drivers/gpu/drm/i915/intel_display.c |   16 ++++++++--------
+ drivers/gpu/drm/i915/intel_drv.h     |    2 +-
+ drivers/gpu/drm/i915/intel_pm.c      |    2 +-
+ drivers/gpu/drm/i915/intel_tv.c      |    4 ++--
  4 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 64d59973a5b5..d7191dabd55a 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -1812,13 +1812,13 @@ static void intel_disable_pipe(struct drm_i915_private *dev_priv,
+@@ -1812,13 +1812,13 @@ static void intel_disable_pipe(struct dr
   * Plane regs are double buffered, going from enabled->disabled needs a
   * trigger in order to latch.  The display address reg provides this.
   */
@@ -50,7 +48,7 @@ index 64d59973a5b5..d7191dabd55a 100644
  }
  
  /**
-@@ -1848,7 +1848,7 @@ static void intel_enable_plane(struct drm_i915_private *dev_priv,
+@@ -1848,7 +1848,7 @@ static void intel_enable_plane(struct dr
  		return;
  
  	I915_WRITE(reg, val | DISPLAY_PLANE_ENABLE);
@@ -59,7 +57,7 @@ index 64d59973a5b5..d7191dabd55a 100644
  	intel_wait_for_vblank(dev_priv->dev, pipe);
  }
  
-@@ -1876,7 +1876,7 @@ static void intel_disable_plane(struct drm_i915_private *dev_priv,
+@@ -1876,7 +1876,7 @@ static void intel_disable_plane(struct d
  		return;
  
  	I915_WRITE(reg, val & ~DISPLAY_PLANE_ENABLE);
@@ -68,11 +66,9 @@ index 64d59973a5b5..d7191dabd55a 100644
  	intel_wait_for_vblank(dev_priv->dev, pipe);
  }
  
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index 55c8bc4b7d9f..dea20ce65e59 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
-@@ -811,7 +811,7 @@ bool intel_sdvo_init(struct drm_device *dev, uint32_t sdvo_reg, bool is_sdvob);
+@@ -811,7 +811,7 @@ bool intel_sdvo_init(struct drm_device *
  
  /* intel_sprite.c */
  int intel_plane_init(struct drm_device *dev, enum pipe pipe, int plane);
@@ -81,11 +77,9 @@ index 55c8bc4b7d9f..dea20ce65e59 100644
  			       enum plane plane);
  void intel_plane_restore(struct drm_plane *plane);
  void intel_plane_disable(struct drm_plane *plane);
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 008ec0bb017f..da24825acc84 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4773,7 +4773,7 @@ static void g4x_disable_trickle_feed(struct drm_device *dev)
+@@ -4773,7 +4773,7 @@ static void g4x_disable_trickle_feed(str
  		I915_WRITE(DSPCNTR(pipe),
  			   I915_READ(DSPCNTR(pipe)) |
  			   DISPPLANE_TRICKLE_FEED_DISABLE);
@@ -94,11 +88,9 @@ index 008ec0bb017f..da24825acc84 100644
  	}
  }
  
-diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
-index d61aec23a523..18c406246a2d 100644
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1094,7 +1094,7 @@ static void intel_tv_mode_set(struct intel_encoder *encoder)
+@@ -1098,7 +1098,7 @@ static void intel_tv_mode_set(struct int
  		unsigned int xsize, ysize;
  		/* Pipe must be off here */
  		I915_WRITE(dspcntr_reg, dspcntr & ~DISPLAY_PLANE_ENABLE);
@@ -107,7 +99,7 @@ index d61aec23a523..18c406246a2d 100644
  
  		/* Wait for vblank for the disable to take effect */
  		if (IS_GEN2(dev))
-@@ -1123,7 +1123,7 @@ static void intel_tv_mode_set(struct intel_encoder *encoder)
+@@ -1127,7 +1127,7 @@ static void intel_tv_mode_set(struct int
  
  		I915_WRITE(pipeconf_reg, pipeconf);
  		I915_WRITE(dspcntr_reg, dspcntr);
@@ -116,6 +108,3 @@ index d61aec23a523..18c406246a2d 100644
  	}
  
  	j = 0;
--- 
-1.8.5.rc3
-

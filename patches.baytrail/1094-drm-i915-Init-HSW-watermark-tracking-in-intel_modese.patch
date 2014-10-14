@@ -24,16 +24,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 243e6a44b9ca5aa3c9ce47459a53e03b1dc7e665)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c |   3 ++
- drivers/gpu/drm/i915/intel_drv.h     |   1 +
- drivers/gpu/drm/i915/intel_pm.c      | 102 ++++++++++++++++++++++++++---------
+ drivers/gpu/drm/i915/intel_display.c |    3 +
+ drivers/gpu/drm/i915/intel_drv.h     |    1 
+ drivers/gpu/drm/i915/intel_pm.c      |  102 ++++++++++++++++++++++++++---------
  3 files changed, 80 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index fb210b0774af..ccccd5bb8543 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10839,6 +10839,9 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -10841,6 +10841,9 @@ void intel_modeset_setup_hw_state(struct
  		pll->on = false;
  	}
  
@@ -43,11 +41,9 @@ index fb210b0774af..ccccd5bb8543 100644
  	if (force_restore) {
  		i915_redisable_vga(dev);
  
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index 5d5d34911a7e..e33f387d4185 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
-@@ -839,6 +839,7 @@ void gen6_rps_idle(struct drm_i915_private *dev_priv);
+@@ -839,6 +839,7 @@ void gen6_rps_idle(struct drm_i915_priva
  void gen6_rps_boost(struct drm_i915_private *dev_priv);
  void intel_aux_display_runtime_get(struct drm_i915_private *dev_priv);
  void intel_aux_display_runtime_put(struct drm_i915_private *dev_priv);
@@ -55,11 +51,9 @@ index 5d5d34911a7e..e33f387d4185 100644
  
  
  /* intel_sdvo.c */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 6d0c3d0e80fd..77ee14fa007b 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -2843,37 +2843,19 @@ static unsigned int ilk_compute_wm_dirty(struct drm_device *dev,
+@@ -2843,37 +2843,19 @@ static unsigned int ilk_compute_wm_dirty
  static void hsw_write_wm_values(struct drm_i915_private *dev_priv,
  				struct hsw_wm_values *results)
  {
@@ -102,7 +96,7 @@ index 6d0c3d0e80fd..77ee14fa007b 100644
  		I915_WRITE(WM1_LP_ILK, 0);
  
  	if (dirty & WM_DIRTY_PIPE(PIPE_A))
-@@ -2908,11 +2890,11 @@ static void hsw_write_wm_values(struct drm_i915_private *dev_priv,
+@@ -2908,11 +2890,11 @@ static void hsw_write_wm_values(struct d
  		I915_WRITE(DISP_ARB_CTL, val);
  	}
  
@@ -117,7 +111,7 @@ index 6d0c3d0e80fd..77ee14fa007b 100644
  		I915_WRITE(WM3S_LP_IVB, results->wm_lp_spr[2]);
  
  	if (dirty & WM_DIRTY_LP(1) && results->wm_lp[0] != 0)
-@@ -3145,6 +3127,74 @@ static void sandybridge_update_sprite_wm(struct drm_plane *plane,
+@@ -3145,6 +3127,74 @@ static void sandybridge_update_sprite_wm
  	I915_WRITE(WM3S_LP_IVB, sprite_wm);
  }
  
@@ -192,6 +186,3 @@ index 6d0c3d0e80fd..77ee14fa007b 100644
  /**
   * intel_update_watermarks - update FIFO watermark values based on current modes
   *
--- 
-1.8.5.rc3
-

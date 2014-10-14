@@ -24,10 +24,10 @@ Signed-off-by: Benson Leung <bleung@chromium.org>
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
  drivers/usb/host/xhci-ext-caps.h |    1 
- drivers/usb/host/xhci.c          |  204 ++++++++++++++++++++++++++-------------
- drivers/usb/host/xhci.h          |   21 ++++
+ drivers/usb/host/xhci.c          |  220 ++++++++++++++++++++++++++-------------
+ drivers/usb/host/xhci.h          |   21 +++
  include/linux/usb.h              |    2 
- 4 files changed, 164 insertions(+), 64 deletions(-)
+ 4 files changed, 172 insertions(+), 72 deletions(-)
 
 --- a/drivers/usb/host/xhci-ext-caps.h
 +++ b/drivers/usb/host/xhci-ext-caps.h
@@ -41,7 +41,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* start/stop HC execution - do not write unless HC is halted*/
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3830,6 +3830,56 @@ int xhci_find_raw_port_number(struct usb
+@@ -3834,6 +3834,64 @@ int xhci_find_raw_port_number(struct usb
  	return raw_port;
  }
  
@@ -60,13 +60,21 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 +	int ret;
 +
 +	spin_lock_irqsave(&xhci->lock, flags);
-+	if (max_exit_latency == xhci->devs[udev->slot_id]->current_mel) {
++
++	virt_dev = xhci->devs[udev->slot_id];
++
++	/*
++	 * virt_dev might not exists yet if xHC resumed from hibernate (S4) and
++	 * xHC was re-initialized. Exit latency will be set later after
++	 * hub_port_finish_reset() is done and xhci->devs[] are re-allocated
++	 */
++
++	if (!virt_dev || max_exit_latency == virt_dev->current_mel) {
 +		spin_unlock_irqrestore(&xhci->lock, flags);
 +		return 0;
 +	}
 +
 +	/* Attempt to issue an Evaluate Context command to change the MEL. */
-+	virt_dev = xhci->devs[udev->slot_id];
 +	command = xhci->lpm_command;
 +	xhci_slot_copy(xhci, command->in_ctx, virt_dev->out_ctx);
 +	spin_unlock_irqrestore(&xhci->lock, flags);
@@ -98,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #ifdef CONFIG_PM_RUNTIME
  
  /* BESL to HIRD Encoding array for USB2 LPM */
-@@ -3871,6 +3921,28 @@ static int xhci_calculate_hird_besl(stru
+@@ -3875,6 +3933,28 @@ static int xhci_calculate_hird_besl(stru
  	return besl;
  }
  
@@ -127,7 +135,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int xhci_usb2_software_lpm_test(struct usb_hcd *hcd,
  					struct usb_device *udev)
  {
-@@ -4003,11 +4075,12 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4007,11 +4087,12 @@ int xhci_set_usb2_hardware_lpm(struct us
  {
  	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
  	__le32 __iomem	**port_array;
@@ -143,7 +151,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	if (hcd->speed == HCD_USB3 || !xhci->hw_lpm_support ||
  			!udev->lpm_capable)
-@@ -4025,23 +4098,73 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4029,23 +4110,73 @@ int xhci_set_usb2_hardware_lpm(struct us
  	port_array = xhci->usb2_ports;
  	port_num = udev->portnum - 1;
  	pm_addr = port_array[port_num] + PORTPMSC;
@@ -228,7 +236,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  
  	spin_unlock_irqrestore(&xhci->lock, flags);
-@@ -4083,6 +4206,9 @@ int xhci_update_device(struct usb_hcd *h
+@@ -4087,6 +4218,9 @@ int xhci_update_device(struct usb_hcd *h
  		if (xhci->hw_lpm_support == 1 &&
  		    xhci_check_usb2_port_capability(xhci, portnum, XHCI_HLC)) {
  			udev->usb2_hw_lpm_capable = 1;
@@ -238,7 +246,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			ret = xhci_set_usb2_hardware_lpm(hcd, udev, 1);
  			if (!ret)
  				udev->usb2_hw_lpm_enabled = 1;
-@@ -4413,56 +4539,6 @@ static u16 xhci_calculate_lpm_timeout(st
+@@ -4417,64 +4551,6 @@ static u16 xhci_calculate_lpm_timeout(st
  	return timeout;
  }
  
@@ -257,13 +265,21 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 -	int ret;
 -
 -	spin_lock_irqsave(&xhci->lock, flags);
--	if (max_exit_latency == xhci->devs[udev->slot_id]->current_mel) {
+-
+-	virt_dev = xhci->devs[udev->slot_id];
+-
+-	/*
+-	 * virt_dev might not exists yet if xHC resumed from hibernate (S4) and
+-	 * xHC was re-initialized. Exit latency will be set later after
+-	 * hub_port_finish_reset() is done and xhci->devs[] are re-allocated
+-	 */
+-
+-	if (!virt_dev || max_exit_latency == virt_dev->current_mel) {
 -		spin_unlock_irqrestore(&xhci->lock, flags);
 -		return 0;
 -	}
 -
 -	/* Attempt to issue an Evaluate Context command to change the MEL. */
--	virt_dev = xhci->devs[udev->slot_id];
 -	command = xhci->lpm_command;
 -	xhci_slot_copy(xhci, command->in_ctx, virt_dev->out_ctx);
 -	spin_unlock_irqrestore(&xhci->lock, flags);

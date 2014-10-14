@@ -19,14 +19,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 28d6a7bfa2560cb94727a68511ed68561e84dcc8)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_gem_execbuffer.c | 77 +++++++++++++++++++-----------
+ drivers/gpu/drm/i915/i915_gem_execbuffer.c |   77 ++++++++++++++++++-----------
  1 file changed, 49 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/i915_gem_execbuffer.c
-index 7addab31783f..9939d2ef3ea9 100644
 --- a/drivers/gpu/drm/i915/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/i915_gem_execbuffer.c
-@@ -174,7 +174,8 @@ static inline int use_cpu_reloc(struct drm_i915_gem_object *obj)
+@@ -174,7 +174,8 @@ static inline int use_cpu_reloc(struct d
  static int
  i915_gem_execbuffer_relocate_entry(struct drm_i915_gem_object *obj,
  				   struct eb_objects *eb,
@@ -36,7 +34,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  {
  	struct drm_device *dev = obj->base.dev;
  	struct drm_gem_object *target_obj;
-@@ -297,7 +298,8 @@ i915_gem_execbuffer_relocate_entry(struct drm_i915_gem_object *obj,
+@@ -297,7 +298,8 @@ i915_gem_execbuffer_relocate_entry(struc
  
  static int
  i915_gem_execbuffer_relocate_object(struct drm_i915_gem_object *obj,
@@ -46,7 +44,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  {
  #define N_RELOC(x) ((x) / sizeof(struct drm_i915_gem_relocation_entry))
  	struct drm_i915_gem_relocation_entry stack_reloc[N_RELOC(512)];
-@@ -321,7 +323,8 @@ i915_gem_execbuffer_relocate_object(struct drm_i915_gem_object *obj,
+@@ -321,7 +323,8 @@ i915_gem_execbuffer_relocate_object(stru
  		do {
  			u64 offset = r->presumed_offset;
  
@@ -56,7 +54,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  			if (ret)
  				return ret;
  
-@@ -344,13 +347,15 @@ i915_gem_execbuffer_relocate_object(struct drm_i915_gem_object *obj,
+@@ -344,13 +347,15 @@ i915_gem_execbuffer_relocate_object(stru
  static int
  i915_gem_execbuffer_relocate_object_slow(struct drm_i915_gem_object *obj,
  					 struct eb_objects *eb,
@@ -74,7 +72,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  		if (ret)
  			return ret;
  	}
-@@ -359,7 +364,8 @@ i915_gem_execbuffer_relocate_object_slow(struct drm_i915_gem_object *obj,
+@@ -359,7 +364,8 @@ i915_gem_execbuffer_relocate_object_slow
  }
  
  static int
@@ -84,7 +82,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  {
  	struct drm_i915_gem_object *obj;
  	int ret = 0;
-@@ -373,7 +379,7 @@ i915_gem_execbuffer_relocate(struct eb_objects *eb)
+@@ -373,7 +379,7 @@ i915_gem_execbuffer_relocate(struct eb_o
  	 */
  	pagefault_disable();
  	list_for_each_entry(obj, &eb->objects, exec_list) {
@@ -93,7 +91,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  		if (ret)
  			break;
  	}
-@@ -395,6 +401,7 @@ need_reloc_mappable(struct drm_i915_gem_object *obj)
+@@ -395,6 +401,7 @@ need_reloc_mappable(struct drm_i915_gem_
  static int
  i915_gem_execbuffer_reserve_object(struct drm_i915_gem_object *obj,
  				   struct intel_ring_buffer *ring,
@@ -101,7 +99,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  				   bool *need_reloc)
  {
  	struct drm_i915_private *dev_priv = obj->base.dev->dev_private;
-@@ -409,9 +416,8 @@ i915_gem_execbuffer_reserve_object(struct drm_i915_gem_object *obj,
+@@ -409,9 +416,8 @@ i915_gem_execbuffer_reserve_object(struc
  		obj->tiling_mode != I915_TILING_NONE;
  	need_mappable = need_fence || need_reloc_mappable(obj);
  
@@ -113,7 +111,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  	if (ret)
  		return ret;
  
-@@ -438,8 +444,8 @@ i915_gem_execbuffer_reserve_object(struct drm_i915_gem_object *obj,
+@@ -438,8 +444,8 @@ i915_gem_execbuffer_reserve_object(struc
  		obj->has_aliasing_ppgtt_mapping = 1;
  	}
  
@@ -124,7 +122,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  		*need_reloc = true;
  	}
  
-@@ -477,6 +483,7 @@ i915_gem_execbuffer_unreserve_object(struct drm_i915_gem_object *obj)
+@@ -477,6 +483,7 @@ i915_gem_execbuffer_unreserve_object(str
  static int
  i915_gem_execbuffer_reserve(struct intel_ring_buffer *ring,
  			    struct list_head *objects,
@@ -132,7 +130,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  			    bool *need_relocs)
  {
  	struct drm_i915_gem_object *obj;
-@@ -531,32 +538,37 @@ i915_gem_execbuffer_reserve(struct intel_ring_buffer *ring,
+@@ -531,32 +538,37 @@ i915_gem_execbuffer_reserve(struct intel
  		list_for_each_entry(obj, objects, exec_list) {
  			struct drm_i915_gem_exec_object2 *entry = obj->exec_entry;
  			bool need_fence, need_mappable;
@@ -175,7 +173,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  			if (ret)
  				goto err;
  		}
-@@ -580,7 +592,8 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
+@@ -580,7 +592,8 @@ i915_gem_execbuffer_relocate_slow(struct
  				  struct drm_file *file,
  				  struct intel_ring_buffer *ring,
  				  struct eb_objects *eb,
@@ -185,7 +183,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  {
  	struct drm_i915_gem_relocation_entry *reloc;
  	struct drm_i915_gem_object *obj;
-@@ -664,14 +677,15 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
+@@ -664,14 +677,15 @@ i915_gem_execbuffer_relocate_slow(struct
  		goto err;
  
  	need_relocs = (args->flags & I915_EXEC_NO_RELOC) == 0;
@@ -203,7 +201,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  		if (ret)
  			goto err;
  	}
-@@ -772,6 +786,7 @@ validate_exec_list(struct drm_i915_gem_exec_object2 *exec,
+@@ -772,6 +786,7 @@ validate_exec_list(struct drm_i915_gem_e
  
  static void
  i915_gem_execbuffer_move_to_active(struct list_head *objects,
@@ -221,7 +219,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  {
  	drm_i915_private_t *dev_priv = dev->dev_private;
  	struct eb_objects *eb;
-@@ -1002,17 +1018,17 @@ i915_gem_do_execbuffer(struct drm_device *dev, void *data,
+@@ -1002,17 +1018,17 @@ i915_gem_do_execbuffer(struct drm_device
  
  	/* Move the objects en-masse into the GTT, evicting if necessary. */
  	need_relocs = (args->flags & I915_EXEC_NO_RELOC) == 0;
@@ -242,7 +240,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  			BUG_ON(!mutex_is_locked(&dev->struct_mutex));
  		}
  		if (ret)
-@@ -1063,7 +1079,8 @@ i915_gem_do_execbuffer(struct drm_device *dev, void *data,
+@@ -1063,7 +1079,8 @@ i915_gem_do_execbuffer(struct drm_device
  			goto err;
  	}
  
@@ -252,7 +250,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  	exec_len = args->batch_len;
  	if (cliprects) {
  		for (i = 0; i < args->num_cliprects; i++) {
-@@ -1088,7 +1105,7 @@ i915_gem_do_execbuffer(struct drm_device *dev, void *data,
+@@ -1088,7 +1105,7 @@ i915_gem_do_execbuffer(struct drm_device
  
  	trace_i915_gem_ring_dispatch(ring, intel_ring_get_seqno(ring), flags);
  
@@ -269,7 +267,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  	struct drm_i915_gem_execbuffer *args = data;
  	struct drm_i915_gem_execbuffer2 exec2;
  	struct drm_i915_gem_exec_object *exec_list = NULL;
-@@ -1164,7 +1182,8 @@ i915_gem_execbuffer(struct drm_device *dev, void *data,
+@@ -1164,7 +1182,8 @@ i915_gem_execbuffer(struct drm_device *d
  	exec2.flags = I915_EXEC_RENDER;
  	i915_execbuffer2_set_context_id(exec2, 0);
  
@@ -277,9 +275,9 @@ index 7addab31783f..9939d2ef3ea9 100644
 +	ret = i915_gem_do_execbuffer(dev, data, file, &exec2, exec2_list,
 +				     &dev_priv->gtt.base);
  	if (!ret) {
- 		/* Copy the new buffer offsets back to the user's exec list. */
- 		for (i = 0; i < args->buffer_count; i++)
-@@ -1190,6 +1209,7 @@ int
+ 		struct drm_i915_gem_exec_object __user *user_exec_list =
+ 			to_user_ptr(args->buffers_ptr);
+@@ -1193,6 +1212,7 @@ int
  i915_gem_execbuffer2(struct drm_device *dev, void *data,
  		     struct drm_file *file)
  {
@@ -287,7 +285,7 @@ index 7addab31783f..9939d2ef3ea9 100644
  	struct drm_i915_gem_execbuffer2 *args = data;
  	struct drm_i915_gem_exec_object2 *exec2_list = NULL;
  	int ret;
-@@ -1220,7 +1240,8 @@ i915_gem_execbuffer2(struct drm_device *dev, void *data,
+@@ -1223,7 +1243,8 @@ i915_gem_execbuffer2(struct drm_device *
  		return -EFAULT;
  	}
  
@@ -296,7 +294,4 @@ index 7addab31783f..9939d2ef3ea9 100644
 +				     &dev_priv->gtt.base);
  	if (!ret) {
  		/* Copy the new buffer offsets back to the user's exec list. */
- 		ret = copy_to_user(to_user_ptr(args->buffers_ptr),
--- 
-1.8.5.rc3
-
+ 		struct drm_i915_gem_exec_object2 *user_exec_list =

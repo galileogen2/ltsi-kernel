@@ -108,7 +108,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  void intel_modeset_init_hw(struct drm_device *dev)
  {
  	intel_init_power_well(dev);
-@@ -10373,6 +10377,7 @@ void i915_redisable_vga(struct drm_devic
+@@ -10375,6 +10379,7 @@ void i915_redisable_vga(struct drm_devic
  	if (I915_READ(vga_reg) != VGA_DISP_DISABLE) {
  		DRM_DEBUG_KMS("Something enabled VGA plane, disabling it\n");
  		i915_disable_vga(dev);
@@ -116,7 +116,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  }
  
-@@ -10588,7 +10593,7 @@ void intel_modeset_cleanup(struct drm_de
+@@ -10590,7 +10595,7 @@ void intel_modeset_cleanup(struct drm_de
  
  	intel_disable_fbc(dev);
  

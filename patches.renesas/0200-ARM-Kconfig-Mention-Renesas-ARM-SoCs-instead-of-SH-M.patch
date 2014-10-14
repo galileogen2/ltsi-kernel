@@ -19,15 +19,13 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 (Queued by Simon Horman for v3.14 but not yet in Linus's tree)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/arm/Kconfig               |  7 ++++---
- arch/arm/mach-shmobile/Kconfig | 18 +++++++++---------
+ arch/arm/Kconfig               |    7 ++++---
+ arch/arm/mach-shmobile/Kconfig |   18 +++++++++---------
  2 files changed, 13 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index e965fda96875..3c4dd82f48f4 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
-@@ -633,7 +633,7 @@ config ARCH_MSM
+@@ -634,7 +634,7 @@ config ARCH_MSM
  	  (clock and power control, etc).
  
  config ARCH_SHMOBILE_LEGACY
@@ -36,7 +34,7 @@ index e965fda96875..3c4dd82f48f4 100644
  	select ARCH_SHMOBILE
  	select ARM_PATCH_PHYS_VIRT
  	select CLKDEV_LOOKUP
-@@ -650,8 +650,9 @@ config ARCH_SHMOBILE_LEGACY
+@@ -651,8 +651,9 @@ config ARCH_SHMOBILE_LEGACY
  	select PM_GENERIC_DOMAINS if PM
  	select SPARSE_IRQ
  	help
@@ -48,8 +46,6 @@ index e965fda96875..3c4dd82f48f4 100644
  
  config ARCH_RPC
  	bool "RiscPC"
-diff --git a/arch/arm/mach-shmobile/Kconfig b/arch/arm/mach-shmobile/Kconfig
-index bb0837b8c05c..3e57d457308a 100644
 --- a/arch/arm/mach-shmobile/Kconfig
 +++ b/arch/arm/mach-shmobile/Kconfig
 @@ -2,7 +2,7 @@ config ARCH_SHMOBILE
@@ -123,6 +119,3 @@ index bb0837b8c05c..3e57d457308a 100644
  	  A HZ value that does not divide evenly may cause timer drift.
  
  config SH_TIMER_CMT
--- 
-1.8.5.rc3
-

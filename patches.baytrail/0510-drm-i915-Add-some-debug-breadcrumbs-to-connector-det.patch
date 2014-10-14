@@ -97,7 +97,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  				  &response, 2))
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1313,6 +1313,10 @@ intel_tv_detect(struct drm_connector *co
+@@ -1317,6 +1317,10 @@ intel_tv_detect(struct drm_connector *co
  	struct intel_tv *intel_tv = intel_attached_tv(connector);
  	int type;
  

@@ -60,7 +60,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  F:	drivers/rtc/rtc-vt8500.c
 --- a/drivers/i2c/busses/Kconfig
 +++ b/drivers/i2c/busses/Kconfig
-@@ -726,6 +726,16 @@ config I2C_VERSATILE
+@@ -728,6 +728,16 @@ config I2C_VERSATILE
  	  This driver can also be built as a module.  If so, the module
  	  will be called i2c-versatile.
  

@@ -10,11 +10,9 @@ Signed-off-by: Wolfram Sang <wsa@the-dreams.de>
 (cherry picked from commit b720423a2627f045133bec39a31fe2bc0dab86f3)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/i2c/busses/i2c-rcar.c | 35 +++++++++++++++++++++++++++++++++--
+ drivers/i2c/busses/i2c-rcar.c |   35 +++++++++++++++++++++++++++++++++--
  1 file changed, 33 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-rcar.c b/drivers/i2c/busses/i2c-rcar.c
-index 4ba4a95b..18e03373 100644
 --- a/drivers/i2c/busses/i2c-rcar.c
 +++ b/drivers/i2c/busses/i2c-rcar.c
 @@ -101,6 +101,11 @@ enum {
@@ -37,7 +35,7 @@ index 4ba4a95b..18e03373 100644
  };
  
  #define rcar_i2c_priv_to_dev(p)		((p)->adap.dev.parent)
-@@ -224,12 +230,25 @@ static int rcar_i2c_clock_calculate(struct rcar_i2c_priv *priv,
+@@ -224,12 +230,25 @@ static int rcar_i2c_clock_calculate(stru
  	u32 scgd, cdf;
  	u32 round, ick;
  	u32 scl;
@@ -63,7 +61,7 @@ index 4ba4a95b..18e03373 100644
  	/*
  	 * calculate SCL clock
  	 * see
-@@ -245,7 +264,7 @@ static int rcar_i2c_clock_calculate(struct rcar_i2c_priv *priv,
+@@ -245,7 +264,7 @@ static int rcar_i2c_clock_calculate(stru
  	 * clkp : peripheral_clk
  	 * F[]  : integer up-valuation
  	 */
@@ -81,7 +79,7 @@ index 4ba4a95b..18e03373 100644
  
  	return 0;
  }
-@@ -638,6 +657,9 @@ static int rcar_i2c_probe(struct platform_device *pdev)
+@@ -645,6 +664,9 @@ static int rcar_i2c_probe(struct platfor
  	bus_speed = 100000; /* default 100 kHz */
  	if (pdata && pdata->bus_speed)
  		bus_speed = pdata->bus_speed;
@@ -91,7 +89,7 @@ index 4ba4a95b..18e03373 100644
  	ret = rcar_i2c_clock_calculate(priv, bus_speed, dev);
  	if (ret < 0)
  		return ret;
-@@ -691,6 +713,14 @@ static int rcar_i2c_remove(struct platform_device *pdev)
+@@ -698,6 +720,14 @@ static int rcar_i2c_remove(struct platfo
  	return 0;
  }
  
@@ -106,7 +104,7 @@ index 4ba4a95b..18e03373 100644
  static struct platform_driver rcar_i2c_driver = {
  	.driver	= {
  		.name	= "i2c-rcar",
-@@ -698,6 +728,7 @@ static struct platform_driver rcar_i2c_driver = {
+@@ -705,6 +735,7 @@ static struct platform_driver rcar_i2c_d
  	},
  	.probe		= rcar_i2c_probe,
  	.remove		= rcar_i2c_remove,
@@ -114,6 +112,3 @@ index 4ba4a95b..18e03373 100644
  };
  
  module_platform_driver(rcar_i2c_driver);
--- 
-1.8.4.3.gca3854a
-

@@ -112,7 +112,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		return PTR_ERR(dev->base);
 --- a/drivers/i2c/busses/i2c-rcar.c
 +++ b/drivers/i2c/busses/i2c-rcar.c
-@@ -658,12 +658,6 @@ static int rcar_i2c_probe(struct platfor
+@@ -665,12 +665,6 @@ static int rcar_i2c_probe(struct platfor
  	u32 bus_speed;
  	int ret;
  
@@ -125,7 +125,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	priv = devm_kzalloc(dev, sizeof(struct rcar_i2c_priv), GFP_KERNEL);
  	if (!priv) {
  		dev_err(dev, "no mem for private data\n");
-@@ -685,6 +679,7 @@ static int rcar_i2c_probe(struct platfor
+@@ -692,6 +686,7 @@ static int rcar_i2c_probe(struct platfor
  	if (ret < 0)
  		return ret;
  

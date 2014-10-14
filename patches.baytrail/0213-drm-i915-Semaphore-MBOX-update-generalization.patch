@@ -38,7 +38,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define RING_HWS_PGA(base)	((base)+0x80)
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -581,9 +581,16 @@ static void
+@@ -584,9 +584,16 @@ static void
  update_mboxes(struct intel_ring_buffer *ring,
  	      u32 mmio_offset)
  {
@@ -55,7 +55,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  }
  
  /**
-@@ -598,19 +605,24 @@ update_mboxes(struct intel_ring_buffer *
+@@ -601,19 +608,24 @@ update_mboxes(struct intel_ring_buffer *
  static int
  gen6_add_request(struct intel_ring_buffer *ring)
  {
@@ -88,7 +88,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, MI_STORE_DWORD_INDEX);
  	intel_ring_emit(ring, I915_GEM_HWS_INDEX << MI_STORE_DWORD_INDEX_SHIFT);
  	intel_ring_emit(ring, ring->outstanding_lazy_request);
-@@ -1689,8 +1701,9 @@ int intel_init_render_ring_buffer(struct
+@@ -1692,8 +1704,9 @@ int intel_init_render_ring_buffer(struct
  		ring->semaphore_register[RCS] = MI_SEMAPHORE_SYNC_INVALID;
  		ring->semaphore_register[VCS] = MI_SEMAPHORE_SYNC_RV;
  		ring->semaphore_register[BCS] = MI_SEMAPHORE_SYNC_RB;
@@ -100,7 +100,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	} else if (IS_GEN5(dev)) {
  		ring->add_request = pc_render_add_request;
  		ring->flush = gen4_render_ring_flush;
-@@ -1848,8 +1861,9 @@ int intel_init_bsd_ring_buffer(struct dr
+@@ -1851,8 +1864,9 @@ int intel_init_bsd_ring_buffer(struct dr
  		ring->semaphore_register[RCS] = MI_SEMAPHORE_SYNC_VR;
  		ring->semaphore_register[VCS] = MI_SEMAPHORE_SYNC_INVALID;
  		ring->semaphore_register[BCS] = MI_SEMAPHORE_SYNC_VB;
@@ -112,7 +112,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	} else {
  		ring->mmio_base = BSD_RING_BASE;
  		ring->flush = bsd_ring_flush;
-@@ -1894,8 +1908,9 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1897,8 +1911,9 @@ int intel_init_blt_ring_buffer(struct dr
  	ring->semaphore_register[RCS] = MI_SEMAPHORE_SYNC_BR;
  	ring->semaphore_register[VCS] = MI_SEMAPHORE_SYNC_BV;
  	ring->semaphore_register[BCS] = MI_SEMAPHORE_SYNC_INVALID;

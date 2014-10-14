@@ -519,7 +519,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	de_ier = I915_READ(DEIER);
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10484,8 +10484,7 @@ intel_display_capture_error_state(struct
+@@ -10486,8 +10486,7 @@ intel_display_capture_error_state(struct
  	 * well was on, so here we have to clear the FPGA_DBG_RM_NOCLAIM bit to
  	 * prevent the next I915_WRITE from detecting it and printing an error
  	 * message. */

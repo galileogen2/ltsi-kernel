@@ -19,14 +19,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit e5b611fd4493d09eb5164f5244ac0a5325346895)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 1 +
+ drivers/gpu/drm/i915/intel_display.c |    1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 6418b8aa95a9..bae0a6ab2f27 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10706,6 +10706,7 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+@@ -10708,6 +10708,7 @@ static void intel_modeset_readout_hw_sta
  								 &crtc->config);
  
  		crtc->base.enabled = crtc->active;
@@ -34,6 +32,3 @@ index 6418b8aa95a9..bae0a6ab2f27 100644
  
  		DRM_DEBUG_KMS("[CRTC:%d] hw state readout: %s\n",
  			      crtc->base.base.id,
--- 
-1.8.5.rc3
-

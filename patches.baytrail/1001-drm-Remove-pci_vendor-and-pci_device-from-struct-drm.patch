@@ -147,7 +147,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	err_printf(m, "PGTBL_ER: 0x%08x\n", error->pgtbl_er);
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1044,7 +1044,7 @@ static void intel_tv_mode_set(struct int
+@@ -1048,7 +1048,7 @@ static void intel_tv_mode_set(struct int
  		tv_mode->dda3_inc << TV_SCDDA3_INC_SHIFT;
  
  	/* Enable two fixes for the chips that need them. */
@@ -284,7 +284,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		else
 --- a/drivers/gpu/drm/radeon/radeon_bios.c
 +++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -499,7 +499,7 @@ static bool legacy_read_disabled_bios(st
+@@ -513,7 +513,7 @@ static bool legacy_read_disabled_bios(st
  	crtc_ext_cntl = RREG32(RADEON_CRTC_EXT_CNTL);
  	fp2_gen_cntl = 0;
  
@@ -293,7 +293,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		fp2_gen_cntl = RREG32(RADEON_FP2_GEN_CNTL);
  	}
  
-@@ -536,7 +536,7 @@ static bool legacy_read_disabled_bios(st
+@@ -550,7 +550,7 @@ static bool legacy_read_disabled_bios(st
  		(RADEON_CRTC_SYNC_TRISTAT |
  		 RADEON_CRTC_DISPLAY_DIS)));
  
@@ -302,7 +302,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		WREG32(RADEON_FP2_GEN_CNTL, (fp2_gen_cntl & ~RADEON_FP2_ON));
  	}
  
-@@ -554,7 +554,7 @@ static bool legacy_read_disabled_bios(st
+@@ -568,7 +568,7 @@ static bool legacy_read_disabled_bios(st
  		WREG32(RADEON_CRTC2_GEN_CNTL, crtc2_gen_cntl);
  	}
  	WREG32(RADEON_CRTC_EXT_CNTL, crtc_ext_cntl);

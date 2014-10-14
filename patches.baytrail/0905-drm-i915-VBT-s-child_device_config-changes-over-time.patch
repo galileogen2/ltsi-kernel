@@ -229,7 +229,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		 * We have to check both the new identifiers as well as the
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1518,7 +1518,7 @@ static const struct drm_encoder_funcs in
+@@ -1522,7 +1522,7 @@ static const struct drm_encoder_funcs in
  static int tv_is_present_in_vbt(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
@@ -238,7 +238,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	int i, ret;
  
  	if (!dev_priv->vbt.child_dev_num)
-@@ -1530,13 +1530,13 @@ static int tv_is_present_in_vbt(struct d
+@@ -1534,13 +1534,13 @@ static int tv_is_present_in_vbt(struct d
  		/*
  		 * If the device type is not TV, continue.
  		 */

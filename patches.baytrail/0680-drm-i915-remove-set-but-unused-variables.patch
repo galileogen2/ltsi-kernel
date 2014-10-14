@@ -72,7 +72,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	list_for_each_entry(connector, &dev->mode_config.connector_list,
  			    base.head) {
  		if (!connector->new_encoder)
-@@ -10303,7 +10297,6 @@ void intel_modeset_cleanup(struct drm_de
+@@ -10305,7 +10299,6 @@ void intel_modeset_cleanup(struct drm_de
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	struct drm_crtc *crtc;
@@ -80,7 +80,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	/*
  	 * Interrupts and polling as the first thing to avoid creating havoc.
-@@ -10327,7 +10320,6 @@ void intel_modeset_cleanup(struct drm_de
+@@ -10329,7 +10322,6 @@ void intel_modeset_cleanup(struct drm_de
  		if (!crtc->fb)
  			continue;
  

@@ -25,14 +25,12 @@ Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 (cherry picked from commit 08332dff8adebb74171e98e008d6c20de6658c42)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/irqchip/irq-gic.c | 9 +++++----
+ drivers/irqchip/irq-gic.c |    9 +++++----
  1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/irqchip/irq-gic.c b/drivers/irqchip/irq-gic.c
-index 70e4a3080029..74e1ffe1cd3d 100644
 --- a/drivers/irqchip/irq-gic.c
 +++ b/drivers/irqchip/irq-gic.c
-@@ -936,12 +936,13 @@ void __init gic_init_bases(unsigned int gic_nr, int irq_start,
+@@ -943,12 +943,13 @@ void __init gic_init_bases(unsigned int
  	if (WARN_ON(!gic->domain))
  		return;
  
@@ -50,6 +48,3 @@ index 70e4a3080029..74e1ffe1cd3d 100644
  
  	gic_chip.flags |= gic_arch_extn.flags;
  	gic_dist_init(gic);
--- 
-1.8.5.rc3
-

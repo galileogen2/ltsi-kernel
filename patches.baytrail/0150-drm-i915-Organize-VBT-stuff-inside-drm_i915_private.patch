@@ -382,7 +382,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 +	DRM_DEBUG_KMS("Set default to SSC at %dMHz\n", dev_priv->vbt.lvds_ssc_freq);
  }
  
- static int __init intel_no_opregion_vbt_callback(const struct dmi_system_id *id)
+ static int intel_no_opregion_vbt_callback(const struct dmi_system_id *id)
 --- a/drivers/gpu/drm/i915/intel_crt.c
 +++ b/drivers/gpu/drm/i915/intel_crt.c
 @@ -435,7 +435,7 @@ static bool intel_crt_detect_ddc(struct
@@ -616,7 +616,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			intel_sdvo->sdvo_lvds_fixed_mode =
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1529,12 +1529,12 @@ static int tv_is_present_in_vbt(struct d
+@@ -1533,12 +1533,12 @@ static int tv_is_present_in_vbt(struct d
  	struct child_device_config *p_child;
  	int i, ret;
  
@@ -632,7 +632,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		/*
  		 * If the device type is not TV, continue.
  		 */
-@@ -1572,7 +1572,7 @@ intel_tv_init(struct drm_device *dev)
+@@ -1576,7 +1576,7 @@ intel_tv_init(struct drm_device *dev)
  		return;
  	}
  	/* Even if we have an encoder we may not have a connector */

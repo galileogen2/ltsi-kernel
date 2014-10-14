@@ -23,14 +23,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit e1553faa904f3f8bdd734ee1404ce39c652bc9c6)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/intel_display.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 1610f9668866..bb2e9bcb43d5 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10663,7 +10663,7 @@ void i915_redisable_vga(struct drm_device *dev)
+@@ -10665,7 +10665,7 @@ void i915_redisable_vga(struct drm_devic
  	    (I915_READ(HSW_PWR_WELL_DRIVER) & HSW_PWR_WELL_STATE_ENABLED) == 0)
  		return;
  
@@ -39,6 +37,3 @@ index 1610f9668866..bb2e9bcb43d5 100644
  		DRM_DEBUG_KMS("Something enabled VGA plane, disabling it\n");
  		i915_disable_vga(dev);
  		i915_disable_vga_mem(dev);
--- 
-1.8.5.rc3
-

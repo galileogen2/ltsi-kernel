@@ -417,7 +417,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	sysfs_unmerge_group(&dev->primary->kdev.kobj, &rc6_attr_group);
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -570,7 +570,7 @@ static int init_render_ring(struct intel
+@@ -573,7 +573,7 @@ static int init_render_ring(struct intel
  		I915_WRITE(INSTPM, _MASKED_BIT_ENABLE(INSTPM_FORCE_ORDERING));
  
  	if (HAS_L3_GPU_CACHE(dev))
@@ -426,7 +426,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return ret;
  }
-@@ -1000,7 +1000,7 @@ gen6_ring_get_irq(struct intel_ring_buff
+@@ -1003,7 +1003,7 @@ gen6_ring_get_irq(struct intel_ring_buff
  		if (HAS_L3_GPU_CACHE(dev) && ring->id == RCS)
  			I915_WRITE_IMR(ring,
  				       ~(ring->irq_enable_mask |
@@ -435,7 +435,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		else
  			I915_WRITE_IMR(ring, ~ring->irq_enable_mask);
  		ilk_enable_gt_irq(dev_priv, ring->irq_enable_mask);
-@@ -1020,8 +1020,7 @@ gen6_ring_put_irq(struct intel_ring_buff
+@@ -1023,8 +1023,7 @@ gen6_ring_put_irq(struct intel_ring_buff
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (--ring->irq_refcount == 0) {
  		if (HAS_L3_GPU_CACHE(dev) && ring->id == RCS)

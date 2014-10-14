@@ -421,7 +421,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 -		off = (uint64_t)obj->map_list.hash.key;
 +	off = drm_vma_node_start(&obj->vma_node);
  
- 	seq_printf(m, "%08x: %2d (%2d) %08llx %08Zx (%2d) %p %4d",
+ 	seq_printf(m, "%08x: %2d (%2d) %08llx %pad (%2d) %p %4d",
  			omap_obj->flags, obj->name, obj->refcount.refcount.counter,
 @@ -1309,8 +1308,7 @@ void omap_gem_free_object(struct drm_gem
  

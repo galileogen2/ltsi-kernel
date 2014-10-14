@@ -22,23 +22,21 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 241bfc389111ce4c997430e6cd1532a08b16dc6b)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_crt.c     |  2 +-
- drivers/gpu/drm/i915/intel_display.c | 34 +++++++++++++++++-----------------
- drivers/gpu/drm/i915/intel_dp.c      | 11 +++++++----
- drivers/gpu/drm/i915/intel_drv.h     |  2 +-
- drivers/gpu/drm/i915/intel_dvo.c     |  2 +-
- drivers/gpu/drm/i915/intel_hdmi.c    |  6 +++---
- drivers/gpu/drm/i915/intel_lvds.c    |  2 +-
- drivers/gpu/drm/i915/intel_pm.c      | 36 +++++++++++++++++++++++-------------
- drivers/gpu/drm/i915/intel_sdvo.c    |  2 +-
- drivers/gpu/drm/i915/intel_tv.c      |  2 +-
+ drivers/gpu/drm/i915/intel_crt.c     |    2 -
+ drivers/gpu/drm/i915/intel_display.c |   34 ++++++++++++++++-----------------
+ drivers/gpu/drm/i915/intel_dp.c      |   11 ++++++----
+ drivers/gpu/drm/i915/intel_drv.h     |    2 -
+ drivers/gpu/drm/i915/intel_dvo.c     |    2 -
+ drivers/gpu/drm/i915/intel_hdmi.c    |    6 ++---
+ drivers/gpu/drm/i915/intel_lvds.c    |    2 -
+ drivers/gpu/drm/i915/intel_pm.c      |   36 ++++++++++++++++++++++-------------
+ drivers/gpu/drm/i915/intel_sdvo.c    |    2 -
+ drivers/gpu/drm/i915/intel_tv.c      |    2 -
  10 files changed, 56 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_crt.c b/drivers/gpu/drm/i915/intel_crt.c
-index 019c4cea7bb0..0263629332d0 100644
 --- a/drivers/gpu/drm/i915/intel_crt.c
 +++ b/drivers/gpu/drm/i915/intel_crt.c
-@@ -117,7 +117,7 @@ static void intel_crt_get_config(struct intel_encoder *encoder,
+@@ -117,7 +117,7 @@ static void intel_crt_get_config(struct
  	if (HAS_PCH_SPLIT(dev))
  		ironlake_check_encoder_dotclock(pipe_config, dotclock);
  
@@ -47,11 +45,9 @@ index 019c4cea7bb0..0263629332d0 100644
  }
  
  static void hsw_crt_get_config(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index e361cd09a3d2..b928db880679 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -739,14 +739,14 @@ bool intel_crtc_active(struct drm_crtc *crtc)
+@@ -739,14 +739,14 @@ bool intel_crtc_active(struct drm_crtc *
  	/* Be paranoid as we can arrive here with only partial
  	 * state retrieved from the hardware during setup.
  	 *
@@ -68,7 +64,7 @@ index e361cd09a3d2..b928db880679 100644
  }
  
  enum transcoder intel_pipe_to_cpu_transcoder(struct drm_i915_private *dev_priv,
-@@ -2913,7 +2913,7 @@ static void lpt_program_iclkip(struct drm_crtc *crtc)
+@@ -2913,7 +2913,7 @@ static void lpt_program_iclkip(struct dr
  {
  	struct drm_device *dev = crtc->dev;
  	struct drm_i915_private *dev_priv = dev->dev_private;
@@ -77,7 +73,7 @@ index e361cd09a3d2..b928db880679 100644
  	u32 divsel, phaseinc, auxdiv, phasedir = 0;
  	u32 temp;
  
-@@ -2937,8 +2937,8 @@ static void lpt_program_iclkip(struct drm_crtc *crtc)
+@@ -2937,8 +2937,8 @@ static void lpt_program_iclkip(struct dr
  		phaseinc = 0x20;
  	} else {
  		/* The iCLK virtual clock root frequency is in MHz,
@@ -97,7 +93,7 @@ index e361cd09a3d2..b928db880679 100644
  
  	lane = ironlake_get_lanes_required(fdi_dotclock, link_bw,
  					   pipe_config->pipe_bpp);
-@@ -4200,12 +4200,12 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+@@ -4200,12 +4200,12 @@ static int intel_crtc_compute_config(str
  		 * otherwise pipe A only.
  		 */
  		if ((crtc->pipe == PIPE_A || IS_I915G(dev)) &&
@@ -112,7 +108,7 @@ index e361cd09a3d2..b928db880679 100644
  			return -EINVAL;
  	}
  
-@@ -4865,7 +4865,7 @@ static void intel_crtc_mode_from_pipe_config(struct intel_crtc *intel_crtc,
+@@ -4865,7 +4865,7 @@ static void intel_crtc_mode_from_pipe_co
  
  	crtc->mode.flags = pipe_config->adjusted_mode.flags;
  
@@ -121,7 +117,7 @@ index e361cd09a3d2..b928db880679 100644
  	crtc->mode.flags |= pipe_config->adjusted_mode.flags;
  }
  
-@@ -7473,7 +7473,7 @@ static void i9xx_crtc_clock_get(struct intel_crtc *crtc,
+@@ -7473,7 +7473,7 @@ static void i9xx_crtc_clock_get(struct i
  
  	/*
  	 * This value includes pixel_multiplier. We will use
@@ -130,7 +126,7 @@ index e361cd09a3d2..b928db880679 100644
  	 * encoder's get_config() function.
  	 */
  	pipe_config->port_clock = clock.dot;
-@@ -7508,11 +7508,11 @@ static void ironlake_pch_clock_get(struct intel_crtc *crtc,
+@@ -7508,11 +7508,11 @@ static void ironlake_pch_clock_get(struc
  
  	/*
  	 * This value does not include pixel_multiplier.
@@ -155,7 +151,7 @@ index e361cd09a3d2..b928db880679 100644
  
  	ret = intel_crtc_compute_config(to_intel_crtc(crtc), pipe_config);
  	if (ret < 0) {
-@@ -8820,7 +8820,7 @@ intel_pipe_config_compare(struct drm_device *dev,
+@@ -8820,7 +8820,7 @@ intel_pipe_config_compare(struct drm_dev
  		PIPE_CONF_CHECK_I(pipe_bpp);
  
  	if (!IS_HASWELL(dev)) {
@@ -164,7 +160,7 @@ index e361cd09a3d2..b928db880679 100644
  		PIPE_CONF_CHECK_CLOCK_FUZZY(port_clock);
  	}
  
-@@ -9042,9 +9042,9 @@ void ironlake_check_encoder_dotclock(const struct intel_crtc_config *pipe_config
+@@ -9042,9 +9042,9 @@ void ironlake_check_encoder_dotclock(con
  	 * FDI already provided one idea for the dotclock.
  	 * Yell if the encoder disagrees.
  	 */
@@ -176,11 +172,9 @@ index e361cd09a3d2..b928db880679 100644
  }
  
  static int __intel_set_mode(struct drm_crtc *crtc,
-diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
-index 0c98af87eb2e..2f04f0f60fd6 100644
 --- a/drivers/gpu/drm/i915/intel_dp.c
 +++ b/drivers/gpu/drm/i915/intel_dp.c
-@@ -811,7 +811,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+@@ -811,7 +811,8 @@ intel_dp_compute_config(struct intel_enc
  
  	DRM_DEBUG_KMS("DP link computation with max lane count %i "
  		      "max bw %02x pixel clock %iKHz\n",
@@ -190,7 +184,7 @@ index 0c98af87eb2e..2f04f0f60fd6 100644
  
  	/* Walk through all bpp values. Luckily they're all nicely spaced with 2
  	 * bpc in between. */
-@@ -823,7 +824,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+@@ -823,7 +824,8 @@ intel_dp_compute_config(struct intel_enc
  	}
  
  	for (; bpp >= 6*3; bpp -= 2*3) {
@@ -210,7 +204,7 @@ index 0c98af87eb2e..2f04f0f60fd6 100644
  			       &pipe_config->dp_m_n);
  
  	intel_dp_set_clock(encoder, pipe_config, intel_dp->link_bw);
-@@ -1483,7 +1486,7 @@ static void intel_dp_get_config(struct intel_encoder *encoder,
+@@ -1483,7 +1486,7 @@ static void intel_dp_get_config(struct i
  	if (HAS_PCH_SPLIT(dev_priv->dev) && port != PORT_A)
  		ironlake_check_encoder_dotclock(pipe_config, dotclock);
  
@@ -219,8 +213,6 @@ index 0c98af87eb2e..2f04f0f60fd6 100644
  }
  
  static bool is_edp_psr(struct intel_dp *intel_dp)
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index 8c3cb3e30527..a17a86ac4e40 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
 @@ -217,7 +217,7 @@ struct intel_crtc_config {
@@ -232,11 +224,9 @@ index 8c3cb3e30527..a17a86ac4e40 100644
  	struct drm_display_mode adjusted_mode;
  
  	/* Pipe source size (ie. panel fitter input size)
-diff --git a/drivers/gpu/drm/i915/intel_dvo.c b/drivers/gpu/drm/i915/intel_dvo.c
-index 6305433797ac..91287d1d3059 100644
 --- a/drivers/gpu/drm/i915/intel_dvo.c
 +++ b/drivers/gpu/drm/i915/intel_dvo.c
-@@ -154,7 +154,7 @@ static void intel_dvo_get_config(struct intel_encoder *encoder,
+@@ -154,7 +154,7 @@ static void intel_dvo_get_config(struct
  
  	pipe_config->adjusted_mode.flags |= flags;
  
@@ -245,11 +235,9 @@ index 6305433797ac..91287d1d3059 100644
  }
  
  static void intel_disable_dvo(struct intel_encoder *encoder)
-diff --git a/drivers/gpu/drm/i915/intel_hdmi.c b/drivers/gpu/drm/i915/intel_hdmi.c
-index a6310ca444cf..1a57758e5bf8 100644
 --- a/drivers/gpu/drm/i915/intel_hdmi.c
 +++ b/drivers/gpu/drm/i915/intel_hdmi.c
-@@ -737,7 +737,7 @@ static void intel_hdmi_get_config(struct intel_encoder *encoder,
+@@ -737,7 +737,7 @@ static void intel_hdmi_get_config(struct
  	if (HAS_PCH_SPLIT(dev_priv->dev))
  		ironlake_check_encoder_dotclock(pipe_config, dotclock);
  
@@ -258,7 +246,7 @@ index a6310ca444cf..1a57758e5bf8 100644
  }
  
  static void intel_enable_hdmi(struct intel_encoder *encoder)
-@@ -873,7 +873,7 @@ bool intel_hdmi_compute_config(struct intel_encoder *encoder,
+@@ -873,7 +873,7 @@ bool intel_hdmi_compute_config(struct in
  	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(&encoder->base);
  	struct drm_device *dev = encoder->base.dev;
  	struct drm_display_mode *adjusted_mode = &pipe_config->adjusted_mode;
@@ -267,7 +255,7 @@ index a6310ca444cf..1a57758e5bf8 100644
  	int portclock_limit = hdmi_portclock_limit(intel_hdmi);
  	int desired_bpp;
  
-@@ -915,7 +915,7 @@ bool intel_hdmi_compute_config(struct intel_encoder *encoder,
+@@ -915,7 +915,7 @@ bool intel_hdmi_compute_config(struct in
  		pipe_config->pipe_bpp = desired_bpp;
  	}
  
@@ -276,11 +264,9 @@ index a6310ca444cf..1a57758e5bf8 100644
  		DRM_DEBUG_KMS("too high HDMI clock, rejecting mode\n");
  		return false;
  	}
-diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
-index 33994f2677ff..4986aff3827d 100644
 --- a/drivers/gpu/drm/i915/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/intel_lvds.c
-@@ -123,7 +123,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
+@@ -123,7 +123,7 @@ static void intel_lvds_get_config(struct
  	if (HAS_PCH_SPLIT(dev_priv->dev))
  		ironlake_check_encoder_dotclock(pipe_config, dotclock);
  
@@ -289,11 +275,9 @@ index 33994f2677ff..4986aff3827d 100644
  }
  
  /* The LVDS pin pair needs to be on before the DPLLs are enabled.
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index d27eda661548..2ac1c2fd58bb 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -1100,8 +1100,12 @@ static void pineview_update_wm(struct drm_crtc *unused_crtc)
+@@ -1100,8 +1100,12 @@ static void pineview_update_wm(struct dr
  
  	crtc = single_enabled_crtc(dev);
  	if (crtc) {
@@ -307,7 +291,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  
  		/* Display SR */
  		wm = intel_calculate_wm(clock, &pineview_display_wm,
-@@ -1174,7 +1178,7 @@ static bool g4x_compute_wm0(struct drm_device *dev,
+@@ -1174,7 +1178,7 @@ static bool g4x_compute_wm0(struct drm_d
  	}
  
  	adjusted_mode = &to_intel_crtc(crtc)->config.adjusted_mode;
@@ -316,7 +300,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  	htotal = adjusted_mode->htotal;
  	hdisplay = to_intel_crtc(crtc)->config.pipe_src_w;
  	pixel_size = crtc->fb->bits_per_pixel / 8;
-@@ -1261,7 +1265,7 @@ static bool g4x_compute_srwm(struct drm_device *dev,
+@@ -1261,7 +1265,7 @@ static bool g4x_compute_srwm(struct drm_
  
  	crtc = intel_get_crtc_for_plane(dev, plane);
  	adjusted_mode = &to_intel_crtc(crtc)->config.adjusted_mode;
@@ -325,7 +309,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  	htotal = adjusted_mode->htotal;
  	hdisplay = to_intel_crtc(crtc)->config.pipe_src_w;
  	pixel_size = crtc->fb->bits_per_pixel / 8;
-@@ -1302,7 +1306,7 @@ static bool vlv_compute_drain_latency(struct drm_device *dev,
+@@ -1302,7 +1306,7 @@ static bool vlv_compute_drain_latency(st
  	if (!intel_crtc_active(crtc))
  		return false;
  
@@ -334,7 +318,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  	pixel_size = crtc->fb->bits_per_pixel / 8;	/* BPP */
  
  	entries = (clock / 1000) * pixel_size;
-@@ -1492,7 +1496,7 @@ static void i965_update_wm(struct drm_crtc *unused_crtc)
+@@ -1492,7 +1496,7 @@ static void i965_update_wm(struct drm_cr
  		static const int sr_latency_ns = 12000;
  		const struct drm_display_mode *adjusted_mode =
  			&to_intel_crtc(crtc)->config.adjusted_mode;
@@ -343,7 +327,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  		int htotal = adjusted_mode->htotal;
  		int hdisplay = to_intel_crtc(crtc)->config.pipe_src_w;
  		int pixel_size = crtc->fb->bits_per_pixel / 8;
-@@ -1567,11 +1571,13 @@ static void i9xx_update_wm(struct drm_crtc *unused_crtc)
+@@ -1567,11 +1571,13 @@ static void i9xx_update_wm(struct drm_cr
  	fifo_size = dev_priv->display.get_fifo_size(dev, 0);
  	crtc = intel_get_crtc_for_plane(dev, 0);
  	if (intel_crtc_active(crtc)) {
@@ -358,7 +342,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  					       wm_info, fifo_size, cpp,
  					       latency_ns);
  		enabled = crtc;
-@@ -1581,11 +1587,13 @@ static void i9xx_update_wm(struct drm_crtc *unused_crtc)
+@@ -1581,11 +1587,13 @@ static void i9xx_update_wm(struct drm_cr
  	fifo_size = dev_priv->display.get_fifo_size(dev, 1);
  	crtc = intel_get_crtc_for_plane(dev, 1);
  	if (intel_crtc_active(crtc)) {
@@ -373,7 +357,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  					       wm_info, fifo_size, cpp,
  					       latency_ns);
  		if (enabled == NULL)
-@@ -1614,7 +1622,7 @@ static void i9xx_update_wm(struct drm_crtc *unused_crtc)
+@@ -1614,7 +1622,7 @@ static void i9xx_update_wm(struct drm_cr
  		static const int sr_latency_ns = 6000;
  		const struct drm_display_mode *adjusted_mode =
  			&to_intel_crtc(enabled)->config.adjusted_mode;
@@ -382,7 +366,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  		int htotal = adjusted_mode->htotal;
  		int hdisplay = to_intel_crtc(crtc)->config.pipe_src_w;
  		int pixel_size = enabled->fb->bits_per_pixel / 8;
-@@ -1670,6 +1678,7 @@ static void i830_update_wm(struct drm_crtc *unused_crtc)
+@@ -1670,6 +1678,7 @@ static void i830_update_wm(struct drm_cr
  	struct drm_device *dev = unused_crtc->dev;
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	struct drm_crtc *crtc;
@@ -390,7 +374,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  	uint32_t fwater_lo;
  	int planea_wm;
  
-@@ -1677,7 +1686,8 @@ static void i830_update_wm(struct drm_crtc *unused_crtc)
+@@ -1677,7 +1686,8 @@ static void i830_update_wm(struct drm_cr
  	if (crtc == NULL)
  		return;
  
@@ -400,7 +384,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  				       &i830_wm_info,
  				       dev_priv->display.get_fifo_size(dev, 0),
  				       4, latency_ns);
-@@ -1764,7 +1774,7 @@ static bool ironlake_compute_srwm(struct drm_device *dev, int level, int plane,
+@@ -1764,7 +1774,7 @@ static bool ironlake_compute_srwm(struct
  
  	crtc = intel_get_crtc_for_plane(dev, plane);
  	adjusted_mode = &to_intel_crtc(crtc)->config.adjusted_mode;
@@ -409,7 +393,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  	htotal = adjusted_mode->htotal;
  	hdisplay = to_intel_crtc(crtc)->config.pipe_src_w;
  	pixel_size = crtc->fb->bits_per_pixel / 8;
-@@ -2112,7 +2122,7 @@ static uint32_t ilk_pipe_pixel_rate(struct drm_device *dev,
+@@ -2112,7 +2122,7 @@ static uint32_t ilk_pipe_pixel_rate(stru
  	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
  	uint32_t pixel_rate;
  
@@ -418,7 +402,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  
  	/* We only use IF-ID interlacing. If we ever use PF-ID we'll need to
  	 * adjust the pixel_rate here. */
-@@ -2913,7 +2923,7 @@ sandybridge_compute_sprite_wm(struct drm_device *dev, int plane,
+@@ -2913,7 +2923,7 @@ sandybridge_compute_sprite_wm(struct drm
  		return false;
  	}
  
@@ -427,7 +411,7 @@ index d27eda661548..2ac1c2fd58bb 100644
  
  	/* Use the small buffer method to calculate the sprite watermark */
  	entries = ((clock * pixel_size / 1000) * display_latency_ns) / 1000;
-@@ -2948,7 +2958,7 @@ sandybridge_compute_sprite_srwm(struct drm_device *dev, int plane,
+@@ -2948,7 +2958,7 @@ sandybridge_compute_sprite_srwm(struct d
  	}
  
  	crtc = intel_get_crtc_for_plane(dev, plane);
@@ -436,11 +420,9 @@ index d27eda661548..2ac1c2fd58bb 100644
  	if (!clock) {
  		*sprite_wm = 0;
  		return false;
-diff --git a/drivers/gpu/drm/i915/intel_sdvo.c b/drivers/gpu/drm/i915/intel_sdvo.c
-index 606e03279201..5e59d64cfd95 100644
 --- a/drivers/gpu/drm/i915/intel_sdvo.c
 +++ b/drivers/gpu/drm/i915/intel_sdvo.c
-@@ -1369,7 +1369,7 @@ static void intel_sdvo_get_config(struct intel_encoder *encoder,
+@@ -1369,7 +1369,7 @@ static void intel_sdvo_get_config(struct
  	if (HAS_PCH_SPLIT(dev))
  		ironlake_check_encoder_dotclock(pipe_config, dotclock);
  
@@ -449,11 +431,9 @@ index 606e03279201..5e59d64cfd95 100644
  
  	/* Cross check the port pixel multiplier with the sdvo encoder state. */
  	if (intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_CLOCK_RATE_MULT,
-diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
-index 11c15fbf9e55..75925a1ab351 100644
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -912,7 +912,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+@@ -916,7 +916,7 @@ intel_tv_compute_config(struct intel_enc
  	if (!tv_mode)
  		return false;
  
@@ -462,6 +442,3 @@ index 11c15fbf9e55..75925a1ab351 100644
  	DRM_DEBUG_KMS("forcing bpc to 8 for TV\n");
  	pipe_config->pipe_bpp = 8*3;
  
--- 
-1.8.5.rc3
-

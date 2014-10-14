@@ -19,14 +19,12 @@ Signed-off-by: Wolfram Sang <wsa@the-dreams.de>
 (cherry picked from commit e42dba569fceca5d59a88571370785e9ce9775b8)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/i2c/busses/i2c-designware-core.c | 5 ++---
+ drivers/i2c/busses/i2c-designware-core.c |    5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-designware-core.c b/drivers/i2c/busses/i2c-designware-core.c
-index c41ca6354fc5..db20a2841b75 100644
 --- a/drivers/i2c/busses/i2c-designware-core.c
 +++ b/drivers/i2c/busses/i2c-designware-core.c
-@@ -580,14 +580,13 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+@@ -583,14 +583,13 @@ i2c_dw_xfer(struct i2c_adapter *adap, st
  	i2c_dw_xfer_init(dev);
  
  	/* wait for tx to complete */
@@ -43,6 +41,3 @@ index c41ca6354fc5..db20a2841b75 100644
  
  	if (dev->msg_err) {
  		ret = dev->msg_err;
--- 
-1.8.5.rc3
-

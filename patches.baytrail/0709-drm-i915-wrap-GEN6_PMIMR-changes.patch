@@ -14,17 +14,15 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit edbfdb456053d0738e6b06a3827ead4158bfc918)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c         | 47 ++++++++++++++++++++++++++++-----
- drivers/gpu/drm/i915/intel_drv.h        |  3 +++
- drivers/gpu/drm/i915/intel_pm.c         |  2 +-
- drivers/gpu/drm/i915/intel_ringbuffer.c |  8 ++----
+ drivers/gpu/drm/i915/i915_irq.c         |   47 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/i915/intel_drv.h        |    3 ++
+ drivers/gpu/drm/i915/intel_pm.c         |    2 -
+ drivers/gpu/drm/i915/intel_ringbuffer.c |    8 +----
  4 files changed, 46 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 5315161d6e71..bb4bd21399a1 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -132,6 +132,41 @@ void ilk_disable_gt_irq(struct drm_i915_private *dev_priv, uint32_t mask)
+@@ -132,6 +132,41 @@ void ilk_disable_gt_irq(struct drm_i915_
  	ilk_update_gt_irq(dev_priv, mask, 0);
  }
  
@@ -66,7 +64,7 @@ index 5315161d6e71..bb4bd21399a1 100644
  static bool ivb_can_enable_err_int(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
-@@ -739,15 +774,14 @@ static void gen6_pm_rps_work(struct work_struct *work)
+@@ -739,15 +774,14 @@ static void gen6_pm_rps_work(struct work
  {
  	drm_i915_private_t *dev_priv = container_of(work, drm_i915_private_t,
  						    rps.work);
@@ -84,7 +82,7 @@ index 5315161d6e71..bb4bd21399a1 100644
  	spin_unlock_irq(&dev_priv->irq_lock);
  
  	if ((pm_iir & GEN6_PM_RPS_EVENTS) == 0)
-@@ -921,8 +955,7 @@ static void gen6_rps_irq_handler(struct drm_i915_private *dev_priv,
+@@ -921,8 +955,7 @@ static void gen6_rps_irq_handler(struct
  
  	spin_lock(&dev_priv->irq_lock);
  	dev_priv->rps.pm_iir |= pm_iir;
@@ -94,7 +92,7 @@ index 5315161d6e71..bb4bd21399a1 100644
  	spin_unlock(&dev_priv->irq_lock);
  
  	queue_work(dev_priv->wq, &dev_priv->rps.work);
-@@ -1005,8 +1038,8 @@ static void hsw_pm_irq_handler(struct drm_i915_private *dev_priv,
+@@ -1005,8 +1038,8 @@ static void hsw_pm_irq_handler(struct dr
  	if (pm_iir & GEN6_PM_RPS_EVENTS) {
  		spin_lock(&dev_priv->irq_lock);
  		dev_priv->rps.pm_iir |= pm_iir & GEN6_PM_RPS_EVENTS;
@@ -105,11 +103,9 @@ index 5315161d6e71..bb4bd21399a1 100644
  		WARN_ON(I915_READ_NOTRACE(GEN6_PMIMR) & ~GEN6_PM_RPS_EVENTS);
  		spin_unlock(&dev_priv->irq_lock);
  
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index a8462064714c..8222f2426b47 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
-@@ -781,5 +781,8 @@ extern void hsw_restore_lcpll(struct drm_i915_private *dev_priv);
+@@ -781,5 +781,8 @@ extern void hsw_restore_lcpll(struct drm
  extern void ilk_enable_gt_irq(struct drm_i915_private *dev_priv, uint32_t mask);
  extern void ilk_disable_gt_irq(struct drm_i915_private *dev_priv,
  			       uint32_t mask);
@@ -118,11 +114,9 @@ index a8462064714c..8222f2426b47 100644
 +			       uint32_t mask);
  
  #endif /* __INTEL_DRV_H__ */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 21f4c958bbfe..8dca2530a8f4 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3450,7 +3450,7 @@ static void gen6_enable_rps_interrupts(struct drm_device *dev)
+@@ -3450,7 +3450,7 @@ static void gen6_enable_rps_interrupts(s
  
  	spin_lock_irq(&dev_priv->irq_lock);
  	WARN_ON(dev_priv->rps.pm_iir);
@@ -131,11 +125,9 @@ index 21f4c958bbfe..8dca2530a8f4 100644
  	I915_WRITE(GEN6_PMIIR, GEN6_PM_RPS_EVENTS);
  	spin_unlock_irq(&dev_priv->irq_lock);
  	/* only unmask PM interrupts we need. Mask all others. */
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
-index c26c90607355..f05cceac5a52 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1074,10 +1074,8 @@ hsw_vebox_get_irq(struct intel_ring_buffer *ring)
+@@ -1077,10 +1077,8 @@ hsw_vebox_get_irq(struct intel_ring_buff
  
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (ring->irq_refcount++ == 0) {
@@ -147,7 +139,7 @@ index c26c90607355..f05cceac5a52 100644
  	}
  	spin_unlock_irqrestore(&dev_priv->irq_lock, flags);
  
-@@ -1096,10 +1094,8 @@ hsw_vebox_put_irq(struct intel_ring_buffer *ring)
+@@ -1099,10 +1097,8 @@ hsw_vebox_put_irq(struct intel_ring_buff
  
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (--ring->irq_refcount == 0) {
@@ -159,6 +151,3 @@ index c26c90607355..f05cceac5a52 100644
  	}
  	spin_unlock_irqrestore(&dev_priv->irq_lock, flags);
  }
--- 
-1.8.5.rc3
-

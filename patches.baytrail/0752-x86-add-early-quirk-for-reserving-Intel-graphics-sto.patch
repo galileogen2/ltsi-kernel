@@ -29,13 +29,11 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 814c5f1f52a4beb3710317022acd6ad34fc0b6b9)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- arch/x86/kernel/early-quirks.c  | 154 ++++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h |  15 ----
- include/drm/i915_drm.h          |  32 +++++++++
+ arch/x86/kernel/early-quirks.c  |  154 ++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h |   15 ---
+ include/drm/i915_drm.h          |   32 ++++++++
  3 files changed, 186 insertions(+), 15 deletions(-)
 
-diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index 63bdb29b2549..b3cd3ebae077 100644
 --- a/arch/x86/kernel/early-quirks.c
 +++ b/arch/x86/kernel/early-quirks.c
 @@ -12,6 +12,7 @@
@@ -46,8 +44,8 @@ index 63bdb29b2549..b3cd3ebae077 100644
  #include <asm/pci-direct.h>
  #include <asm/dma.h>
  #include <asm/io_apic.h>
-@@ -216,6 +217,157 @@ static void __init intel_remapping_check(int num, int slot, int func)
- 
+@@ -213,6 +214,157 @@ static void __init intel_remapping_check
+ 		set_irq_remapping_broken();
  }
  
 +/*
@@ -204,7 +202,7 @@ index 63bdb29b2549..b3cd3ebae077 100644
  #define QFLAG_APPLY_ONCE 	0x1
  #define QFLAG_APPLIED		0x2
  #define QFLAG_DONE		(QFLAG_APPLY_ONCE|QFLAG_APPLIED)
-@@ -251,6 +403,8 @@ static struct chipset early_qrk[] __initdata = {
+@@ -248,6 +400,8 @@ static struct chipset early_qrk[] __init
  	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
  	{ PCI_VENDOR_ID_INTEL, 0x3406, PCI_CLASS_BRIDGE_HOST,
  	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
@@ -213,8 +211,6 @@ index 63bdb29b2549..b3cd3ebae077 100644
  	{}
  };
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b2fa2a4c4454..dcc58ea157fe 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
 @@ -33,21 +33,6 @@
@@ -239,8 +235,6 @@ index b2fa2a4c4454..dcc58ea157fe 100644
  /* PCI config space */
  
  #define HPLLCC	0xc0 /* 855 only */
-diff --git a/include/drm/i915_drm.h b/include/drm/i915_drm.h
-index 7276a72710e2..3abfa6ea226e 100644
 --- a/include/drm/i915_drm.h
 +++ b/include/drm/i915_drm.h
 @@ -36,4 +36,36 @@ extern bool i915_gpu_lower(void);
@@ -280,6 +274,3 @@ index 7276a72710e2..3abfa6ea226e 100644
 +#define INTEL_GMCH_GMS_STOLEN_352M	(0xd << 4)
 +
  #endif				/* _I915_DRM_H_ */
--- 
-1.8.5.rc3
-

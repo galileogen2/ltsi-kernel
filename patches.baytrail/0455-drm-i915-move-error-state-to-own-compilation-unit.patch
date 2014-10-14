@@ -2086,7 +2086,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	struct drm_i915_private *dev_priv = dev->dev_private;
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10216,9 +10216,6 @@ int intel_modeset_vga_set_state(struct d
+@@ -10218,9 +10218,6 @@ int intel_modeset_vga_set_state(struct d
  	return 0;
  }
  
@@ -2096,7 +2096,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  struct intel_display_error_state {
  
  	u32 power_well_driver;
-@@ -10390,4 +10387,3 @@ intel_display_print_error_state(struct d
+@@ -10392,4 +10389,3 @@ intel_display_print_error_state(struct d
  		err_printf(m, "  VSYNC: %08x\n", error->transcoder[i].vsync);
  	}
  }

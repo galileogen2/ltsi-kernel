@@ -37,11 +37,9 @@ Signed-off-by: Ralf Baechle <ralf@linux-mips.org>
 (cherry picked from commit d5f1af7ece96cf52e0b110c72210ac15c2f65438)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/tty/serial/8250/8250_dw.c | 108 ++++++++++++++++++++++++--------------
- 1 file changed, 69 insertions(+), 39 deletions(-)
+ drivers/tty/serial/8250/8250_dw.c |  106 ++++++++++++++++++++++++--------------
+ 1 file changed, 68 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index d07b6af3a937..76a8daadff47 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
 @@ -29,6 +29,8 @@
@@ -54,15 +52,15 @@ index d07b6af3a937..76a8daadff47 100644
  
  /* Offsets for the DesignWare specific registers */
 @@ -57,6 +59,7 @@ struct dw8250_data {
- 	int		last_lcr;
+ 	int		last_mcr;
  	int		line;
  	struct clk	*clk;
 +	u8		usr_reg;
  };
  
- static void dw8250_serial_out(struct uart_port *p, int offset, int value)
-@@ -77,6 +80,13 @@ static unsigned int dw8250_serial_in(struct uart_port *p, int offset)
- 	return readb(p->membase + offset);
+ static inline int dw8250_modify_msr(struct uart_port *p, int offset, int value)
+@@ -109,6 +112,13 @@ static unsigned int dw8250_serial_in(str
+ 	return dw8250_modify_msr(p, offset, value);
  }
  
 +/* Read Back (rb) version to ensure register access ording. */
@@ -75,16 +73,16 @@ index d07b6af3a937..76a8daadff47 100644
  static void dw8250_serial_out32(struct uart_port *p, int offset, int value)
  {
  	struct dw8250_data *d = p->private_data;
-@@ -104,7 +114,7 @@ static int dw8250_handle_irq(struct uart_port *p)
+@@ -147,7 +157,7 @@ static int dw8250_handle_irq(struct uart
  		return 1;
  	} else if ((iir & UART_IIR_BUSY) == UART_IIR_BUSY) {
- 		/* Clear the USR and write the LCR again. */
+ 		/* Clear the USR */
 -		(void)p->serial_in(p, DW_UART_USR);
 +		(void)p->serial_in(p, d->usr_reg);
- 		p->serial_out(p, UART_LCR, d->last_lcr);
  
  		return 1;
-@@ -125,12 +135,60 @@ dw8250_do_pm(struct uart_port *port, unsigned int state, unsigned int old)
+ 	}
+@@ -167,12 +177,60 @@ dw8250_do_pm(struct uart_port *port, uns
  		pm_runtime_put_sync_suspend(port->dev);
  }
  
@@ -126,10 +124,9 @@ index d07b6af3a937..76a8daadff47 100644
  {
  	struct device_node	*np = p->dev->of_node;
  	u32			val;
--
--	if (!of_property_read_u32(np, "reg-io-width", &val)) {
 +	bool has_ucv = true;
-+
+ 
+-	if (!of_property_read_u32(np, "reg-io-width", &val)) {
 +	if (of_device_is_compatible(np, "cavium,octeon-3860-uart")) {
 +#ifdef __BIG_ENDIAN
 +		/*
@@ -148,7 +145,7 @@ index d07b6af3a937..76a8daadff47 100644
  		switch (val) {
  		case 1:
  			break;
-@@ -144,6 +202,8 @@ static int dw8250_probe_of(struct uart_port *p)
+@@ -186,6 +244,8 @@ static int dw8250_probe_of(struct uart_p
  			return -EINVAL;
  		}
  	}
@@ -157,7 +154,7 @@ index d07b6af3a937..76a8daadff47 100644
  
  	if (!of_property_read_u32(np, "reg-shift", &val))
  		p->regshift = val;
-@@ -168,6 +228,8 @@ static int dw8250_probe_acpi(struct uart_8250_port *up)
+@@ -210,6 +270,8 @@ static int dw8250_probe_acpi(struct uart
  	const struct acpi_device_id *id;
  	struct uart_port *p = &up->port;
  
@@ -166,7 +163,7 @@ index d07b6af3a937..76a8daadff47 100644
  	id = acpi_match_device(p->dev->driver->acpi_match_table, p->dev);
  	if (!id)
  		return -ENODEV;
-@@ -196,38 +258,6 @@ static inline int dw8250_probe_acpi(struct uart_8250_port *up)
+@@ -238,38 +300,6 @@ static inline int dw8250_probe_acpi(stru
  }
  #endif /* CONFIG_ACPI */
  
@@ -205,7 +202,7 @@ index d07b6af3a937..76a8daadff47 100644
  static int dw8250_probe(struct platform_device *pdev)
  {
  	struct uart_8250_port uart = {};
-@@ -259,6 +289,7 @@ static int dw8250_probe(struct platform_device *pdev)
+@@ -301,6 +331,7 @@ static int dw8250_probe(struct platform_
  	if (!data)
  		return -ENOMEM;
  
@@ -213,7 +210,7 @@ index d07b6af3a937..76a8daadff47 100644
  	data->clk = devm_clk_get(&pdev->dev, NULL);
  	if (!IS_ERR(data->clk)) {
  		clk_prepare_enable(data->clk);
-@@ -270,10 +301,8 @@ static int dw8250_probe(struct platform_device *pdev)
+@@ -312,10 +343,8 @@ static int dw8250_probe(struct platform_
  	uart.port.serial_out = dw8250_serial_out;
  	uart.port.private_data = data;
  
@@ -225,7 +222,7 @@ index d07b6af3a937..76a8daadff47 100644
  		if (err)
  			return err;
  	} else if (ACPI_HANDLE(&pdev->dev)) {
-@@ -362,6 +391,7 @@ static const struct dev_pm_ops dw8250_pm_ops = {
+@@ -404,6 +433,7 @@ static const struct dev_pm_ops dw8250_pm
  
  static const struct of_device_id dw8250_of_match[] = {
  	{ .compatible = "snps,dw-apb-uart" },
@@ -233,6 +230,3 @@ index d07b6af3a937..76a8daadff47 100644
  	{ /* Sentinel */ }
  };
  MODULE_DEVICE_TABLE(of, dw8250_of_match);
--- 
-1.8.5.rc3
-

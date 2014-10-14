@@ -10,14 +10,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit cd91ef23c426fe5aeee6ca8090551547b3a8795e)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_tv.c | 27 +++++++++------------------
+ drivers/gpu/drm/i915/intel_tv.c |   27 +++++++++------------------
  1 file changed, 9 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
-index 685017000087..dd6f84bf6c22 100644
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -823,16 +823,14 @@ static const struct tv_mode tv_modes[] = {
+@@ -823,16 +823,14 @@ static const struct tv_mode tv_modes[] =
  	},
  };
  
@@ -37,7 +35,7 @@ index 685017000087..dd6f84bf6c22 100644
  }
  
  static bool
-@@ -908,7 +906,7 @@ static bool
+@@ -912,7 +910,7 @@ static bool
  intel_tv_compute_config(struct intel_encoder *encoder,
  			struct intel_crtc_config *pipe_config)
  {
@@ -46,7 +44,7 @@ index 685017000087..dd6f84bf6c22 100644
  	const struct tv_mode *tv_mode = intel_tv_mode_find(intel_tv);
  
  	if (!tv_mode)
-@@ -929,15 +927,12 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+@@ -933,15 +931,12 @@ intel_tv_compute_config(struct intel_enc
  	return true;
  }
  
@@ -66,7 +64,7 @@ index 685017000087..dd6f84bf6c22 100644
  	const struct tv_mode *tv_mode = intel_tv_mode_find(intel_tv);
  	u32 tv_ctl;
  	u32 hctl1, hctl2, hctl3;
-@@ -1495,10 +1490,6 @@ out:
+@@ -1499,10 +1494,6 @@ out:
  	return ret;
  }
  
@@ -77,7 +75,7 @@ index 685017000087..dd6f84bf6c22 100644
  static const struct drm_connector_funcs intel_tv_connector_funcs = {
  	.dpms = intel_connector_dpms,
  	.detect = intel_tv_detect,
-@@ -1631,6 +1622,7 @@ intel_tv_init(struct drm_device *dev)
+@@ -1635,6 +1626,7 @@ intel_tv_init(struct drm_device *dev)
  			 DRM_MODE_ENCODER_TVDAC);
  
  	intel_encoder->compute_config = intel_tv_compute_config;
@@ -85,7 +83,7 @@ index 685017000087..dd6f84bf6c22 100644
  	intel_encoder->enable = intel_enable_tv;
  	intel_encoder->disable = intel_disable_tv;
  	intel_encoder->get_hw_state = intel_tv_get_hw_state;
-@@ -1652,7 +1644,6 @@ intel_tv_init(struct drm_device *dev)
+@@ -1656,7 +1648,6 @@ intel_tv_init(struct drm_device *dev)
  
  	intel_tv->tv_format = tv_modes[initial_mode].name;
  
@@ -93,6 +91,3 @@ index 685017000087..dd6f84bf6c22 100644
  	drm_connector_helper_add(connector, &intel_tv_connector_helper_funcs);
  	connector->interlace_allowed = false;
  	connector->doublescan_allowed = false;
--- 
-1.8.5.rc3
-

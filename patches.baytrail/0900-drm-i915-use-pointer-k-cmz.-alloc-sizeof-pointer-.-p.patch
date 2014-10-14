@@ -85,7 +85,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/i915/intel_crt.c
 +++ b/drivers/gpu/drm/i915/intel_crt.c
-@@ -764,7 +764,7 @@ void intel_crt_init(struct drm_device *d
+@@ -772,7 +772,7 @@ void intel_crt_init(struct drm_device *d
  	if (!crt)
  		return;
  
@@ -296,7 +296,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/i915/intel_tv.c
 +++ b/drivers/gpu/drm/i915/intel_tv.c
-@@ -1590,12 +1590,12 @@ intel_tv_init(struct drm_device *dev)
+@@ -1594,12 +1594,12 @@ intel_tv_init(struct drm_device *dev)
  	    (tv_dac_off & TVDAC_STATE_CHG_EN) != 0)
  		return;
  

@@ -19,14 +19,12 @@ Signed-off-by: Ingo Molnar <mingo@kernel.org>
 (cherry picked from commit 0f531431d3de88efb4234d6c0ce22089ec035a38)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- arch/x86/Kconfig | 5 +++--
+ arch/x86/Kconfig |    5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index fe120da25625..cd3939ffd9bb 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -471,11 +471,12 @@ config X86_INTEL_LPSS
+@@ -472,11 +472,12 @@ config X86_INTEL_LPSS
  	bool "Intel Low Power Subsystem Support"
  	depends on ACPI
  	select COMMON_CLK
@@ -41,6 +39,3 @@ index fe120da25625..cd3939ffd9bb 100644
  
  config X86_RDC321X
  	bool "RDC R-321x SoC"
--- 
-1.8.5.rc3
-

@@ -91,29 +91,27 @@ Conflicts:
 	(context changes)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/ast/ast_drv.c         |  2 +-
- drivers/gpu/drm/cirrus/cirrus_drv.c   |  2 +-
- drivers/gpu/drm/drm_bufs.c            | 13 +++++--------
- drivers/gpu/drm/drm_pci.c             | 14 ++++++--------
- drivers/gpu/drm/drm_vm.c              |  3 +--
- drivers/gpu/drm/i810/i810_drv.c       |  2 +-
- drivers/gpu/drm/i915/i915_drv.c       |  2 +-
- drivers/gpu/drm/mga/mga_drv.c         |  2 +-
- drivers/gpu/drm/mgag200/mgag200_drv.c |  2 +-
- drivers/gpu/drm/r128/r128_drv.c       |  2 +-
- drivers/gpu/drm/radeon/radeon_drv.c   |  4 ++--
- drivers/gpu/drm/savage/savage_drv.c   |  2 +-
- drivers/gpu/drm/sis/sis_drv.c         |  2 +-
- drivers/gpu/drm/tdfx/tdfx_drv.c       |  1 -
- drivers/gpu/drm/via/via_drv.c         |  2 +-
- include/drm/drmP.h                    | 11 -----------
+ drivers/gpu/drm/ast/ast_drv.c         |    2 +-
+ drivers/gpu/drm/cirrus/cirrus_drv.c   |    2 +-
+ drivers/gpu/drm/drm_bufs.c            |   13 +++++--------
+ drivers/gpu/drm/drm_pci.c             |   14 ++++++--------
+ drivers/gpu/drm/drm_vm.c              |    3 +--
+ drivers/gpu/drm/i810/i810_drv.c       |    2 +-
+ drivers/gpu/drm/i915/i915_drv.c       |    2 +-
+ drivers/gpu/drm/mga/mga_drv.c         |    2 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c |    2 +-
+ drivers/gpu/drm/r128/r128_drv.c       |    2 +-
+ drivers/gpu/drm/radeon/radeon_drv.c   |    4 ++--
+ drivers/gpu/drm/savage/savage_drv.c   |    2 +-
+ drivers/gpu/drm/sis/sis_drv.c         |    2 +-
+ drivers/gpu/drm/tdfx/tdfx_drv.c       |    1 -
+ drivers/gpu/drm/via/via_drv.c         |    2 +-
+ include/drm/drmP.h                    |   11 -----------
  16 files changed, 24 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
-index 60f1ce3998c3..32e270dc714e 100644
 --- a/drivers/gpu/drm/ast/ast_drv.c
 +++ b/drivers/gpu/drm/ast/ast_drv.c
-@@ -197,7 +197,7 @@ static const struct file_operations ast_fops = {
+@@ -197,7 +197,7 @@ static const struct file_operations ast_
  };
  
  static struct drm_driver driver = {
@@ -122,11 +120,9 @@ index 60f1ce3998c3..32e270dc714e 100644
  	.dev_priv_size = 0,
  
  	.load = ast_driver_load,
-diff --git a/drivers/gpu/drm/cirrus/cirrus_drv.c b/drivers/gpu/drm/cirrus/cirrus_drv.c
-index dd9c908ab3fc..138364d91782 100644
 --- a/drivers/gpu/drm/cirrus/cirrus_drv.c
 +++ b/drivers/gpu/drm/cirrus/cirrus_drv.c
-@@ -87,7 +87,7 @@ static const struct file_operations cirrus_driver_fops = {
+@@ -123,7 +123,7 @@ static const struct file_operations cirr
  #endif
  };
  static struct drm_driver driver = {
@@ -135,11 +131,9 @@ index dd9c908ab3fc..138364d91782 100644
  	.load = cirrus_driver_load,
  	.unload = cirrus_driver_unload,
  	.fops = &cirrus_driver_fops,
-diff --git a/drivers/gpu/drm/drm_bufs.c b/drivers/gpu/drm/drm_bufs.c
-index 0190fce20078..7b7b93ed0fef 100644
 --- a/drivers/gpu/drm/drm_bufs.c
 +++ b/drivers/gpu/drm/drm_bufs.c
-@@ -207,12 +207,10 @@ static int drm_addmap_core(struct drm_device * dev, resource_size_t offset,
+@@ -207,12 +207,10 @@ static int drm_addmap_core(struct drm_de
  			return 0;
  		}
  
@@ -156,7 +150,7 @@ index 0190fce20078..7b7b93ed0fef 100644
  		}
  		if (map->type == _DRM_REGISTERS) {
  			if (map->flags & _DRM_WRITE_COMBINING)
-@@ -455,8 +453,7 @@ int drm_rmmap_locked(struct drm_device *dev, struct drm_local_map *map)
+@@ -455,8 +453,7 @@ int drm_rmmap_locked(struct drm_device *
  		iounmap(map->handle);
  		/* FALLTHROUGH */
  	case _DRM_FRAME_BUFFER:
@@ -166,11 +160,9 @@ index 0190fce20078..7b7b93ed0fef 100644
  		break;
  	case _DRM_SHM:
  		vfree(map->handle);
-diff --git a/drivers/gpu/drm/drm_pci.c b/drivers/gpu/drm/drm_pci.c
-index 382e5bd699c6..83fb3dba1b25 100644
 --- a/drivers/gpu/drm/drm_pci.c
 +++ b/drivers/gpu/drm/drm_pci.c
-@@ -276,12 +276,11 @@ static int drm_pci_agp_init(struct drm_device *dev)
+@@ -276,12 +276,11 @@ static int drm_pci_agp_init(struct drm_d
  			DRM_ERROR("Cannot initialize the agpgart module.\n");
  			return -EINVAL;
  		}
@@ -188,7 +180,7 @@ index 382e5bd699c6..83fb3dba1b25 100644
  		}
  	}
  	return 0;
-@@ -290,8 +289,7 @@ static int drm_pci_agp_init(struct drm_device *dev)
+@@ -290,8 +289,7 @@ static int drm_pci_agp_init(struct drm_d
  static void drm_pci_agp_destroy(struct drm_device *dev)
  {
  	if (drm_core_has_AGP(dev) && dev->agp) {
@@ -198,11 +190,9 @@ index 382e5bd699c6..83fb3dba1b25 100644
  		drm_agp_clear(dev);
  		drm_agp_destroy(dev->agp);
  		dev->agp = NULL;
-diff --git a/drivers/gpu/drm/drm_vm.c b/drivers/gpu/drm/drm_vm.c
-index 1575694ccaca..f8bc9fdd3575 100644
 --- a/drivers/gpu/drm/drm_vm.c
 +++ b/drivers/gpu/drm/drm_vm.c
-@@ -251,8 +251,7 @@ static void drm_vm_shm_close(struct vm_area_struct *vma)
+@@ -251,8 +251,7 @@ static void drm_vm_shm_close(struct vm_a
  			switch (map->type) {
  			case _DRM_REGISTERS:
  			case _DRM_FRAME_BUFFER:
@@ -212,11 +202,9 @@ index 1575694ccaca..f8bc9fdd3575 100644
  				iounmap(map->handle);
  				break;
  			case _DRM_SHM:
-diff --git a/drivers/gpu/drm/i810/i810_drv.c b/drivers/gpu/drm/i810/i810_drv.c
-index d85c05b4877d..d8180d22cedd 100644
 --- a/drivers/gpu/drm/i810/i810_drv.c
 +++ b/drivers/gpu/drm/i810/i810_drv.c
-@@ -57,7 +57,7 @@ static const struct file_operations i810_driver_fops = {
+@@ -57,7 +57,7 @@ static const struct file_operations i810
  
  static struct drm_driver driver = {
  	.driver_features =
@@ -225,8 +213,6 @@ index d85c05b4877d..d8180d22cedd 100644
  	    DRIVER_HAVE_DMA,
  	.dev_priv_size = sizeof(drm_i810_buf_priv_t),
  	.load = i810_driver_load,
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 9411a745adaf..eec47bd00353 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
 @@ -1006,7 +1006,7 @@ static struct drm_driver driver = {
@@ -238,11 +224,9 @@ index 9411a745adaf..eec47bd00353 100644
  	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM | DRIVER_PRIME,
  	.load = i915_driver_load,
  	.unload = i915_driver_unload,
-diff --git a/drivers/gpu/drm/mga/mga_drv.c b/drivers/gpu/drm/mga/mga_drv.c
-index fe71e1e44e48..6b1a87c8aac5 100644
 --- a/drivers/gpu/drm/mga/mga_drv.c
 +++ b/drivers/gpu/drm/mga/mga_drv.c
-@@ -58,7 +58,7 @@ static const struct file_operations mga_driver_fops = {
+@@ -58,7 +58,7 @@ static const struct file_operations mga_
  
  static struct drm_driver driver = {
  	.driver_features =
@@ -251,11 +235,9 @@ index fe71e1e44e48..6b1a87c8aac5 100644
  	    DRIVER_HAVE_DMA | DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED,
  	.dev_priv_size = sizeof(drm_mga_buf_priv_t),
  	.load = mga_driver_load,
-diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag200/mgag200_drv.c
-index b570127ae3b2..fcce7b2f8011 100644
 --- a/drivers/gpu/drm/mgag200/mgag200_drv.c
 +++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
-@@ -88,7 +88,7 @@ static const struct file_operations mgag200_driver_fops = {
+@@ -88,7 +88,7 @@ static const struct file_operations mgag
  };
  
  static struct drm_driver driver = {
@@ -264,11 +246,9 @@ index b570127ae3b2..fcce7b2f8011 100644
  	.load = mgag200_driver_load,
  	.unload = mgag200_driver_unload,
  	.fops = &mgag200_driver_fops,
-diff --git a/drivers/gpu/drm/r128/r128_drv.c b/drivers/gpu/drm/r128/r128_drv.c
-index c2338cbc56ad..5bd307cd8da1 100644
 --- a/drivers/gpu/drm/r128/r128_drv.c
 +++ b/drivers/gpu/drm/r128/r128_drv.c
-@@ -56,7 +56,7 @@ static const struct file_operations r128_driver_fops = {
+@@ -56,7 +56,7 @@ static const struct file_operations r128
  
  static struct drm_driver driver = {
  	.driver_features =
@@ -277,11 +257,9 @@ index c2338cbc56ad..5bd307cd8da1 100644
  	    DRIVER_HAVE_DMA | DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED,
  	.dev_priv_size = sizeof(drm_r128_buf_priv_t),
  	.load = r128_driver_load,
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 3c5f6420319e..6d26fb2c0a83 100644
 --- a/drivers/gpu/drm/radeon/radeon_drv.c
 +++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -268,7 +268,7 @@ static const struct file_operations radeon_driver_old_fops = {
+@@ -268,7 +268,7 @@ static const struct file_operations rade
  
  static struct drm_driver driver_old = {
  	.driver_features =
@@ -290,7 +268,7 @@ index 3c5f6420319e..6d26fb2c0a83 100644
  	    DRIVER_HAVE_IRQ | DRIVER_HAVE_DMA | DRIVER_IRQ_SHARED,
  	.dev_priv_size = sizeof(drm_radeon_buf_priv_t),
  	.load = radeon_driver_load,
-@@ -375,7 +375,7 @@ static const struct file_operations radeon_driver_kms_fops = {
+@@ -375,7 +375,7 @@ static const struct file_operations rade
  
  static struct drm_driver kms_driver = {
  	.driver_features =
@@ -299,11 +277,9 @@ index 3c5f6420319e..6d26fb2c0a83 100644
  	    DRIVER_HAVE_IRQ | DRIVER_HAVE_DMA | DRIVER_IRQ_SHARED | DRIVER_GEM |
  	    DRIVER_PRIME,
  	.dev_priv_size = 0,
-diff --git a/drivers/gpu/drm/savage/savage_drv.c b/drivers/gpu/drm/savage/savage_drv.c
-index 9135c8bd6fbc..3c030216e888 100644
 --- a/drivers/gpu/drm/savage/savage_drv.c
 +++ b/drivers/gpu/drm/savage/savage_drv.c
-@@ -50,7 +50,7 @@ static const struct file_operations savage_driver_fops = {
+@@ -50,7 +50,7 @@ static const struct file_operations sava
  
  static struct drm_driver driver = {
  	.driver_features =
@@ -312,11 +288,9 @@ index 9135c8bd6fbc..3c030216e888 100644
  	.dev_priv_size = sizeof(drm_savage_buf_priv_t),
  	.load = savage_driver_load,
  	.firstopen = savage_driver_firstopen,
-diff --git a/drivers/gpu/drm/sis/sis_drv.c b/drivers/gpu/drm/sis/sis_drv.c
-index b88b2d302105..4383b74a3aa4 100644
 --- a/drivers/gpu/drm/sis/sis_drv.c
 +++ b/drivers/gpu/drm/sis/sis_drv.c
-@@ -102,7 +102,7 @@ void sis_driver_postclose(struct drm_device *dev, struct drm_file *file)
+@@ -102,7 +102,7 @@ void sis_driver_postclose(struct drm_dev
  }
  
  static struct drm_driver driver = {
@@ -325,11 +299,9 @@ index b88b2d302105..4383b74a3aa4 100644
  	.load = sis_driver_load,
  	.unload = sis_driver_unload,
  	.open = sis_driver_open,
-diff --git a/drivers/gpu/drm/tdfx/tdfx_drv.c b/drivers/gpu/drm/tdfx/tdfx_drv.c
-index 951ec13e4e5c..3492ca5c46d3 100644
 --- a/drivers/gpu/drm/tdfx/tdfx_drv.c
 +++ b/drivers/gpu/drm/tdfx/tdfx_drv.c
-@@ -55,7 +55,6 @@ static const struct file_operations tdfx_driver_fops = {
+@@ -55,7 +55,6 @@ static const struct file_operations tdfx
  };
  
  static struct drm_driver driver = {
@@ -337,11 +309,9 @@ index 951ec13e4e5c..3492ca5c46d3 100644
  	.fops = &tdfx_driver_fops,
  	.name = DRIVER_NAME,
  	.desc = DRIVER_DESC,
-diff --git a/drivers/gpu/drm/via/via_drv.c b/drivers/gpu/drm/via/via_drv.c
-index 448799968a06..92684a9b7e34 100644
 --- a/drivers/gpu/drm/via/via_drv.c
 +++ b/drivers/gpu/drm/via/via_drv.c
-@@ -72,7 +72,7 @@ static const struct file_operations via_driver_fops = {
+@@ -72,7 +72,7 @@ static const struct file_operations via_
  
  static struct drm_driver driver = {
  	.driver_features =
@@ -350,8 +320,6 @@ index 448799968a06..92684a9b7e34 100644
  	    DRIVER_IRQ_SHARED,
  	.load = via_driver_load,
  	.unload = via_driver_unload,
-diff --git a/include/drm/drmP.h b/include/drm/drmP.h
-index 39e12a6356f9..f65eaddd4844 100644
 --- a/include/drm/drmP.h
 +++ b/include/drm/drmP.h
 @@ -74,7 +74,6 @@
@@ -362,7 +330,7 @@ index 39e12a6356f9..f65eaddd4844 100644
  
  struct module;
  
-@@ -139,7 +138,6 @@ int drm_err(const char *func, const char *format, ...);
+@@ -139,7 +138,6 @@ int drm_err(const char *func, const char
  /* driver capabilities and requirements mask */
  #define DRIVER_USE_AGP     0x1
  #define DRIVER_REQUIRE_AGP 0x2
@@ -370,7 +338,7 @@ index 39e12a6356f9..f65eaddd4844 100644
  #define DRIVER_PCI_DMA     0x8
  #define DRIVER_SG          0x10
  #define DRIVER_HAVE_DMA    0x20
-@@ -1219,15 +1217,6 @@ static inline int drm_dev_to_irq(struct drm_device *dev)
+@@ -1219,15 +1217,6 @@ static inline int drm_dev_to_irq(struct
  	return dev->driver->bus->get_irq(dev);
  }
  
@@ -386,6 +354,3 @@ index 39e12a6356f9..f65eaddd4844 100644
  static inline void drm_device_set_unplugged(struct drm_device *dev)
  {
  	smp_wmb();
--- 
-1.8.5.rc3
-

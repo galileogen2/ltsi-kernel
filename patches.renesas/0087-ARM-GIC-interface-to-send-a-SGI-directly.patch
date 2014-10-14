@@ -16,15 +16,13 @@ Conflicts:
 	drivers/irqchip/irq-gic.c
 	include/linux/irqchip/arm-gic.h
 ---
- drivers/irqchip/irq-gic.c       | 14 ++++++++++++++
- include/linux/irqchip/arm-gic.h |  1 +
+ drivers/irqchip/irq-gic.c       |   14 ++++++++++++++
+ include/linux/irqchip/arm-gic.h |    1 +
  2 files changed, 15 insertions(+)
 
-diff --git a/drivers/irqchip/irq-gic.c b/drivers/irqchip/irq-gic.c
-index d87bbc03263a..70e4a3080029 100644
 --- a/drivers/irqchip/irq-gic.c
 +++ b/drivers/irqchip/irq-gic.c
-@@ -674,6 +674,20 @@ void gic_raise_softirq(const struct cpumask *mask, unsigned int irq)
+@@ -679,6 +679,20 @@ void gic_raise_softirq(const struct cpum
  
  #ifdef CONFIG_BL_SWITCHER
  /*
@@ -45,11 +43,9 @@ index d87bbc03263a..70e4a3080029 100644
   * gic_migrate_target - migrate IRQs to another CPU interface
   *
   * @new_cpu_id: the CPU target ID to migrate IRQs to
-diff --git a/include/linux/irqchip/arm-gic.h b/include/linux/irqchip/arm-gic.h
-index f829e00795b3..442f016df62c 100644
 --- a/include/linux/irqchip/arm-gic.h
 +++ b/include/linux/irqchip/arm-gic.h
-@@ -76,6 +76,7 @@ static inline void gic_init(unsigned int nr, int start,
+@@ -76,6 +76,7 @@ static inline void gic_init(unsigned int
  	gic_init_bases(nr, start, dist, cpu, 0, NULL);
  }
  
@@ -57,6 +53,3 @@ index f829e00795b3..442f016df62c 100644
  void gic_migrate_target(unsigned int new_cpu_id);
  unsigned long gic_get_sgir_physaddr(void);
  
--- 
-1.8.5.rc3
-

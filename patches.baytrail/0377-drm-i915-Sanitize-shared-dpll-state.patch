@@ -22,14 +22,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 35c95375f69ceec721fea67a0532bc17ceb5cf64)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c | 19 +++++++++++++++++--
+ drivers/gpu/drm/i915/intel_display.c |   19 +++++++++++++++++--
  1 file changed, 17 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 2962d0fa11e1..cd93b1b1840d 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -8318,6 +8318,8 @@ check_shared_dpll_state(struct drm_device *dev)
+@@ -8318,6 +8318,8 @@ check_shared_dpll_state(struct drm_devic
  		     pll->active, pll->refcount);
  		WARN(pll->active && !pll->on,
  		     "pll in active use but not on in sw tracking\n");
@@ -38,7 +36,7 @@ index 2962d0fa11e1..cd93b1b1840d 100644
  		WARN(pll->on != active,
  		     "pll on state mismatch (expected %i, found %i)\n",
  		     pll->on, active);
-@@ -9837,8 +9839,8 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+@@ -9839,8 +9841,8 @@ static void intel_modeset_readout_hw_sta
  		}
  		pll->refcount = pll->active;
  
@@ -49,7 +47,7 @@ index 2962d0fa11e1..cd93b1b1840d 100644
  	}
  
  	list_for_each_entry(encoder, &dev->mode_config.encoder_list,
-@@ -9889,6 +9891,7 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9891,6 +9893,7 @@ void intel_modeset_setup_hw_state(struct
  	struct drm_plane *plane;
  	struct intel_crtc *crtc;
  	struct intel_encoder *encoder;
@@ -57,7 +55,7 @@ index 2962d0fa11e1..cd93b1b1840d 100644
  
  	intel_modeset_readout_hw_state(dev);
  
-@@ -9904,6 +9907,18 @@ void intel_modeset_setup_hw_state(struct drm_device *dev,
+@@ -9906,6 +9909,18 @@ void intel_modeset_setup_hw_state(struct
  		intel_dump_pipe_config(crtc, &crtc->config, "[setup_hw_state]");
  	}
  
@@ -76,6 +74,3 @@ index 2962d0fa11e1..cd93b1b1840d 100644
  	if (force_restore) {
  		/*
  		 * We need to use raw interfaces for restoring state to avoid
--- 
-1.8.5.rc3
-

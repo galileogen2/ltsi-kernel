@@ -18,11 +18,9 @@ Signed-off-by: Wolfram Sang <wsa@the-dreams.de>
 (cherry picked from commit bd63ace4dc4290165bbf3bf546eba50453d0aa9d)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/i2c/busses/i2c-designware-core.c | 26 ++++++++++++++++++++------
+ drivers/i2c/busses/i2c-designware-core.c |   26 ++++++++++++++++++++------
  1 file changed, 20 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-designware-core.c b/drivers/i2c/busses/i2c-designware-core.c
-index dbecf08399f8..5888feef1ac5 100644
 --- a/drivers/i2c/busses/i2c-designware-core.c
 +++ b/drivers/i2c/busses/i2c-designware-core.c
 @@ -98,6 +98,8 @@
@@ -34,7 +32,7 @@ index dbecf08399f8..5888feef1ac5 100644
  /*
   * status codes
   */
-@@ -388,22 +390,34 @@ static int i2c_dw_wait_bus_not_busy(struct dw_i2c_dev *dev)
+@@ -388,22 +390,34 @@ static int i2c_dw_wait_bus_not_busy(stru
  static void i2c_dw_xfer_init(struct dw_i2c_dev *dev)
  {
  	struct i2c_msg *msgs = dev->msgs;
@@ -72,9 +70,6 @@ index dbecf08399f8..5888feef1ac5 100644
 +	 */
 +	dw_writel(dev, msgs[dev->msg_write_idx].addr | ic_tar, DW_IC_TAR);
 +
- 	/* Enable the adapter */
- 	__i2c_dw_enable(dev, true);
+ 	/* enforce disabled interrupts (due to HW issues) */
+ 	i2c_dw_disable_int(dev);
  
--- 
-1.8.5.rc3
-

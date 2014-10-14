@@ -167,7 +167,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1082,14 +1082,14 @@ hsw_vebox_get_irq(struct intel_ring_buff
+@@ -1085,14 +1085,14 @@ hsw_vebox_get_irq(struct intel_ring_buff
  	if (!dev->irq_enabled)
  		return false;
  
@@ -184,7 +184,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return true;
  }
-@@ -1104,14 +1104,14 @@ hsw_vebox_put_irq(struct intel_ring_buff
+@@ -1107,14 +1107,14 @@ hsw_vebox_put_irq(struct intel_ring_buff
  	if (!dev->irq_enabled)
  		return;
  

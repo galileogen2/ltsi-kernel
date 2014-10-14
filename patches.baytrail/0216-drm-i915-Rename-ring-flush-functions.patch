@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1580,8 +1580,8 @@ static void gen6_bsd_ring_write_tail(str
+@@ -1583,8 +1583,8 @@ static void gen6_bsd_ring_write_tail(str
  		   _MASKED_BIT_DISABLE(GEN6_BSD_SLEEP_MSG_DISABLE));
  }
  
@@ -35,7 +35,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	uint32_t cmd;
  	int ret;
-@@ -1652,8 +1652,8 @@ gen6_ring_dispatch_execbuffer(struct int
+@@ -1655,8 +1655,8 @@ gen6_ring_dispatch_execbuffer(struct int
  
  /* Blitter support (SandyBridge+) */
  
@@ -46,7 +46,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	uint32_t cmd;
  	int ret;
-@@ -1853,7 +1853,7 @@ int intel_init_bsd_ring_buffer(struct dr
+@@ -1856,7 +1856,7 @@ int intel_init_bsd_ring_buffer(struct dr
  		/* gen6 bsd needs a special wa for tail updates */
  		if (IS_GEN6(dev))
  			ring->write_tail = gen6_bsd_ring_write_tail;
@@ -55,7 +55,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ring->add_request = gen6_add_request;
  		ring->get_seqno = gen6_ring_get_seqno;
  		ring->set_seqno = ring_set_seqno;
-@@ -1902,7 +1902,7 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1905,7 +1905,7 @@ int intel_init_blt_ring_buffer(struct dr
  
  	ring->mmio_base = BLT_RING_BASE;
  	ring->write_tail = ring_write_tail;

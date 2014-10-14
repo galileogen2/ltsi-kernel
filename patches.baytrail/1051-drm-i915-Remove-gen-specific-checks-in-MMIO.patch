@@ -17,17 +17,15 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit ab484f8fd62c97fc52dbb380d8b7cf3ff77b1e70)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c         |  5 +----
- drivers/gpu/drm/i915/i915_drv.h         |  3 ---
- drivers/gpu/drm/i915/intel_ringbuffer.c |  6 ++----
- drivers/gpu/drm/i915/intel_uncore.c     | 16 +++++++++-------
+ drivers/gpu/drm/i915/i915_drv.c         |    5 +----
+ drivers/gpu/drm/i915/i915_drv.h         |    3 ---
+ drivers/gpu/drm/i915/intel_ringbuffer.c |    6 ++----
+ drivers/gpu/drm/i915/intel_uncore.c     |   16 +++++++++-------
  4 files changed, 12 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 0fc96586acf3..8ac8e8161233 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -257,7 +257,6 @@ static const struct intel_device_info intel_sandybridge_d_info = {
+@@ -257,7 +257,6 @@ static const struct intel_device_info in
  	.has_bsd_ring = 1,
  	.has_blt_ring = 1,
  	.has_llc = 1,
@@ -35,7 +33,7 @@ index 0fc96586acf3..8ac8e8161233 100644
  };
  
  static const struct intel_device_info intel_sandybridge_m_info = {
-@@ -267,7 +266,6 @@ static const struct intel_device_info intel_sandybridge_m_info = {
+@@ -267,7 +266,6 @@ static const struct intel_device_info in
  	.has_bsd_ring = 1,
  	.has_blt_ring = 1,
  	.has_llc = 1,
@@ -43,7 +41,7 @@ index 0fc96586acf3..8ac8e8161233 100644
  };
  
  #define GEN7_FEATURES  \
-@@ -275,8 +273,7 @@ static const struct intel_device_info intel_sandybridge_m_info = {
+@@ -275,8 +273,7 @@ static const struct intel_device_info in
  	.need_gfx_hws = 1, .has_hotplug = 1, \
  	.has_bsd_ring = 1, \
  	.has_blt_ring = 1, \
@@ -53,8 +51,6 @@ index 0fc96586acf3..8ac8e8161233 100644
  
  static const struct intel_device_info intel_ivybridge_d_info = {
  	GEN7_FEATURES,
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 58b9e4770df7..0c1f8a4e3734 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
 @@ -441,7 +441,6 @@ struct intel_uncore {
@@ -74,11 +70,9 @@ index 58b9e4770df7..0c1f8a4e3734 100644
  /* DPF == dynamic parity feature */
  #define HAS_L3_DPF(dev) (IS_IVYBRIDGE(dev) || IS_HASWELL(dev))
  #define NUM_L3_SLICES(dev) (IS_HSW_GT3(dev) ? 2 : HAS_L3_DPF(dev))
-diff --git a/drivers/gpu/drm/i915/intel_ringbuffer.c b/drivers/gpu/drm/i915/intel_ringbuffer.c
-index b67104aaade5..4e108fc3c340 100644
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -395,8 +395,7 @@ static int init_ring_common(struct intel_ring_buffer *ring)
+@@ -395,8 +395,7 @@ static int init_ring_common(struct intel
  	int ret = 0;
  	u32 head;
  
@@ -88,7 +82,7 @@ index b67104aaade5..4e108fc3c340 100644
  
  	if (I915_NEED_GFX_HWS(dev))
  		intel_ring_setup_status_page(ring);
-@@ -469,8 +468,7 @@ static int init_ring_common(struct intel_ring_buffer *ring)
+@@ -472,8 +471,7 @@ static int init_ring_common(struct intel
  	memset(&ring->hangcheck, 0, sizeof(ring->hangcheck));
  
  out:
@@ -98,11 +92,9 @@ index b67104aaade5..4e108fc3c340 100644
  
  	return ret;
  }
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 7e8dcbeb0cac..f6fae35c568e 100644
 --- a/drivers/gpu/drm/i915/intel_uncore.c
 +++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -282,6 +282,9 @@ void gen6_gt_force_wake_get(struct drm_i915_private *dev_priv)
+@@ -282,6 +282,9 @@ void gen6_gt_force_wake_get(struct drm_i
  {
  	unsigned long irqflags;
  
@@ -112,7 +104,7 @@ index 7e8dcbeb0cac..f6fae35c568e 100644
  	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
  	if (dev_priv->uncore.forcewake_count++ == 0)
  		dev_priv->uncore.funcs.force_wake_get(dev_priv);
-@@ -295,6 +298,9 @@ void gen6_gt_force_wake_put(struct drm_i915_private *dev_priv)
+@@ -295,6 +298,9 @@ void gen6_gt_force_wake_put(struct drm_i
  {
  	unsigned long irqflags;
  
@@ -122,7 +114,7 @@ index 7e8dcbeb0cac..f6fae35c568e 100644
  	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
  	if (--dev_priv->uncore.forcewake_count == 0) {
  		dev_priv->uncore.forcewake_count++;
-@@ -307,9 +313,7 @@ void gen6_gt_force_wake_put(struct drm_i915_private *dev_priv)
+@@ -307,9 +313,7 @@ void gen6_gt_force_wake_put(struct drm_i
  
  /* We give fast paths for the really cool registers */
  #define NEEDS_FORCE_WAKE(dev_priv, reg) \
@@ -133,7 +125,7 @@ index 7e8dcbeb0cac..f6fae35c568e 100644
  
  static void
  ilk_dummy_write(struct drm_i915_private *dev_priv)
-@@ -323,8 +327,7 @@ ilk_dummy_write(struct drm_i915_private *dev_priv)
+@@ -323,8 +327,7 @@ ilk_dummy_write(struct drm_i915_private
  static void
  hsw_unclaimed_reg_clear(struct drm_i915_private *dev_priv, u32 reg)
  {
@@ -143,7 +135,7 @@ index 7e8dcbeb0cac..f6fae35c568e 100644
  		DRM_ERROR("Unknown unclaimed register before writing to %x\n",
  			  reg);
  		__raw_i915_write32(dev_priv, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
-@@ -334,8 +337,7 @@ hsw_unclaimed_reg_clear(struct drm_i915_private *dev_priv, u32 reg)
+@@ -334,8 +337,7 @@ hsw_unclaimed_reg_clear(struct drm_i915_
  static void
  hsw_unclaimed_reg_check(struct drm_i915_private *dev_priv, u32 reg)
  {
@@ -153,6 +145,3 @@ index 7e8dcbeb0cac..f6fae35c568e 100644
  		DRM_ERROR("Unclaimed write to %x\n", reg);
  		__raw_i915_write32(dev_priv, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
  	}
--- 
-1.8.5.rc3
-

@@ -94,7 +94,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  repeat:
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1517,6 +1517,7 @@ void intel_ring_init_seqno(struct intel_
+@@ -1520,6 +1520,7 @@ void intel_ring_init_seqno(struct intel_
  	}
  
  	ring->set_seqno(ring, seqno);

@@ -39,7 +39,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		i915_queue_hangcheck(ring->dev);
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -593,7 +593,7 @@ update_mboxes(struct intel_ring_buffer *
+@@ -596,7 +596,7 @@ update_mboxes(struct intel_ring_buffer *
  #define MBOX_UPDATE_DWORDS 4
  	intel_ring_emit(ring, MI_LOAD_REGISTER_IMM(1));
  	intel_ring_emit(ring, mmio_offset);
@@ -48,7 +48,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, MI_NOOP);
  }
  
-@@ -629,7 +629,7 @@ gen6_add_request(struct intel_ring_buffe
+@@ -632,7 +632,7 @@ gen6_add_request(struct intel_ring_buffe
  
  	intel_ring_emit(ring, MI_STORE_DWORD_INDEX);
  	intel_ring_emit(ring, I915_GEM_HWS_INDEX << MI_STORE_DWORD_INDEX_SHIFT);
@@ -57,7 +57,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, MI_USER_INTERRUPT);
  	intel_ring_advance(ring);
  
-@@ -723,7 +723,7 @@ pc_render_add_request(struct intel_ring_
+@@ -726,7 +726,7 @@ pc_render_add_request(struct intel_ring_
  			PIPE_CONTROL_WRITE_FLUSH |
  			PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE);
  	intel_ring_emit(ring, ring->scratch.gtt_offset | PIPE_CONTROL_GLOBAL_GTT);
@@ -66,7 +66,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, 0);
  	PIPE_CONTROL_FLUSH(ring, scratch_addr);
  	scratch_addr += 128; /* write to separate cachelines */
-@@ -742,7 +742,7 @@ pc_render_add_request(struct intel_ring_
+@@ -745,7 +745,7 @@ pc_render_add_request(struct intel_ring_
  			PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
  			PIPE_CONTROL_NOTIFY);
  	intel_ring_emit(ring, ring->scratch.gtt_offset | PIPE_CONTROL_GLOBAL_GTT);
@@ -75,7 +75,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, 0);
  	intel_ring_advance(ring);
  
-@@ -963,7 +963,7 @@ i9xx_add_request(struct intel_ring_buffe
+@@ -966,7 +966,7 @@ i9xx_add_request(struct intel_ring_buffe
  
  	intel_ring_emit(ring, MI_STORE_DWORD_INDEX);
  	intel_ring_emit(ring, I915_GEM_HWS_INDEX << MI_STORE_DWORD_INDEX_SHIFT);
@@ -84,7 +84,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, MI_USER_INTERRUPT);
  	intel_ring_advance(ring);
  
-@@ -1475,7 +1475,7 @@ int intel_ring_idle(struct intel_ring_bu
+@@ -1478,7 +1478,7 @@ int intel_ring_idle(struct intel_ring_bu
  	int ret;
  
  	/* We need to add any requests required to flush the objects and ring */
@@ -93,7 +93,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ret = i915_add_request(ring, NULL);
  		if (ret)
  			return ret;
-@@ -1495,10 +1495,10 @@ int intel_ring_idle(struct intel_ring_bu
+@@ -1498,10 +1498,10 @@ int intel_ring_idle(struct intel_ring_bu
  static int
  intel_ring_alloc_seqno(struct intel_ring_buffer *ring)
  {
@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  }
  
  static int __intel_ring_prepare(struct intel_ring_buffer *ring,
-@@ -1549,7 +1549,7 @@ void intel_ring_init_seqno(struct intel_
+@@ -1552,7 +1552,7 @@ void intel_ring_init_seqno(struct intel_
  {
  	struct drm_i915_private *dev_priv = ring->dev->dev_private;
  

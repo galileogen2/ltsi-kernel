@@ -201,7 +201,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  
 --- a/drivers/mmc/host/rtsx_pci_sdmmc.c
 +++ b/drivers/mmc/host/rtsx_pci_sdmmc.c
-@@ -1316,8 +1316,6 @@ static int rtsx_pci_sdmmc_drv_remove(str
+@@ -1319,8 +1319,6 @@ static int rtsx_pci_sdmmc_drv_remove(str
  	mmc_remove_host(mmc);
  	mmc_free_host(mmc);
  

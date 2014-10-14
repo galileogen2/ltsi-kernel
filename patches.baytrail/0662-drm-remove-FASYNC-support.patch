@@ -112,7 +112,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif
 --- a/drivers/gpu/drm/cirrus/cirrus_drv.c
 +++ b/drivers/gpu/drm/cirrus/cirrus_drv.c
-@@ -85,7 +85,6 @@ static const struct file_operations cirr
+@@ -121,7 +121,6 @@ static const struct file_operations cirr
  #ifdef CONFIG_COMPAT
  	.compat_ioctl = drm_compat_ioctl,
  #endif
@@ -310,7 +310,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif
 --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
 +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -468,7 +468,6 @@ static const struct file_operations fops
+@@ -469,7 +469,6 @@ static const struct file_operations fops
  #endif
  	.poll               = drm_poll,
  	.read               = drm_read,

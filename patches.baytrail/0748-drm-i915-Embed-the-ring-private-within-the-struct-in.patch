@@ -79,7 +79,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	int ret;
  
  	/*
-@@ -481,68 +468,43 @@ out:
+@@ -484,68 +471,43 @@ out:
  static int
  init_pipe_control(struct intel_ring_buffer *ring)
  {
@@ -159,7 +159,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int init_render_ring(struct intel_ring_buffer *ring)
  {
  	struct drm_device *dev = ring->dev;
-@@ -607,16 +569,16 @@ static void render_ring_cleanup(struct i
+@@ -610,16 +572,16 @@ static void render_ring_cleanup(struct i
  {
  	struct drm_device *dev = ring->dev;
  
@@ -183,7 +183,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  }
  
  static void
-@@ -742,8 +704,7 @@ do {									\
+@@ -745,8 +707,7 @@ do {									\
  static int
  pc_render_add_request(struct intel_ring_buffer *ring)
  {
@@ -193,7 +193,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	int ret;
  
  	/* For Ironlake, MI_USER_INTERRUPT was deprecated and apparently
-@@ -761,7 +722,7 @@ pc_render_add_request(struct intel_ring_
+@@ -764,7 +725,7 @@ pc_render_add_request(struct intel_ring_
  	intel_ring_emit(ring, GFX_OP_PIPE_CONTROL(4) | PIPE_CONTROL_QW_WRITE |
  			PIPE_CONTROL_WRITE_FLUSH |
  			PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE);
@@ -202,7 +202,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, ring->outstanding_lazy_request);
  	intel_ring_emit(ring, 0);
  	PIPE_CONTROL_FLUSH(ring, scratch_addr);
-@@ -780,7 +741,7 @@ pc_render_add_request(struct intel_ring_
+@@ -783,7 +744,7 @@ pc_render_add_request(struct intel_ring_
  			PIPE_CONTROL_WRITE_FLUSH |
  			PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
  			PIPE_CONTROL_NOTIFY);
@@ -211,7 +211,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_ring_emit(ring, ring->outstanding_lazy_request);
  	intel_ring_emit(ring, 0);
  	intel_ring_advance(ring);
-@@ -814,15 +775,13 @@ ring_set_seqno(struct intel_ring_buffer
+@@ -817,15 +778,13 @@ ring_set_seqno(struct intel_ring_buffer
  static u32
  pc_render_get_seqno(struct intel_ring_buffer *ring, bool lazy_coherency)
  {
@@ -229,7 +229,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  }
  
  static bool
-@@ -1141,8 +1100,7 @@ i830_dispatch_execbuffer(struct intel_ri
+@@ -1144,8 +1103,7 @@ i830_dispatch_execbuffer(struct intel_ri
  		intel_ring_emit(ring, MI_NOOP);
  		intel_ring_advance(ring);
  	} else {
@@ -239,7 +239,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  		if (len > I830_BATCH_LIMIT)
  			return -ENOSPC;
-@@ -1839,7 +1797,8 @@ int intel_init_render_ring_buffer(struct
+@@ -1842,7 +1800,8 @@ int intel_init_render_ring_buffer(struct
  			return ret;
  		}
  

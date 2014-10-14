@@ -454,7 +454,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -9908,48 +9908,50 @@ intel_display_capture_error_state(struct
+@@ -9910,48 +9910,50 @@ intel_display_capture_error_state(struct
  	return error;
  }
  

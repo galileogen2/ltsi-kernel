@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -9900,6 +9900,13 @@ intel_display_capture_error_state(struct
+@@ -9902,6 +9902,13 @@ intel_display_capture_error_state(struct
  		error->pipe[i].vsync = I915_READ(VSYNC(cpu_transcoder));
  	}
  

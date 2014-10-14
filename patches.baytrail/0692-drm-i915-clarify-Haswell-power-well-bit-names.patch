@@ -33,7 +33,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define   HSW_PWR_WELL_PWR_GATE_OVERRIDE	(1<<20)
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -10118,7 +10118,7 @@ void i915_redisable_vga(struct drm_devic
+@@ -10120,7 +10120,7 @@ void i915_redisable_vga(struct drm_devic
  	 * follow the "don't touch the power well if we don't need it" policy
  	 * the rest of the driver uses. */
  	if (HAS_POWER_WELL(dev) &&

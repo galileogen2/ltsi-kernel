@@ -29,15 +29,13 @@ Signed-off-by: Olof Johansson <olof@lixom.net>
 (cherry picked from commit 10d9eb8a17cfb697967928bde06f3e7e530b03ac)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/irqchip/irq-gic.c       | 6 ++++++
- include/linux/irqchip/arm-gic.h | 1 +
+ drivers/irqchip/irq-gic.c       |    6 ++++++
+ include/linux/irqchip/arm-gic.h |    1 +
  2 files changed, 7 insertions(+)
 
-diff --git a/drivers/irqchip/irq-gic.c b/drivers/irqchip/irq-gic.c
-index 19ceaa60..fe44d3e2 100644
 --- a/drivers/irqchip/irq-gic.c
 +++ b/drivers/irqchip/irq-gic.c
-@@ -453,6 +453,12 @@ static void __cpuinit gic_cpu_init(struct gic_chip_data *gic)
+@@ -458,6 +458,12 @@ static void __cpuinit gic_cpu_init(struc
  	writel_relaxed(1, base + GIC_CPU_CTRL);
  }
  
@@ -50,8 +48,6 @@ index 19ceaa60..fe44d3e2 100644
  #ifdef CONFIG_CPU_PM
  /*
   * Saves the GIC distributor registers during suspend or idle.  Must be called
-diff --git a/include/linux/irqchip/arm-gic.h b/include/linux/irqchip/arm-gic.h
-index 3e203eb2..0e5d9ecd 100644
 --- a/include/linux/irqchip/arm-gic.h
 +++ b/include/linux/irqchip/arm-gic.h
 @@ -66,6 +66,7 @@ extern struct irq_chip gic_arch_extn;
@@ -62,6 +58,3 @@ index 3e203eb2..0e5d9ecd 100644
  
  static inline void gic_init(unsigned int nr, int start,
  			    void __iomem *dist , void __iomem *cpu)
--- 
-1.8.4.3.gca3854a
-
