@@ -46,16 +46,14 @@ Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
  arch/arm/mach-tegra/board-paz00.c     |    3 +++
  arch/arm/mach-tegra/board-seaboard.c  |    2 ++
  arch/arm/mach-tegra/board-trimslice.c |    2 ++
- drivers/tty/serial/8250/8250.c        |   34 +++------------------------------
- drivers/tty/serial/of_serial.c        |   26 +++++++++++++++++++++++++
+ drivers/tty/serial/8250/8250.c        |   34 +++-------------------------------
+ drivers/tty/serial/of_serial.c        |   26 ++++++++++++++++++++++++++
  include/linux/of_serial.h             |   17 +++++++++++++++++
  include/linux/serial_8250.h           |    1 +
  include/linux/serial_core.h           |    5 +++++
  9 files changed, 61 insertions(+), 31 deletions(-)
  create mode 100644 include/linux/of_serial.h
 
-diff --git a/arch/arm/mach-tegra/board-harmony.c b/arch/arm/mach-tegra/board-harmony.c
-index c00aadb..222182e 100644
 --- a/arch/arm/mach-tegra/board-harmony.c
 +++ b/arch/arm/mach-tegra/board-harmony.c
 @@ -19,6 +19,7 @@
@@ -66,7 +64,7 @@ index c00aadb..222182e 100644
  #include <linux/clk.h>
  #include <linux/dma-mapping.h>
  #include <linux/pda_power.h>
-@@ -52,6 +53,7 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
+@@ -52,6 +53,7 @@ static struct plat_serial8250_port debug
  		.irq		= INT_UARTD,
  		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
  		.type		= PORT_TEGRA,
@@ -74,8 +72,6 @@ index c00aadb..222182e 100644
  		.iotype		= UPIO_MEM,
  		.regshift	= 2,
  		.uartclk	= 216000000,
-diff --git a/arch/arm/mach-tegra/board-paz00.c b/arch/arm/mach-tegra/board-paz00.c
-index 330afdf..d0735c7 100644
 --- a/arch/arm/mach-tegra/board-paz00.c
 +++ b/arch/arm/mach-tegra/board-paz00.c
 @@ -21,6 +21,7 @@
@@ -86,7 +82,7 @@ index 330afdf..d0735c7 100644
  #include <linux/clk.h>
  #include <linux/dma-mapping.h>
  #include <linux/gpio_keys.h>
-@@ -55,6 +56,7 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
+@@ -55,6 +56,7 @@ static struct plat_serial8250_port debug
  		.irq		= INT_UARTA,
  		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
  		.type		= PORT_TEGRA,
@@ -94,7 +90,7 @@ index 330afdf..d0735c7 100644
  		.iotype		= UPIO_MEM,
  		.regshift	= 2,
  		.uartclk	= 216000000,
-@@ -65,6 +67,7 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
+@@ -65,6 +67,7 @@ static struct plat_serial8250_port debug
  		.irq		= INT_UARTC,
  		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
  		.type		= PORT_TEGRA,
@@ -102,8 +98,6 @@ index 330afdf..d0735c7 100644
  		.iotype		= UPIO_MEM,
  		.regshift	= 2,
  		.uartclk	= 216000000,
-diff --git a/arch/arm/mach-tegra/board-seaboard.c b/arch/arm/mach-tegra/board-seaboard.c
-index d669847..5b687b8 100644
 --- a/arch/arm/mach-tegra/board-seaboard.c
 +++ b/arch/arm/mach-tegra/board-seaboard.c
 @@ -18,6 +18,7 @@
@@ -114,7 +108,7 @@ index d669847..5b687b8 100644
  #include <linux/i2c.h>
  #include <linux/delay.h>
  #include <linux/input.h>
-@@ -47,6 +48,7 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
+@@ -47,6 +48,7 @@ static struct plat_serial8250_port debug
  		/* Memory and IRQ filled in before registration */
  		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
  		.type		= PORT_TEGRA,
@@ -122,8 +116,6 @@ index d669847..5b687b8 100644
  		.iotype		= UPIO_MEM,
  		.regshift	= 2,
  		.uartclk	= 216000000,
-diff --git a/arch/arm/mach-tegra/board-trimslice.c b/arch/arm/mach-tegra/board-trimslice.c
-index cd52820a..f735858 100644
 --- a/arch/arm/mach-tegra/board-trimslice.c
 +++ b/arch/arm/mach-tegra/board-trimslice.c
 @@ -22,6 +22,7 @@
@@ -134,7 +126,7 @@ index cd52820a..f735858 100644
  #include <linux/io.h>
  #include <linux/i2c.h>
  #include <linux/gpio.h>
-@@ -48,6 +49,7 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
+@@ -48,6 +49,7 @@ static struct plat_serial8250_port debug
  		.irq		= INT_UARTA,
  		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
  		.type		= PORT_TEGRA,
@@ -142,11 +134,9 @@ index cd52820a..f735858 100644
  		.iotype		= UPIO_MEM,
  		.regshift	= 2,
  		.uartclk	= 216000000,
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index d537431..aed9363 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -1332,27 +1332,6 @@ static void serial8250_enable_ms(struct uart_port *port)
+@@ -1359,27 +1359,6 @@ static void serial8250_enable_ms(struct
  }
  
  /*
@@ -174,7 +164,7 @@ index d537431..aed9363 100644
   * serial8250_rx_chars: processes according to the passed in LSR
   * value, and returns the remaining LSR bits not handled
   * by this Rx routine.
-@@ -1386,20 +1365,10 @@ serial8250_rx_chars(struct uart_8250_port *up, unsigned char lsr)
+@@ -1413,20 +1392,10 @@ serial8250_rx_chars(struct uart_8250_por
  		up->lsr_saved_flags = 0;
  
  		if (unlikely(lsr & UART_LSR_BRK_ERROR_BITS)) {
@@ -195,7 +185,7 @@ index d537431..aed9363 100644
  				 * We do the SysRQ and SAK checking
  				 * here because otherwise the break
  				 * may get masked by ignore_status_mask
-@@ -3038,6 +3007,7 @@ static int __devinit serial8250_probe(struct platform_device *dev)
+@@ -3070,6 +3039,7 @@ static int __devinit serial8250_probe(st
  		port.serial_in		= p->serial_in;
  		port.serial_out		= p->serial_out;
  		port.handle_irq		= p->handle_irq;
@@ -203,7 +193,7 @@ index d537431..aed9363 100644
  		port.set_termios	= p->set_termios;
  		port.pm			= p->pm;
  		port.dev		= &dev->dev;
-@@ -3210,6 +3180,8 @@ int serial8250_register_port(struct uart_port *port)
+@@ -3242,6 +3212,8 @@ int serial8250_register_port(struct uart
  			uart->port.set_termios = port->set_termios;
  		if (port->pm)
  			uart->port.pm = port->pm;
@@ -212,8 +202,6 @@ index d537431..aed9363 100644
  
  		if (serial8250_isa_config != NULL)
  			serial8250_isa_config(0, &uart->port,
-diff --git a/drivers/tty/serial/of_serial.c b/drivers/tty/serial/of_serial.c
-index e8c9cee..5410c06 100644
 --- a/drivers/tty/serial/of_serial.c
 +++ b/drivers/tty/serial/of_serial.c
 @@ -12,10 +12,13 @@
@@ -257,7 +245,7 @@ index e8c9cee..5410c06 100644
  /*
   * Fill a struct uart_port for a given device node
   */
-@@ -84,6 +107,9 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
+@@ -84,6 +107,9 @@ static int __devinit of_platform_serial_
  		| UPF_FIXED_PORT | UPF_FIXED_TYPE;
  	port->dev = &ofdev->dev;
  
@@ -267,9 +255,6 @@ index e8c9cee..5410c06 100644
  	return 0;
  }
  
-diff --git a/include/linux/of_serial.h b/include/linux/of_serial.h
-new file mode 100644
-index 0000000..4a73ed8
 --- /dev/null
 +++ b/include/linux/of_serial.h
 @@ -0,0 +1,17 @@
@@ -290,8 +275,6 @@ index 0000000..4a73ed8
 +#endif
 +
 +#endif /* __LINUX_OF_SERIAL */
-diff --git a/include/linux/serial_8250.h b/include/linux/serial_8250.h
-index 8f012f8..a522fd9 100644
 --- a/include/linux/serial_8250.h
 +++ b/include/linux/serial_8250.h
 @@ -38,6 +38,7 @@ struct plat_serial8250_port {
@@ -302,11 +285,9 @@ index 8f012f8..a522fd9 100644
  };
  
  /*
-diff --git a/include/linux/serial_core.h b/include/linux/serial_core.h
-index 2db407a..65db992 100644
 --- a/include/linux/serial_core.h
 +++ b/include/linux/serial_core.h
-@@ -310,6 +310,7 @@ struct uart_port {
+@@ -314,6 +314,7 @@ struct uart_port {
  	int			(*handle_irq)(struct uart_port *);
  	void			(*pm)(struct uart_port *, unsigned int state,
  				      unsigned int old);
@@ -314,7 +295,7 @@ index 2db407a..65db992 100644
  	unsigned int		irq;			/* irq number */
  	unsigned long		irqflags;		/* irq flags  */
  	unsigned int		uartclk;		/* base uart clock */
-@@ -533,6 +534,10 @@ uart_handle_sysrq_char(struct uart_port *port, unsigned int ch)
+@@ -537,6 +538,10 @@ uart_handle_sysrq_char(struct uart_port
  static inline int uart_handle_break(struct uart_port *port)
  {
  	struct uart_state *state = port->state;
@@ -325,6 +306,3 @@ index 2db407a..65db992 100644
  #ifdef SUPPORT_SYSRQ
  	if (port->cons && port->cons->index == port->line) {
  		if (!port->sysrq) {
--- 
-1.7.9.5
-

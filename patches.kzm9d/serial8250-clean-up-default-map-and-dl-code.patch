@@ -23,11 +23,9 @@ Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
  drivers/tty/serial/8250/8250.c |   38 ++++++++++++--------------------------
  1 file changed, 12 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index cc398b1..662188d 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -285,28 +285,18 @@ static const struct serial8250_config uart_config[] = {
+@@ -312,28 +312,18 @@ static const struct serial8250_config ua
  };
  
  /* Uart divisor latch read */
@@ -58,7 +56,7 @@ index cc398b1..662188d 100644
  #ifdef CONFIG_MIPS_ALCHEMY
  
  /* Au1x00 UART hardware has a weird register layout */
-@@ -403,57 +393,53 @@ static void rm9k_serial_dl_write(struct uart_8250_port *up, int value)
+@@ -430,57 +420,53 @@ static void rm9k_serial_dl_write(struct
  
  #endif
  
@@ -124,7 +122,7 @@ index cc398b1..662188d 100644
  	outb(value, p->iobase + offset);
  }
  
-@@ -464,8 +450,8 @@ static void set_io_from_upio(struct uart_port *p)
+@@ -491,8 +477,8 @@ static void set_io_from_upio(struct uart
  	struct uart_8250_port *up =
  		container_of(p, struct uart_8250_port, port);
  
@@ -135,6 +133,3 @@ index cc398b1..662188d 100644
  
  	switch (p->iotype) {
  	case UPIO_HUB6:
--- 
-1.7.9.5
-

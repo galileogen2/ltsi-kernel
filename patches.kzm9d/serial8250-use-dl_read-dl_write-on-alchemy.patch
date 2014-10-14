@@ -20,14 +20,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
 ---
- drivers/tty/serial/8250/8250.c |   67 ++++++++++++++++------------------------
+ drivers/tty/serial/8250/8250.c |   67 +++++++++++++++--------------------------
  1 file changed, 26 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index 590ee85..2d62c89 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -297,24 +297,7 @@ static void default_dl_write(struct uart_8250_port *up, int value)
+@@ -324,24 +324,7 @@ static void default_dl_write(struct uart
  	serial_out(up, UART_DLM, value >> 8 & 0xff);
  }
  
@@ -53,7 +51,7 @@ index 590ee85..2d62c89 100644
  static int _serial_dl_read(struct uart_8250_port *up)
  {
  	return	(up->port.iotype == UPIO_RM9000) ?
-@@ -344,7 +327,7 @@ static void _serial_dl_write(struct uart_8250_port *up, int value)
+@@ -371,7 +354,7 @@ static void _serial_dl_write(struct uart
  }
  #endif
  
@@ -62,7 +60,7 @@ index 590ee85..2d62c89 100644
  
  /* Au1x00 UART hardware has a weird register layout */
  static const u8 au_io_in_map[] = {
-@@ -365,22 +348,32 @@ static const u8 au_io_out_map[] = {
+@@ -392,22 +375,32 @@ static const u8 au_io_out_map[] = {
  	[UART_MCR] = 6,
  };
  
@@ -91,21 +89,21 @@ index 590ee85..2d62c89 100644
 +static int au_serial_dl_read(struct uart_8250_port *up)
 +{
 +	return __raw_readl(up->port.membase + 0x28);
- }
- 
--#elif defined(CONFIG_SERIAL_8250_RM9K)
++}
++
 +static void au_serial_dl_write(struct uart_8250_port *up, int value)
 +{
 +	__raw_writel(value, up->port.membase + 0x28);
-+}
-+
+ }
+ 
+-#elif defined(CONFIG_SERIAL_8250_RM9K)
 +#endif
 +
 +#if defined(CONFIG_SERIAL_8250_RM9K)
  
  static const u8
  	regmap_in[8] = {
-@@ -464,18 +457,6 @@ static unsigned int mem32_serial_in(struct uart_port *p, int offset)
+@@ -491,18 +484,6 @@ static unsigned int mem32_serial_in(stru
  	return readl(p->membase + offset);
  }
  
@@ -124,7 +122,7 @@ index 590ee85..2d62c89 100644
  static unsigned int io_serial_in(struct uart_port *p, int offset)
  {
  	offset = map_8250_in_reg(p, offset) << p->regshift;
-@@ -515,10 +496,14 @@ static void set_io_from_upio(struct uart_port *p)
+@@ -542,10 +523,14 @@ static void set_io_from_upio(struct uart
  		p->serial_out = mem32_serial_out;
  		break;
  
@@ -139,6 +137,3 @@ index 590ee85..2d62c89 100644
  
  	default:
  		p->serial_in = io_serial_in;
--- 
-1.7.9.5
-

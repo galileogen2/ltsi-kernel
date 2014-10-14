@@ -24,15 +24,13 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
 ---
- drivers/tty/serial/8250/8250.c |   91 ++++++++++++++++++++++++++--------------
- include/linux/serial_8250.h    |    1 +
- 2 files changed, 60 insertions(+), 32 deletions(-)
+ drivers/tty/serial/8250/8250.c |   89 ++++++++++++++++++++++++++---------------
+ include/linux/serial_8250.h    |    1 
+ 2 files changed, 59 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index 662188d..47d061b 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -3112,7 +3112,7 @@ static struct uart_8250_port *serial8250_find_match_or_unused(struct uart_port *
+@@ -3144,7 +3144,7 @@ static struct uart_8250_port *serial8250
  }
  
  /**
@@ -41,7 +39,7 @@ index 662188d..47d061b 100644
   *	@port: serial port template
   *
   *	Configure the serial port specified by the request. If the
-@@ -3124,52 +3124,56 @@ static struct uart_8250_port *serial8250_find_match_or_unused(struct uart_port *
+@@ -3156,52 +3156,56 @@ static struct uart_8250_port *serial8250
   *
   *	On success the port is ready to use and the line number is returned.
   */
@@ -75,9 +73,6 @@ index 662188d..47d061b 100644
 -		uart->port.private_data = port->private_data;
 -		if (port->dev)
 -			uart->port.dev = port->dev;
--
--		if (port->flags & UPF_FIXED_TYPE)
--			serial8250_init_fixed_type_port(uart, port->type);
 +		uart->port.iobase       = up->port.iobase;
 +		uart->port.membase      = up->port.membase;
 +		uart->port.irq          = up->port.irq;
@@ -91,7 +86,9 @@ index 662188d..47d061b 100644
 +		uart->port.private_data = up->port.private_data;
 +		if (up->port.dev)
 +			uart->port.dev = up->port.dev;
-+
+ 
+-		if (port->flags & UPF_FIXED_TYPE)
+-			serial8250_init_fixed_type_port(uart, port->type);
 +		if (up->port.flags & UPF_FIXED_TYPE)
 +			serial8250_init_fixed_type_port(uart, up->port.type);
  
@@ -129,7 +126,7 @@ index 662188d..47d061b 100644
  
  		if (serial8250_isa_config != NULL)
  			serial8250_isa_config(0, &uart->port,
-@@ -3183,6 +3187,29 @@ int serial8250_register_port(struct uart_port *port)
+@@ -3215,6 +3219,29 @@ int serial8250_register_port(struct uart
  
  	return ret;
  }
@@ -159,8 +156,6 @@ index 662188d..47d061b 100644
  EXPORT_SYMBOL(serial8250_register_port);
  
  /**
-diff --git a/include/linux/serial_8250.h b/include/linux/serial_8250.h
-index a522fd9..10dbce5 100644
 --- a/include/linux/serial_8250.h
 +++ b/include/linux/serial_8250.h
 @@ -69,6 +69,7 @@ enum {
@@ -171,6 +166,3 @@ index a522fd9..10dbce5 100644
  int serial8250_register_port(struct uart_port *);
  void serial8250_unregister_port(int line);
  void serial8250_suspend_port(int line);
--- 
-1.7.9.5
-

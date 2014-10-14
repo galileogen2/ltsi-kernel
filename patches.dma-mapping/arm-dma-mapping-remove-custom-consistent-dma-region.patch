@@ -726,7 +726,7 @@ Signed-off-by: Damian Hobson-Garcia <dhobsong@igel.co.jp>
  			struct page ***pages);
 --- a/mm/vmalloc.c
 +++ b/mm/vmalloc.c
-@@ -1403,7 +1403,15 @@ struct vm_struct *get_vm_area_caller(uns
+@@ -1409,7 +1409,15 @@ struct vm_struct *get_vm_area_caller(uns
  						-1, GFP_KERNEL, caller);
  }
  

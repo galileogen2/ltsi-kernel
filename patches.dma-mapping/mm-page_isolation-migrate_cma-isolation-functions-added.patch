@@ -96,7 +96,7 @@ Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
  #endif
 --- a/mm/memory-failure.c
 +++ b/mm/memory-failure.c
-@@ -1406,7 +1406,7 @@ static int get_any_page(struct page *p,
+@@ -1412,7 +1412,7 @@ static int get_any_page(struct page *p,
  		/* Not a free page */
  		ret = 1;
  	}

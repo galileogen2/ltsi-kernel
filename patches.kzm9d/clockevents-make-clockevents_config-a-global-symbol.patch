@@ -44,7 +44,7 @@ Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
  					    unsigned long max_delta);
 --- a/kernel/time/clockevents.c
 +++ b/kernel/time/clockevents.c
-@@ -332,8 +332,7 @@ void clockevents_register_device(struct
+@@ -334,8 +334,7 @@ void clockevents_register_device(struct
  }
  EXPORT_SYMBOL_GPL(clockevents_register_device);
  

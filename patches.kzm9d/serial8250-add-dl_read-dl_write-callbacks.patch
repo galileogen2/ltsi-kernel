@@ -23,15 +23,13 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
 ---
- drivers/tty/serial/8250/8250.c |  117 ++++++++++++++++++++++------------------
- drivers/tty/serial/8250/8250.h |   14 +++++
+ drivers/tty/serial/8250/8250.c |  117 ++++++++++++++++++++++-------------------
+ drivers/tty/serial/8250/8250.h |   14 ++++
  2 files changed, 78 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index c9ac4ea..590ee85 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -284,6 +284,66 @@ static const struct serial8250_config uart_config[] = {
+@@ -311,6 +311,66 @@ static const struct serial8250_config ua
  	},
  };
  
@@ -98,7 +96,7 @@ index c9ac4ea..590ee85 100644
  #if defined(CONFIG_MIPS_ALCHEMY)
  
  /* Au1x00 UART hardware has a weird register layout */
-@@ -434,6 +494,10 @@ static void set_io_from_upio(struct uart_port *p)
+@@ -461,6 +521,10 @@ static void set_io_from_upio(struct uart
  {
  	struct uart_8250_port *up =
  		container_of(p, struct uart_8250_port, port);
@@ -109,7 +107,7 @@ index c9ac4ea..590ee85 100644
  	switch (p->iotype) {
  	case UPIO_HUB6:
  		p->serial_in = hub6_serial_in;
-@@ -481,59 +545,6 @@ serial_port_out_sync(struct uart_port *p, int offset, int value)
+@@ -508,59 +572,6 @@ serial_port_out_sync(struct uart_port *p
  	}
  }
  
@@ -169,8 +167,6 @@ index c9ac4ea..590ee85 100644
  /*
   * For the 16C950
   */
-diff --git a/drivers/tty/serial/8250/8250.h b/drivers/tty/serial/8250/8250.h
-index c9d0ebe..f9719d1 100644
 --- a/drivers/tty/serial/8250/8250.h
 +++ b/drivers/tty/serial/8250/8250.h
 @@ -37,6 +37,10 @@ struct uart_8250_port {
@@ -184,7 +180,7 @@ index c9d0ebe..f9719d1 100644
  };
  
  struct old_serial_port {
-@@ -98,6 +102,16 @@ static inline void serial_out(struct uart_8250_port *up, int offset, int value)
+@@ -99,6 +103,16 @@ static inline void serial_out(struct uar
  
  void serial8250_clear_and_reinit_fifos(struct uart_8250_port *p);
  
@@ -201,6 +197,3 @@ index c9d0ebe..f9719d1 100644
  #if defined(__alpha__) && !defined(CONFIG_PCI)
  /*
   * Digital did something really horribly wrong with the OUT1 and OUT2
--- 
-1.7.9.5
-

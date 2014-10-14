@@ -31,15 +31,13 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Signed-off-by: Tetsuyuki Kobayashi <koba@kmckk.co.jp>
 ---
  drivers/tty/serial/8250/8250.c     |   10 +++++++++
- drivers/tty/serial/8250/8250.h     |    2 ++
- drivers/tty/serial/8250/8250_pci.c |   39 ++++++++++++++++++++++++++++++++++++
+ drivers/tty/serial/8250/8250.h     |    2 +
+ drivers/tty/serial/8250/8250_pci.c |   39 +++++++++++++++++++++++++++++++++++++
  3 files changed, 51 insertions(+)
 
-diff --git a/drivers/tty/serial/8250/8250.c b/drivers/tty/serial/8250/8250.c
-index aed9363..c9ac4ea 100644
 --- a/drivers/tty/serial/8250/8250.c
 +++ b/drivers/tty/serial/8250/8250.c
-@@ -568,6 +568,16 @@ static void serial8250_clear_fifos(struct uart_8250_port *p)
+@@ -595,6 +595,16 @@ static void serial8250_clear_fifos(struc
  	}
  }
  
@@ -56,11 +54,9 @@ index aed9363..c9ac4ea 100644
  /*
   * IER sleep support.  UARTs which have EFRs need the "extended
   * capability" bit enabled.  Note that on XR16C850s, we need to
-diff --git a/drivers/tty/serial/8250/8250.h b/drivers/tty/serial/8250/8250.h
-index 2868a1d..c9d0ebe 100644
 --- a/drivers/tty/serial/8250/8250.h
 +++ b/drivers/tty/serial/8250/8250.h
-@@ -96,6 +96,8 @@ static inline void serial_out(struct uart_8250_port *up, int offset, int value)
+@@ -97,6 +97,8 @@ static inline void serial_out(struct uar
  	up->port.serial_out(&up->port, offset, value);
  }
  
@@ -69,8 +65,6 @@ index 2868a1d..c9d0ebe 100644
  #if defined(__alpha__) && !defined(CONFIG_PCI)
  /*
   * Digital did something really horribly wrong with the OUT1 and OUT2
-diff --git a/drivers/tty/serial/8250/8250_pci.c b/drivers/tty/serial/8250/8250_pci.c
-index 3614973..5a4de9a 100644
 --- a/drivers/tty/serial/8250/8250_pci.c
 +++ b/drivers/tty/serial/8250/8250_pci.c
 @@ -17,6 +17,7 @@
@@ -81,7 +75,7 @@ index 3614973..5a4de9a 100644
  #include <linux/serial_core.h>
  #include <linux/8250_pci.h>
  #include <linux/bitops.h>
-@@ -1092,11 +1093,49 @@ static int skip_tx_en_setup(struct serial_private *priv,
+@@ -1104,11 +1105,49 @@ static int skip_tx_en_setup(struct seria
  	return pci_default_setup(priv, board, port, idx);
  }
  
@@ -131,6 +125,3 @@ index 3614973..5a4de9a 100644
  	return skip_tx_en_setup(priv, board, port, idx);
  }
  
--- 
-1.7.9.5
-
