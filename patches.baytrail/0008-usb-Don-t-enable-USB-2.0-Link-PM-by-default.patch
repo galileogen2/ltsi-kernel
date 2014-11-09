@@ -97,7 +97,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		if (!ret)
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -5240,6 +5240,7 @@ static int usb_reset_and_verify_device(s
+@@ -5242,6 +5242,7 @@ static int usb_reset_and_verify_device(s
  
  done:
  	/* Now that the alt settings are re-installed, enable LTM and LPM. */
