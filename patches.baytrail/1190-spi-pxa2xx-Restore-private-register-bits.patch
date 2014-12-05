@@ -12,16 +12,14 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
 (cherry picked from commit c50325f7bcb8a3ceaacb9dbc41180b1cbbae7b5e)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/spi/spi-pxa2xx.c | 3 +++
+ drivers/spi/spi-pxa2xx.c |    3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/spi/spi-pxa2xx.c b/drivers/spi/spi-pxa2xx.c
-index 91969629d864..c5e4dcd105f9 100644
 --- a/drivers/spi/spi-pxa2xx.c
 +++ b/drivers/spi/spi-pxa2xx.c
-@@ -1318,6 +1318,9 @@ static int pxa2xx_spi_resume(struct device *dev)
- 	/* Enable the SSP clock */
- 	clk_prepare_enable(ssp->clk);
+@@ -1321,6 +1321,9 @@ static int pxa2xx_spi_resume(struct devi
+ 	if (!pm_runtime_suspended(dev))
+ 		clk_prepare_enable(ssp->clk);
  
 +	/* Restore LPSS private register bits */
 +	lpss_ssp_setup(drv_data);
@@ -29,6 +27,3 @@ index 91969629d864..c5e4dcd105f9 100644
  	/* Start the queue running */
  	status = spi_master_resume(drv_data->master);
  	if (status != 0) {
--- 
-1.8.5.rc3
-

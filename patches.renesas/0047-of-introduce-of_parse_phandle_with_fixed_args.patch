@@ -13,15 +13,13 @@ Signed-off-by: Grant Likely <grant.likely@linaro.org>
 (cherry picked from commit 035fd9482274bf43858b00e0ff95179af66df8e8)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/of/base.c  | 66 +++++++++++++++++++++++++++++++++++++++++++++++-------
- include/linux/of.h | 10 +++++++++
+ drivers/of/base.c  |   66 ++++++++++++++++++++++++++++++++++++++++++++++-------
+ include/linux/of.h |   10 ++++++++
  2 files changed, 68 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 1d10b4ec..32dce2e6 100644
 --- a/drivers/of/base.c
 +++ b/drivers/of/base.c
-@@ -1138,7 +1138,8 @@ EXPORT_SYMBOL(of_parse_phandle);
+@@ -1094,7 +1094,8 @@ EXPORT_SYMBOL(of_parse_phandle);
   */
  static int __of_parse_phandle_with_args(const struct device_node *np,
  					const char *list_name,
@@ -31,7 +29,7 @@ index 1d10b4ec..32dce2e6 100644
  					struct of_phandle_args *out_args)
  {
  	const __be32 *list, *list_end;
-@@ -1174,11 +1175,17 @@ static int __of_parse_phandle_with_args(const struct device_node *np,
+@@ -1130,11 +1131,17 @@ static int __of_parse_phandle_with_args(
  					 np->full_name);
  				goto err;
  			}
@@ -54,7 +52,7 @@ index 1d10b4ec..32dce2e6 100644
  			}
  
  			/*
-@@ -1244,11 +1251,53 @@ int of_parse_phandle_with_args(const struct device_node *np, const char *list_na
+@@ -1200,11 +1207,53 @@ int of_parse_phandle_with_args(const str
  {
  	if (index < 0)
  		return -EINVAL;
@@ -109,7 +107,7 @@ index 1d10b4ec..32dce2e6 100644
   * of_count_phandle_with_args() - Find the number of phandles references in a property
   * @np:		pointer to a device tree node containing a list
   * @list_name:	property name that contains a list
-@@ -1266,7 +1315,8 @@ EXPORT_SYMBOL(of_parse_phandle_with_args);
+@@ -1222,7 +1271,8 @@ EXPORT_SYMBOL(of_parse_phandle_with_args
  int of_count_phandle_with_args(const struct device_node *np, const char *list_name,
  				const char *cells_name)
  {
@@ -119,11 +117,9 @@ index 1d10b4ec..32dce2e6 100644
  }
  EXPORT_SYMBOL(of_count_phandle_with_args);
  
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 1fd08ca2..0c457f58 100644
 --- a/include/linux/of.h
 +++ b/include/linux/of.h
-@@ -280,6 +280,9 @@ extern struct device_node *of_parse_phandle(const struct device_node *np,
+@@ -278,6 +278,9 @@ extern struct device_node *of_parse_phan
  extern int of_parse_phandle_with_args(const struct device_node *np,
  	const char *list_name, const char *cells_name, int index,
  	struct of_phandle_args *out_args);
@@ -133,20 +129,17 @@ index 1fd08ca2..0c457f58 100644
  extern int of_count_phandle_with_args(const struct device_node *np,
  	const char *list_name, const char *cells_name);
  
-@@ -488,6 +491,13 @@ static inline int of_parse_phandle_with_args(struct device_node *np,
+@@ -479,6 +482,13 @@ static inline int of_parse_phandle_with_
+ {
  	return -ENOSYS;
  }
- 
++
 +static inline int of_parse_phandle_with_fixed_args(const struct device_node *np,
 +	const char *list_name, int cells_count, int index,
 +	struct of_phandle_args *out_args)
 +{
 +	return -ENOSYS;
 +}
-+
+ 
  static inline int of_count_phandle_with_args(struct device_node *np,
  					     const char *list_name,
- 					     const char *cells_name)
--- 
-1.8.4.3.gca3854a
-

@@ -310,7 +310,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif
 --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
 +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -469,7 +469,6 @@ static const struct file_operations fops
+@@ -509,7 +509,6 @@ static const struct file_operations fops
  #endif
  	.poll               = drm_poll,
  	.read               = drm_read,
