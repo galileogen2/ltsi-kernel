@@ -144,7 +144,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (scratchpad_alloc(xhci, flags))
 --- a/drivers/usb/host/xhci-ring.c
 +++ b/drivers/usb/host/xhci-ring.c
-@@ -1732,6 +1732,19 @@ static void handle_port_status(struct xh
+@@ -1731,6 +1731,19 @@ static void handle_port_status(struct xh
  		}
  	}
  

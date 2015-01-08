@@ -529,7 +529,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return (val & LVDS_CLKB_POWER_MASK) == LVDS_CLKB_POWER_UP;
  }
-@@ -919,7 +919,7 @@ bool intel_lvds_init(struct drm_device *
+@@ -930,7 +930,7 @@ bool intel_lvds_init(struct drm_device *
  	if (HAS_PCH_SPLIT(dev)) {
  		if ((I915_READ(PCH_LVDS) & LVDS_DETECTED) == 0)
  			return false;
@@ -538,7 +538,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			DRM_DEBUG_KMS("disable LVDS for eDP support\n");
  			return false;
  		}
-@@ -1037,11 +1037,11 @@ bool intel_lvds_init(struct drm_device *
+@@ -1048,11 +1048,11 @@ bool intel_lvds_init(struct drm_device *
  	}
  
  	/* Failed to get EDID, what about VBT? */

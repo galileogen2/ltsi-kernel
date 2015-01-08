@@ -29,18 +29,16 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 2dd24552cab40ea829ba3fda890eeafd2c4816d8)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_display.c |  33 ++++++
- drivers/gpu/drm/i915/intel_dp.c      |  11 +-
- drivers/gpu/drm/i915/intel_drv.h     |   6 +
- drivers/gpu/drm/i915/intel_lvds.c    | 209 +----------------------------------
- drivers/gpu/drm/i915/intel_panel.c   | 191 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_display.c |   33 +++++
+ drivers/gpu/drm/i915/intel_dp.c      |   11 +
+ drivers/gpu/drm/i915/intel_drv.h     |    6 +
+ drivers/gpu/drm/i915/intel_lvds.c    |  209 -----------------------------------
+ drivers/gpu/drm/i915/intel_panel.c   |  191 +++++++++++++++++++++++++++++++
  5 files changed, 241 insertions(+), 209 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index c3da1726a027..ab5758374f8d 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -3601,6 +3601,33 @@ g4x_fixup_plane(struct drm_i915_private *dev_priv, enum pipe pipe)
+@@ -3601,6 +3601,33 @@ g4x_fixup_plane(struct drm_i915_private
  	}
  }
  
@@ -74,7 +72,7 @@ index c3da1726a027..ab5758374f8d 100644
  static void valleyview_crtc_enable(struct drm_crtc *crtc)
  {
  	struct drm_device *dev = crtc->dev;
-@@ -3634,6 +3661,9 @@ static void valleyview_crtc_enable(struct drm_crtc *crtc)
+@@ -3634,6 +3661,9 @@ static void valleyview_crtc_enable(struc
  	for_each_encoder_on_crtc(dev, crtc, encoder)
  		encoder->enable(encoder);
  
@@ -84,7 +82,7 @@ index c3da1726a027..ab5758374f8d 100644
  	intel_enable_pipe(dev_priv, pipe, false);
  	intel_enable_plane(dev_priv, plane, pipe);
  
-@@ -3670,6 +3700,9 @@ static void i9xx_crtc_enable(struct drm_crtc *crtc)
+@@ -3670,6 +3700,9 @@ static void i9xx_crtc_enable(struct drm_
  		if (encoder->pre_enable)
  			encoder->pre_enable(encoder);
  
@@ -94,11 +92,9 @@ index c3da1726a027..ab5758374f8d 100644
  	intel_enable_pipe(dev_priv, pipe, false);
  	intel_enable_plane(dev_priv, plane, pipe);
  	if (IS_G4X(dev))
-diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
-index fbae5092b1f6..38b3fb549bac 100644
 --- a/drivers/gpu/drm/i915/intel_dp.c
 +++ b/drivers/gpu/drm/i915/intel_dp.c
-@@ -723,6 +723,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+@@ -723,6 +723,7 @@ intel_dp_compute_config(struct intel_enc
  	struct drm_display_mode *adjusted_mode = &pipe_config->adjusted_mode;
  	struct drm_display_mode *mode = &pipe_config->requested_mode;
  	struct intel_dp *intel_dp = enc_to_intel_dp(&encoder->base);
@@ -106,7 +102,7 @@ index fbae5092b1f6..38b3fb549bac 100644
  	struct intel_connector *intel_connector = intel_dp->attached_connector;
  	int lane_count, clock;
  	int max_lane_count = drm_dp_max_lane_count(intel_dp->dpcd);
-@@ -739,9 +740,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+@@ -739,9 +740,13 @@ intel_dp_compute_config(struct intel_enc
  	if (is_edp(intel_dp) && intel_connector->panel.fixed_mode) {
  		intel_fixed_panel_mode(intel_connector->panel.fixed_mode,
  				       adjusted_mode);
@@ -123,8 +119,6 @@ index fbae5092b1f6..38b3fb549bac 100644
  	}
  	/* We need to take the panel's fixed mode into account. */
  	target_clock = adjusted_mode->clock;
-diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-index 52b2505f1823..1780f79e1a89 100644
 --- a/drivers/gpu/drm/i915/intel_drv.h
 +++ b/drivers/gpu/drm/i915/intel_drv.h
 @@ -237,6 +237,9 @@ struct intel_crtc_config {
@@ -137,7 +131,7 @@ index 52b2505f1823..1780f79e1a89 100644
  };
  
  struct intel_crtc {
-@@ -559,6 +562,9 @@ extern void intel_pch_panel_fitting(struct drm_device *dev,
+@@ -559,6 +562,9 @@ extern void intel_pch_panel_fitting(stru
  				    int fitting_mode,
  				    const struct drm_display_mode *mode,
  				    struct drm_display_mode *adjusted_mode);
@@ -147,8 +141,6 @@ index 52b2505f1823..1780f79e1a89 100644
  extern void intel_panel_set_backlight(struct drm_device *dev,
  				      u32 level, u32 max);
  extern int intel_panel_setup_backlight(struct drm_connector *connector);
-diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
-index 855c0850f030..2a2180410cbd 100644
 --- a/drivers/gpu/drm/i915/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/intel_lvds.c
 @@ -49,8 +49,6 @@ struct intel_lvds_connector {
@@ -160,7 +152,7 @@ index 855c0850f030..2a2180410cbd 100644
  	bool is_dual_link;
  	u32 reg;
  
-@@ -153,32 +151,6 @@ static void intel_pre_pll_enable_lvds(struct intel_encoder *encoder)
+@@ -153,32 +151,6 @@ static void intel_pre_pll_enable_lvds(st
  	I915_WRITE(lvds_encoder->reg, temp);
  }
  
@@ -193,7 +185,7 @@ index 855c0850f030..2a2180410cbd 100644
  /**
   * Sets the power state for the panel.
   */
-@@ -247,62 +219,6 @@ static int intel_lvds_mode_valid(struct drm_connector *connector,
+@@ -247,62 +219,6 @@ static int intel_lvds_mode_valid(struct
  	return MODE_OK;
  }
  
@@ -256,7 +248,7 @@ index 855c0850f030..2a2180410cbd 100644
  static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
  				      struct intel_crtc_config *pipe_config)
  {
-@@ -315,7 +231,6 @@ static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+@@ -315,7 +231,6 @@ static bool intel_lvds_compute_config(st
  	struct drm_display_mode *adjusted_mode = &pipe_config->adjusted_mode;
  	struct drm_display_mode *mode = &pipe_config->requested_mode;
  	struct intel_crtc *intel_crtc = lvds_encoder->base.new_crtc;
@@ -264,7 +256,7 @@ index 855c0850f030..2a2180410cbd 100644
  	unsigned int lvds_bpp;
  	int pipe;
  
-@@ -338,11 +253,6 @@ static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+@@ -338,11 +253,6 @@ static bool intel_lvds_compute_config(st
  		DRM_DEBUG_KMS("forcing display bpp (was %d) to LVDS (%d)\n",
  			      pipe_config->pipe_bpp, lvds_bpp);
  		pipe_config->pipe_bpp = lvds_bpp;
@@ -276,7 +268,7 @@ index 855c0850f030..2a2180410cbd 100644
  	}
  
  	/*
-@@ -361,18 +271,11 @@ static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+@@ -361,18 +271,11 @@ static bool intel_lvds_compute_config(st
  					intel_connector->panel.fitting_mode,
  					mode, adjusted_mode);
  		return true;
@@ -298,7 +290,7 @@ index 855c0850f030..2a2180410cbd 100644
  	/*
  	 * Enable automatic panel scaling for non-native modes so that they fill
  	 * the screen.  Should be enabled before the pipe is enabled, according
-@@ -385,107 +288,6 @@ static bool intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+@@ -385,107 +288,6 @@ static bool intel_lvds_compute_config(st
  	drm_mode_set_crtcinfo(adjusted_mode, 0);
  	pipe_config->timings_set = true;
  
@@ -406,7 +398,7 @@ index 855c0850f030..2a2180410cbd 100644
  	/*
  	 * XXX: It would be nice to support lower refresh rates on the
  	 * panels to reduce power consumption, and perhaps match the
-@@ -1147,10 +949,6 @@ bool intel_lvds_init(struct drm_device *dev)
+@@ -1158,10 +960,6 @@ bool intel_lvds_init(struct drm_device *
  
  	lvds_encoder->attached_connector = lvds_connector;
  
@@ -417,7 +409,7 @@ index 855c0850f030..2a2180410cbd 100644
  	intel_encoder = &lvds_encoder->base;
  	encoder = &intel_encoder->base;
  	intel_connector = &lvds_connector->base;
-@@ -1162,7 +960,6 @@ bool intel_lvds_init(struct drm_device *dev)
+@@ -1173,7 +971,6 @@ bool intel_lvds_init(struct drm_device *
  			 DRM_MODE_ENCODER_LVDS);
  
  	intel_encoder->enable = intel_enable_lvds;
@@ -425,8 +417,6 @@ index 855c0850f030..2a2180410cbd 100644
  	intel_encoder->pre_pll_enable = intel_pre_pll_enable_lvds;
  	intel_encoder->compute_config = intel_lvds_compute_config;
  	intel_encoder->disable = intel_disable_lvds;
-diff --git a/drivers/gpu/drm/i915/intel_panel.c b/drivers/gpu/drm/i915/intel_panel.c
-index 317d2bc15049..b775dd5f8dd9 100644
 --- a/drivers/gpu/drm/i915/intel_panel.c
 +++ b/drivers/gpu/drm/i915/intel_panel.c
 @@ -117,6 +117,197 @@ done:
@@ -627,6 +617,3 @@ index 317d2bc15049..b775dd5f8dd9 100644
  static int is_backlight_combination_mode(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
--- 
-1.8.5.rc3
-

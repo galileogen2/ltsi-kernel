@@ -166,7 +166,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #include <linux/of_device.h>
  
  #include <mach/hardware.h>
-@@ -728,7 +727,6 @@ static int davinci_i2c_probe(struct plat
+@@ -726,7 +725,6 @@ static int davinci_i2c_probe(struct plat
  		dev_err(&pdev->dev, "failure adding adapter\n");
  		goto err_unuse_clocks;
  	}

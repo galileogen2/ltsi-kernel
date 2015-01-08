@@ -247,7 +247,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  int radeon_mode_dumb_mmap(struct drm_file *filp,
 --- a/drivers/gpu/drm/radeon/radeon_kms.c
 +++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -722,7 +722,7 @@ KMS_INVALID_IOCTL(radeon_surface_alloc_k
+@@ -724,7 +724,7 @@ KMS_INVALID_IOCTL(radeon_surface_alloc_k
  KMS_INVALID_IOCTL(radeon_surface_free_kms)
  
  

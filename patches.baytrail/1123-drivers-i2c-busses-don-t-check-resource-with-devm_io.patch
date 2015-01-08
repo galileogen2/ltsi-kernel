@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/i2c/busses/i2c-davinci.c
 +++ b/drivers/i2c/busses/i2c-davinci.c
-@@ -646,13 +646,6 @@ static int davinci_i2c_probe(struct plat
+@@ -644,13 +644,6 @@ static int davinci_i2c_probe(struct plat
  	struct resource *mem, *irq;
  	int r;
  
@@ -33,7 +33,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	irq = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
  	if (!irq) {
  		dev_err(&pdev->dev, "no irq resource?\n");
-@@ -697,6 +690,7 @@ static int davinci_i2c_probe(struct plat
+@@ -695,6 +688,7 @@ static int davinci_i2c_probe(struct plat
  		return -ENODEV;
  	clk_prepare_enable(dev->clk);
  

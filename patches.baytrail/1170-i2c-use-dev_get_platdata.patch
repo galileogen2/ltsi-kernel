@@ -86,7 +86,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		chost->sel_gpio = pdata->sel_gpio;
 --- a/drivers/i2c/busses/i2c-davinci.c
 +++ b/drivers/i2c/busses/i2c-davinci.c
-@@ -665,7 +665,7 @@ static int davinci_i2c_probe(struct plat
+@@ -663,7 +663,7 @@ static int davinci_i2c_probe(struct plat
  #endif
  	dev->dev = &pdev->dev;
  	dev->irq = irq->start;
