@@ -14,15 +14,13 @@ Signed-off-by: Chris Ball <cjb@laptop.org>
 (cherry picked from commit f0710a557cb17746b09234f01073a2cdafe4f4a5)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/mmc/host/sdhci.c  | 35 ++++++++++++++++++++++++++++++++++-
- include/linux/mmc/sdhci.h |  2 ++
+ drivers/mmc/host/sdhci.c  |   35 ++++++++++++++++++++++++++++++++++-
+ include/linux/mmc/sdhci.h |    2 ++
  2 files changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/mmc/host/sdhci.c b/drivers/mmc/host/sdhci.c
-index 2ea429c27714..c81c2a289dbd 100644
 --- a/drivers/mmc/host/sdhci.c
 +++ b/drivers/mmc/host/sdhci.c
-@@ -58,6 +58,8 @@ static void sdhci_enable_preset_value(struct sdhci_host *host, bool enable);
+@@ -58,6 +58,8 @@ static void sdhci_enable_preset_value(st
  #ifdef CONFIG_PM_RUNTIME
  static int sdhci_runtime_pm_get(struct sdhci_host *host);
  static int sdhci_runtime_pm_put(struct sdhci_host *host);
@@ -31,7 +29,7 @@ index 2ea429c27714..c81c2a289dbd 100644
  #else
  static inline int sdhci_runtime_pm_get(struct sdhci_host *host)
  {
-@@ -67,6 +69,12 @@ static inline int sdhci_runtime_pm_put(struct sdhci_host *host)
+@@ -67,6 +69,12 @@ static inline int sdhci_runtime_pm_put(s
  {
  	return 0;
  }
@@ -44,7 +42,7 @@ index 2ea429c27714..c81c2a289dbd 100644
  #endif
  
  static void sdhci_dumpregs(struct sdhci_host *host)
-@@ -192,8 +200,12 @@ static void sdhci_reset(struct sdhci_host *host, u8 mask)
+@@ -192,8 +200,12 @@ static void sdhci_reset(struct sdhci_hos
  
  	sdhci_writeb(host, mask, SDHCI_SOFTWARE_RESET);
  
@@ -58,7 +56,7 @@ index 2ea429c27714..c81c2a289dbd 100644
  
  	/* Wait max 100 ms */
  	timeout = 100;
-@@ -1268,6 +1280,8 @@ static int sdhci_set_power(struct sdhci_host *host, unsigned short power)
+@@ -1268,6 +1280,8 @@ static int sdhci_set_power(struct sdhci_
  
  	if (pwr == 0) {
  		sdhci_writeb(host, 0, SDHCI_POWER_CONTROL);
@@ -67,7 +65,7 @@ index 2ea429c27714..c81c2a289dbd 100644
  		return 0;
  	}
  
-@@ -1289,6 +1303,9 @@ static int sdhci_set_power(struct sdhci_host *host, unsigned short power)
+@@ -1289,6 +1303,9 @@ static int sdhci_set_power(struct sdhci_
  
  	sdhci_writeb(host, pwr, SDHCI_POWER_CONTROL);
  
@@ -77,7 +75,7 @@ index 2ea429c27714..c81c2a289dbd 100644
  	/*
  	 * Some controllers need an extra 10ms delay of 10ms before they
  	 * can apply clock after applying power
-@@ -2625,6 +2642,22 @@ static int sdhci_runtime_pm_put(struct sdhci_host *host)
+@@ -2626,6 +2643,22 @@ static int sdhci_runtime_pm_put(struct s
  	return pm_runtime_put_autosuspend(host->mmc->parent);
  }
  
@@ -100,8 +98,6 @@ index 2ea429c27714..c81c2a289dbd 100644
  int sdhci_runtime_suspend_host(struct sdhci_host *host)
  {
  	unsigned long flags;
-diff --git a/include/linux/mmc/sdhci.h b/include/linux/mmc/sdhci.h
-index b838ffc49e4a..ba35bdb87d99 100644
 --- a/include/linux/mmc/sdhci.h
 +++ b/include/linux/mmc/sdhci.h
 @@ -95,6 +95,7 @@ struct sdhci_host {
@@ -120,6 +116,3 @@ index b838ffc49e4a..ba35bdb87d99 100644
  
  	struct mmc_request *mrq;	/* Current request */
  	struct mmc_command *cmd;	/* Current command */
--- 
-1.8.5.rc3
-

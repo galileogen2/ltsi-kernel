@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1441,6 +1441,8 @@
+@@ -1443,6 +1443,8 @@
   * device 0 function 0's pci config register 0x44 or 0x48 and matches it in
   * every way.  It is not accessible from the CP register read instructions.
   *
@@ -33,7 +33,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   */
  #define MCHBAR_MIRROR_BASE	0x10000
  
-@@ -4728,6 +4730,8 @@
+@@ -4730,6 +4732,8 @@
  #define   GEN6_PCODE_READ_MIN_FREQ_TABLE	0x9
  #define	  GEN6_PCODE_WRITE_RC6VIDS		0x4
  #define	  GEN6_PCODE_READ_RC6VIDS		0x5

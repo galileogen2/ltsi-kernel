@@ -15,16 +15,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit e9f882a3f1e4ffabe0730af16d5f6d51737515a5)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h       |  8 +++++
- drivers/gpu/drm/i915/i915_reg.h       |  4 +++
- drivers/gpu/drm/i915/intel_sideband.c | 56 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h       |    8 ++++
+ drivers/gpu/drm/i915/i915_reg.h       |    4 ++
+ drivers/gpu/drm/i915/intel_sideband.c |   56 ++++++++++++++++++++++++++++++++++
  3 files changed, 68 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d5cff9718103..e2628579dcbe 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -2248,6 +2248,14 @@ int sandybridge_pcode_write(struct drm_i915_private *dev_priv, u8 mbox, u32 val)
+@@ -2248,6 +2248,14 @@ int sandybridge_pcode_write(struct drm_i
  u32 vlv_punit_read(struct drm_i915_private *dev_priv, u8 addr);
  void vlv_punit_write(struct drm_i915_private *dev_priv, u8 addr, u32 val);
  u32 vlv_nc_read(struct drm_i915_private *dev_priv, u8 addr);
@@ -39,11 +37,9 @@ index d5cff9718103..e2628579dcbe 100644
  u32 vlv_dpio_read(struct drm_i915_private *dev_priv, int reg);
  void vlv_dpio_write(struct drm_i915_private *dev_priv, int reg, u32 val);
  u32 intel_sbi_read(struct drm_i915_private *dev_priv, u16 reg,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c159e1a6810f..8f4c8b69ebc1 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -346,6 +346,10 @@
+@@ -347,6 +347,10 @@
  #define   IOSF_PORT_PUNIT			0x4
  #define   IOSF_PORT_NC				0x11
  #define   IOSF_PORT_DPIO			0x12
@@ -54,11 +50,9 @@ index c159e1a6810f..8f4c8b69ebc1 100644
  #define VLV_IOSF_DATA				(VLV_DISPLAY_BASE + 0x2104)
  #define VLV_IOSF_ADDR				(VLV_DISPLAY_BASE + 0x2108)
  
-diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915/intel_sideband.c
-index 9a0e6c5ea540..0a4167019769 100644
 --- a/drivers/gpu/drm/i915/intel_sideband.c
 +++ b/drivers/gpu/drm/i915/intel_sideband.c
-@@ -101,6 +101,62 @@ u32 vlv_nc_read(struct drm_i915_private *dev_priv, u8 addr)
+@@ -101,6 +101,62 @@ u32 vlv_nc_read(struct drm_i915_private
  	return val;
  }
  
@@ -121,6 +115,3 @@ index 9a0e6c5ea540..0a4167019769 100644
  u32 vlv_dpio_read(struct drm_i915_private *dev_priv, int reg)
  {
  	u32 val = 0;
--- 
-1.8.5.rc3
-

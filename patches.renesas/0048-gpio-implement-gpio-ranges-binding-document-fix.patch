@@ -13,14 +13,12 @@ Signed-off-by: Grant Likely <grant.likely@linaro.org>
 (cherry picked from commit d9fe0039c4247383c2783923a3860227813b4d82)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/gpio/gpiolib-of.c | 4 ++--
+ drivers/gpio/gpiolib-of.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index 665f9530..48cda3c9 100644
 --- a/drivers/gpio/gpiolib-of.c
 +++ b/drivers/gpio/gpiolib-of.c
-@@ -194,8 +194,8 @@ static void of_gpiochip_add_pin_range(struct gpio_chip *chip)
+@@ -201,8 +201,8 @@ static void of_gpiochip_add_pin_range(st
  		return;
  
  	for (;; index++) {
@@ -31,6 +29,3 @@ index 665f9530..48cda3c9 100644
  		if (ret)
  			break;
  
--- 
-1.8.4.3.gca3854a
-

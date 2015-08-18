@@ -16,15 +16,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit e454a05da623c26544721b159caaacdb6dfe448c)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h   |  3 +++
- drivers/gpu/drm/i915/i915_sysfs.c | 22 ++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h   |    3 +++
+ drivers/gpu/drm/i915/i915_sysfs.c |   22 ++++++++++++++++++++--
  2 files changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c15cc749ca2c..96fd2ce6aa02 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1805,6 +1805,9 @@
+@@ -1807,6 +1807,9 @@
   */
  #define HSW_CXT_TOTAL_SIZE		(17 * PAGE_SIZE)
  
@@ -34,11 +32,9 @@ index c15cc749ca2c..96fd2ce6aa02 100644
  /*
   * Overlay regs
   */
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 44f4c1a6f7b1..8003886361b8 100644
 --- a/drivers/gpu/drm/i915/i915_sysfs.c
 +++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -37,12 +37,30 @@ static u32 calc_residency(struct drm_device *dev, const u32 reg)
+@@ -37,12 +37,30 @@ static u32 calc_residency(struct drm_dev
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	u64 raw_time; /* 32b value may overflow during fixed point math */
@@ -71,6 +67,3 @@ index 44f4c1a6f7b1..8003886361b8 100644
  }
  
  static ssize_t
--- 
-1.8.5.rc3
-

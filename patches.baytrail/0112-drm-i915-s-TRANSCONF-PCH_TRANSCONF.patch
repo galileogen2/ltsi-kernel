@@ -23,7 +23,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4064,9 +4064,10 @@
+@@ -4066,9 +4066,10 @@
  #define TRANSDPLINK_M2(pipe) _PIPE(pipe, _TRANSA_DP_LINK_M2, _TRANSB_DP_LINK_M2)
  #define TRANSDPLINK_N2(pipe) _PIPE(pipe, _TRANSA_DP_LINK_N2, _TRANSB_DP_LINK_N2)
  

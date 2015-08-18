@@ -59,7 +59,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  };
  
  static inline int dw8250_modify_msr(struct uart_port *p, int offset, int value)
-@@ -109,6 +112,13 @@ static unsigned int dw8250_serial_in(str
+@@ -112,6 +115,13 @@ static unsigned int dw8250_serial_in(str
  	return dw8250_modify_msr(p, offset, value);
  }
  
@@ -73,7 +73,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static void dw8250_serial_out32(struct uart_port *p, int offset, int value)
  {
  	struct dw8250_data *d = p->private_data;
-@@ -147,7 +157,7 @@ static int dw8250_handle_irq(struct uart
+@@ -153,7 +163,7 @@ static int dw8250_handle_irq(struct uart
  		return 1;
  	} else if ((iir & UART_IIR_BUSY) == UART_IIR_BUSY) {
  		/* Clear the USR */
@@ -82,7 +82,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  		return 1;
  	}
-@@ -167,12 +177,60 @@ dw8250_do_pm(struct uart_port *port, uns
+@@ -173,12 +183,60 @@ dw8250_do_pm(struct uart_port *port, uns
  		pm_runtime_put_sync_suspend(port->dev);
  }
  
@@ -145,7 +145,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		switch (val) {
  		case 1:
  			break;
-@@ -186,6 +244,8 @@ static int dw8250_probe_of(struct uart_p
+@@ -192,6 +250,8 @@ static int dw8250_probe_of(struct uart_p
  			return -EINVAL;
  		}
  	}
@@ -154,7 +154,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	if (!of_property_read_u32(np, "reg-shift", &val))
  		p->regshift = val;
-@@ -210,6 +270,8 @@ static int dw8250_probe_acpi(struct uart
+@@ -216,6 +276,8 @@ static int dw8250_probe_acpi(struct uart
  	const struct acpi_device_id *id;
  	struct uart_port *p = &up->port;
  
@@ -163,7 +163,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	id = acpi_match_device(p->dev->driver->acpi_match_table, p->dev);
  	if (!id)
  		return -ENODEV;
-@@ -238,38 +300,6 @@ static inline int dw8250_probe_acpi(stru
+@@ -244,38 +306,6 @@ static inline int dw8250_probe_acpi(stru
  }
  #endif /* CONFIG_ACPI */
  
@@ -202,7 +202,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int dw8250_probe(struct platform_device *pdev)
  {
  	struct uart_8250_port uart = {};
-@@ -301,6 +331,7 @@ static int dw8250_probe(struct platform_
+@@ -307,6 +337,7 @@ static int dw8250_probe(struct platform_
  	if (!data)
  		return -ENOMEM;
  
@@ -210,7 +210,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	data->clk = devm_clk_get(&pdev->dev, NULL);
  	if (!IS_ERR(data->clk)) {
  		clk_prepare_enable(data->clk);
-@@ -312,10 +343,8 @@ static int dw8250_probe(struct platform_
+@@ -318,10 +349,8 @@ static int dw8250_probe(struct platform_
  	uart.port.serial_out = dw8250_serial_out;
  	uart.port.private_data = data;
  
@@ -222,7 +222,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		if (err)
  			return err;
  	} else if (ACPI_HANDLE(&pdev->dev)) {
-@@ -404,6 +433,7 @@ static const struct dev_pm_ops dw8250_pm
+@@ -410,6 +439,7 @@ static const struct dev_pm_ops dw8250_pm
  
  static const struct of_device_id dw8250_of_match[] = {
  	{ .compatible = "snps,dw-apb-uart" },

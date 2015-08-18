@@ -91,7 +91,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		dev->driver->irq_handler = ironlake_irq_handler;
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3799,6 +3799,9 @@
+@@ -3801,6 +3801,9 @@
  #define DE_PLANEA_FLIP_DONE_IVB		(1<<3)
  #define DE_PIPEA_VBLANK_IVB		(1<<0)
  

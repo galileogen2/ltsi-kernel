@@ -23,7 +23,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3208,9 +3208,6 @@
+@@ -3210,9 +3210,6 @@
  #define  MLTR_WM2_SHIFT		8
  /* the unit of memory self-refresh latency time is 0.5us */
  #define  ILK_SRLT_MASK		0x3f
@@ -33,7 +33,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  /* define the fifo size on Ironlake */
  #define ILK_DISPLAY_FIFO	128
-@@ -3257,12 +3254,6 @@
+@@ -3259,12 +3256,6 @@
  #define SSKPD_WM2_SHIFT		16
  #define SSKPD_WM3_SHIFT		24
  

@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3255,11 +3255,11 @@
+@@ -3257,11 +3257,11 @@
  
  /* define the Watermark register on Ironlake */
  #define WM0_PIPEA_ILK		0x45100
@@ -39,7 +39,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  #define WM0_PIPEB_ILK		0x45104
  #define WM0_PIPEC_IVB		0x45200
-@@ -3269,9 +3269,9 @@
+@@ -3271,9 +3271,9 @@
  #define  WM1_LP_LATENCY_MASK	(0x7f<<24)
  #define  WM1_LP_FBC_MASK	(0xf<<20)
  #define  WM1_LP_FBC_SHIFT	20

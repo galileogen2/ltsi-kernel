@@ -25,7 +25,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
 
 --- a/drivers/net/phy/phy.c
 +++ b/drivers/net/phy/phy.c
-@@ -439,7 +439,7 @@ void phy_start_machine(struct phy_device
+@@ -458,7 +458,7 @@ void phy_start_machine(struct phy_device
  {
  	phydev->adjust_state = handler;
  
@@ -34,7 +34,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  }
  
  /**
-@@ -500,7 +500,7 @@ static irqreturn_t phy_interrupt(int irq
+@@ -519,7 +519,7 @@ static irqreturn_t phy_interrupt(int irq
  	disable_irq_nosync(irq);
  	atomic_inc(&phydev->irq_disable);
  
@@ -43,7 +43,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  
  	return IRQ_HANDLED;
  }
-@@ -655,7 +655,7 @@ static void phy_change(struct work_struc
+@@ -674,7 +674,7 @@ static void phy_change(struct work_struc
  
  	/* reschedule state queue work to run as soon as possible */
  	cancel_delayed_work_sync(&phydev->state_queue);
@@ -52,7 +52,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  
  	return;
  
-@@ -918,7 +918,8 @@ void phy_state_machine(struct work_struc
+@@ -937,7 +937,8 @@ void phy_state_machine(struct work_struc
  	if (err < 0)
  		phy_error(phydev);
  

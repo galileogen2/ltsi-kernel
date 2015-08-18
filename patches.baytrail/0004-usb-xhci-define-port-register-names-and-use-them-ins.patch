@@ -23,7 +23,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/host/xhci-hub.c
 +++ b/drivers/usb/host/xhci-hub.c
-@@ -922,18 +922,18 @@ int xhci_hub_control(struct usb_hcd *hcd
+@@ -925,18 +925,18 @@ int xhci_hub_control(struct usb_hcd *hcd
  		case USB_PORT_FEAT_U1_TIMEOUT:
  			if (hcd->speed != HCD_USB3)
  				goto error;
@@ -46,7 +46,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			break;
  		default:
  			goto error;
-@@ -1153,10 +1153,8 @@ int xhci_bus_suspend(struct usb_hcd *hcd
+@@ -1156,10 +1156,8 @@ int xhci_bus_suspend(struct usb_hcd *hcd
  			__le32 __iomem *addr;
  			u32 tmp;
  
@@ -59,7 +59,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			tmp = xhci_readl(xhci, addr);
  			tmp |= PORT_RWE;
  			xhci_writel(xhci, tmp, addr);
-@@ -1248,7 +1246,7 @@ int xhci_bus_resume(struct usb_hcd *hcd)
+@@ -1251,7 +1249,7 @@ int xhci_bus_resume(struct usb_hcd *hcd)
  			/* Add one to the port status register address to get
  			 * the port power control register address.
  			 */
@@ -70,7 +70,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			xhci_writel(xhci, tmp, addr);
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3930,7 +3930,7 @@ static int xhci_usb2_software_lpm_test(s
+@@ -3933,7 +3933,7 @@ static int xhci_usb2_software_lpm_test(s
  	 * Check device's USB 2.0 extension descriptor to determine whether
  	 * HIRD or BESL shoule be used. See USB2.0 LPM errata.
  	 */
@@ -79,7 +79,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	hird = xhci_calculate_hird_besl(xhci, udev);
  	temp = PORT_L1DS(udev->slot_id) | PORT_HIRD(hird);
  	xhci_writel(xhci, temp, pm_addr);
-@@ -4028,7 +4028,7 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4031,7 +4031,7 @@ int xhci_set_usb2_hardware_lpm(struct us
  
  	port_array = xhci->usb2_ports;
  	port_num = udev->portnum - 1;
@@ -90,7 +90,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	xhci_dbg(xhci, "%s port %d USB2 hardware LPM\n",
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
-@@ -132,6 +132,11 @@ struct xhci_cap_regs {
+@@ -134,6 +134,11 @@ struct xhci_cap_regs {
  /* Number of registers per port */
  #define	NUM_PORT_REGS	4
  

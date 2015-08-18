@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2990,6 +2990,7 @@
+@@ -2992,6 +2992,7 @@
  #define   PIPECONF_DISABLE	0
  #define   PIPECONF_DOUBLE_WIDE	(1<<30)
  #define   I965_PIPECONF_ACTIVE	(1<<30)

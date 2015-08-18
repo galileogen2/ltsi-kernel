@@ -26,7 +26,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4150,10 +4150,9 @@
+@@ -4152,10 +4152,9 @@
  #define  FDI_LINK_TRAIN_600MV_3_5DB_SNB_B	(0x39<<22)
  #define  FDI_LINK_TRAIN_800MV_0DB_SNB_B		(0x38<<22)
  #define  FDI_LINK_TRAIN_VOL_EMP_MASK		(0x3f<<22)
@@ -40,7 +40,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define  FDI_TX_ENHANCE_FRAME_ENABLE    (1<<18)
  /* Ironlake: hardwired to 1 */
  #define  FDI_TX_PLL_ENABLE              (1<<14)
-@@ -4178,7 +4177,6 @@
+@@ -4180,7 +4179,6 @@
  /* train, dp width same as FDI_TX */
  #define  FDI_FS_ERRC_ENABLE		(1<<27)
  #define  FDI_FE_ERRC_ENABLE		(1<<26)
@@ -48,7 +48,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define  FDI_RX_POLARITY_REVERSED_LPT	(1<<16)
  #define  FDI_8BPC                       (0<<16)
  #define  FDI_10BPC                      (1<<16)
-@@ -4200,9 +4198,6 @@
+@@ -4202,9 +4200,6 @@
  #define  FDI_LINK_TRAIN_PATTERN_IDLE_CPT	(2<<8)
  #define  FDI_LINK_TRAIN_NORMAL_CPT		(3<<8)
  #define  FDI_LINK_TRAIN_PATTERN_MASK_CPT	(3<<8)

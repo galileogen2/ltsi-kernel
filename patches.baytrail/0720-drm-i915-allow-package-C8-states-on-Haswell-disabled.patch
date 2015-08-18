@@ -607,15 +607,15 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif /* __INTEL_DRV_H__ */
 --- a/drivers/gpu/drm/i915/intel_i2c.c
 +++ b/drivers/gpu/drm/i915/intel_i2c.c
-@@ -398,6 +398,7 @@ gmbus_xfer(struct i2c_adapter *adapter,
- 	int i, reg_offset;
+@@ -444,6 +444,7 @@ gmbus_xfer(struct i2c_adapter *adapter,
+ 	int i = 0, inc, try = 0, reg_offset;
  	int ret = 0;
  
 +	intel_aux_display_runtime_get(dev_priv);
  	mutex_lock(&dev_priv->gmbus_mutex);
  
  	if (bus->force_bit) {
-@@ -497,6 +498,7 @@ timeout:
+@@ -557,6 +558,7 @@ timeout:
  
  out:
  	mutex_unlock(&dev_priv->gmbus_mutex);

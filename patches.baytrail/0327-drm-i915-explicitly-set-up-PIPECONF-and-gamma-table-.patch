@@ -28,7 +28,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3682,9 +3682,9 @@
+@@ -3684,9 +3684,9 @@
  #define _GAMMA_MODE_B		0x4ac80
  #define GAMMA_MODE(pipe) _PIPE(pipe, _GAMMA_MODE_A, _GAMMA_MODE_B)
  #define GAMMA_MODE_MODE_MASK	(3 << 0)

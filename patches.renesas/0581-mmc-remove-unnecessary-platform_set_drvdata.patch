@@ -59,7 +59,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	mmc_remove_host(host->mmc);
 --- a/drivers/mmc/host/atmel-mci.c
 +++ b/drivers/mmc/host/atmel-mci.c
-@@ -2495,8 +2495,6 @@ static int __exit atmci_remove(struct pl
+@@ -2500,8 +2500,6 @@ static int __exit atmci_remove(struct pl
  	struct atmel_mci	*host = platform_get_drvdata(pdev);
  	unsigned int		i;
  
@@ -251,7 +251,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  
 --- a/drivers/mmc/host/sdhci-pxav3.c
 +++ b/drivers/mmc/host/sdhci-pxav3.c
-@@ -340,8 +340,6 @@ static int sdhci_pxav3_remove(struct pla
+@@ -341,8 +341,6 @@ static int sdhci_pxav3_remove(struct pla
  	sdhci_pltfm_free(pdev);
  	kfree(pxa);
  

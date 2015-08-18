@@ -20,7 +20,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
 
 --- a/include/linux/workqueue.h
 +++ b/include/linux/workqueue.h
-@@ -360,11 +360,19 @@ enum {
+@@ -361,11 +361,19 @@ enum {
   *
   * system_freezable_wq is equivalent to system_wq except that it's
   * freezable.
@@ -53,7 +53,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  
  static int worker_thread(void *__worker);
  static void copy_workqueue_attrs(struct workqueue_attrs *to,
-@@ -5071,8 +5075,15 @@ static int __init init_workqueues(void)
+@@ -5106,8 +5110,15 @@ static int __init init_workqueues(void)
  					    WQ_UNBOUND_MAX_ACTIVE);
  	system_freezable_wq = alloc_workqueue("events_freezable",
  					      WQ_FREEZABLE, 0);

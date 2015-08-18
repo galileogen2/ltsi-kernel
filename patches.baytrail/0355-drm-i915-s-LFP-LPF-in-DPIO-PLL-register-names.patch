@@ -14,16 +14,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 4abb2c39811eb81a653461d5ed8c75c528cb2245)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c  | 8 ++++----
- drivers/gpu/drm/i915/i915_reg.h      | 6 +++---
- drivers/gpu/drm/i915/intel_display.c | 4 ++--
+ drivers/gpu/drm/i915/i915_debugfs.c  |    8 ++++----
+ drivers/gpu/drm/i915/i915_reg.h      |    6 +++---
+ drivers/gpu/drm/i915/intel_display.c |    4 ++--
  3 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index f72d5a3fdfba..04cf6c09710a 100644
 --- a/drivers/gpu/drm/i915/i915_debugfs.c
 +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1862,10 +1862,10 @@ static int i915_dpio_info(struct seq_file *m, void *data)
+@@ -1862,10 +1862,10 @@ static int i915_dpio_info(struct seq_fil
  	seq_printf(m, "DPIO_CORE_CLK_B: 0x%08x\n",
  		   vlv_dpio_read(dev_priv, _DPIO_CORE_CLK_B));
  
@@ -38,11 +36,9 @@ index f72d5a3fdfba..04cf6c09710a 100644
  
  	seq_printf(m, "DPIO_FASTCLK_DISABLE: 0x%08x\n",
  		   vlv_dpio_read(dev_priv, DPIO_FASTCLK_DISABLE));
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a2fe7efe0701..13dd0731dbd7 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -448,9 +448,9 @@
+@@ -449,9 +449,9 @@
  #define _DPIO_PLL_CML_B			0x806c
  #define DPIO_PLL_CML(pipe) _PIPE(pipe, _DPIO_PLL_CML_A, _DPIO_PLL_CML_B)
  
@@ -55,11 +51,9 @@ index a2fe7efe0701..13dd0731dbd7 100644
  
  #define DPIO_CALIBRATION		0x80ac
  
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 6901b1b466e6..7a4669183b6a 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -4402,10 +4402,10 @@ static void vlv_update_pll(struct intel_crtc *crtc)
+@@ -4402,10 +4402,10 @@ static void vlv_update_pll(struct intel_
  	if (crtc->config.port_clock == 162000 ||
  	    intel_pipe_has_type(&crtc->base, INTEL_OUTPUT_ANALOG) ||
  	    intel_pipe_has_type(&crtc->base, INTEL_OUTPUT_HDMI))
@@ -72,6 +66,3 @@ index 6901b1b466e6..7a4669183b6a 100644
  				 0x00d0000f);
  
  	if (intel_pipe_has_type(&crtc->base, INTEL_OUTPUT_EDP) ||
--- 
-1.8.5.rc3
-

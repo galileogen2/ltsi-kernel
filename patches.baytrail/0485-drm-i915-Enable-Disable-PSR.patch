@@ -48,7 +48,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1781,6 +1781,47 @@
+@@ -1783,6 +1783,47 @@
  #define BCLRPAT(pipe) _PIPE(pipe, _BCLRPAT_A, _BCLRPAT_B)
  #define VSYNCSHIFT(trans) _TRANSCODER(trans, _VSYNCSHIFT_A, _VSYNCSHIFT_B)
  
@@ -96,7 +96,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* VGA port control */
  #define ADPA			0x61100
  #define PCH_ADPA                0xe1100
-@@ -2060,6 +2101,7 @@
+@@ -2062,6 +2103,7 @@
   * (Haswell and newer) to see which VIDEO_DIP_DATA byte corresponds to each byte
   * of the infoframe structure specified by CEA-861. */
  #define   VIDEO_DIP_DATA_SIZE	32

@@ -15,7 +15,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/host/xhci-hub.c
 +++ b/drivers/usb/host/xhci-hub.c
-@@ -536,6 +536,118 @@ void xhci_del_comp_mod_timer(struct xhci
+@@ -539,6 +539,118 @@ void xhci_del_comp_mod_timer(struct xhci
  	}
  }
  
@@ -134,7 +134,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  int xhci_hub_control(struct usb_hcd *hcd, u16 typeReq, u16 wValue,
  		u16 wIndex, char *buf, u16 wLength)
  {
-@@ -600,104 +712,20 @@ int xhci_hub_control(struct usb_hcd *hcd
+@@ -603,104 +715,20 @@ int xhci_hub_control(struct usb_hcd *hcd
  		if (!wIndex || wIndex > max_ports)
  			goto error;
  		wIndex--;

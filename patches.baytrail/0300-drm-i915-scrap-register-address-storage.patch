@@ -34,7 +34,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* Used by dp and fdi links */
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3940,15 +3940,15 @@
+@@ -3942,15 +3942,15 @@
  
  #define _PCH_DPLL_A              0xc6014
  #define _PCH_DPLL_B              0xc6018

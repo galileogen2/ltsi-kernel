@@ -25,14 +25,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit c9cddffc669408a361c62353a36dd40b469dd9c2)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h        |  2 ++
- drivers/gpu/drm/i915/i915_gem_stolen.c | 12 +++++++--
- drivers/gpu/drm/i915/i915_reg.h        |  1 +
- drivers/gpu/drm/i915/intel_pm.c        | 49 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h        |    2 +
+ drivers/gpu/drm/i915/i915_gem_stolen.c |   12 ++++++--
+ drivers/gpu/drm/i915/i915_reg.h        |    1 
+ drivers/gpu/drm/i915/intel_pm.c        |   49 +++++++++++++++++++++++++++++++++
  4 files changed, 62 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index aa81716db4f3..05752eb2eb0c 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
 @@ -1074,6 +1074,8 @@ typedef struct drm_i915_private {
@@ -44,11 +42,9 @@ index aa81716db4f3..05752eb2eb0c 100644
  	/* list of fbdev register on this device */
  	struct intel_fbdev *fbdev;
  
-diff --git a/drivers/gpu/drm/i915/i915_gem_stolen.c b/drivers/gpu/drm/i915/i915_gem_stolen.c
-index 67d3510cafed..913994cd0a3a 100644
 --- a/drivers/gpu/drm/i915/i915_gem_stolen.c
 +++ b/drivers/gpu/drm/i915/i915_gem_stolen.c
-@@ -62,7 +62,10 @@ static unsigned long i915_stolen_to_physical(struct drm_device *dev)
+@@ -62,7 +62,10 @@ static unsigned long i915_stolen_to_phys
  	 * its value of TOLUD.
  	 */
  	base = 0;
@@ -60,7 +56,7 @@ index 67d3510cafed..913994cd0a3a 100644
  		/* Read Base Data of Stolen Memory Register (BDSM) directly.
  		 * Note that there is also a MCHBAR miror at 0x1080c0 or
  		 * we could use device 2:0x5c instead.
-@@ -183,6 +186,7 @@ void i915_gem_cleanup_stolen(struct drm_device *dev)
+@@ -183,6 +186,7 @@ void i915_gem_cleanup_stolen(struct drm_
  int i915_gem_init_stolen(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
@@ -68,7 +64,7 @@ index 67d3510cafed..913994cd0a3a 100644
  
  	dev_priv->mm.stolen_base = i915_stolen_to_physical(dev);
  	if (dev_priv->mm.stolen_base == 0)
-@@ -191,8 +195,12 @@ int i915_gem_init_stolen(struct drm_device *dev)
+@@ -191,8 +195,12 @@ int i915_gem_init_stolen(struct drm_devi
  	DRM_DEBUG_KMS("found %zd bytes of stolen memory at %08lx\n",
  		      dev_priv->gtt.stolen_size, dev_priv->mm.stolen_base);
  
@@ -82,11 +78,9 @@ index 67d3510cafed..913994cd0a3a 100644
  
  	return 0;
  }
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 325534eb7fd2..5de7b03ff32a 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -698,6 +698,7 @@
+@@ -699,6 +699,7 @@
  #define VLV_IIR		(VLV_DISPLAY_BASE + 0x20a4)
  #define VLV_IMR		(VLV_DISPLAY_BASE + 0x20a8)
  #define VLV_ISR		(VLV_DISPLAY_BASE + 0x20ac)
@@ -94,11 +88,9 @@ index 325534eb7fd2..5de7b03ff32a 100644
  #define   I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1<<18)
  #define   I915_DISPLAY_PORT_INTERRUPT			(1<<17)
  #define   I915_RENDER_COMMAND_PARSER_ERROR_INTERRUPT	(1<<15)
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 5a9b5bea5d10..78b523e688da 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -2566,6 +2566,11 @@ static void valleyview_disable_rps(struct drm_device *dev)
+@@ -2566,6 +2566,11 @@ static void valleyview_disable_rps(struc
  	spin_unlock_irq(&dev_priv->rps.lock);
  
  	I915_WRITE(GEN6_PMIIR, I915_READ(GEN6_PMIIR));
@@ -110,7 +102,7 @@ index 5a9b5bea5d10..78b523e688da 100644
  }
  
  int intel_enable_rc6(const struct drm_device *dev)
-@@ -2860,6 +2865,48 @@ static void vlv_rps_timer_work(struct work_struct *work)
+@@ -2860,6 +2865,48 @@ static void vlv_rps_timer_work(struct wo
  	mutex_unlock(&dev_priv->rps.hw_lock);
  }
  
@@ -159,7 +151,7 @@ index 5a9b5bea5d10..78b523e688da 100644
  static void valleyview_enable_rps(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
-@@ -2874,6 +2921,8 @@ static void valleyview_enable_rps(struct drm_device *dev)
+@@ -2874,6 +2921,8 @@ static void valleyview_enable_rps(struct
  		I915_WRITE(GTFIFODBG, gtfifodbg);
  	}
  
@@ -168,6 +160,3 @@ index 5a9b5bea5d10..78b523e688da 100644
  	gen6_gt_force_wake_get(dev_priv);
  
  	I915_WRITE(GEN6_RP_UP_THRESHOLD, 59400);
--- 
-1.8.5.rc3
-

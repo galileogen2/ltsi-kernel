@@ -53,7 +53,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			  enum port port);
 --- a/drivers/gpu/drm/i915/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/intel_lvds.c
-@@ -909,7 +909,7 @@ static bool intel_lvds_supported(struct
+@@ -925,7 +925,7 @@ static bool intel_lvds_supported(struct
   * Create the connector, register the LVDS DDC bus, and try to figure out what
   * modes we can display on the LVDS panel (if present).
   */
@@ -62,7 +62,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	struct intel_lvds_encoder *lvds_encoder;
-@@ -938,35 +938,35 @@ bool intel_lvds_init(struct drm_device *
+@@ -954,35 +954,35 @@ bool intel_lvds_init(struct drm_device *
  			   I915_READ(PP_CONTROL) | PANEL_UNLOCK_REGS);
  	}
  	if (!intel_lvds_supported(dev))
@@ -105,7 +105,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  
  	lvds_encoder->attached_connector = lvds_connector;
-@@ -1126,7 +1126,7 @@ out:
+@@ -1142,7 +1142,7 @@ out:
  	intel_panel_init(&intel_connector->panel, fixed_mode);
  	intel_panel_setup_backlight(connector);
  
@@ -114,7 +114,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  failed:
  	DRM_DEBUG_KMS("No LVDS modes found, disabling.\n");
-@@ -1136,5 +1136,5 @@ failed:
+@@ -1152,5 +1152,5 @@ failed:
  		drm_mode_destroy(dev, fixed_mode);
  	kfree(lvds_encoder);
  	kfree(lvds_connector);

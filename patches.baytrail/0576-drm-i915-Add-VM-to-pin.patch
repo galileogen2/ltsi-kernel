@@ -156,7 +156,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		goto err_unref;
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -504,7 +504,7 @@ init_pipe_control(struct intel_ring_buff
+@@ -507,7 +507,7 @@ init_pipe_control(struct intel_ring_buff
  
  	i915_gem_object_set_cache_level(obj, I915_CACHE_LLC);
  
@@ -165,7 +165,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (ret)
  		goto err_unref;
  
-@@ -1239,7 +1239,7 @@ static int init_status_page(struct intel
+@@ -1242,7 +1242,7 @@ static int init_status_page(struct intel
  
  	i915_gem_object_set_cache_level(obj, I915_CACHE_LLC);
  
@@ -174,7 +174,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (ret != 0) {
  		goto err_unref;
  	}
-@@ -1322,7 +1322,7 @@ static int intel_init_ring_buffer(struct
+@@ -1325,7 +1325,7 @@ static int intel_init_ring_buffer(struct
  
  	ring->obj = obj;
  
@@ -183,7 +183,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (ret)
  		goto err_unref;
  
-@@ -1847,7 +1847,7 @@ int intel_init_render_ring_buffer(struct
+@@ -1850,7 +1850,7 @@ int intel_init_render_ring_buffer(struct
  			return -ENOMEM;
  		}
  

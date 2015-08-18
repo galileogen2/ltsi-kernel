@@ -20,7 +20,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3498,7 +3498,7 @@
+@@ -3500,7 +3500,7 @@
  #define SPRGAMC(pipe) _PIPE(pipe, _SPRA_GAMC, _SPRB_GAMC)
  #define SPRSURFLIVE(pipe) _PIPE(pipe, _SPRA_SURFLIVE, _SPRB_SURFLIVE)
  
@@ -29,7 +29,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define   SP_ENABLE			(1<<31)
  #define   SP_GEAMMA_ENABLE		(1<<30)
  #define   SP_PIXFORMAT_MASK		(0xf<<26)
-@@ -3517,30 +3517,30 @@
+@@ -3519,30 +3519,30 @@
  #define   SP_YUV_ORDER_YVYU		(2<<16)
  #define   SP_YUV_ORDER_VYUY		(3<<16)
  #define   SP_TILED			(1<<10)

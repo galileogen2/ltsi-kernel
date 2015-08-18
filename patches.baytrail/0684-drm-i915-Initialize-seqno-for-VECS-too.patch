@@ -36,7 +36,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1613,6 +1613,8 @@ void intel_ring_init_seqno(struct intel_
+@@ -1616,6 +1616,8 @@ void intel_ring_init_seqno(struct intel_
  	if (INTEL_INFO(ring->dev)->gen >= 6) {
  		I915_WRITE(RING_SYNC_0(ring->mmio_base), 0);
  		I915_WRITE(RING_SYNC_1(ring->mmio_base), 0);

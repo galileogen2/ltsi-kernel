@@ -113,7 +113,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int
  gen2_render_ring_flush(struct intel_ring_buffer *ring,
  		       u32	invalidate_domains,
-@@ -634,7 +644,7 @@ gen6_add_request(struct intel_ring_buffe
+@@ -637,7 +647,7 @@ gen6_add_request(struct intel_ring_buffe
  	intel_ring_emit(ring, I915_GEM_HWS_INDEX << MI_STORE_DWORD_INDEX_SHIFT);
  	intel_ring_emit(ring, ring->outstanding_lazy_seqno);
  	intel_ring_emit(ring, MI_USER_INTERRUPT);
@@ -122,7 +122,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return 0;
  }
-@@ -747,7 +757,7 @@ pc_render_add_request(struct intel_ring_
+@@ -750,7 +760,7 @@ pc_render_add_request(struct intel_ring_
  	intel_ring_emit(ring, ring->scratch.gtt_offset | PIPE_CONTROL_GLOBAL_GTT);
  	intel_ring_emit(ring, ring->outstanding_lazy_seqno);
  	intel_ring_emit(ring, 0);
@@ -131,7 +131,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return 0;
  }
-@@ -968,7 +978,7 @@ i9xx_add_request(struct intel_ring_buffe
+@@ -971,7 +981,7 @@ i9xx_add_request(struct intel_ring_buffe
  	intel_ring_emit(ring, I915_GEM_HWS_INDEX << MI_STORE_DWORD_INDEX_SHIFT);
  	intel_ring_emit(ring, ring->outstanding_lazy_seqno);
  	intel_ring_emit(ring, MI_USER_INTERRUPT);
@@ -140,7 +140,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return 0;
  }
-@@ -1417,6 +1427,9 @@ static int ring_wait_for_space(struct in
+@@ -1420,6 +1430,9 @@ static int ring_wait_for_space(struct in
  	if (ret != -ENOSPC)
  		return ret;
  
@@ -150,7 +150,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	trace_i915_ring_wait_begin(ring);
  	/* With GEM the hangcheck timer should kick us out of the loop,
  	 * leaving it early runs the risk of corrupting GEM state (due
-@@ -1575,17 +1588,6 @@ void intel_ring_init_seqno(struct intel_
+@@ -1578,17 +1591,6 @@ void intel_ring_init_seqno(struct intel_
  	ring->hangcheck.seqno = seqno;
  }
  

@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4954,7 +4954,8 @@
+@@ -4956,7 +4956,8 @@
  #define  SBI_SSCAUXDIV6				0x0610
  #define   SBI_SSCAUXDIV_FINALDIV2SEL(x)		((x)<<4)
  #define  SBI_DBUFF0				0x2a00

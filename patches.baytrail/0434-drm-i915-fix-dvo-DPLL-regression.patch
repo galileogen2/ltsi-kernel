@@ -34,16 +34,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from drm-intel-next-queued)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h      |  3 ++-
- drivers/gpu/drm/i915/intel_display.c | 11 +++++++----
- drivers/gpu/drm/i915/intel_dvo.c     |  3 ---
+ drivers/gpu/drm/i915/i915_reg.h      |    3 ++-
+ drivers/gpu/drm/i915/intel_display.c |   11 +++++++----
+ drivers/gpu/drm/i915/intel_dvo.c     |    3 ---
  3 files changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d8278254bca3..0f604881a3b4 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1128,7 +1128,8 @@
+@@ -1130,7 +1130,8 @@
  #define _DPLL_B	(dev_priv->info->display_mmio_offset + 0x6018)
  #define DPLL(pipe) _PIPE(pipe, _DPLL_A, _DPLL_B)
  #define   DPLL_VCO_ENABLE		(1 << 31)
@@ -53,11 +51,9 @@ index d8278254bca3..0f604881a3b4 100644
  #define   DPLL_EXT_BUFFER_ENABLE_VLV	(1 << 30)
  #define   DPLL_SYNCLOCK_ENABLE		(1 << 29)
  #define   DPLL_REFA_CLK_ENABLE_VLV	(1 << 29)
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 3886db95a688..9be6594e7f06 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -4540,10 +4540,10 @@ static void i9xx_update_pll(struct intel_crtc *crtc,
+@@ -4540,10 +4540,10 @@ static void i9xx_update_pll(struct intel
  	}
  
  	if (is_sdvo)
@@ -70,7 +66,7 @@ index 3886db95a688..9be6594e7f06 100644
  
  	/* compute bitmask from p1 value */
  	if (IS_PINEVIEW(dev))
-@@ -4615,6 +4615,9 @@ static void i8xx_update_pll(struct intel_crtc *crtc,
+@@ -4615,6 +4615,9 @@ static void i8xx_update_pll(struct intel
  			dpll |= PLL_P2_DIVIDE_BY_4;
  	}
  
@@ -80,7 +76,7 @@ index 3886db95a688..9be6594e7f06 100644
  	if (intel_pipe_has_type(&crtc->base, INTEL_OUTPUT_LVDS) &&
  		 intel_panel_use_ssc(dev_priv) && num_connectors < 2)
  		dpll |= PLLB_REF_INPUT_SPREADSPECTRUMIN;
-@@ -5647,9 +5650,9 @@ static uint32_t ironlake_compute_dpll(struct intel_crtc *intel_crtc,
+@@ -5647,9 +5650,9 @@ static uint32_t ironlake_compute_dpll(st
  		<< PLL_REF_SDVO_HDMI_MULTIPLIER_SHIFT;
  
  	if (is_sdvo)
@@ -92,11 +88,9 @@ index 3886db95a688..9be6594e7f06 100644
  
  	/* compute bitmask from p1 value */
  	dpll |= (1 << (intel_crtc->config.dpll.p1 - 1)) << DPLL_FPA01_P1_POST_DIV_SHIFT;
-diff --git a/drivers/gpu/drm/i915/intel_dvo.c b/drivers/gpu/drm/i915/intel_dvo.c
-index eb2020eb2b7e..cbbc49dc03be 100644
 --- a/drivers/gpu/drm/i915/intel_dvo.c
 +++ b/drivers/gpu/drm/i915/intel_dvo.c
-@@ -283,7 +283,6 @@ static void intel_dvo_mode_set(struct drm_encoder *encoder,
+@@ -283,7 +283,6 @@ static void intel_dvo_mode_set(struct dr
  	int pipe = intel_crtc->pipe;
  	u32 dvo_val;
  	u32 dvo_reg = intel_dvo->dev.dvo_reg, dvo_srcdim_reg;
@@ -104,7 +98,7 @@ index eb2020eb2b7e..cbbc49dc03be 100644
  
  	switch (dvo_reg) {
  	case DVOA:
-@@ -314,8 +313,6 @@ static void intel_dvo_mode_set(struct drm_encoder *encoder,
+@@ -314,8 +313,6 @@ static void intel_dvo_mode_set(struct dr
  	if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
  		dvo_val |= DVO_VSYNC_ACTIVE_HIGH;
  
@@ -113,6 +107,3 @@ index eb2020eb2b7e..cbbc49dc03be 100644
  	/*I915_WRITE(DVOB_SRCDIM,
  	  (adjusted_mode->hdisplay << DVO_SRCDIM_HORIZONTAL_SHIFT) |
  	  (adjusted_mode->VDisplay << DVO_SRCDIM_VERTICAL_SHIFT));*/
--- 
-1.8.5.rc3
-

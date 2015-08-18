@@ -29,7 +29,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3110,6 +3110,10 @@
+@@ -3112,6 +3112,10 @@
  #define WM3S_LP_IVB		0x45128
  #define  WM1S_LP_EN		(1<<31)
  

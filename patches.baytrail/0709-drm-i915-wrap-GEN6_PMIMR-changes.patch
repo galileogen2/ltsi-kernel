@@ -127,7 +127,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	/* only unmask PM interrupts we need. Mask all others. */
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1077,10 +1077,8 @@ hsw_vebox_get_irq(struct intel_ring_buff
+@@ -1080,10 +1080,8 @@ hsw_vebox_get_irq(struct intel_ring_buff
  
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (ring->irq_refcount++ == 0) {
@@ -139,7 +139,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  	spin_unlock_irqrestore(&dev_priv->irq_lock, flags);
  
-@@ -1099,10 +1097,8 @@ hsw_vebox_put_irq(struct intel_ring_buff
+@@ -1102,10 +1100,8 @@ hsw_vebox_put_irq(struct intel_ring_buff
  
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (--ring->irq_refcount == 0) {

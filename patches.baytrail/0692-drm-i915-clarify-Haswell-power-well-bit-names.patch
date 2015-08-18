@@ -20,7 +20,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4837,8 +4837,8 @@
+@@ -4839,8 +4839,8 @@
  #define HSW_PWR_WELL_DRIVER			0x45404 /* CTL2 */
  #define HSW_PWR_WELL_KVMR			0x45408 /* CTL3 */
  #define HSW_PWR_WELL_DEBUG			0x4540C /* CTL4 */

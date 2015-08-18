@@ -520,7 +520,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  		/* If the device type is not LFP, continue.
  		 * We have to check both the new identifiers as well as the
-@@ -859,7 +859,7 @@ static bool compute_is_dual_link_lvds(st
+@@ -875,7 +875,7 @@ static bool compute_is_dual_link_lvds(st
  	 */
  	val = I915_READ(lvds_encoder->reg);
  	if (!(val & ~(LVDS_PIPE_MASK | LVDS_DETECTED)))
@@ -529,7 +529,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return (val & LVDS_CLKB_POWER_MASK) == LVDS_CLKB_POWER_UP;
  }
-@@ -930,7 +930,7 @@ bool intel_lvds_init(struct drm_device *
+@@ -946,7 +946,7 @@ bool intel_lvds_init(struct drm_device *
  	if (HAS_PCH_SPLIT(dev)) {
  		if ((I915_READ(PCH_LVDS) & LVDS_DETECTED) == 0)
  			return false;
@@ -538,7 +538,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			DRM_DEBUG_KMS("disable LVDS for eDP support\n");
  			return false;
  		}
-@@ -1048,11 +1048,11 @@ bool intel_lvds_init(struct drm_device *
+@@ -1064,11 +1064,11 @@ bool intel_lvds_init(struct drm_device *
  	}
  
  	/* Failed to get EDID, what about VBT? */

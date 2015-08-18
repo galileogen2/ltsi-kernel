@@ -127,7 +127,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static struct attribute_group usb2_hardware_lpm_attr_group = {
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3944,7 +3944,7 @@ static int xhci_calculate_usb2_hw_lpm_pa
+@@ -3947,7 +3947,7 @@ static int xhci_calculate_usb2_hw_lpm_pa
  	field = le32_to_cpu(udev->bos->ext_cap->bmAttributes);
  
  	/* xHCI l1 is set in steps of 256us, xHCI 1.0 section 5.4.11.2 */
@@ -136,7 +136,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	/* device has preferred BESLD */
  	if (field & USB_BESL_DEEP_VALID) {
-@@ -4128,7 +4128,7 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4131,7 +4131,7 @@ int xhci_set_usb2_hardware_lpm(struct us
  			    (field & USB_BESL_BASELINE_VALID))
  				hird = USB_GET_BESL_BASELINE(field);
  			else
@@ -145,7 +145,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  			exit_latency = xhci_besl_encoding[hird];
  			spin_unlock_irqrestore(&xhci->lock, flags);
-@@ -4218,6 +4218,8 @@ int xhci_update_device(struct usb_hcd *h
+@@ -4221,6 +4221,8 @@ int xhci_update_device(struct usb_hcd *h
  		if (xhci->hw_lpm_support == 1 &&
  		    xhci_check_usb2_port_capability(xhci, portnum, XHCI_HLC)) {
  			udev->usb2_hw_lpm_capable = 1;
@@ -156,7 +156,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  				udev->usb2_hw_lpm_besl_capable = 1;
 --- a/include/linux/usb.h
 +++ b/include/linux/usb.h
-@@ -394,6 +394,22 @@ enum usb_port_connect_type {
+@@ -420,6 +420,22 @@ enum usb_port_connect_type {
  };
  
  /*
@@ -179,7 +179,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   * USB 3.0 Link Power Management (LPM) parameters.
   *
   * PEL and SEL are USB 3.0 Link PM latencies for device-initiated LPM exit.
-@@ -488,6 +504,7 @@ struct usb3_lpm_parameters {
+@@ -514,6 +530,7 @@ struct usb3_lpm_parameters {
   *	specific data for the device.
   * @slot_id: Slot ID assigned by xHCI
   * @removable: Device can be physically removed from this port
@@ -187,7 +187,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   * @u1_params: exit latencies for USB3 U1 LPM state, and hub-initiated timeout.
   * @u2_params: exit latencies for USB3 U2 LPM state, and hub-initiated timeout.
   * @lpm_disable_count: Ref count used by usb_disable_lpm() and usb_enable_lpm()
-@@ -568,6 +585,7 @@ struct usb_device {
+@@ -594,6 +611,7 @@ struct usb_device {
  	struct wusb_dev *wusb_dev;
  	int slot_id;
  	enum usb_device_removable removable;

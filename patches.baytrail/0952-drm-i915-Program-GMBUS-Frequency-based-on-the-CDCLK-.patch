@@ -37,15 +37,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 24eb2d599b6a2bf7761c00e1959898d1d9240cb5)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h  |  8 +++++
- drivers/gpu/drm/i915/intel_i2c.c | 64 ++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h  |    8 ++++
+ drivers/gpu/drm/i915/intel_i2c.c |   64 +++++++++++++++++++++++++++++++++++++++
  2 files changed, 72 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 00fda45728d7..33bb4750516a 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -382,6 +382,8 @@
+@@ -383,6 +383,8 @@
  #define   FB_FMAX_VMIN_FREQ_LO_MASK		0xf8000000
  
  /* vlv2 north clock has */
@@ -54,7 +52,7 @@ index 00fda45728d7..33bb4750516a 100644
  #define CCK_REG_DSI_PLL_FUSE			0x44
  #define CCK_REG_DSI_PLL_CONTROL			0x48
  #define  DSI_PLL_VCO_EN				(1 << 31)
-@@ -1429,6 +1431,12 @@
+@@ -1431,6 +1433,12 @@
  
  #define MI_ARB_VLV		(VLV_DISPLAY_BASE + 0x6504)
  
@@ -67,8 +65,6 @@ index 00fda45728d7..33bb4750516a 100644
  /*
   * Palette regs
   */
-diff --git a/drivers/gpu/drm/i915/intel_i2c.c b/drivers/gpu/drm/i915/intel_i2c.c
-index d1c1e0f7f262..2ca17b14b6c1 100644
 --- a/drivers/gpu/drm/i915/intel_i2c.c
 +++ b/drivers/gpu/drm/i915/intel_i2c.c
 @@ -34,6 +34,11 @@
@@ -153,6 +149,3 @@ index d1c1e0f7f262..2ca17b14b6c1 100644
  	I915_WRITE(dev_priv->gpio_mmio_base + GMBUS0, 0);
  	I915_WRITE(dev_priv->gpio_mmio_base + GMBUS4, 0);
  }
--- 
-1.8.5.rc3
-

@@ -25,12 +25,10 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit ffe74d75502e3a9b0791240b5562bcbecc6ab8dc)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h      | 18 ++++++++++++++++
- drivers/gpu/drm/i915/intel_display.c | 40 ++++++++++++++++++++++++++++--------
+ drivers/gpu/drm/i915/i915_reg.h      |   18 +++++++++++++++
+ drivers/gpu/drm/i915/intel_display.c |   40 +++++++++++++++++++++++++++--------
  2 files changed, 49 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b6a58f720f9a..b2fa2a4c4454 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
 @@ -245,6 +245,7 @@
@@ -41,7 +39,7 @@ index b6a58f720f9a..b2fa2a4c4454 100644
  #define MI_FLUSH_DW		MI_INSTR(0x26, 1) /* for GEN6 */
  #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
  #define   MI_INVALIDATE_TLB		(1<<18)
-@@ -693,6 +694,23 @@
+@@ -694,6 +695,23 @@
  #define   FPGA_DBG_RM_NOCLAIM	(1<<31)
  
  #define DERRMR		0x44050
@@ -65,8 +63,6 @@ index b6a58f720f9a..b2fa2a4c4454 100644
  
  /* GM45+ chicken bits -- debug workaround bits that may be required
   * for various sorts of correct behavior.  The top 16 bits of each are
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 2ed6214010c6..b27738d0b49d 100644
 --- a/drivers/gpu/drm/i915/intel_display.c
 +++ b/drivers/gpu/drm/i915/intel_display.c
 @@ -7832,12 +7832,6 @@ err:
@@ -82,7 +78,7 @@ index 2ed6214010c6..b27738d0b49d 100644
  static int intel_gen7_queue_flip(struct drm_device *dev,
  				 struct drm_crtc *crtc,
  				 struct drm_framebuffer *fb,
-@@ -7846,9 +7840,13 @@ static int intel_gen7_queue_flip(struct drm_device *dev,
+@@ -7846,9 +7840,13 @@ static int intel_gen7_queue_flip(struct
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
  	struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
@@ -98,7 +94,7 @@ index 2ed6214010c6..b27738d0b49d 100644
  
  	ret = intel_pin_and_fence_fb_obj(dev, obj, ring);
  	if (ret)
-@@ -7870,10 +7868,34 @@ static int intel_gen7_queue_flip(struct drm_device *dev,
+@@ -7870,10 +7868,34 @@ static int intel_gen7_queue_flip(struct
  		goto err_unpin;
  	}
  
@@ -134,6 +130,3 @@ index 2ed6214010c6..b27738d0b49d 100644
  	intel_ring_emit(ring, MI_DISPLAY_FLIP_I915 | plane_bit);
  	intel_ring_emit(ring, (fb->pitches[0] | obj->tiling_mode));
  	intel_ring_emit(ring, i915_gem_obj_ggtt_offset(obj) + intel_crtc->dspaddr_offset);
--- 
-1.8.5.rc3
-

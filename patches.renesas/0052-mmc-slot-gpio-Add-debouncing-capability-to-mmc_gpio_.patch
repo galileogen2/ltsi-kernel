@@ -17,19 +17,17 @@ Conflicts:
 	drivers/mmc/host/jz4740_mmc.c
 	drivers/mmc/host/mvsdio.c
 ---
- drivers/mmc/core/host.c            |  2 +-
- drivers/mmc/core/slot-gpio.c       | 14 +++++++++++++-
- drivers/mmc/host/mvsdio.c          |  2 +-
- drivers/mmc/host/sdhci-esdhc-imx.c |  2 +-
- drivers/mmc/host/sdhci-pxav3.c     |  3 ++-
- drivers/mmc/host/sdhci-sirf.c      |  2 +-
- drivers/mmc/host/sh_mmcif.c        |  2 +-
- drivers/mmc/host/tmio_mmc_pio.c    |  2 +-
- include/linux/mmc/slot-gpio.h      |  3 ++-
+ drivers/mmc/core/host.c            |    2 +-
+ drivers/mmc/core/slot-gpio.c       |   14 +++++++++++++-
+ drivers/mmc/host/mvsdio.c          |    2 +-
+ drivers/mmc/host/sdhci-esdhc-imx.c |    2 +-
+ drivers/mmc/host/sdhci-pxav3.c     |    3 ++-
+ drivers/mmc/host/sdhci-sirf.c      |    2 +-
+ drivers/mmc/host/sh_mmcif.c        |    2 +-
+ drivers/mmc/host/tmio_mmc_pio.c    |    2 +-
+ include/linux/mmc/slot-gpio.h      |    3 ++-
  9 files changed, 23 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-index 89f58498..85bdfd00 100644
 --- a/drivers/mmc/core/host.c
 +++ b/drivers/mmc/core/host.c
 @@ -374,7 +374,7 @@ int mmc_of_parse(struct mmc_host *host)
@@ -41,8 +39,6 @@ index 89f58498..85bdfd00 100644
  			if (ret < 0) {
  				dev_err(host->parent,
  					"Failed to request CD GPIO #%d: %d!\n",
-diff --git a/drivers/mmc/core/slot-gpio.c b/drivers/mmc/core/slot-gpio.c
-index 32423510..46596b71 100644
 --- a/drivers/mmc/core/slot-gpio.c
 +++ b/drivers/mmc/core/slot-gpio.c
 @@ -135,6 +135,7 @@ EXPORT_SYMBOL(mmc_gpio_request_ro);
@@ -69,7 +65,7 @@ index 32423510..46596b71 100644
  {
  	struct mmc_gpio *ctx;
  	int irq = gpio_to_irq(gpio);
-@@ -167,6 +173,12 @@ int mmc_gpio_request_cd(struct mmc_host *host, unsigned int gpio)
+@@ -167,6 +173,12 @@ int mmc_gpio_request_cd(struct mmc_host
  		 */
  		return ret;
  
@@ -82,11 +78,9 @@ index 32423510..46596b71 100644
  	/*
  	 * Even if gpio_to_irq() returns a valid IRQ number, the platform might
  	 * still prefer to poll, e.g., because that IRQ number is already used
-diff --git a/drivers/mmc/host/mvsdio.c b/drivers/mmc/host/mvsdio.c
-index 8960fc84..a1fcc1f9 100644
 --- a/drivers/mmc/host/mvsdio.c
 +++ b/drivers/mmc/host/mvsdio.c
-@@ -778,7 +778,7 @@ static int __init mvsd_probe(struct platform_device *pdev)
+@@ -778,7 +778,7 @@ static int __init mvsd_probe(struct plat
  	}
  
  	if (gpio_is_valid(gpio_card_detect)) {
@@ -95,11 +89,9 @@ index 8960fc84..a1fcc1f9 100644
  		if (ret)
  			goto out;
  	} else
-diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-index d5f0d59e..a0317abb 100644
 --- a/drivers/mmc/host/sdhci-esdhc-imx.c
 +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-@@ -592,7 +592,7 @@ static int sdhci_esdhc_imx_probe(struct platform_device *pdev)
+@@ -592,7 +592,7 @@ static int sdhci_esdhc_imx_probe(struct
  	/* card_detect */
  	switch (boarddata->cd_type) {
  	case ESDHC_CD_GPIO:
@@ -108,11 +100,9 @@ index d5f0d59e..a0317abb 100644
  		if (err) {
  			dev_err(mmc_dev(host->mmc),
  				"failed to request card-detect gpio!\n");
-diff --git a/drivers/mmc/host/sdhci-pxav3.c b/drivers/mmc/host/sdhci-pxav3.c
-index 1ae358e0..ce84208d 100644
 --- a/drivers/mmc/host/sdhci-pxav3.c
 +++ b/drivers/mmc/host/sdhci-pxav3.c
-@@ -276,7 +276,8 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
+@@ -277,7 +277,8 @@ static int sdhci_pxav3_probe(struct plat
  			host->mmc->pm_caps |= pdata->pm_caps;
  
  		if (gpio_is_valid(pdata->ext_cd_gpio)) {
@@ -122,11 +112,9 @@ index 1ae358e0..ce84208d 100644
  			if (ret) {
  				dev_err(mmc_dev(host->mmc),
  					"failed to allocate card detect gpio\n");
-diff --git a/drivers/mmc/host/sdhci-sirf.c b/drivers/mmc/host/sdhci-sirf.c
-index 09805af0..b665326d 100644
 --- a/drivers/mmc/host/sdhci-sirf.c
 +++ b/drivers/mmc/host/sdhci-sirf.c
-@@ -97,7 +97,7 @@ static int sdhci_sirf_probe(struct platform_device *pdev)
+@@ -97,7 +97,7 @@ static int sdhci_sirf_probe(struct platf
  	 * gets setup in sdhci_add_host() and we oops.
  	 */
  	if (gpio_is_valid(priv->gpio_cd)) {
@@ -135,11 +123,9 @@ index 09805af0..b665326d 100644
  		if (ret) {
  			dev_err(&pdev->dev, "card detect irq request failed: %d\n",
  				ret);
-diff --git a/drivers/mmc/host/sh_mmcif.c b/drivers/mmc/host/sh_mmcif.c
-index ba76a532..a23f6c06 100644
 --- a/drivers/mmc/host/sh_mmcif.c
 +++ b/drivers/mmc/host/sh_mmcif.c
-@@ -1431,7 +1431,7 @@ static int sh_mmcif_probe(struct platform_device *pdev)
+@@ -1431,7 +1431,7 @@ static int sh_mmcif_probe(struct platfor
  	}
  
  	if (pd && pd->use_cd_gpio) {
@@ -148,11 +134,9 @@ index ba76a532..a23f6c06 100644
  		if (ret < 0)
  			goto erqcd;
  	}
-diff --git a/drivers/mmc/host/tmio_mmc_pio.c b/drivers/mmc/host/tmio_mmc_pio.c
-index f508ecb5..5a1bc3b4 100644
 --- a/drivers/mmc/host/tmio_mmc_pio.c
 +++ b/drivers/mmc/host/tmio_mmc_pio.c
-@@ -1091,7 +1091,7 @@ int tmio_mmc_host_probe(struct tmio_mmc_host **host,
+@@ -1091,7 +1091,7 @@ int tmio_mmc_host_probe(struct tmio_mmc_
  	dev_pm_qos_expose_latency_limit(&pdev->dev, 100);
  
  	if (pdata->flags & TMIO_MMC_USE_GPIO_CD) {
@@ -161,11 +145,9 @@ index f508ecb5..5a1bc3b4 100644
  		if (ret < 0) {
  			tmio_mmc_host_remove(_host);
  			return ret;
-diff --git a/include/linux/mmc/slot-gpio.h b/include/linux/mmc/slot-gpio.h
-index 7d88d27b..b0c73e4c 100644
 --- a/include/linux/mmc/slot-gpio.h
 +++ b/include/linux/mmc/slot-gpio.h
-@@ -18,7 +18,8 @@ int mmc_gpio_request_ro(struct mmc_host *host, unsigned int gpio);
+@@ -18,7 +18,8 @@ int mmc_gpio_request_ro(struct mmc_host
  void mmc_gpio_free_ro(struct mmc_host *host);
  
  int mmc_gpio_get_cd(struct mmc_host *host);
@@ -175,6 +157,3 @@ index 7d88d27b..b0c73e4c 100644
  void mmc_gpio_free_cd(struct mmc_host *host);
  
  #endif
--- 
-1.8.4.3.gca3854a
-

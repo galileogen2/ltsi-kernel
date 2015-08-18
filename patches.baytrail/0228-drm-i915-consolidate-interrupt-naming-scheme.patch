@@ -183,7 +183,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	/* ack & enable invalid PTE error interrupts */
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -742,24 +742,6 @@
+@@ -743,24 +743,6 @@
  #define VLV_IMR		(VLV_DISPLAY_BASE + 0x20a8)
  #define VLV_ISR		(VLV_DISPLAY_BASE + 0x20ac)
  #define VLV_PCBR	(VLV_DISPLAY_BASE + 0x2120)
@@ -208,7 +208,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define   DISPLAY_PLANE_FLIP_PENDING(plane) (1<<(11-(plane))) /* A and B only */
  #define EIR		0x020b0
  #define EMR		0x020b4
-@@ -873,28 +855,6 @@
+@@ -874,28 +856,6 @@
  #define CACHE_MODE_1		0x7004 /* IVB+ */
  #define   PIXEL_SUBSPAN_COLLECT_OPT_DISABLE (1<<6)
  
@@ -237,7 +237,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define GEN6_BLITTER_ECOSKPD	0x221d0
  #define   GEN6_BLITTER_LOCK_SHIFT			16
  #define   GEN6_BLITTER_FBC_NOTIFY			(1<<3)
-@@ -905,9 +865,49 @@
+@@ -906,9 +866,49 @@
  #define   GEN6_BSD_SLEEP_INDICATOR	(1 << 3)
  #define   GEN6_BSD_GO_INDICATOR		(1 << 4)
  
@@ -290,7 +290,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  #define GEN6_BSD_RNCID			0x12198
  
-@@ -3724,21 +3724,6 @@
+@@ -3726,21 +3726,6 @@
  #define DEIIR   0x44008
  #define DEIER   0x4400c
  
@@ -314,7 +314,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define GTIIR   0x44018
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -559,7 +559,7 @@ static int init_render_ring(struct intel
+@@ -562,7 +562,7 @@ static int init_render_ring(struct intel
  		I915_WRITE(INSTPM, _MASKED_BIT_ENABLE(INSTPM_FORCE_ORDERING));
  
  	if (HAS_L3_GPU_CACHE(dev))
@@ -323,7 +323,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	return ret;
  }
-@@ -996,8 +996,9 @@ gen6_ring_get_irq(struct intel_ring_buff
+@@ -999,8 +999,9 @@ gen6_ring_get_irq(struct intel_ring_buff
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (ring->irq_refcount.gt++ == 0) {
  		if (HAS_L3_GPU_CACHE(dev) && ring->id == RCS)
@@ -335,7 +335,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		else
  			I915_WRITE_IMR(ring, ~ring->irq_enable_mask);
  		dev_priv->gt_irq_mask &= ~ring->irq_enable_mask;
-@@ -1019,7 +1020,8 @@ gen6_ring_put_irq(struct intel_ring_buff
+@@ -1022,7 +1023,8 @@ gen6_ring_put_irq(struct intel_ring_buff
  	spin_lock_irqsave(&dev_priv->irq_lock, flags);
  	if (--ring->irq_refcount.gt == 0) {
  		if (HAS_L3_GPU_CACHE(dev) && ring->id == RCS)
@@ -345,7 +345,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		else
  			I915_WRITE_IMR(ring, ~0);
  		dev_priv->gt_irq_mask |= ring->irq_enable_mask;
-@@ -1700,7 +1702,7 @@ int intel_init_render_ring_buffer(struct
+@@ -1703,7 +1705,7 @@ int intel_init_render_ring_buffer(struct
  			ring->flush = gen6_render_ring_flush;
  		ring->irq_get = gen6_ring_get_irq;
  		ring->irq_put = gen6_ring_put_irq;
@@ -354,7 +354,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ring->get_seqno = gen6_ring_get_seqno;
  		ring->set_seqno = ring_set_seqno;
  		ring->sync_to = gen6_ring_sync;
-@@ -1719,7 +1721,8 @@ int intel_init_render_ring_buffer(struct
+@@ -1722,7 +1724,8 @@ int intel_init_render_ring_buffer(struct
  		ring->set_seqno = pc_render_set_seqno;
  		ring->irq_get = gen5_ring_get_irq;
  		ring->irq_put = gen5_ring_put_irq;
@@ -364,7 +364,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	} else {
  		ring->add_request = i9xx_add_request;
  		if (INTEL_INFO(dev)->gen < 4)
-@@ -1861,7 +1864,7 @@ int intel_init_bsd_ring_buffer(struct dr
+@@ -1864,7 +1867,7 @@ int intel_init_bsd_ring_buffer(struct dr
  		ring->add_request = gen6_add_request;
  		ring->get_seqno = gen6_ring_get_seqno;
  		ring->set_seqno = ring_set_seqno;
@@ -373,7 +373,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		ring->irq_get = gen6_ring_get_irq;
  		ring->irq_put = gen6_ring_put_irq;
  		ring->dispatch_execbuffer = gen6_ring_dispatch_execbuffer;
-@@ -1881,7 +1884,7 @@ int intel_init_bsd_ring_buffer(struct dr
+@@ -1884,7 +1887,7 @@ int intel_init_bsd_ring_buffer(struct dr
  		ring->get_seqno = ring_get_seqno;
  		ring->set_seqno = ring_set_seqno;
  		if (IS_GEN5(dev)) {
@@ -382,7 +382,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			ring->irq_get = gen5_ring_get_irq;
  			ring->irq_put = gen5_ring_put_irq;
  		} else {
-@@ -1910,7 +1913,7 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1913,7 +1916,7 @@ int intel_init_blt_ring_buffer(struct dr
  	ring->add_request = gen6_add_request;
  	ring->get_seqno = gen6_ring_get_seqno;
  	ring->set_seqno = ring_set_seqno;

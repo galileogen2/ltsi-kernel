@@ -26,7 +26,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2776,8 +2776,8 @@
+@@ -2778,8 +2778,8 @@
   * which is after the LUTs, so we want the bytes for our color format.
   * For our current usage, this is always 3, one byte for R, G and B.
   */
@@ -37,7 +37,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  /* Transfer unit size for display port - 1, default is 0x3f (for TU size 64) */
  #define  TU_SIZE(x)             (((x)-1) << 25) /* default size 64 */
-@@ -2787,8 +2787,9 @@
+@@ -2789,8 +2789,9 @@
  #define  DATA_LINK_M_N_MASK	(0xffffff)
  #define  DATA_LINK_N_MAX	(0x800000)
  
@@ -49,7 +49,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  /*
   * Computing Link M and N values for the Display Port link
-@@ -2801,16 +2802,18 @@
+@@ -2803,16 +2804,18 @@
   * Attributes and VB-ID.
   */
  
@@ -78,7 +78,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  /* Display & cursor control */
  
-@@ -3953,14 +3956,14 @@
+@@ -3955,14 +3958,14 @@
  #define  TRANS_VSYNC_START_SHIFT	0
  #define _PCH_TRANS_VSYNCSHIFT_A		0xe0028
  
@@ -101,7 +101,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  /* Per-transcoder DIP controls */
  
-@@ -4046,23 +4049,23 @@
+@@ -4048,23 +4051,23 @@
  #define PCH_TRANS_VSYNCSHIFT(pipe) _PIPE(pipe, _PCH_TRANS_VSYNCSHIFT_A, \
  					 _PCH_TRANS_VSYNCSHIFT_B)
  

@@ -16,7 +16,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -302,7 +302,8 @@ static int dw8250_probe_acpi(struct uart
+@@ -308,7 +308,8 @@ static int dw8250_probe_acpi(struct uart
  	return 0;
  }
  #else

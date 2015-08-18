@@ -44,7 +44,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1022,6 +1022,10 @@
+@@ -1023,6 +1023,10 @@
  #define IPS_CTL		0x43408
  #define   IPS_ENABLE	(1 << 31)
  
@@ -96,7 +96,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int
  gen7_render_ring_flush(struct intel_ring_buffer *ring,
  		       u32 invalidate_domains, u32 flush_domains)
-@@ -336,6 +357,9 @@ gen7_render_ring_flush(struct intel_ring
+@@ -339,6 +360,9 @@ gen7_render_ring_flush(struct intel_ring
  	intel_ring_emit(ring, 0);
  	intel_ring_advance(ring);
  
@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	return 0;
  }
  
-@@ -1703,6 +1727,7 @@ gen6_ring_dispatch_execbuffer(struct int
+@@ -1706,6 +1730,7 @@ gen6_ring_dispatch_execbuffer(struct int
  static int gen6_ring_flush(struct intel_ring_buffer *ring,
  			   u32 invalidate, u32 flush)
  {
@@ -114,7 +114,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	uint32_t cmd;
  	int ret;
  
-@@ -1725,6 +1750,10 @@ static int gen6_ring_flush(struct intel_
+@@ -1728,6 +1753,10 @@ static int gen6_ring_flush(struct intel_
  	intel_ring_emit(ring, 0);
  	intel_ring_emit(ring, MI_NOOP);
  	intel_ring_advance(ring);

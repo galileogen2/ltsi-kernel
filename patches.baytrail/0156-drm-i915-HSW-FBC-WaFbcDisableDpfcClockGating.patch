@@ -25,15 +25,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit d89f2071461d5682b897c73278daaf25fd11aff5)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h |  3 +++
- drivers/gpu/drm/i915/intel_pm.c | 10 ++++++++++
+ drivers/gpu/drm/i915/i915_reg.h |    3 +++
+ drivers/gpu/drm/i915/intel_pm.c |   10 ++++++++++
  2 files changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 21a1d4640310..83cc2e5dbd79 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -987,6 +987,9 @@
+@@ -988,6 +988,9 @@
  					     _HSW_PIPE_SLICE_CHICKEN_1_A, + \
  					     _HSW_PIPE_SLICE_CHICKEN_1_B)
  
@@ -43,11 +41,9 @@ index 21a1d4640310..83cc2e5dbd79 100644
  /*
   * GPIO regs
   */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 0b4429252c0c..656ee57d1e05 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -248,6 +248,12 @@ static void ironlake_disable_fbc(struct drm_device *dev)
+@@ -248,6 +248,12 @@ static void ironlake_disable_fbc(struct
  				   I915_READ(ILK_DSPCLK_GATE_D) &
  				   ~ILK_DPFCUNIT_CLOCK_GATE_DISABLE);
  
@@ -60,7 +56,7 @@ index 0b4429252c0c..656ee57d1e05 100644
  		DRM_DEBUG_KMS("disabled FBC\n");
  	}
  }
-@@ -285,6 +291,10 @@ static void gen7_enable_fbc(struct drm_crtc *crtc, unsigned long interval)
+@@ -285,6 +291,10 @@ static void gen7_enable_fbc(struct drm_c
  		/* WaFbcAsynchFlipDisableFbcQueue */
  		I915_WRITE(HSW_PIPE_SLICE_CHICKEN_1(intel_crtc->pipe),
  			   HSW_BYPASS_FBC_QUEUE);
@@ -71,6 +67,3 @@ index 0b4429252c0c..656ee57d1e05 100644
  	}
  
  	I915_WRITE(SNB_DPFC_CTL_SA,
--- 
-1.8.5.rc3
-

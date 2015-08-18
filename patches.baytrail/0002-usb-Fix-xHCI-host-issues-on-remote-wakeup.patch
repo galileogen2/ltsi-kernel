@@ -54,7 +54,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/host/xhci-hub.c
 +++ b/drivers/usb/host/xhci-hub.c
-@@ -544,11 +544,15 @@ void xhci_del_comp_mod_timer(struct xhci
+@@ -547,11 +547,15 @@ void xhci_del_comp_mod_timer(struct xhci
   *  - Mark a port as being done with device resume,
   *    and ring the endpoint doorbells.
   *  - Stop the Synopsys redriver Compliance Mode polling.
@@ -71,7 +71,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	struct xhci_hcd *xhci = hcd_to_xhci(hcd);
  	u32 status = 0;
-@@ -583,21 +587,42 @@ static u32 xhci_get_port_status(struct u
+@@ -586,21 +590,42 @@ static u32 xhci_get_port_status(struct u
  			return 0xffffffff;
  		if (time_after_eq(jiffies,
  					bus_state->resume_done[wIndex])) {
@@ -122,7 +122,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			bus_state->port_c_suspend |= 1 << wIndex;
  			bus_state->suspended_ports &= ~(1 << wIndex);
  		} else {
-@@ -718,7 +743,7 @@ int xhci_hub_control(struct usb_hcd *hcd
+@@ -721,7 +746,7 @@ int xhci_hub_control(struct usb_hcd *hcd
  			break;
  		}
  		status = xhci_get_port_status(hcd, bus_state, port_array,
@@ -144,7 +144,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (scratchpad_alloc(xhci, flags))
 --- a/drivers/usb/host/xhci-ring.c
 +++ b/drivers/usb/host/xhci-ring.c
-@@ -1731,6 +1731,19 @@ static void handle_port_status(struct xh
+@@ -1734,6 +1734,19 @@ static void handle_port_status(struct xh
  		}
  	}
  
@@ -166,7 +166,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  					PORT_PLC);
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
-@@ -1386,8 +1386,18 @@ struct xhci_bus_state {
+@@ -1391,8 +1391,18 @@ struct xhci_bus_state {
  	unsigned long		resume_done[USB_MAXCHILDREN];
  	/* which ports have started to resume */
  	unsigned long		resuming_ports;

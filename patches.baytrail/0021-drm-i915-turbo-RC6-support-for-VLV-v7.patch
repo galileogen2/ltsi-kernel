@@ -177,7 +177,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	mutex_unlock(&dev_priv->rps.hw_lock);
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4319,6 +4319,7 @@
+@@ -4321,6 +4321,7 @@
  #define   GEN6_RC_CTL_RC6_ENABLE		(1<<18)
  #define   GEN6_RC_CTL_RC1e_ENABLE		(1<<20)
  #define   GEN6_RC_CTL_RC7_ENABLE		(1<<22)
@@ -185,7 +185,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define   GEN6_RC_CTL_EI_MODE(x)		((x)<<27)
  #define   GEN6_RC_CTL_HW_ENABLE			(1<<31)
  #define GEN6_RP_DOWN_TIMEOUT			0xA010
-@@ -4410,12 +4411,32 @@
+@@ -4412,12 +4413,32 @@
  #define   IOSF_BAR_SHIFT			1
  #define   IOSF_SB_BUSY				(1<<0)
  #define   IOSF_PORT_PUNIT			0x4

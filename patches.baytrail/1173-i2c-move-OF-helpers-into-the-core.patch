@@ -125,7 +125,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #include <linux/platform_device.h>
  #include <linux/slab.h>
  #include <linux/platform_data/dma-atmel.h>
-@@ -795,8 +794,6 @@ static int at91_twi_probe(struct platfor
+@@ -831,8 +830,6 @@ static int at91_twi_probe(struct platfor
  		return rc;
  	}
  
@@ -635,7 +635,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #include <linux/completion.h>
  #include <linux/hardirq.h>
  #include <linux/irqflags.h>
-@@ -954,6 +960,104 @@ static void i2c_scan_static_board_info(s
+@@ -957,6 +963,104 @@ static void i2c_scan_static_board_info(s
  	up_read(&__i2c_board_lock);
  }
  
@@ -740,7 +740,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int i2c_do_add_adapter(struct i2c_driver *driver,
  			      struct i2c_adapter *adap)
  {
-@@ -1058,6 +1162,8 @@ static int i2c_register_adapter(struct i
+@@ -1061,6 +1165,8 @@ static int i2c_register_adapter(struct i
  
  exit_recovery:
  	/* create pre-declared device nodes */
@@ -749,7 +749,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (adap->nr < __i2c_first_dynamic_bus_num)
  		i2c_scan_static_board_info(adap);
  
-@@ -1282,7 +1388,6 @@ void i2c_del_adapter(struct i2c_adapter
+@@ -1285,7 +1391,6 @@ void i2c_del_adapter(struct i2c_adapter
  }
  EXPORT_SYMBOL(i2c_del_adapter);
  

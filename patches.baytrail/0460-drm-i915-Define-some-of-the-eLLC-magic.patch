@@ -31,7 +31,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		u32 temp = I915_READ(GEN7_MSG_CTL);
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4484,6 +4484,10 @@
+@@ -4486,6 +4486,10 @@
  #define  GT_FIFO_FREE_ENTRIES			0x120008
  #define    GT_FIFO_NUM_RESERVED_ENTRIES		20
  

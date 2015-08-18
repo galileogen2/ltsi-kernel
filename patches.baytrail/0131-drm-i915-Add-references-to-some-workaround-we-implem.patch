@@ -81,7 +81,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -514,6 +514,8 @@ static int init_render_ring(struct intel
+@@ -517,6 +517,8 @@ static int init_render_ring(struct intel
  	/* We need to disable the AsyncFlip performance optimisations in order
  	 * to use MI_WAIT_FOR_EVENT within the CS. It should already be
  	 * programmed to '1' on all products.

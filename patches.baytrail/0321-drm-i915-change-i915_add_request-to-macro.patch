@@ -123,7 +123,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static void intel_overlay_release_old_vid_tail(struct intel_overlay *overlay)
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -1526,7 +1526,7 @@ int intel_ring_idle(struct intel_ring_bu
+@@ -1529,7 +1529,7 @@ int intel_ring_idle(struct intel_ring_bu
  
  	/* We need to add any requests required to flush the objects and ring */
  	if (ring->outstanding_lazy_request) {

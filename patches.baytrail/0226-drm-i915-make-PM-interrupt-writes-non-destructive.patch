@@ -128,7 +128,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	ibx_irq_postinstall(dev);
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4576,7 +4576,7 @@
+@@ -4578,7 +4578,7 @@
  #define  GEN6_PM_RP_DOWN_THRESHOLD		(1<<4)
  #define  GEN6_PM_RP_UP_EI_EXPIRED		(1<<2)
  #define  GEN6_PM_RP_DOWN_EI_EXPIRED		(1<<1)

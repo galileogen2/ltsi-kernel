@@ -41,7 +41,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* start/stop HC execution - do not write unless HC is halted*/
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3834,6 +3834,64 @@ int xhci_find_raw_port_number(struct usb
+@@ -3837,6 +3837,64 @@ int xhci_find_raw_port_number(struct usb
  	return raw_port;
  }
  
@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #ifdef CONFIG_PM_RUNTIME
  
  /* BESL to HIRD Encoding array for USB2 LPM */
-@@ -3875,6 +3933,28 @@ static int xhci_calculate_hird_besl(stru
+@@ -3878,6 +3936,28 @@ static int xhci_calculate_hird_besl(stru
  	return besl;
  }
  
@@ -135,7 +135,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int xhci_usb2_software_lpm_test(struct usb_hcd *hcd,
  					struct usb_device *udev)
  {
-@@ -4007,11 +4087,12 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4010,11 +4090,12 @@ int xhci_set_usb2_hardware_lpm(struct us
  {
  	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
  	__le32 __iomem	**port_array;
@@ -151,7 +151,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	if (hcd->speed == HCD_USB3 || !xhci->hw_lpm_support ||
  			!udev->lpm_capable)
-@@ -4029,23 +4110,73 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4032,23 +4113,73 @@ int xhci_set_usb2_hardware_lpm(struct us
  	port_array = xhci->usb2_ports;
  	port_num = udev->portnum - 1;
  	pm_addr = port_array[port_num] + PORTPMSC;
@@ -236,7 +236,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  
  	spin_unlock_irqrestore(&xhci->lock, flags);
-@@ -4087,6 +4218,9 @@ int xhci_update_device(struct usb_hcd *h
+@@ -4090,6 +4221,9 @@ int xhci_update_device(struct usb_hcd *h
  		if (xhci->hw_lpm_support == 1 &&
  		    xhci_check_usb2_port_capability(xhci, portnum, XHCI_HLC)) {
  			udev->usb2_hw_lpm_capable = 1;
@@ -246,7 +246,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			ret = xhci_set_usb2_hardware_lpm(hcd, udev, 1);
  			if (!ret)
  				udev->usb2_hw_lpm_enabled = 1;
-@@ -4417,64 +4551,6 @@ static u16 xhci_calculate_lpm_timeout(st
+@@ -4420,64 +4554,6 @@ static u16 xhci_calculate_lpm_timeout(st
  	return timeout;
  }
  
@@ -313,7 +313,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		u16 hub_encoded_timeout)
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
-@@ -386,6 +386,27 @@ struct xhci_op_regs {
+@@ -389,6 +389,27 @@ struct xhci_op_regs {
  #define	PORT_L1DS(p)		(((p) & 0xff) << 8)
  #define	PORT_HLE		(1 << 16)
  
@@ -343,7 +343,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   * @irq_pending:	IMAN - Interrupt Management Register.  Used to enable
 --- a/include/linux/usb.h
 +++ b/include/linux/usb.h
-@@ -468,6 +468,7 @@ struct usb3_lpm_parameters {
+@@ -494,6 +494,7 @@ struct usb3_lpm_parameters {
   * @wusb: device is Wireless USB
   * @lpm_capable: device supports LPM
   * @usb2_hw_lpm_capable: device can perform USB2 hardware LPM
@@ -351,7 +351,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
   * @usb2_hw_lpm_enabled: USB2 hardware LPM enabled
   * @usb3_lpm_enabled: USB3 hardware LPM enabled
   * @string_langid: language ID for strings
-@@ -538,6 +539,7 @@ struct usb_device {
+@@ -564,6 +565,7 @@ struct usb_device {
  	unsigned wusb:1;
  	unsigned lpm_capable:1;
  	unsigned usb2_hw_lpm_capable:1;

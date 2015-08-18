@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4943,6 +4943,9 @@
+@@ -4945,6 +4945,9 @@
  #define _PIPE_A_CSC_COEFF_RV_GV	0x49020
  #define _PIPE_A_CSC_COEFF_BV	0x49024
  #define _PIPE_A_CSC_MODE	0x49028
@@ -29,7 +29,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define _PIPE_A_CSC_PREOFF_HI	0x49030
  #define _PIPE_A_CSC_PREOFF_ME	0x49034
  #define _PIPE_A_CSC_PREOFF_LO	0x49038
-@@ -4964,10 +4967,6 @@
+@@ -4966,10 +4969,6 @@
  #define _PIPE_B_CSC_POSTOFF_ME	0x49144
  #define _PIPE_B_CSC_POSTOFF_LO	0x49148
  

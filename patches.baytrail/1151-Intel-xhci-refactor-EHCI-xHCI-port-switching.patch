@@ -84,7 +84,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	return 0;
 --- a/drivers/usb/host/pci-quirks.c
 +++ b/drivers/usb/host/pci-quirks.c
-@@ -735,32 +735,6 @@ static int handshake(void __iomem *ptr,
+@@ -747,32 +747,6 @@ static int handshake(void __iomem *ptr,
  	return -ETIMEDOUT;
  }
  
@@ -117,7 +117,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /*
   * Intel's Panther Point chipset has two host controllers (EHCI and xHCI) that
   * share some number of ports.  These ports can be switched between either
-@@ -779,9 +753,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchabl
+@@ -791,9 +765,23 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchabl
   * terminations before switching the USB 2.0 wires over, so that USB 3.0
   * devices connect at SuperSpeed, rather than at USB 2.0 speeds.
   */
@@ -142,7 +142,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	/* Don't switchover the ports if the user hasn't compiled the xHCI
  	 * driver.  Otherwise they will see "dead" USB ports that don't power
-@@ -840,7 +828,7 @@ void usb_enable_xhci_ports(struct pci_de
+@@ -852,7 +840,7 @@ void usb_enable_xhci_ports(struct pci_de
  	dev_dbg(&xhci_pdev->dev, "USB 2.0 ports that are now switched over "
  			"to xHCI: 0x%x\n", ports_available);
  }
@@ -151,7 +151,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  void usb_disable_xhci_ports(struct pci_dev *xhci_pdev)
  {
-@@ -921,8 +909,8 @@ static void quirk_usb_handoff_xhci(struc
+@@ -933,8 +921,8 @@ static void quirk_usb_handoff_xhci(struc
  	writel(val, base + ext_cap_offset + XHCI_LEGACY_CONTROL_OFFSET);
  
  hc_init:

@@ -191,7 +191,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		return;
 --- a/drivers/gpu/drm/i915/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/intel_lvds.c
-@@ -975,11 +975,11 @@ void intel_lvds_init(struct drm_device *
+@@ -991,11 +991,11 @@ void intel_lvds_init(struct drm_device *
  		}
  	}
  

@@ -25,12 +25,10 @@ Signed-off-by: Dave Airlie <airlied@redhat.com>
 (cherry picked from commit 6ba6d03e69125ef42a63e90d45e49c659ea3c34f)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/drm_crtc.c | 29 +++++++++++++++++++++++++++--
- include/drm/drm_crtc.h     |  1 +
+ drivers/gpu/drm/drm_crtc.c |   29 +++++++++++++++++++++++++++--
+ include/drm/drm_crtc.h     |    1 +
  2 files changed, 28 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 8759d699bd8e..f4831510d38a 100644
 --- a/drivers/gpu/drm/drm_crtc.c
 +++ b/drivers/gpu/drm/drm_crtc.c
 @@ -29,6 +29,7 @@
@@ -41,7 +39,7 @@ index 8759d699bd8e..f4831510d38a 100644
  #include <linux/list.h>
  #include <linux/slab.h>
  #include <linux/export.h>
-@@ -252,6 +253,28 @@ char *drm_get_connector_status_name(enum drm_connector_status status)
+@@ -252,6 +253,28 @@ char *drm_get_connector_status_name(enum
  }
  EXPORT_SYMBOL(drm_get_connector_status_name);
  
@@ -70,7 +68,7 @@ index 8759d699bd8e..f4831510d38a 100644
  /**
   * drm_mode_object_get - allocate a new modeset identifier
   * @dev: DRM device
-@@ -1834,7 +1857,8 @@ int drm_mode_setplane(struct drm_device *dev, void *data,
+@@ -1834,7 +1857,8 @@ int drm_mode_setplane(struct drm_device
  		if (fb->pixel_format == plane->format_types[i])
  			break;
  	if (i == plane->format_count) {
@@ -80,7 +78,7 @@ index 8759d699bd8e..f4831510d38a 100644
  		ret = -EINVAL;
  		goto out;
  	}
-@@ -2312,7 +2336,8 @@ static int framebuffer_check(const struct drm_mode_fb_cmd2 *r)
+@@ -2315,7 +2339,8 @@ static int framebuffer_check(const struc
  
  	ret = format_check(r);
  	if (ret) {
@@ -90,17 +88,12 @@ index 8759d699bd8e..f4831510d38a 100644
  		return ret;
  	}
  
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index adb3f9b625f6..2cbbfd44c6df 100644
 --- a/include/drm/drm_crtc.h
 +++ b/include/drm/drm_crtc.h
-@@ -1094,5 +1094,6 @@ extern int drm_format_num_planes(uint32_t format);
+@@ -1094,5 +1094,6 @@ extern int drm_format_num_planes(uint32_
  extern int drm_format_plane_cpp(uint32_t format, int plane);
  extern int drm_format_horz_chroma_subsampling(uint32_t format);
  extern int drm_format_vert_chroma_subsampling(uint32_t format);
 +extern char *drm_get_format_name(uint32_t format);
  
  #endif /* __DRM_CRTC_H__ */
--- 
-1.8.5.rc3
-

@@ -15,15 +15,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 285541647a816e00348916ba7387eeacea30eba9)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 7 +++++++
- drivers/gpu/drm/i915/intel_pm.c | 4 ++++
+ drivers/gpu/drm/i915/i915_reg.h |    7 +++++++
+ drivers/gpu/drm/i915/intel_pm.c |    4 ++++
  2 files changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b7e222464d42..21a1d4640310 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -980,6 +980,13 @@
+@@ -981,6 +981,13 @@
  #define IVB_FBC_RT_BASE			0x7020
  
  
@@ -37,11 +35,9 @@ index b7e222464d42..21a1d4640310 100644
  /*
   * GPIO regs
   */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index c28c0ac072bf..0b4429252c0c 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -281,6 +281,10 @@ static void gen7_enable_fbc(struct drm_crtc *crtc, unsigned long interval)
+@@ -281,6 +281,10 @@ static void gen7_enable_fbc(struct drm_c
  		I915_WRITE(ILK_DSPCLK_GATE_D,
  			   I915_READ(ILK_DSPCLK_GATE_D) |
  			   ILK_DPFCUNIT_CLOCK_GATE_DISABLE);
@@ -52,6 +48,3 @@ index c28c0ac072bf..0b4429252c0c 100644
  	}
  
  	I915_WRITE(SNB_DPFC_CTL_SA,
--- 
-1.8.5.rc3
-

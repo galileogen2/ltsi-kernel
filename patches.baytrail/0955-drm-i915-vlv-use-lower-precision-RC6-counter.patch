@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4733,6 +4733,10 @@
+@@ -4735,6 +4735,10 @@
  						 GEN6_PM_RP_DOWN_TIMEOUT)
  
  #define GEN6_GT_GFX_RC6_LOCKED			0x138104

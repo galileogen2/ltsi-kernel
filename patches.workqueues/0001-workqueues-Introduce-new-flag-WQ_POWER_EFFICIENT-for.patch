@@ -34,7 +34,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
 
 --- a/Documentation/kernel-parameters.txt
 +++ b/Documentation/kernel-parameters.txt
-@@ -3345,6 +3345,21 @@ bytes respectively. Such letter suffixes
+@@ -3346,6 +3346,21 @@ bytes respectively. Such letter suffixes
  			that this also can be controlled per-workqueue for
  			workqueues visible under /sys/bus/workqueue/.
  
@@ -58,7 +58,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  			supporting x2apic.
 --- a/include/linux/workqueue.h
 +++ b/include/linux/workqueue.h
-@@ -303,6 +303,33 @@ enum {
+@@ -304,6 +304,33 @@ enum {
  	WQ_CPU_INTENSIVE	= 1 << 5, /* cpu instensive workqueue */
  	WQ_SYSFS		= 1 << 6, /* visible in sysfs, see wq_sysfs_register() */
  
@@ -139,7 +139,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  static bool wq_numa_enabled;		/* unbound NUMA affinity enabled */
  
  /* buf for wq_update_unbound_numa_attrs(), protected by CPU hotplug exclusion */
-@@ -4149,6 +4158,10 @@ struct workqueue_struct *__alloc_workque
+@@ -4184,6 +4193,10 @@ struct workqueue_struct *__alloc_workque
  	struct workqueue_struct *wq;
  	struct pool_workqueue *pwq;
  

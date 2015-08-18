@@ -92,7 +92,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	ret = pinmux_gpio_direction(pctldev, range, pin, input);
  
  	mutex_unlock(&pctldev->mutex);
-@@ -1298,11 +1327,21 @@ static int pinctrl_gpioranges_show(struc
+@@ -1296,11 +1325,21 @@ static int pinctrl_gpioranges_show(struc
  
  	/* Loop over the ranges */
  	list_for_each_entry(range, &pctldev->gpio_ranges, node) {

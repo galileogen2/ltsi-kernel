@@ -33,7 +33,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  };
  
  static inline int dw8250_modify_msr(struct uart_port *p, int offset, int value)
-@@ -265,7 +266,8 @@ static int dw8250_probe_of(struct uart_p
+@@ -271,7 +272,8 @@ static int dw8250_probe_of(struct uart_p
  }
  
  #ifdef CONFIG_ACPI
@@ -43,7 +43,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	const struct acpi_device_id *id;
  	struct uart_port *p = &up->port;
-@@ -284,9 +286,7 @@ static int dw8250_probe_acpi(struct uart
+@@ -290,9 +292,7 @@ static int dw8250_probe_acpi(struct uart
  	if (!p->uartclk)
  		p->uartclk = (unsigned int)id->driver_data;
  
@@ -54,7 +54,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	up->dma->rxconf.src_maxburst = p->fifosize / 4;
  	up->dma->txconf.dst_maxburst = p->fifosize / 4;
-@@ -348,7 +348,7 @@ static int dw8250_probe(struct platform_
+@@ -354,7 +354,7 @@ static int dw8250_probe(struct platform_
  		if (err)
  			return err;
  	} else if (ACPI_HANDLE(&pdev->dev)) {

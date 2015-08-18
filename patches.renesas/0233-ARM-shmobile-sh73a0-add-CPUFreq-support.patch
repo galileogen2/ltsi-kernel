@@ -14,12 +14,10 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 (cherry picked from commit d23473828c1188805c9e0b2a2e5be158d07ce7de)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/arm/mach-shmobile/Kconfig        | 2 ++
- arch/arm/mach-shmobile/setup-sh73a0.c | 5 +++++
+ arch/arm/mach-shmobile/Kconfig        |    2 ++
+ arch/arm/mach-shmobile/setup-sh73a0.c |    5 +++++
  2 files changed, 7 insertions(+)
 
-diff --git a/arch/arm/mach-shmobile/Kconfig b/arch/arm/mach-shmobile/Kconfig
-index 7a927839..b542d00d 100644
 --- a/arch/arm/mach-shmobile/Kconfig
 +++ b/arch/arm/mach-shmobile/Kconfig
 @@ -184,6 +184,8 @@ config MACH_KZM9D
@@ -31,11 +29,9 @@ index 7a927839..b542d00d 100644
  	select ARCH_REQUIRE_GPIOLIB
  	select REGULATOR_FIXED_VOLTAGE if REGULATOR
  	select SND_SOC_AK4642 if SND_SIMPLE_CARD
-diff --git a/arch/arm/mach-shmobile/setup-sh73a0.c b/arch/arm/mach-shmobile/setup-sh73a0.c
-index 35d512a4..127891ab 100644
 --- a/arch/arm/mach-shmobile/setup-sh73a0.c
 +++ b/arch/arm/mach-shmobile/setup-sh73a0.c
-@@ -963,6 +963,8 @@ static const struct of_dev_auxdata sh73a0_auxdata_lookup[] __initconst = {
+@@ -966,6 +966,8 @@ static const struct of_dev_auxdata sh73a
  
  void __init sh73a0_add_standard_devices_dt(void)
  {
@@ -44,7 +40,7 @@ index 35d512a4..127891ab 100644
  	/* clocks are setup late during boot in the case of DT */
  	sh73a0_clock_init();
  
-@@ -970,6 +972,9 @@ void __init sh73a0_add_standard_devices_dt(void)
+@@ -973,6 +975,9 @@ void __init sh73a0_add_standard_devices_
  			     ARRAY_SIZE(sh73a0_devices_dt));
  	of_platform_populate(NULL, of_default_bus_match_table,
  			     sh73a0_auxdata_lookup, NULL);
@@ -54,6 +50,3 @@ index 35d512a4..127891ab 100644
  }
  
  static const char *sh73a0_boards_compat_dt[] __initdata = {
--- 
-1.8.4.3.gca3854a
-

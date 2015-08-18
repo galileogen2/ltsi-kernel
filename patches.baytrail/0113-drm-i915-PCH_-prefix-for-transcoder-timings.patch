@@ -29,7 +29,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3933,25 +3933,25 @@
+@@ -3935,25 +3935,25 @@
  
  /* transcoder */
  
@@ -74,7 +74,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  #define _TRANSA_DATA_M1          0xe0030
  #define _TRANSA_DATA_N1          0xe0034
-@@ -4029,22 +4029,22 @@
+@@ -4031,22 +4031,22 @@
  #define HSW_TVIDEO_DIP_VSC_DATA(trans) \
  	 _TRANSCODER(trans, HSW_VIDEO_DIP_VSC_DATA_A, HSW_VIDEO_DIP_VSC_DATA_B)
  

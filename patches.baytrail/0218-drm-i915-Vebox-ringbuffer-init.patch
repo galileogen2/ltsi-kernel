@@ -45,7 +45,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  cleanup_bsd_ring:
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -620,6 +620,7 @@
+@@ -621,6 +621,7 @@
  #define DONE_REG		0x40b0
  #define BSD_HWS_PGA_GEN7	(0x04180)
  #define BLT_HWS_PGA_GEN7	(0x04280)
@@ -55,7 +55,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define RING_IMR(base)		((base)+0xa8)
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -918,7 +918,8 @@ void intel_ring_setup_status_page(struct
+@@ -921,7 +921,8 @@ void intel_ring_setup_status_page(struct
  			mmio = BSD_HWS_PGA_GEN7;
  			break;
  		case VECS:
@@ -65,7 +65,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		}
  	} else if (IS_GEN6(ring->dev)) {
  		mmio = RING_HWS_PGA_GEN6(ring->mmio_base);
-@@ -1925,6 +1926,38 @@ int intel_init_blt_ring_buffer(struct dr
+@@ -1928,6 +1929,38 @@ int intel_init_blt_ring_buffer(struct dr
  	ring->init = init_ring_common;
  
  	return intel_init_ring_buffer(dev, ring);

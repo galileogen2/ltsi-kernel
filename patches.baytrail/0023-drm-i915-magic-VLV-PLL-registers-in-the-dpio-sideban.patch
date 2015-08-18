@@ -16,14 +16,12 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 598fac6bf8299ed7ae1852426660be3c265047a4)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 118 +++++++++++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h |  118 +++++++++++++++++++++++++++++++++++++++-
  1 file changed, 116 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index acf0608cc761..a5fe3ba7d00d 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -351,6 +351,8 @@
+@@ -352,6 +352,8 @@
   *  0x8100: fast clock controls
   *
   * DPIO is VLV only.
@@ -32,7 +30,7 @@ index acf0608cc761..a5fe3ba7d00d 100644
   */
  #define DPIO_PKT			(VLV_DISPLAY_BASE + 0x2100)
  #define  DPIO_RID			(0<<24)
-@@ -367,8 +369,20 @@
+@@ -368,8 +370,20 @@
  #define  DPIO_SFR_BYPASS		(1<<1)
  #define  DPIO_RESET			(1<<0)
  
@@ -53,7 +51,7 @@ index acf0608cc761..a5fe3ba7d00d 100644
  #define   DPIO_K_SHIFT			(24) /* 4 bits */
  #define   DPIO_P1_SHIFT			(21) /* 3 bits */
  #define   DPIO_P2_SHIFT			(16) /* 5 bits */
-@@ -394,14 +408,111 @@
+@@ -395,14 +409,111 @@
  #define _DPIO_CORE_CLK_B		0x803c
  #define DPIO_CORE_CLK(pipe) _PIPE(pipe, _DPIO_CORE_CLK_A, _DPIO_CORE_CLK_B)
  
@@ -167,7 +165,7 @@ index acf0608cc761..a5fe3ba7d00d 100644
  
  /*
   * Fence registers
-@@ -965,7 +1076,10 @@
+@@ -967,7 +1078,10 @@
  #define   DPLL_FPA01_P1_POST_DIV_MASK	0x00ff0000 /* i915 */
  #define   DPLL_FPA01_P1_POST_DIV_MASK_PINEVIEW	0x00ff8000 /* Pineview */
  #define   DPLL_LOCK_VLV			(1<<15)
@@ -178,6 +176,3 @@ index acf0608cc761..a5fe3ba7d00d 100644
  
  #define   DPLL_FPA01_P1_POST_DIV_MASK_I830	0x001f0000
  /*
--- 
-1.8.5.rc3
-

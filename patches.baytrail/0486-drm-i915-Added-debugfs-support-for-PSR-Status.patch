@@ -21,15 +21,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit e91fd8c6dec2ffa903b4f695fce4b9d7248ed2d5)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 95 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h     | 24 ++++++++++
+ drivers/gpu/drm/i915/i915_debugfs.c |   95 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h     |   24 +++++++++
  2 files changed, 119 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index a9246e9c5f9d..65619e6fde86 100644
 --- a/drivers/gpu/drm/i915/i915_debugfs.c
 +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1545,6 +1545,100 @@ static int i915_llc(struct seq_file *m, void *data)
+@@ -1545,6 +1545,100 @@ static int i915_llc(struct seq_file *m,
  	return 0;
  }
  
@@ -130,7 +128,7 @@ index a9246e9c5f9d..65619e6fde86 100644
  static int
  i915_wedged_get(void *data, u64 *val)
  {
-@@ -1977,6 +2071,7 @@ static struct drm_info_list i915_debugfs_list[] = {
+@@ -1977,6 +2071,7 @@ static struct drm_info_list i915_debugfs
  	{"i915_ppgtt_info", i915_ppgtt_info, 0},
  	{"i915_dpio", i915_dpio_info, 0},
  	{"i915_llc", i915_llc, 0},
@@ -138,11 +136,9 @@ index a9246e9c5f9d..65619e6fde86 100644
  };
  #define I915_DEBUGFS_ENTRIES ARRAY_SIZE(i915_debugfs_list)
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 780a5dc9c131..918597035b62 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1816,6 +1816,30 @@
+@@ -1818,6 +1818,30 @@
  
  #define EDP_PSR_STATUS_CTL			0x64840
  #define   EDP_PSR_STATUS_STATE_MASK		(7<<29)
@@ -173,6 +169,3 @@ index 780a5dc9c131..918597035b62 100644
  
  #define EDP_PSR_DEBUG_CTL		0x64860
  #define   EDP_PSR_DEBUG_MASK_LPSP	(1<<27)
--- 
-1.8.5.rc3
-

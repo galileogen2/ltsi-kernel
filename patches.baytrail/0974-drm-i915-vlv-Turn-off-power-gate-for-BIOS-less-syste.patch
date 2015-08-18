@@ -27,15 +27,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 02f4c9e02a021c5608dde7ae0607946ab16ae00c)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h     |  9 +++++++++
- drivers/gpu/drm/i915/intel_uncore.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h     |    9 +++++++++
+ drivers/gpu/drm/i915/intel_uncore.c |   16 ++++++++++++++++
  2 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c1017431fa5b..95385023e0ba 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -361,6 +361,15 @@
+@@ -362,6 +362,15 @@
  #define PUNIT_OPCODE_REG_READ			6
  #define PUNIT_OPCODE_REG_WRITE			7
  
@@ -51,11 +49,9 @@ index c1017431fa5b..95385023e0ba 100644
  #define PUNIT_REG_GPU_LFM			0xd3
  #define PUNIT_REG_GPU_FREQ_REQ			0xd4
  #define PUNIT_REG_GPU_FREQ_STS			0xd8
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index f2753d9fb098..288a3a654f06 100644
 --- a/drivers/gpu/drm/i915/intel_uncore.c
 +++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -301,10 +301,26 @@ static void intel_uncore_forcewake_reset(struct drm_device *dev)
+@@ -301,10 +301,26 @@ static void intel_uncore_forcewake_reset
  
  void intel_uncore_sanitize(struct drm_device *dev)
  {
@@ -82,6 +78,3 @@ index f2753d9fb098..288a3a654f06 100644
  }
  
  /*
--- 
-1.8.5.rc3
-

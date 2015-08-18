@@ -21,7 +21,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3988,15 +3988,9 @@
+@@ -3990,15 +3990,9 @@
  #define PCH_SSC4_AUX_PARMS      0xc6214
  
  #define PCH_DPLL_SEL		0xc7000

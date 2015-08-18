@@ -284,7 +284,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		else
 --- a/drivers/gpu/drm/radeon/radeon_bios.c
 +++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -513,7 +513,7 @@ static bool legacy_read_disabled_bios(st
+@@ -517,7 +517,7 @@ static bool legacy_read_disabled_bios(st
  	crtc_ext_cntl = RREG32(RADEON_CRTC_EXT_CNTL);
  	fp2_gen_cntl = 0;
  
@@ -293,7 +293,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		fp2_gen_cntl = RREG32(RADEON_FP2_GEN_CNTL);
  	}
  
-@@ -550,7 +550,7 @@ static bool legacy_read_disabled_bios(st
+@@ -554,7 +554,7 @@ static bool legacy_read_disabled_bios(st
  		(RADEON_CRTC_SYNC_TRISTAT |
  		 RADEON_CRTC_DISPLAY_DIS)));
  
@@ -302,7 +302,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		WREG32(RADEON_FP2_GEN_CNTL, (fp2_gen_cntl & ~RADEON_FP2_ON));
  	}
  
-@@ -568,7 +568,7 @@ static bool legacy_read_disabled_bios(st
+@@ -572,7 +572,7 @@ static bool legacy_read_disabled_bios(st
  		WREG32(RADEON_CRTC2_GEN_CNTL, crtc2_gen_cntl);
  	}
  	WREG32(RADEON_CRTC_EXT_CNTL, crtc_ext_cntl);

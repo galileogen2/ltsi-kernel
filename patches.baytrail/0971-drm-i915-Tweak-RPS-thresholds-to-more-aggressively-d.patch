@@ -144,7 +144,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  }
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4691,7 +4691,7 @@
+@@ -4693,7 +4693,7 @@
  #define   GEN6_RP_UP_IDLE_MIN			(0x1<<3)
  #define   GEN6_RP_UP_BUSY_AVG			(0x2<<3)
  #define   GEN6_RP_UP_BUSY_CONT			(0x4<<3)

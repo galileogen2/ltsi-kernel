@@ -19,7 +19,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -178,6 +178,14 @@ dw8250_do_pm(struct uart_port *port, uns
+@@ -184,6 +184,14 @@ dw8250_do_pm(struct uart_port *port, uns
  		pm_runtime_put_sync_suspend(port->dev);
  }
  
@@ -34,7 +34,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static void dw8250_setup_port(struct uart_8250_port *up)
  {
  	struct uart_port	*p = &up->port;
-@@ -338,6 +346,12 @@ static int dw8250_probe(struct platform_
+@@ -344,6 +352,12 @@ static int dw8250_probe(struct platform_
  		uart.port.uartclk = clk_get_rate(data->clk);
  	}
  

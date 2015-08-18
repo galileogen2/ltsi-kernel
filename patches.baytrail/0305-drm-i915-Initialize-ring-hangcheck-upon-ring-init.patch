@@ -17,7 +17,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -456,6 +456,8 @@ static int init_ring_common(struct intel
+@@ -459,6 +459,8 @@ static int init_ring_common(struct intel
  		ring->last_retired_head = -1;
  	}
  

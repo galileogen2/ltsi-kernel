@@ -34,7 +34,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3721,6 +3721,9 @@
+@@ -3723,6 +3723,9 @@
  # define CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	(1 << 5)
  # define CHICKEN3_DGMG_DONE_FIX_DISABLE		(1 << 2)
  

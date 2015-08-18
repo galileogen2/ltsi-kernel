@@ -24,7 +24,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -917,6 +917,8 @@ void intel_ring_setup_status_page(struct
+@@ -920,6 +920,8 @@ void intel_ring_setup_status_page(struct
  		case VCS:
  			mmio = BSD_HWS_PGA_GEN7;
  			break;

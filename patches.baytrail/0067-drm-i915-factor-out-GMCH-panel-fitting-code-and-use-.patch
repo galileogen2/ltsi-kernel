@@ -398,7 +398,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	/*
  	 * XXX: It would be nice to support lower refresh rates on the
  	 * panels to reduce power consumption, and perhaps match the
-@@ -1158,10 +960,6 @@ bool intel_lvds_init(struct drm_device *
+@@ -1174,10 +976,6 @@ bool intel_lvds_init(struct drm_device *
  
  	lvds_encoder->attached_connector = lvds_connector;
  
@@ -409,7 +409,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	intel_encoder = &lvds_encoder->base;
  	encoder = &intel_encoder->base;
  	intel_connector = &lvds_connector->base;
-@@ -1173,7 +971,6 @@ bool intel_lvds_init(struct drm_device *
+@@ -1189,7 +987,6 @@ bool intel_lvds_init(struct drm_device *
  			 DRM_MODE_ENCODER_LVDS);
  
  	intel_encoder->enable = intel_enable_lvds;

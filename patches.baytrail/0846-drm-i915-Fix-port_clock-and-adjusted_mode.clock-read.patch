@@ -67,7 +67,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			     struct drm_framebuffer *old_fb);
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2075,6 +2075,7 @@
+@@ -2077,6 +2077,7 @@
  
  /* Gen 4 SDVO/HDMI bits: */
  #define   SDVO_COLOR_FORMAT_8bpc		(0 << 26)

@@ -17,14 +17,12 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 (cherry picked from commit 43cb8cb739b9d5f9f723b1953c58b95d3102d821)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/arm/mach-shmobile/setup-sh73a0.c | 11 ++++++-----
+ arch/arm/mach-shmobile/setup-sh73a0.c |   11 ++++++-----
  1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/mach-shmobile/setup-sh73a0.c b/arch/arm/mach-shmobile/setup-sh73a0.c
-index 127891ab..96e7ca1e 100644
 --- a/arch/arm/mach-shmobile/setup-sh73a0.c
 +++ b/arch/arm/mach-shmobile/setup-sh73a0.c
-@@ -929,11 +929,17 @@ void __init sh73a0_add_standard_devices(void)
+@@ -932,11 +932,17 @@ void __init sh73a0_add_standard_devices(
  			    ARRAY_SIZE(sh73a0_late_devices));
  }
  
@@ -42,7 +40,7 @@ index 127891ab..96e7ca1e 100644
  	sh73a0_clock_init();
  	shmobile_earlytimer_init();
  	sh73a0_register_twd();
-@@ -952,11 +958,6 @@ void __init sh73a0_add_early_devices(void)
+@@ -955,11 +961,6 @@ void __init sh73a0_add_early_devices(voi
  
  #ifdef CONFIG_USE_OF
  
@@ -54,6 +52,3 @@ index 127891ab..96e7ca1e 100644
  static const struct of_dev_auxdata sh73a0_auxdata_lookup[] __initconst = {
  	{},
  };
--- 
-1.8.4.3.gca3854a
-

@@ -16,7 +16,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -467,9 +467,11 @@ init_pipe_control(struct intel_ring_buff
+@@ -470,9 +470,11 @@ init_pipe_control(struct intel_ring_buff
  		goto err_unref;
  
  	pc->gtt_offset = obj->gtt_offset;

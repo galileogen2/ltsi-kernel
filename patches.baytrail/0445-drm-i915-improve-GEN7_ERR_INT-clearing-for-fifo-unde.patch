@@ -26,15 +26,13 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit 7336df6512440a494d3a705dfc6a883a42733c8f)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 20 +++++++++++++-------
- drivers/gpu/drm/i915/i915_reg.h |  1 +
+ drivers/gpu/drm/i915/i915_irq.c |   20 +++++++++++++-------
+ drivers/gpu/drm/i915/i915_reg.h |    1 +
  2 files changed, 14 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index d41b7a87c129..c21ea44ede4e 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -154,21 +154,27 @@ static void ironlake_set_fifo_underrun_reporting(struct drm_device *dev,
+@@ -154,21 +154,27 @@ static void ironlake_set_fifo_underrun_r
  }
  
  static void ivybridge_set_fifo_underrun_reporting(struct drm_device *dev,
@@ -68,7 +66,7 @@ index d41b7a87c129..c21ea44ede4e 100644
  	}
  }
  
-@@ -274,7 +280,7 @@ bool intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+@@ -274,7 +280,7 @@ bool intel_set_cpu_fifo_underrun_reporti
  	if (IS_GEN5(dev) || IS_GEN6(dev))
  		ironlake_set_fifo_underrun_reporting(dev, pipe, enable);
  	else if (IS_GEN7(dev))
@@ -77,11 +75,9 @@ index d41b7a87c129..c21ea44ede4e 100644
  
  done:
  	spin_unlock_irqrestore(&dev_priv->irq_lock, flags);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index beb5d119b7e6..b131773190f3 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -681,6 +681,7 @@
+@@ -682,6 +682,7 @@
  #define   ERR_INT_FIFO_UNDERRUN_C	(1<<6)
  #define   ERR_INT_FIFO_UNDERRUN_B	(1<<3)
  #define   ERR_INT_FIFO_UNDERRUN_A	(1<<0)
@@ -89,6 +85,3 @@ index beb5d119b7e6..b131773190f3 100644
  
  #define FPGA_DBG		0x42300
  #define   FPGA_DBG_RM_NOCLAIM	(1<<31)
--- 
-1.8.5.rc3
-

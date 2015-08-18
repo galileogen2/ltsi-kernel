@@ -453,7 +453,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static void i8xx_irq_preinstall(struct drm_device * dev)
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -638,7 +638,10 @@
+@@ -639,7 +639,10 @@
  
  #define ERROR_GEN6	0x040a0
  #define GEN7_ERR_INT	0x44040
@@ -465,7 +465,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  #define FPGA_DBG		0x42300
  #define   FPGA_DBG_RM_NOCLAIM	(1<<31)
-@@ -3626,7 +3629,7 @@
+@@ -3628,7 +3631,7 @@
  #define DE_PIPEA_FIFO_UNDERRUN  (1 << 0)
  
  /* More Ivybridge lolz */
@@ -474,7 +474,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define DE_GSE_IVB			(1<<29)
  #define DE_PCH_EVENT_IVB		(1<<28)
  #define DE_DP_A_HOTPLUG_IVB		(1<<27)
-@@ -3785,6 +3788,7 @@
+@@ -3787,6 +3790,7 @@
  				 SDE_PORTC_HOTPLUG_CPT |	\
  				 SDE_PORTB_HOTPLUG_CPT)
  #define SDE_GMBUS_CPT		(1 << 17)
@@ -482,7 +482,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #define SDE_AUDIO_CP_REQ_C_CPT	(1 << 10)
  #define SDE_AUDIO_CP_CHG_C_CPT	(1 << 9)
  #define SDE_FDI_RXC_CPT		(1 << 8)
-@@ -3809,6 +3813,11 @@
+@@ -3811,6 +3815,11 @@
  #define SDEIIR  0xc4008
  #define SDEIER  0xc400c
  

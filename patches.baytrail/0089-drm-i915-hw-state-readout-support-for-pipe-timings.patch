@@ -31,7 +31,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2848,6 +2848,7 @@
+@@ -2850,6 +2850,7 @@
  #define   PIPECONF_INTERLACED_ILK		(3 << 21)
  #define   PIPECONF_INTERLACED_DBL_ILK		(4 << 21) /* ilk/snb only */
  #define   PIPECONF_PFIT_PF_INTERLACED_DBL_ILK	(5 << 21) /* ilk/snb only */

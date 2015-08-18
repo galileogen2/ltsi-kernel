@@ -33,16 +33,14 @@ Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 (cherry picked from commit abe959c7e06f62f064432a2aa00c199f1f672c81)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c |  1 +
- drivers/gpu/drm/i915/i915_reg.h |  6 ++++++
- drivers/gpu/drm/i915/intel_pm.c | 33 +++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_drv.c |    1 +
+ drivers/gpu/drm/i915/i915_reg.h |    6 ++++++
+ drivers/gpu/drm/i915/intel_pm.c |   33 +++++++++++++++++++++++++++++++--
  3 files changed, 38 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 9e9b612828b2..e7099372913c 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -280,6 +280,7 @@ static const struct intel_device_info intel_ivybridge_m_info = {
+@@ -280,6 +280,7 @@ static const struct intel_device_info in
  	GEN7_FEATURES,
  	.is_ivybridge = 1,
  	.is_mobile = 1,
@@ -50,11 +48,9 @@ index 9e9b612828b2..e7099372913c 100644
  };
  
  static const struct intel_device_info intel_ivybridge_q_info = {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5de7b03ff32a..b7e222464d42 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -925,7 +925,9 @@
+@@ -926,7 +926,9 @@
  #define   DPFC_CTL_EN		(1<<31)
  #define   DPFC_CTL_PLANEA	(0<<30)
  #define   DPFC_CTL_PLANEB	(1<<30)
@@ -64,7 +60,7 @@ index 5de7b03ff32a..b7e222464d42 100644
  #define   DPFC_CTL_PERSISTENT_MODE	(1<<25)
  #define   DPFC_SR_EN		(1<<10)
  #define   DPFC_CTL_LIMIT_1X	(0<<6)
-@@ -958,6 +960,7 @@
+@@ -959,6 +961,7 @@
  #define ILK_DPFC_CHICKEN	0x43224
  #define ILK_FBC_RT_BASE		0x2128
  #define   ILK_FBC_RT_VALID	(1<<0)
@@ -72,7 +68,7 @@ index 5de7b03ff32a..b7e222464d42 100644
  
  #define ILK_DISPLAY_CHICKEN1	0x42000
  #define   ILK_FBCQ_DIS		(1<<22)
-@@ -973,6 +976,9 @@
+@@ -974,6 +977,9 @@
  #define   SNB_CPU_FENCE_ENABLE	(1<<29)
  #define DPFC_CPU_FENCE_OFFSET	0x100104
  
@@ -82,11 +78,9 @@ index 5de7b03ff32a..b7e222464d42 100644
  
  /*
   * GPIO regs
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index df200a67492f..5c976e8aba4c 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -253,6 +253,30 @@ static bool ironlake_fbc_enabled(struct drm_device *dev)
+@@ -253,6 +253,30 @@ static bool ironlake_fbc_enabled(struct
  	return I915_READ(ILK_DPFC_CONTROL) & DPFC_CTL_EN;
  }
  
@@ -117,7 +111,7 @@ index df200a67492f..5c976e8aba4c 100644
  bool intel_fbc_enabled(struct drm_device *dev)
  {
  	struct drm_i915_private *dev_priv = dev->dev_private;
-@@ -439,7 +463,7 @@ void intel_update_fbc(struct drm_device *dev)
+@@ -439,7 +463,7 @@ void intel_update_fbc(struct drm_device
  	if (enable_fbc < 0) {
  		DRM_DEBUG_KMS("fbc set to per-chip default\n");
  		enable_fbc = 1;
@@ -126,7 +120,7 @@ index df200a67492f..5c976e8aba4c 100644
  			enable_fbc = 0;
  	}
  	if (!enable_fbc) {
-@@ -4507,7 +4531,12 @@ void intel_init_pm(struct drm_device *dev)
+@@ -4507,7 +4531,12 @@ void intel_init_pm(struct drm_device *de
  	if (I915_HAS_FBC(dev)) {
  		if (HAS_PCH_SPLIT(dev)) {
  			dev_priv->display.fbc_enabled = ironlake_fbc_enabled;
@@ -140,6 +134,3 @@ index df200a67492f..5c976e8aba4c 100644
  			dev_priv->display.disable_fbc = ironlake_disable_fbc;
  		} else if (IS_GM45(dev)) {
  			dev_priv->display.fbc_enabled = g4x_fbc_enabled;
--- 
-1.8.5.rc3
-

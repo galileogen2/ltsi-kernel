@@ -34,7 +34,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/intel_ringbuffer.c
 +++ b/drivers/gpu/drm/i915/intel_ringbuffer.c
-@@ -379,6 +379,17 @@ u32 intel_ring_get_active_head(struct in
+@@ -382,6 +382,17 @@ u32 intel_ring_get_active_head(struct in
  	return I915_READ(acthd_reg);
  }
  
@@ -52,7 +52,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int init_ring_common(struct intel_ring_buffer *ring)
  {
  	struct drm_device *dev = ring->dev;
-@@ -390,6 +401,11 @@ static int init_ring_common(struct intel
+@@ -393,6 +404,11 @@ static int init_ring_common(struct intel
  	if (HAS_FORCE_WAKE(dev))
  		gen6_gt_force_wake_get(dev_priv);
  
@@ -64,7 +64,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	/* Stop the ring if it's running. */
  	I915_WRITE_CTL(ring, 0);
  	I915_WRITE_HEAD(ring, 0);
-@@ -1237,7 +1253,6 @@ static int init_status_page(struct intel
+@@ -1240,7 +1256,6 @@ static int init_status_page(struct intel
  	ring->status_page.obj = obj;
  	memset(ring->status_page.page_addr, 0, PAGE_SIZE);
  
@@ -72,7 +72,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	DRM_DEBUG_DRIVER("%s hws offset: 0x%08x\n",
  			ring->name, ring->status_page.gfx_addr);
  
-@@ -1251,10 +1266,9 @@ err:
+@@ -1254,10 +1269,9 @@ err:
  	return ret;
  }
  
@@ -84,7 +84,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	if (!dev_priv->status_page_dmah) {
  		dev_priv->status_page_dmah =
-@@ -1263,11 +1277,6 @@ static int init_phys_hws_pga(struct inte
+@@ -1266,11 +1280,6 @@ static int init_phys_hws_pga(struct inte
  			return -ENOMEM;
  	}
  
@@ -96,7 +96,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	ring->status_page.page_addr = dev_priv->status_page_dmah->vaddr;
  	memset(ring->status_page.page_addr, 0, PAGE_SIZE);
  
-@@ -1295,7 +1304,7 @@ static int intel_init_ring_buffer(struct
+@@ -1298,7 +1307,7 @@ static int intel_init_ring_buffer(struct
  			return ret;
  	} else {
  		BUG_ON(ring->id != RCS);
@@ -105,7 +105,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		if (ret)
  			return ret;
  	}
-@@ -1911,7 +1920,7 @@ int intel_render_ring_init_dri(struct dr
+@@ -1914,7 +1923,7 @@ int intel_render_ring_init_dri(struct dr
  	}
  
  	if (!I915_NEED_GFX_HWS(dev)) {

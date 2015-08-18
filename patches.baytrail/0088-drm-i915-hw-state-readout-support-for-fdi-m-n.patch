@@ -25,7 +25,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2783,6 +2783,7 @@
+@@ -2785,6 +2785,7 @@
  
  /* Transfer unit size for display port - 1, default is 0x3f (for TU size 64) */
  #define  TU_SIZE(x)             (((x)-1) << 25) /* default size 64 */

@@ -49,7 +49,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  		spin_unlock_irqrestore(&ioc->lock, flags);
 --- a/block/genhd.c
 +++ b/block/genhd.c
-@@ -1491,9 +1491,11 @@ static void __disk_unblock_events(struct
+@@ -1498,9 +1498,11 @@ static void __disk_unblock_events(struct
  	intv = disk_events_poll_jiffies(disk);
  	set_timer_slack(&ev->dwork.timer, intv / 4);
  	if (check_now)
@@ -63,7 +63,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  out_unlock:
  	spin_unlock_irqrestore(&ev->lock, flags);
  }
-@@ -1536,7 +1538,8 @@ void disk_flush_events(struct gendisk *d
+@@ -1543,7 +1545,8 @@ void disk_flush_events(struct gendisk *d
  	spin_lock_irq(&ev->lock);
  	ev->clearing |= mask;
  	if (!ev->block)
@@ -73,7 +73,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  	spin_unlock_irq(&ev->lock);
  }
  
-@@ -1629,7 +1632,8 @@ static void disk_check_events(struct dis
+@@ -1636,7 +1639,8 @@ static void disk_check_events(struct dis
  
  	intv = disk_events_poll_jiffies(disk);
  	if (!ev->block && intv)

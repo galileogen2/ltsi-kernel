@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  				== num_ports)
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -4052,15 +4052,40 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4055,15 +4055,40 @@ int xhci_set_usb2_hardware_lpm(struct us
  	return 0;
  }
  
@@ -150,7 +150,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			if (!ret)
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
-@@ -1543,6 +1543,9 @@ struct xhci_hcd {
+@@ -1548,6 +1548,9 @@ struct xhci_hcd {
  	unsigned		sw_lpm_support:1;
  	/* support xHCI 1.0 spec USB2 hardware LPM */
  	unsigned		hw_lpm_support:1;
