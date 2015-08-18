@@ -31,7 +31,7 @@ Signed-off-by: Do Quang Thang <dq-thang@jinso.co.jp>
  }
  
  static struct usb_request *usbhsg_ep_alloc_request(struct usb_ep *ep,
-@@ -754,7 +749,7 @@ static int usbhsg_try_start(struct usbhs
+@@ -757,7 +752,7 @@ static int usbhsg_try_start(struct usbhs
  			usbhsg_dma_map_ctrl);
  	usbhs_fifo_init(priv);
  
@@ -40,7 +40,7 @@ Signed-off-by: Do Quang Thang <dq-thang@jinso.co.jp>
  	dcp->pipe		= usbhs_dcp_malloc(priv);
  	dcp->pipe->mod_private	= dcp;
  	usbhs_pipe_config_update(dcp->pipe, 0, 0, 64);
-@@ -816,7 +811,7 @@ static int usbhsg_try_stop(struct usbhs_
+@@ -819,7 +814,7 @@ static int usbhsg_try_stop(struct usbhs_
  	usbhs_sys_set_test_mode(priv, 0);
  	usbhs_sys_function_ctrl(priv, 0);
  

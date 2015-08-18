@@ -30,12 +30,10 @@ Signed-off-by: Grant Likely <grant.likely@secretlab.ca>
 
 Signed-off-by: Simon Horman <horms@verge.net.au>
 ---
- include/linux/of.h     | 15 ++++++++++-----
- kernel/irq/irqdomain.c | 13 ++++++++-----
+ include/linux/of.h     |   15 ++++++++++-----
+ kernel/irq/irqdomain.c |   13 ++++++++-----
  2 files changed, 18 insertions(+), 10 deletions(-)
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 284d117..e24c5cc 100644
 --- a/include/linux/of.h
 +++ b/include/linux/of.h
 @@ -21,6 +21,7 @@
@@ -46,7 +44,7 @@ index 284d117..e24c5cc 100644
  
  #include <asm/byteorder.h>
  #include <asm/errno.h>
-@@ -158,11 +159,6 @@ static inline unsigned long of_read_ulong(const __be32 *cell, int size)
+@@ -158,11 +159,6 @@ static inline unsigned long of_read_ulon
  
  #define OF_BAD_ADDR	((u64)-1)
  
@@ -58,7 +56,7 @@ index 284d117..e24c5cc 100644
  static inline const char* of_node_full_name(struct device_node *np)
  {
  	return np ? np->full_name : "<no-node>";
-@@ -361,6 +357,15 @@ static inline int of_machine_is_compatible(const char *compat)
+@@ -353,6 +349,15 @@ static inline int of_machine_is_compatib
  #define of_match_node(_matches, _node)	NULL
  #endif /* CONFIG_OF */
  
@@ -72,10 +70,8 @@ index 284d117..e24c5cc 100644
 +#endif
 +
  /**
-  * of_property_read_bool - Findfrom a property
-  * @np:		device node from which the property value is to be read.
-diff --git a/kernel/irq/irqdomain.c b/kernel/irq/irqdomain.c
-index 38c5eb8..79ae0eb 100644
+  * of_property_read_string_array() - Read an array of strings from a multiple
+  * strings property.
 --- a/kernel/irq/irqdomain.c
 +++ b/kernel/irq/irqdomain.c
 @@ -10,6 +10,7 @@
@@ -86,7 +82,7 @@ index 38c5eb8..79ae0eb 100644
  #include <linux/seq_file.h>
  #include <linux/slab.h>
  #include <linux/smp.h>
-@@ -45,7 +46,8 @@ static struct irq_domain *irq_domain_alloc(struct device_node *of_node,
+@@ -45,7 +46,8 @@ static struct irq_domain *irq_domain_all
  {
  	struct irq_domain *domain;
  
@@ -96,7 +92,7 @@ index 38c5eb8..79ae0eb 100644
  	if (WARN_ON(!domain))
  		return NULL;
  
-@@ -229,7 +231,8 @@ struct irq_domain *irq_domain_add_linear(struct device_node *of_node,
+@@ -229,7 +231,8 @@ struct irq_domain *irq_domain_add_linear
  	struct irq_domain *domain;
  	unsigned int *revmap;
  
@@ -106,7 +102,7 @@ index 38c5eb8..79ae0eb 100644
  	if (WARN_ON(!revmap))
  		return NULL;
  
-@@ -367,7 +370,7 @@ unsigned int irq_create_direct_mapping(struct irq_domain *domain)
+@@ -367,7 +370,7 @@ unsigned int irq_create_direct_mapping(s
  	BUG_ON(domain == NULL);
  	WARN_ON(domain->revmap_type != IRQ_DOMAIN_MAP_NOMAP);
  
@@ -115,7 +111,7 @@ index 38c5eb8..79ae0eb 100644
  	if (!virq) {
  		pr_debug("create_direct virq allocation failed\n");
  		return 0;
-@@ -433,9 +436,9 @@ unsigned int irq_create_mapping(struct irq_domain *domain,
+@@ -433,9 +436,9 @@ unsigned int irq_create_mapping(struct i
  	hint = hwirq % nr_irqs;
  	if (hint == 0)
  		hint++;
@@ -127,6 +123,3 @@ index 38c5eb8..79ae0eb 100644
  	if (virq <= 0) {
  		pr_debug("-> virq allocation failed\n");
  		return 0;
--- 
-1.8.0.197.g5a90748
-

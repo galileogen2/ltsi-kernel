@@ -33,7 +33,7 @@ Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
 --- a/drivers/of/base.c
 +++ b/drivers/of/base.c
-@@ -1261,3 +1261,44 @@ int of_alias_get_id(struct device_node *
+@@ -1217,3 +1217,44 @@ int of_alias_get_id(struct device_node *
  	return id;
  }
  EXPORT_SYMBOL_GPL(of_alias_get_id);
@@ -80,7 +80,7 @@ Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 +EXPORT_SYMBOL_GPL(of_prop_next_string);
 --- a/include/linux/of.h
 +++ b/include/linux/of.h
-@@ -260,6 +260,37 @@ extern void of_detach_node(struct device
+@@ -258,6 +258,37 @@ extern void of_detach_node(struct device
  #endif
  
  #define of_match_ptr(_ptr)	(_ptr)
@@ -118,7 +118,7 @@ Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
  #else /* CONFIG_OF */
  
  static inline const char* of_node_full_name(struct device_node *np)
-@@ -355,6 +386,10 @@ static inline int of_machine_is_compatib
+@@ -347,6 +378,10 @@ static inline int of_machine_is_compatib
  
  #define of_match_ptr(_ptr)	NULL
  #define of_match_node(_matches, _node)	NULL

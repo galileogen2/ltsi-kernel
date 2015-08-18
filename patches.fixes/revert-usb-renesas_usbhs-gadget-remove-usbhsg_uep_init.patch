@@ -33,7 +33,7 @@ Signed-off-by: Do Quang Thang <dq-thang@jinso.co.jp>
  /*
   *
   *		usb_ep_ops
-@@ -748,6 +757,7 @@ static int usbhsg_try_start(struct usbhs
+@@ -751,6 +760,7 @@ static int usbhsg_try_start(struct usbhs
  	usbhs_pipe_init(priv,
  			usbhsg_dma_map_ctrl);
  	usbhs_fifo_init(priv);
@@ -41,7 +41,7 @@ Signed-off-by: Do Quang Thang <dq-thang@jinso.co.jp>
  
  	/* dcp init */
  	dcp->pipe		= usbhs_dcp_malloc(priv);
-@@ -960,7 +970,6 @@ int usbhs_mod_gadget_probe(struct usbhs_
+@@ -963,7 +973,6 @@ int usbhs_mod_gadget_probe(struct usbhs_
  	 */
  	usbhsg_for_each_uep_with_dcp(uep, gpriv, i) {
  		uep->gpriv	= gpriv;

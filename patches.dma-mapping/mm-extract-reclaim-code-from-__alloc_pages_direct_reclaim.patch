@@ -32,7 +32,7 @@ Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
 --- a/mm/page_alloc.c
 +++ b/mm/page_alloc.c
-@@ -2137,16 +2137,13 @@ __alloc_pages_direct_compact(gfp_t gfp_m
+@@ -2145,16 +2145,13 @@ __alloc_pages_direct_compact(gfp_t gfp_m
  }
  #endif /* CONFIG_COMPACTION */
  
@@ -54,7 +54,7 @@ Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
  
  	cond_resched();
  
-@@ -2157,7 +2154,7 @@ __alloc_pages_direct_reclaim(gfp_t gfp_m
+@@ -2165,7 +2162,7 @@ __alloc_pages_direct_reclaim(gfp_t gfp_m
  	reclaim_state.reclaimed_slab = 0;
  	current->reclaim_state = &reclaim_state;
  
@@ -63,7 +63,7 @@ Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
  
  	current->reclaim_state = NULL;
  	lockdep_clear_current_reclaim_state();
-@@ -2165,6 +2162,21 @@ __alloc_pages_direct_reclaim(gfp_t gfp_m
+@@ -2173,6 +2170,21 @@ __alloc_pages_direct_reclaim(gfp_t gfp_m
  
  	cond_resched();
  

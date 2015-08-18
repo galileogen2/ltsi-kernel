@@ -32,7 +32,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  /*
   *
   *		usb_ep_ops
-@@ -757,7 +748,6 @@ static int usbhsg_try_start(struct usbhs
+@@ -760,7 +751,6 @@ static int usbhsg_try_start(struct usbhs
  	usbhs_pipe_init(priv,
  			usbhsg_dma_map_ctrl);
  	usbhs_fifo_init(priv);
@@ -40,7 +40,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  
  	/* dcp init */
  	dcp->pipe		= usbhs_dcp_malloc(priv);
-@@ -970,6 +960,7 @@ int usbhs_mod_gadget_probe(struct usbhs_
+@@ -973,6 +963,7 @@ int usbhs_mod_gadget_probe(struct usbhs_
  	 */
  	usbhsg_for_each_uep_with_dcp(uep, gpriv, i) {
  		uep->gpriv	= gpriv;

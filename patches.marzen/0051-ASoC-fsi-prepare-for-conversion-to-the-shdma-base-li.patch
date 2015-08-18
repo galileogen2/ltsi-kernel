@@ -17,7 +17,7 @@ Signed-off-by: Simon Horman <horms@verge.net.au>
 
 --- a/sound/soc/sh/fsi.c
 +++ b/sound/soc/sh/fsi.c
-@@ -1533,8 +1533,8 @@ static void fsi_handler_init(struct fsi_
+@@ -1532,8 +1532,8 @@ static void fsi_handler_init(struct fsi_
  	fsi->capture.priv	= fsi;
  
  	if (fsi->info->tx_id) {

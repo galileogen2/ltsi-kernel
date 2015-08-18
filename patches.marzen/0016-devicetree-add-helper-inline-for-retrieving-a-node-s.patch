@@ -130,7 +130,7 @@ Signed-off-by: Simon Horman <horms@verge.net.au>
  				break;
 --- a/drivers/of/base.c
 +++ b/drivers/of/base.c
-@@ -1173,7 +1173,7 @@ static void of_alias_add(struct alias_pr
+@@ -1129,7 +1129,7 @@ static void of_alias_add(struct alias_pr
  	ap->stem[stem_len] = 0;
  	list_add_tail(&ap->link, &aliases_lookup);
  	pr_debug("adding DT alias:%s: stem=%s id=%i node=%s\n",
@@ -164,7 +164,7 @@ Signed-off-by: Simon Horman <horms@verge.net.au>
  extern struct device_node *of_find_node_by_name(struct device_node *from,
  	const char *name);
  #define for_each_node_by_name(dn, name) \
-@@ -261,6 +266,11 @@ extern void of_detach_node(struct device
+@@ -259,6 +264,11 @@ extern void of_detach_node(struct device
  #define of_match_ptr(_ptr)	(_ptr)
  #else /* CONFIG_OF */
  
