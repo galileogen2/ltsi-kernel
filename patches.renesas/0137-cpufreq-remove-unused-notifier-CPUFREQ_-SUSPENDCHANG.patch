@@ -98,7 +98,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  				      ft->ref_freq,
 --- a/arch/x86/kernel/tsc.c
 +++ b/arch/x86/kernel/tsc.c
-@@ -914,8 +914,7 @@ static int time_cpufreq_notifier(struct
+@@ -915,8 +915,7 @@ static int time_cpufreq_notifier(struct
  		tsc_khz_ref = tsc_khz;
  	}
  	if ((val == CPUFREQ_PRECHANGE  && freq->old < freq->new) ||

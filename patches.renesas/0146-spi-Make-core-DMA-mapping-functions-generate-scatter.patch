@@ -230,7 +230,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	}
  
  	return 0;
-@@ -1501,6 +1550,8 @@ int spi_register_master(struct spi_maste
+@@ -1500,6 +1549,8 @@ int spi_register_master(struct spi_maste
  	mutex_init(&master->bus_lock_mutex);
  	master->bus_lock_flag = 0;
  	init_completion(&master->xfer_completion);
