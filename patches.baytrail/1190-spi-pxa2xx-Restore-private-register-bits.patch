@@ -17,7 +17,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/spi/spi-pxa2xx.c
 +++ b/drivers/spi/spi-pxa2xx.c
-@@ -1321,6 +1321,9 @@ static int pxa2xx_spi_resume(struct devi
+@@ -1325,6 +1325,9 @@ static int pxa2xx_spi_resume(struct devi
  	if (!pm_runtime_suspended(dev))
  		clk_prepare_enable(ssp->clk);
  

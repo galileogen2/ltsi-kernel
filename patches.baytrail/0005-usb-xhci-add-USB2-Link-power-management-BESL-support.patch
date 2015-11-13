@@ -41,7 +41,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  /* start/stop HC execution - do not write unless HC is halted*/
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3837,6 +3837,64 @@ int xhci_find_raw_port_number(struct usb
+@@ -3843,6 +3843,64 @@ int xhci_find_raw_port_number(struct usb
  	return raw_port;
  }
  
@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #ifdef CONFIG_PM_RUNTIME
  
  /* BESL to HIRD Encoding array for USB2 LPM */
-@@ -3878,6 +3936,28 @@ static int xhci_calculate_hird_besl(stru
+@@ -3884,6 +3942,28 @@ static int xhci_calculate_hird_besl(stru
  	return besl;
  }
  
@@ -135,7 +135,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static int xhci_usb2_software_lpm_test(struct usb_hcd *hcd,
  					struct usb_device *udev)
  {
-@@ -4010,11 +4090,12 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4016,11 +4096,12 @@ int xhci_set_usb2_hardware_lpm(struct us
  {
  	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
  	__le32 __iomem	**port_array;
@@ -151,7 +151,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	if (hcd->speed == HCD_USB3 || !xhci->hw_lpm_support ||
  			!udev->lpm_capable)
-@@ -4032,23 +4113,73 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4038,23 +4119,73 @@ int xhci_set_usb2_hardware_lpm(struct us
  	port_array = xhci->usb2_ports;
  	port_num = udev->portnum - 1;
  	pm_addr = port_array[port_num] + PORTPMSC;
@@ -236,7 +236,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
  
  	spin_unlock_irqrestore(&xhci->lock, flags);
-@@ -4090,6 +4221,9 @@ int xhci_update_device(struct usb_hcd *h
+@@ -4096,6 +4227,9 @@ int xhci_update_device(struct usb_hcd *h
  		if (xhci->hw_lpm_support == 1 &&
  		    xhci_check_usb2_port_capability(xhci, portnum, XHCI_HLC)) {
  			udev->usb2_hw_lpm_capable = 1;
@@ -246,7 +246,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			ret = xhci_set_usb2_hardware_lpm(hcd, udev, 1);
  			if (!ret)
  				udev->usb2_hw_lpm_enabled = 1;
-@@ -4420,64 +4554,6 @@ static u16 xhci_calculate_lpm_timeout(st
+@@ -4426,64 +4560,6 @@ static u16 xhci_calculate_lpm_timeout(st
  	return timeout;
  }
  

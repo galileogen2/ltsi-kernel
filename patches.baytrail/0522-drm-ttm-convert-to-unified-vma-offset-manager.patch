@@ -96,7 +96,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	}
 --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -192,7 +192,7 @@ nouveau_gem_info(struct drm_file *file_p
+@@ -193,7 +193,7 @@ nouveau_gem_info(struct drm_file *file_p
  	}
  
  	rep->size = nvbo->bo.mem.num_pages << PAGE_SHIFT;

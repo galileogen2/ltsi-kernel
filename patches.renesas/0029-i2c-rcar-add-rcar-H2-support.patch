@@ -89,7 +89,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	ret = rcar_i2c_clock_calculate(priv, bus_speed, dev);
  	if (ret < 0)
  		return ret;
-@@ -698,6 +720,14 @@ static int rcar_i2c_remove(struct platfo
+@@ -699,6 +721,14 @@ static int rcar_i2c_remove(struct platfo
  	return 0;
  }
  
@@ -104,7 +104,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  static struct platform_driver rcar_i2c_driver = {
  	.driver	= {
  		.name	= "i2c-rcar",
-@@ -705,6 +735,7 @@ static struct platform_driver rcar_i2c_d
+@@ -706,6 +736,7 @@ static struct platform_driver rcar_i2c_d
  	},
  	.probe		= rcar_i2c_probe,
  	.remove		= rcar_i2c_remove,

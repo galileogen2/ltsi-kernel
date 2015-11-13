@@ -127,7 +127,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  static struct attribute_group usb2_hardware_lpm_attr_group = {
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3947,7 +3947,7 @@ static int xhci_calculate_usb2_hw_lpm_pa
+@@ -3953,7 +3953,7 @@ static int xhci_calculate_usb2_hw_lpm_pa
  	field = le32_to_cpu(udev->bos->ext_cap->bmAttributes);
  
  	/* xHCI l1 is set in steps of 256us, xHCI 1.0 section 5.4.11.2 */
@@ -136,7 +136,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	/* device has preferred BESLD */
  	if (field & USB_BESL_DEEP_VALID) {
-@@ -4131,7 +4131,7 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4137,7 +4137,7 @@ int xhci_set_usb2_hardware_lpm(struct us
  			    (field & USB_BESL_BASELINE_VALID))
  				hird = USB_GET_BESL_BASELINE(field);
  			else
@@ -145,7 +145,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  			exit_latency = xhci_besl_encoding[hird];
  			spin_unlock_irqrestore(&xhci->lock, flags);
-@@ -4221,6 +4221,8 @@ int xhci_update_device(struct usb_hcd *h
+@@ -4227,6 +4227,8 @@ int xhci_update_device(struct usb_hcd *h
  		if (xhci->hw_lpm_support == 1 &&
  		    xhci_check_usb2_port_capability(xhci, portnum, XHCI_HLC)) {
  			udev->usb2_hw_lpm_capable = 1;

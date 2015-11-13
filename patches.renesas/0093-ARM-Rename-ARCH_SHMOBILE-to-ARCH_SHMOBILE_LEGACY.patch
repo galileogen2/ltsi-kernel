@@ -92,7 +92,7 @@ Conflicts:
  	default "11"
 --- a/arch/arm/Makefile
 +++ b/arch/arm/Makefile
-@@ -181,7 +181,6 @@ machine-$(CONFIG_ARCH_EXYNOS)		+= exynos
+@@ -189,7 +189,6 @@ machine-$(CONFIG_ARCH_EXYNOS)		+= exynos
  machine-$(CONFIG_ARCH_SA1100)		+= sa1100
  machine-$(CONFIG_ARCH_SHARK)		+= shark
  machine-$(CONFIG_ARCH_SHMOBILE) 	+= shmobile

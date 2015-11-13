@@ -62,7 +62,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	{},
  };
  MODULE_DEVICE_TABLE(of, rcar_i2c_dt_ids);
-@@ -743,9 +743,9 @@ static int rcar_i2c_remove(struct platfo
+@@ -744,9 +744,9 @@ static int rcar_i2c_remove(struct platfo
  }
  
  static struct platform_device_id rcar_i2c_id_table[] = {

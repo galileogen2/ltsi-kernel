@@ -106,7 +106,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  				== num_ports)
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -4055,15 +4055,40 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4061,15 +4061,40 @@ int xhci_set_usb2_hardware_lpm(struct us
  	return 0;
  }
  

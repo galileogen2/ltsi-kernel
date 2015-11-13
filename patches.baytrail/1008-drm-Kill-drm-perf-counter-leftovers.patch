@@ -87,7 +87,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			DRM_ERROR("Device busy: %d\n",
 --- a/drivers/gpu/drm/drm_lock.c
 +++ b/drivers/gpu/drm/drm_lock.c
-@@ -86,7 +86,6 @@ int drm_lock(struct drm_device *dev, voi
+@@ -89,7 +89,6 @@ int drm_lock(struct drm_device *dev, voi
  		if (drm_lock_take(&master->lock, lock->context)) {
  			master->lock.file_priv = file_priv;
  			master->lock.lock_time = jiffies;
@@ -95,7 +95,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			break;	/* Got lock */
  		}
  
-@@ -157,8 +156,6 @@ int drm_unlock(struct drm_device *dev, v
+@@ -163,8 +162,6 @@ int drm_unlock(struct drm_device *dev, v
  		return -EINVAL;
  	}
  

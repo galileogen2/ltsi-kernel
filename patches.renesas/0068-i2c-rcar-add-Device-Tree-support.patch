@@ -94,7 +94,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	i2c_set_adapdata(adap, priv);
  	strlcpy(adap->name, pdev->name, sizeof(adap->name));
  
-@@ -738,6 +754,7 @@ static struct platform_driver rcar_i2c_d
+@@ -739,6 +755,7 @@ static struct platform_driver rcar_i2c_d
  	.driver	= {
  		.name	= "i2c-rcar",
  		.owner	= THIS_MODULE,

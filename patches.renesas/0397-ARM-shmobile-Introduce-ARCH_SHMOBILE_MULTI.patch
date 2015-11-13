@@ -14,16 +14,14 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 (cherry picked from commit efacfce5f8a523457e9419a25d52fe39db00b26a)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/arm/Makefile               |  1 +
- arch/arm/mach-shmobile/Kconfig  | 21 +++++++++++++++++++++
- arch/arm/mach-shmobile/Makefile |  2 ++
+ arch/arm/Makefile               |    1 +
+ arch/arm/mach-shmobile/Kconfig  |   21 +++++++++++++++++++++
+ arch/arm/mach-shmobile/Makefile |    2 ++
  3 files changed, 24 insertions(+)
 
-diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-index 1ba358ba..f56df13d 100644
 --- a/arch/arm/Makefile
 +++ b/arch/arm/Makefile
-@@ -181,6 +181,7 @@ machine-$(CONFIG_ARCH_EXYNOS)		+= exynos
+@@ -189,6 +189,7 @@ machine-$(CONFIG_ARCH_EXYNOS)		+= exynos
  machine-$(CONFIG_ARCH_SA1100)		+= sa1100
  machine-$(CONFIG_ARCH_SHARK)		+= shark
  machine-$(CONFIG_ARCH_SHMOBILE) 	+= shmobile
@@ -31,8 +29,6 @@ index 1ba358ba..f56df13d 100644
  machine-$(CONFIG_ARCH_TEGRA)		+= tegra
  machine-$(CONFIG_ARCH_U300)		+= u300
  machine-$(CONFIG_ARCH_U8500)		+= ux500
-diff --git a/arch/arm/mach-shmobile/Kconfig b/arch/arm/mach-shmobile/Kconfig
-index 5ae27f21..b6ba366a 100644
 --- a/arch/arm/mach-shmobile/Kconfig
 +++ b/arch/arm/mach-shmobile/Kconfig
 @@ -1,3 +1,24 @@
@@ -60,8 +56,6 @@ index 5ae27f21..b6ba366a 100644
  if ARCH_SHMOBILE
  
  comment "SH-Mobile System Type"
-diff --git a/arch/arm/mach-shmobile/Makefile b/arch/arm/mach-shmobile/Makefile
-index 28dc9ab3..8bda014c 100644
 --- a/arch/arm/mach-shmobile/Makefile
 +++ b/arch/arm/mach-shmobile/Makefile
 @@ -2,6 +2,8 @@
@@ -73,6 +67,3 @@ index 28dc9ab3..8bda014c 100644
  # Common objects
  obj-y				:= timer.o console.o
  
--- 
-1.8.4.3.gca3854a
-
