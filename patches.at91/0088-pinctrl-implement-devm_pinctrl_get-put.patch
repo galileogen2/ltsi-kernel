@@ -11,14 +11,12 @@ allocations made by drivers, thus leading to simplified drivers.
 Signed-off-by: Stephen Warren <swarren@nvidia.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/driver-model/devres.txt |  4 +++
- Documentation/pinctrl.txt             | 48 ++++++++++++++++++------------
- drivers/pinctrl/core.c                | 56 +++++++++++++++++++++++++++++++++++
- include/linux/pinctrl/consumer.h      | 44 +++++++++++++++++++++++++++
- 4 files changed, 133 insertions(+), 19 deletions(-)
+ Documentation/driver-model/devres.txt |    4 ++
+ Documentation/pinctrl.txt             |   43 +++++++++++++++-----------
+ drivers/pinctrl/core.c                |   56 ++++++++++++++++++++++++++++++++++
+ include/linux/pinctrl/consumer.h      |   44 ++++++++++++++++++++++++++
+ 4 files changed, 130 insertions(+), 17 deletions(-)
 
-diff --git a/Documentation/driver-model/devres.txt b/Documentation/driver-model/devres.txt
-index 2a596a4..ef4fa7b 100644
 --- a/Documentation/driver-model/devres.txt
 +++ b/Documentation/driver-model/devres.txt
 @@ -276,3 +276,7 @@ REGULATOR
@@ -29,11 +27,9 @@ index 2a596a4..ef4fa7b 100644
 +PINCTRL
 +  devm_pinctrl_get()
 +  devm_pinctrl_put()
-diff --git a/Documentation/pinctrl.txt b/Documentation/pinctrl.txt
-index d97bccf..fa829f1 100644
 --- a/Documentation/pinctrl.txt
 +++ b/Documentation/pinctrl.txt
-@@ -952,13 +952,13 @@ case), we define a mapping like this:
+@@ -951,13 +951,13 @@ case), we define a mapping like this:
  The result of grabbing this mapping from the device with something like
  this (see next paragraph):
  
@@ -49,7 +45,7 @@ index d97bccf..fa829f1 100644
  
  Will be that you activate all the three bottom records in the mapping at
  once. Since they share the same name, pin controller device, function and
-@@ -992,7 +992,7 @@ foo_probe()
+@@ -991,7 +991,7 @@ foo_probe()
  	/* Allocate a state holder named "foo" etc */
  	struct foo_state *foo = ...;
  
@@ -58,7 +54,7 @@ index d97bccf..fa829f1 100644
  	if (IS_ERR(foo->p)) {
  		/* FIXME: clean up "foo" here */
  		return PTR_ERR(foo->p);
-@@ -1000,24 +1000,17 @@ foo_probe()
+@@ -999,24 +999,17 @@ foo_probe()
  
  	foo->s = pinctrl_lookup_state(foo->p, PINCTRL_STATE_DEFAULT);
  	if (IS_ERR(foo->s)) {
@@ -83,7 +79,7 @@ index d97bccf..fa829f1 100644
  This get/lookup/select/put sequence can just as well be handled by bus drivers
  if you don't want each and every driver to handle it and you know the
  arrangement on your bus.
-@@ -1029,6 +1022,11 @@ The semantics of the pinctrl APIs are:
+@@ -1028,6 +1021,21 @@ The semantics of the pinctrl APIs are:
    kernel memory to hold the pinmux state. All mapping table parsing or similar
    slow operations take place within this API.
  
@@ -92,13 +88,6 @@ index d97bccf..fa829f1 100644
 +  device is removed. It is recommended to use this function over plain
 +  pinctrl_get().
 +
- - pinctrl_lookup_state() is called in process context to obtain a handle to a
-   specific state for a the client device. This operation may be slow too.
- 
-@@ -1041,14 +1039,25 @@ The semantics of the pinctrl APIs are:
- 
- - pinctrl_put() frees all information associated with a pinctrl handle.
- 
 +- devm_pinctrl_put() is a variant of pinctrl_put() that may be used to
 +  explicitly destroy a pinctrl object returned by devm_pinctrl_get().
 +  However, use of this function will be rare, due to the automatic cleanup
@@ -109,21 +98,10 @@ index d97bccf..fa829f1 100644
 +  devm_pinctrl_get() can optionally be paired with devm_pinctrl_put().
 +  devm_pinctrl_get() may not be paired with plain pinctrl_put().
 +
- Usually the pin control core handled the get/put pair and call out to the
- device drivers bookkeeping operations, like checking available functions and
- the associated pins, whereas the enable/disable pass on to the pin controller
- driver which takes care of activating and/or deactivating the mux setting by
- quickly poking some registers.
+ - pinctrl_lookup_state() is called in process context to obtain a handle to a
+   specific state for a the client device. This operation may be slow too.
  
--The pins are allocated for your device when you issue the pinctrl_get() call,
--after this you should be able to see this in the debugfs listing of all pins.
-+The pins are allocated for your device when you issue the devm_pinctrl_get()
-+call, after this you should be able to see this in the debugfs listing of all
-+pins.
- 
- 
- System pin control hogging
-@@ -1094,13 +1103,13 @@ it, disables and releases it, and muxes it in on the pins defined by group B:
+@@ -1094,13 +1102,13 @@ on the pins defined by group B:
  
  #include <linux/pinctrl/consumer.h>
  
@@ -142,7 +120,7 @@ index d97bccf..fa829f1 100644
  	if (IS_ERR(p))
  		...
  
-@@ -1111,7 +1120,10 @@ foo_switch()
+@@ -1111,7 +1119,10 @@ foo_switch()
  	s2 = pinctrl_lookup_state(foo->p, "pos-B");
  	if (IS_ERR(s2))
  		...
@@ -153,7 +131,7 @@ index d97bccf..fa829f1 100644
  	/* Enable on position A */
  	ret = pinctrl_select_state(s1);
  	if (ret < 0)
-@@ -1125,8 +1137,6 @@ foo_switch()
+@@ -1125,8 +1136,6 @@ foo_switch()
  	    ...
  
  	...
@@ -162,8 +140,6 @@ index d97bccf..fa829f1 100644
  }
  
  The above has to be done from process context.
-diff --git a/drivers/pinctrl/core.c b/drivers/pinctrl/core.c
-index 832f71d..f4544f4 100644
 --- a/drivers/pinctrl/core.c
 +++ b/drivers/pinctrl/core.c
 @@ -23,6 +23,7 @@
@@ -174,7 +150,7 @@ index 832f71d..f4544f4 100644
  #include <linux/pinctrl/pinctrl.h>
  #include <linux/pinctrl/machine.h>
  #include "core.h"
-@@ -797,6 +798,61 @@ int pinctrl_select_state(struct pinctrl *p, struct pinctrl_state *state)
+@@ -797,6 +798,61 @@ int pinctrl_select_state(struct pinctrl
  }
  EXPORT_SYMBOL_GPL(pinctrl_select_state);
  
@@ -236,11 +212,9 @@ index 832f71d..f4544f4 100644
  int pinctrl_register_map(struct pinctrl_map const *maps, unsigned num_maps,
  			 bool dup, bool locked)
  {
-diff --git a/include/linux/pinctrl/consumer.h b/include/linux/pinctrl/consumer.h
-index 191e726..6dd96fb 100644
 --- a/include/linux/pinctrl/consumer.h
 +++ b/include/linux/pinctrl/consumer.h
-@@ -36,6 +36,9 @@ extern struct pinctrl_state * __must_check pinctrl_lookup_state(
+@@ -36,6 +36,9 @@ extern struct pinctrl_state * __must_che
  							const char *name);
  extern int pinctrl_select_state(struct pinctrl *p, struct pinctrl_state *s);
  
@@ -250,7 +224,7 @@ index 191e726..6dd96fb 100644
  #else /* !CONFIG_PINCTRL */
  
  static inline int pinctrl_request_gpio(unsigned gpio)
-@@ -79,6 +82,15 @@ static inline int pinctrl_select_state(struct pinctrl *p,
+@@ -79,6 +82,15 @@ static inline int pinctrl_select_state(s
  	return 0;
  }
  
@@ -266,7 +240,7 @@ index 191e726..6dd96fb 100644
  #endif /* CONFIG_PINCTRL */
  
  static inline struct pinctrl * __must_check pinctrl_get_select(
-@@ -113,6 +125,38 @@ static inline struct pinctrl * __must_check pinctrl_get_select_default(
+@@ -113,6 +125,38 @@ static inline struct pinctrl * __must_ch
  	return pinctrl_get_select(dev, PINCTRL_STATE_DEFAULT);
  }
  
@@ -305,6 +279,3 @@ index 191e726..6dd96fb 100644
  #ifdef CONFIG_PINCONF
  
  extern int pin_config_get(const char *dev_name, const char *name,
--- 
-1.8.0.197.g5a90748
-
