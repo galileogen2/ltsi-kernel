@@ -10,14 +10,12 @@ Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
 (cherry picked from commit de73c162fc2e91e19b7716fc9c0150f759be2567)
 Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
 ---
- arch/arm/Kconfig.debug | 26 +++++++++++++++++++-------
+ arch/arm/Kconfig.debug |   26 +++++++++++++++++++-------
  1 file changed, 19 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/Kconfig.debug b/arch/arm/Kconfig.debug
-index 0c12ffb155a2..7ed976a719b3 100644
 --- a/arch/arm/Kconfig.debug
 +++ b/arch/arm/Kconfig.debug
-@@ -908,13 +908,22 @@ choice
+@@ -907,13 +907,22 @@ choice
  		  on SA-11x0 UART ports. The kernel will check for the first
  		  enabled UART in a sequence 3-1-2.
  
@@ -43,7 +41,7 @@ index 0c12ffb155a2..7ed976a719b3 100644
  
  	config DEBUG_SUN9I_UART0
  		bool "Kernel low-level debugging messages via sun9i UART0"
-@@ -1407,7 +1416,8 @@ config DEBUG_UART_PHYS
+@@ -1402,7 +1411,8 @@ config DEBUG_UART_PHYS
  	default 0xfd883000 if DEBUG_ALPINE_UART0
  	default 0xfe800000 if ARCH_IOP32X
  	default 0xff690000 if DEBUG_RK32_UART2
@@ -53,7 +51,7 @@ index 0c12ffb155a2..7ed976a719b3 100644
  	default 0xffd82340 if ARCH_IOP13XX
  	default 0xffe40000 if DEBUG_RCAR_GEN1_SCIF0
  	default 0xffe42000 if DEBUG_RCAR_GEN1_SCIF2
-@@ -1485,7 +1495,8 @@ config DEBUG_UART_VIRT
+@@ -1480,7 +1490,8 @@ config DEBUG_UART_VIRT
  	default 0xfeb26000 if DEBUG_RK3X_UART1
  	default 0xfeb30c00 if DEBUG_KEYSTONE_UART0
  	default 0xfeb31000 if DEBUG_KEYSTONE_UART1
@@ -63,7 +61,7 @@ index 0c12ffb155a2..7ed976a719b3 100644
  	default 0xfec12000 if DEBUG_MVEBU_UART0 || DEBUG_MVEBU_UART0_ALTERNATE
  	default 0xfec12100 if DEBUG_MVEBU_UART1_ALTERNATE
  	default 0xfec10000 if DEBUG_SIRFATLAS7_UART0
-@@ -1530,8 +1541,9 @@ config DEBUG_UART_8250_WORD
+@@ -1525,8 +1536,9 @@ config DEBUG_UART_8250_WORD
  	bool "Use 32-bit accesses for 8250 UART"
  	depends on DEBUG_LL_UART_8250 || DEBUG_UART_8250
  	depends on DEBUG_UART_8250_SHIFT >= 2
@@ -75,6 +73,3 @@ index 0c12ffb155a2..7ed976a719b3 100644
  		DEBUG_DAVINCI_DMx_UART0 || DEBUG_DAVINCI_DA8XX_UART1 || \
  		DEBUG_DAVINCI_DA8XX_UART2 || \
  		DEBUG_BCM_KONA_UART || DEBUG_RK32_UART2 || \
--- 
-2.6.2
-

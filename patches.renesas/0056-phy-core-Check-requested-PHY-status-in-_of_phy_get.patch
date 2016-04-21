@@ -12,17 +12,15 @@ Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 (cherry picked from commit 33f434d283a27116fb358ae5bc3b42967c12f85a)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/phy/phy-core.c      | 12 ++++++++++--
- drivers/phy/phy-miphy28lp.c |  5 -----
- drivers/phy/phy-miphy365x.c |  5 -----
- drivers/phy/phy-rcar-gen2.c |  5 -----
+ drivers/phy/phy-core.c      |   12 ++++++++++--
+ drivers/phy/phy-miphy28lp.c |    5 -----
+ drivers/phy/phy-miphy365x.c |    5 -----
+ drivers/phy/phy-rcar-gen2.c |    5 -----
  4 files changed, 10 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/phy/phy-core.c b/drivers/phy/phy-core.c
-index 63bc12d7a73e..313a18aea858 100644
 --- a/drivers/phy/phy-core.c
 +++ b/drivers/phy/phy-core.c
-@@ -367,13 +367,21 @@ static struct phy *_of_phy_get(struct device_node *np, int index)
+@@ -369,13 +369,21 @@ static struct phy *_of_phy_get(struct de
  	phy_provider = of_phy_provider_lookup(args.np);
  	if (IS_ERR(phy_provider) || !try_module_get(phy_provider->owner)) {
  		phy = ERR_PTR(-EPROBE_DEFER);
@@ -46,11 +44,9 @@ index 63bc12d7a73e..313a18aea858 100644
  	mutex_unlock(&phy_provider_mutex);
  	of_node_put(args.np);
  
-diff --git a/drivers/phy/phy-miphy28lp.c b/drivers/phy/phy-miphy28lp.c
-index c4cc11dcb2a2..e95b91407b57 100644
 --- a/drivers/phy/phy-miphy28lp.c
 +++ b/drivers/phy/phy-miphy28lp.c
-@@ -1107,11 +1107,6 @@ static struct phy *miphy28lp_xlate(struct device *dev,
+@@ -1107,11 +1107,6 @@ static struct phy *miphy28lp_xlate(struc
  	struct device_node *phynode = args->np;
  	int ret, index = 0;
  
@@ -62,11 +58,9 @@ index c4cc11dcb2a2..e95b91407b57 100644
  	if (args->args_count != 1) {
  		dev_err(dev, "Invalid number of cells in 'phy' property\n");
  		return ERR_PTR(-EINVAL);
-diff --git a/drivers/phy/phy-miphy365x.c b/drivers/phy/phy-miphy365x.c
-index 019c2d75344e..d5b9a7b6f87a 100644
 --- a/drivers/phy/phy-miphy365x.c
 +++ b/drivers/phy/phy-miphy365x.c
-@@ -476,11 +476,6 @@ static struct phy *miphy365x_xlate(struct device *dev,
+@@ -476,11 +476,6 @@ static struct phy *miphy365x_xlate(struc
  	struct device_node *phynode = args->np;
  	int ret, index;
  
@@ -78,11 +72,9 @@ index 019c2d75344e..d5b9a7b6f87a 100644
  	if (args->args_count != 1) {
  		dev_err(dev, "Invalid number of cells in 'phy' property\n");
  		return ERR_PTR(-EINVAL);
-diff --git a/drivers/phy/phy-rcar-gen2.c b/drivers/phy/phy-rcar-gen2.c
-index 97d45f47d1ad..0da62d45486a 100644
 --- a/drivers/phy/phy-rcar-gen2.c
 +++ b/drivers/phy/phy-rcar-gen2.c
-@@ -206,11 +206,6 @@ static struct phy *rcar_gen2_phy_xlate(struct device *dev,
+@@ -206,11 +206,6 @@ static struct phy *rcar_gen2_phy_xlate(s
  	struct device_node *np = args->np;
  	int i;
  
@@ -94,6 +86,3 @@ index 97d45f47d1ad..0da62d45486a 100644
  	drv = dev_get_drvdata(dev);
  	if (!drv)
  		return ERR_PTR(-EINVAL);
--- 
-2.6.2
-
