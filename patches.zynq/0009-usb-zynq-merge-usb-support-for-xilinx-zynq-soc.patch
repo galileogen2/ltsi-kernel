@@ -47,7 +47,7 @@ Signed-off-by: Yoshitake Kobayashi <yoshitake.kobayashi@toshiba.co.jp>
  	default y if MACH_LOONGSON1
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -1715,7 +1715,11 @@ static int hub_probe(struct usb_interfac
+@@ -1719,7 +1719,11 @@ static int hub_probe(struct usb_interfac
  	 * bus_resume methods.
  	 */
  	if (hdev->parent) {		/* normal device */

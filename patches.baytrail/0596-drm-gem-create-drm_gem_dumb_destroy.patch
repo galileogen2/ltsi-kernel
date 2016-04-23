@@ -89,7 +89,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/gpu/drm/ast/ast_drv.h
 +++ b/drivers/gpu/drm/ast/ast_drv.h
-@@ -322,9 +322,6 @@ ast_bo(struct ttm_buffer_object *bo)
+@@ -323,9 +323,6 @@ ast_bo(struct ttm_buffer_object *bo)
  extern int ast_dumb_create(struct drm_file *file,
  			   struct drm_device *dev,
  			   struct drm_mode_create_dumb *args);
@@ -101,7 +101,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  extern void ast_gem_free_object(struct drm_gem_object *obj);
 --- a/drivers/gpu/drm/ast/ast_main.c
 +++ b/drivers/gpu/drm/ast/ast_main.c
-@@ -449,13 +449,6 @@ int ast_dumb_create(struct drm_file *fil
+@@ -450,13 +450,6 @@ int ast_dumb_create(struct drm_file *fil
  	return 0;
  }
  

@@ -15,18 +15,16 @@ Signed-off-by: Dave Airlie <airlied@redhat.com>
 (cherry picked from commit 247d36d75128ba1f63702e0e6185d9a7a23ee5cb)
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- drivers/gpu/drm/ast/ast_ttm.c         | 13 +++--------
- drivers/gpu/drm/cirrus/cirrus_ttm.c   | 15 ++++--------
- drivers/gpu/drm/mgag200/mgag200_ttm.c | 14 ++++--------
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 13 ++++-------
- drivers/gpu/drm/savage/savage_bci.c   | 43 ++++++++++++-----------------------
- drivers/gpu/drm/savage/savage_drv.h   |  5 +---
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c   | 10 ++++----
- include/drm/drmP.h                    | 29 -----------------------
+ drivers/gpu/drm/ast/ast_ttm.c         |   13 ++--------
+ drivers/gpu/drm/cirrus/cirrus_ttm.c   |   15 +++--------
+ drivers/gpu/drm/mgag200/mgag200_ttm.c |   14 +++--------
+ drivers/gpu/drm/nouveau/nouveau_ttm.c |   13 +++-------
+ drivers/gpu/drm/savage/savage_bci.c   |   43 +++++++++++-----------------------
+ drivers/gpu/drm/savage/savage_drv.h   |    5 ---
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c   |   10 +++----
+ include/drm/drmP.h                    |   29 ----------------------
  8 files changed, 35 insertions(+), 107 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_ttm.c b/drivers/gpu/drm/ast/ast_ttm.c
-index d5902e21d4a3..18acdf40c97c 100644
 --- a/drivers/gpu/drm/ast/ast_ttm.c
 +++ b/drivers/gpu/drm/ast/ast_ttm.c
 @@ -271,26 +271,19 @@ int ast_mm_init(struct ast_private *ast)
@@ -59,11 +57,9 @@ index d5902e21d4a3..18acdf40c97c 100644
  }
  
  void ast_ttm_placement(struct ast_bo *bo, int domain)
-diff --git a/drivers/gpu/drm/cirrus/cirrus_ttm.c b/drivers/gpu/drm/cirrus/cirrus_ttm.c
-index c18faff82651..2c62eb44d377 100644
 --- a/drivers/gpu/drm/cirrus/cirrus_ttm.c
 +++ b/drivers/gpu/drm/cirrus/cirrus_ttm.c
-@@ -271,9 +271,8 @@ int cirrus_mm_init(struct cirrus_device *cirrus)
+@@ -271,9 +271,8 @@ int cirrus_mm_init(struct cirrus_device
  		return ret;
  	}
  
@@ -75,7 +71,7 @@ index c18faff82651..2c62eb44d377 100644
  
  	cirrus->mm_inited = true;
  	return 0;
-@@ -281,8 +280,6 @@ int cirrus_mm_init(struct cirrus_device *cirrus)
+@@ -281,8 +280,6 @@ int cirrus_mm_init(struct cirrus_device
  
  void cirrus_mm_fini(struct cirrus_device *cirrus)
  {
@@ -84,7 +80,7 @@ index c18faff82651..2c62eb44d377 100644
  	if (!cirrus->mm_inited)
  		return;
  
-@@ -290,12 +287,8 @@ void cirrus_mm_fini(struct cirrus_device *cirrus)
+@@ -290,12 +287,8 @@ void cirrus_mm_fini(struct cirrus_device
  
  	cirrus_ttm_global_release(cirrus);
  
@@ -99,11 +95,9 @@ index c18faff82651..2c62eb44d377 100644
  }
  
  void cirrus_ttm_placement(struct cirrus_bo *bo, int domain)
-diff --git a/drivers/gpu/drm/mgag200/mgag200_ttm.c b/drivers/gpu/drm/mgag200/mgag200_ttm.c
-index d2cb32f3c05b..6be84f047882 100644
 --- a/drivers/gpu/drm/mgag200/mgag200_ttm.c
 +++ b/drivers/gpu/drm/mgag200/mgag200_ttm.c
-@@ -270,26 +270,20 @@ int mgag200_mm_init(struct mga_device *mdev)
+@@ -270,26 +270,20 @@ int mgag200_mm_init(struct mga_device *m
  		return ret;
  	}
  
@@ -134,11 +128,9 @@ index d2cb32f3c05b..6be84f047882 100644
  }
  
  void mgag200_ttm_placement(struct mgag200_bo *bo, int domain)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index f19a15a3bc03..3da985eb38cc 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -396,9 +396,8 @@ nouveau_ttm_init(struct nouveau_drm *drm)
+@@ -396,9 +396,8 @@ nouveau_ttm_init(struct nouveau_drm *drm
  		return ret;
  	}
  
@@ -150,7 +142,7 @@ index f19a15a3bc03..3da985eb38cc 100644
  
  	/* GART init */
  	if (drm->agp.stat != ENABLED) {
-@@ -433,10 +432,6 @@ nouveau_ttm_fini(struct nouveau_drm *drm)
+@@ -433,10 +432,6 @@ nouveau_ttm_fini(struct nouveau_drm *drm
  
  	nouveau_ttm_global_release(drm);
  
@@ -163,11 +155,9 @@ index f19a15a3bc03..3da985eb38cc 100644
 +	arch_phys_wc_del(drm->ttm.mtrr);
 +	drm->ttm.mtrr = 0;
  }
-diff --git a/drivers/gpu/drm/savage/savage_bci.c b/drivers/gpu/drm/savage/savage_bci.c
-index ce3a7d42ee43..b17d0710871a 100644
 --- a/drivers/gpu/drm/savage/savage_bci.c
 +++ b/drivers/gpu/drm/savage/savage_bci.c
-@@ -570,9 +570,6 @@ int savage_driver_firstopen(struct drm_device *dev)
+@@ -570,9 +570,6 @@ int savage_driver_firstopen(struct drm_d
  	unsigned int fb_rsrc, aper_rsrc;
  	int ret = 0;
  
@@ -177,7 +167,7 @@ index ce3a7d42ee43..b17d0710871a 100644
  	if (S3_SAVAGE3D_SERIES(dev_priv->chipset)) {
  		fb_rsrc = 0;
  		fb_base = pci_resource_start(dev->pdev, 0);
-@@ -584,21 +581,14 @@ int savage_driver_firstopen(struct drm_device *dev)
+@@ -584,21 +581,14 @@ int savage_driver_firstopen(struct drm_d
  		if (pci_resource_len(dev->pdev, 0) == 0x08000000) {
  			/* Don't make MMIO write-cobining! We need 3
  			 * MTRRs. */
@@ -207,7 +197,7 @@ index ce3a7d42ee43..b17d0710871a 100644
  		} else {
  			DRM_ERROR("strange pci_resource_len %08llx\n",
  				  (unsigned long long)
-@@ -616,11 +606,9 @@ int savage_driver_firstopen(struct drm_device *dev)
+@@ -616,11 +606,9 @@ int savage_driver_firstopen(struct drm_d
  		if (pci_resource_len(dev->pdev, 1) == 0x08000000) {
  			/* Can use one MTRR to cover both fb and
  			 * aperture. */
@@ -222,7 +212,7 @@ index ce3a7d42ee43..b17d0710871a 100644
  		} else {
  			DRM_ERROR("strange pci_resource_len %08llx\n",
  				  (unsigned long long)
-@@ -660,11 +648,10 @@ void savage_driver_lastclose(struct drm_device *dev)
+@@ -660,11 +648,10 @@ void savage_driver_lastclose(struct drm_
  	drm_savage_private_t *dev_priv = dev->dev_private;
  	int i;
  
@@ -238,8 +228,6 @@ index ce3a7d42ee43..b17d0710871a 100644
  }
  
  int savage_driver_unload(struct drm_device *dev)
-diff --git a/drivers/gpu/drm/savage/savage_drv.h b/drivers/gpu/drm/savage/savage_drv.h
-index 5f55b21ea22d..335f8fcf1041 100644
 --- a/drivers/gpu/drm/savage/savage_drv.h
 +++ b/drivers/gpu/drm/savage/savage_drv.h
 @@ -160,10 +160,7 @@ typedef struct drm_savage_private {
@@ -254,11 +242,9 @@ index 5f55b21ea22d..335f8fcf1041 100644
  
  	/* BCI and status-related stuff */
  	volatile uint32_t *status_ptr, *bci_ptr;
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-index 6993713588e3..a2990b8a9e5e 100644
 --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
 +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-@@ -565,8 +565,8 @@ static int vmw_driver_load(struct drm_device *dev, unsigned long chipset)
+@@ -566,8 +566,8 @@ static int vmw_driver_load(struct drm_de
  		dev_priv->has_gmr = false;
  	}
  
@@ -269,7 +255,7 @@ index 6993713588e3..a2990b8a9e5e 100644
  
  	dev_priv->mmio_virt = ioremap_wc(dev_priv->mmio_start,
  					 dev_priv->mmio_size);
-@@ -664,8 +664,7 @@ out_no_device:
+@@ -665,8 +665,7 @@ out_no_device:
  out_err4:
  	iounmap(dev_priv->mmio_virt);
  out_err3:
@@ -279,7 +265,7 @@ index 6993713588e3..a2990b8a9e5e 100644
  	if (dev_priv->has_gmr)
  		(void) ttm_bo_clean_mm(&dev_priv->bdev, VMW_PL_GMR);
  	(void)ttm_bo_clean_mm(&dev_priv->bdev, TTM_PL_VRAM);
-@@ -709,8 +708,7 @@ static int vmw_driver_unload(struct drm_device *dev)
+@@ -710,8 +709,7 @@ static int vmw_driver_unload(struct drm_
  
  	ttm_object_device_release(&dev_priv->tdev);
  	iounmap(dev_priv->mmio_virt);
@@ -289,11 +275,9 @@ index 6993713588e3..a2990b8a9e5e 100644
  	if (dev_priv->has_gmr)
  		(void)ttm_bo_clean_mm(&dev_priv->bdev, VMW_PL_GMR);
  	(void)ttm_bo_clean_mm(&dev_priv->bdev, TTM_PL_VRAM);
-diff --git a/include/drm/drmP.h b/include/drm/drmP.h
-index bcaf5575c79c..dcd590728e9b 100644
 --- a/include/drm/drmP.h
 +++ b/include/drm/drmP.h
-@@ -1239,37 +1239,8 @@ static inline int drm_core_has_MTRR(struct drm_device *dev)
+@@ -1239,37 +1239,8 @@ static inline int drm_core_has_MTRR(stru
  {
  	return drm_core_check_feature(dev, DRIVER_USE_MTRR);
  }
@@ -331,6 +315,3 @@ index bcaf5575c79c..dcd590728e9b 100644
  #endif
  
  static inline void drm_device_set_unplugged(struct drm_device *dev)
--- 
-1.8.5.rc3
-

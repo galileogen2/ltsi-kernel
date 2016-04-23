@@ -70,7 +70,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  			xhci_writel(xhci, tmp, addr);
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -3939,7 +3939,7 @@ static int xhci_usb2_software_lpm_test(s
+@@ -3941,7 +3941,7 @@ static int xhci_usb2_software_lpm_test(s
  	 * Check device's USB 2.0 extension descriptor to determine whether
  	 * HIRD or BESL shoule be used. See USB2.0 LPM errata.
  	 */
@@ -79,7 +79,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	hird = xhci_calculate_hird_besl(xhci, udev);
  	temp = PORT_L1DS(udev->slot_id) | PORT_HIRD(hird);
  	xhci_writel(xhci, temp, pm_addr);
-@@ -4037,7 +4037,7 @@ int xhci_set_usb2_hardware_lpm(struct us
+@@ -4039,7 +4039,7 @@ int xhci_set_usb2_hardware_lpm(struct us
  
  	port_array = xhci->usb2_ports;
  	port_num = udev->portnum - 1;

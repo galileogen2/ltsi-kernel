@@ -340,7 +340,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  #endif
 --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
 +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-@@ -1129,7 +1129,6 @@ static const struct file_operations vmwg
+@@ -1130,7 +1130,6 @@ static const struct file_operations vmwg
  	.mmap = vmw_mmap,
  	.poll = vmw_fops_poll,
  	.read = vmw_fops_read,
