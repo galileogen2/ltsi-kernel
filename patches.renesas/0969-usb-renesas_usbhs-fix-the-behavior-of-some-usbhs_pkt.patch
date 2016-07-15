@@ -30,16 +30,14 @@ Signed-off-by: Felipe Balbi <balbi@ti.com>
 (cherry picked from commit 8355b2b3082d302091506703d2e4e239f7deed7f)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/usb/renesas_usbhs/fifo.c | 25 ++++++++++++++++++++++++-
- drivers/usb/renesas_usbhs/pipe.c | 13 +++++++++++++
- drivers/usb/renesas_usbhs/pipe.h |  4 ++++
+ drivers/usb/renesas_usbhs/fifo.c |   25 ++++++++++++++++++++++++-
+ drivers/usb/renesas_usbhs/pipe.c |   13 +++++++++++++
+ drivers/usb/renesas_usbhs/pipe.h |    4 ++++
  3 files changed, 41 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/usb/renesas_usbhs/fifo.c b/drivers/usb/renesas_usbhs/fifo.c
-index 4fd36530bfa3..3efece3c72a3 100644
 --- a/drivers/usb/renesas_usbhs/fifo.c
 +++ b/drivers/usb/renesas_usbhs/fifo.c
-@@ -544,6 +544,7 @@ static int usbhsf_pio_try_push(struct usbhs_pkt *pkt, int *is_done)
+@@ -545,6 +545,7 @@ static int usbhsf_pio_try_push(struct us
  		usbhsf_send_terminator(pipe, fifo);
  
  	usbhsf_tx_irq_ctrl(pipe, !*is_done);
@@ -47,7 +45,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	usbhs_pipe_enable(pipe);
  
  	dev_dbg(dev, "  send %d (%d/ %d/ %d/ %d)\n",
-@@ -570,12 +571,21 @@ usbhs_fifo_write_busy:
+@@ -571,12 +572,21 @@ usbhs_fifo_write_busy:
  	 * retry in interrupt
  	 */
  	usbhsf_tx_irq_ctrl(pipe, 1);
@@ -70,7 +68,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	.try_run = usbhsf_pio_try_push,
  };
  
-@@ -589,6 +599,9 @@ static int usbhsf_prepare_pop(struct usbhs_pkt *pkt, int *is_done)
+@@ -590,6 +600,9 @@ static int usbhsf_prepare_pop(struct usb
  	if (usbhs_pipe_is_busy(pipe))
  		return 0;
  
@@ -80,7 +78,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	/*
  	 * pipe enable to prepare packet receive
  	 */
-@@ -597,6 +610,7 @@ static int usbhsf_prepare_pop(struct usbhs_pkt *pkt, int *is_done)
+@@ -598,6 +611,7 @@ static int usbhsf_prepare_pop(struct usb
  
  	usbhs_pipe_set_trans_count_if_bulk(pipe, pkt->length);
  	usbhs_pipe_enable(pipe);
@@ -88,7 +86,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	usbhsf_rx_irq_ctrl(pipe, 1);
  
  	return 0;
-@@ -642,6 +656,7 @@ static int usbhsf_pio_try_pop(struct usbhs_pkt *pkt, int *is_done)
+@@ -643,6 +657,7 @@ static int usbhsf_pio_try_pop(struct usb
  	    (total_len < maxp)) {		/* short packet */
  		*is_done = 1;
  		usbhsf_rx_irq_ctrl(pipe, 0);
@@ -96,7 +94,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  		usbhs_pipe_disable(pipe);	/* disable pipe first */
  	}
  
-@@ -805,6 +820,7 @@ static void xfer_work(struct work_struct *work)
+@@ -806,6 +821,7 @@ static void xfer_work(struct work_struct
  	dev_dbg(dev, "  %s %d (%d/ %d)\n",
  		fifo->name, usbhs_pipe_number(pipe), pkt->length, pkt->zero);
  
@@ -104,7 +102,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	usbhs_pipe_set_trans_count_if_bulk(pipe, pkt->trans);
  	usbhs_pipe_enable(pipe);
  	usbhsf_dma_start(pipe, fifo);
-@@ -836,6 +852,10 @@ static int usbhsf_dma_prepare_push(struct usbhs_pkt *pkt, int *is_done)
+@@ -837,6 +853,10 @@ static int usbhsf_dma_prepare_push(struc
  	if ((uintptr_t)(pkt->buf + pkt->actual) & 0x7) /* 8byte alignment */
  		goto usbhsf_pio_prepare_push;
  
@@ -115,7 +113,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  	/* get enable DMA fifo */
  	fifo = usbhsf_get_dma_fifo(priv, pkt);
  	if (!fifo)
-@@ -873,6 +893,7 @@ static int usbhsf_dma_push_done(struct usbhs_pkt *pkt, int *is_done)
+@@ -874,6 +894,7 @@ static int usbhsf_dma_push_done(struct u
  	pkt->actual = pkt->trans;
  
  	*is_done = !pkt->zero;	/* send zero packet ? */
@@ -123,7 +121,7 @@ index 4fd36530bfa3..3efece3c72a3 100644
  
  	usbhsf_dma_stop(pipe, pipe->fifo);
  	usbhsf_dma_unmap(pkt);
-@@ -972,8 +993,10 @@ static int usbhsf_dma_pop_done(struct usbhs_pkt *pkt, int *is_done)
+@@ -974,8 +995,10 @@ static int usbhsf_dma_pop_done(struct us
  	if ((pkt->actual == pkt->length) ||	/* receive all data */
  	    (pkt->trans < maxp)) {		/* short packet */
  		*is_done = 1;
@@ -134,11 +132,9 @@ index 4fd36530bfa3..3efece3c72a3 100644
  		usbhsf_prepare_pop(pkt, is_done);
  	}
  
-diff --git a/drivers/usb/renesas_usbhs/pipe.c b/drivers/usb/renesas_usbhs/pipe.c
-index 75fbcf6b102e..040bcefcb040 100644
 --- a/drivers/usb/renesas_usbhs/pipe.c
 +++ b/drivers/usb/renesas_usbhs/pipe.c
-@@ -578,6 +578,19 @@ int usbhs_pipe_is_dir_host(struct usbhs_pipe *pipe)
+@@ -578,6 +578,19 @@ int usbhs_pipe_is_dir_host(struct usbhs_
  	return usbhsp_flags_has(pipe, IS_DIR_HOST);
  }
  
@@ -158,8 +154,6 @@ index 75fbcf6b102e..040bcefcb040 100644
  void usbhs_pipe_data_sequence(struct usbhs_pipe *pipe, int sequence)
  {
  	u16 mask = (SQCLR | SQSET);
-diff --git a/drivers/usb/renesas_usbhs/pipe.h b/drivers/usb/renesas_usbhs/pipe.h
-index 406f36d050e4..d24a05972370 100644
 --- a/drivers/usb/renesas_usbhs/pipe.h
 +++ b/drivers/usb/renesas_usbhs/pipe.h
 @@ -36,6 +36,7 @@ struct usbhs_pipe {
@@ -170,7 +164,7 @@ index 406f36d050e4..d24a05972370 100644
  
  	struct usbhs_pkt_handle *handler;
  
-@@ -80,6 +81,9 @@ int usbhs_pipe_probe(struct usbhs_priv *priv);
+@@ -80,6 +81,9 @@ int usbhs_pipe_probe(struct usbhs_priv *
  void usbhs_pipe_remove(struct usbhs_priv *priv);
  int usbhs_pipe_is_dir_in(struct usbhs_pipe *pipe);
  int usbhs_pipe_is_dir_host(struct usbhs_pipe *pipe);
@@ -180,6 +174,3 @@ index 406f36d050e4..d24a05972370 100644
  void usbhs_pipe_init(struct usbhs_priv *priv,
  		     int (*dma_map_ctrl)(struct usbhs_pkt *pkt, int map));
  int usbhs_pipe_get_maxpacket(struct usbhs_pipe *pipe);
--- 
-2.1.2
-

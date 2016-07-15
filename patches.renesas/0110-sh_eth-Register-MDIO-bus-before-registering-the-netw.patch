@@ -13,14 +13,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit daacf03f0bbfefee3df107c3f7659d22e22538a7)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 20 +++++++++-----------
+ drivers/net/ethernet/renesas/sh_eth.c |   20 +++++++++-----------
  1 file changed, 9 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 7067fdeb5bb3..5fc66a52c471 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2905,6 +2905,13 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2906,6 +2906,13 @@ static int sh_eth_drv_probe(struct platf
  		}
  	}
  
@@ -34,7 +32,7 @@ index 7067fdeb5bb3..5fc66a52c471 100644
  	netif_napi_add(ndev, &mdp->napi, sh_eth_poll, 64);
  
  	/* network device register */
-@@ -2912,13 +2919,6 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2913,13 +2920,6 @@ static int sh_eth_drv_probe(struct platf
  	if (ret)
  		goto out_napi_del;
  
@@ -48,7 +46,7 @@ index 7067fdeb5bb3..5fc66a52c471 100644
  	/* print device information */
  	netdev_info(ndev, "Base address at 0x%x, %pM, IRQ %d.\n",
  		    (u32)ndev->base_addr, ndev->dev_addr, ndev->irq);
-@@ -2927,11 +2927,9 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2928,11 +2928,9 @@ static int sh_eth_drv_probe(struct platf
  
  	return ret;
  
@@ -61,7 +59,7 @@ index 7067fdeb5bb3..5fc66a52c471 100644
  
  out_release:
  	/* net_dev free */
-@@ -2947,9 +2945,9 @@ static int sh_eth_drv_remove(struct platform_device *pdev)
+@@ -2948,9 +2946,9 @@ static int sh_eth_drv_remove(struct plat
  	struct net_device *ndev = platform_get_drvdata(pdev);
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  
@@ -72,6 +70,3 @@ index 7067fdeb5bb3..5fc66a52c471 100644
  	pm_runtime_disable(&pdev->dev);
  	free_netdev(ndev);
  
--- 
-2.1.2
-

@@ -29,14 +29,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit b5893a08812602de164fa5ac6494f84df8d09a4f)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 8 ++++++--
+ drivers/net/ethernet/renesas/sh_eth.c |    8 ++++++--
  1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 1043bbb30061..08ed9a30c3a7 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2786,6 +2786,9 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2787,6 +2787,9 @@ static int sh_eth_drv_probe(struct platf
  	if (!ndev)
  		return -ENOMEM;
  
@@ -46,7 +44,7 @@ index 1043bbb30061..08ed9a30c3a7 100644
  	/* The sh Ether-specific entries in the device structure. */
  	ndev->base_addr = res->start;
  	devno = pdev->id;
-@@ -2813,8 +2816,6 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2814,8 +2817,6 @@ static int sh_eth_drv_probe(struct platf
  
  	spin_lock_init(&mdp->lock);
  	mdp->pdev = pdev;
@@ -55,7 +53,7 @@ index 1043bbb30061..08ed9a30c3a7 100644
  
  	if (pdev->dev.of_node)
  		pd = sh_eth_parse_dt(&pdev->dev);
-@@ -2912,6 +2913,7 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2913,6 +2914,7 @@ static int sh_eth_drv_probe(struct platf
  	netdev_info(ndev, "Base address at 0x%x, %pM, IRQ %d.\n",
  		    (u32)ndev->base_addr, ndev->dev_addr, ndev->irq);
  
@@ -63,7 +61,7 @@ index 1043bbb30061..08ed9a30c3a7 100644
  	platform_set_drvdata(pdev, ndev);
  
  	return ret;
-@@ -2925,6 +2927,8 @@ out_release:
+@@ -2926,6 +2928,8 @@ out_release:
  	if (ndev)
  		free_netdev(ndev);
  
@@ -72,6 +70,3 @@ index 1043bbb30061..08ed9a30c3a7 100644
  	return ret;
  }
  
--- 
-2.1.2
-

@@ -14,14 +14,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit bcb9973a6097652a12660958449301aada41de9c)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 3 +--
+ drivers/tty/serial/sh-sci.c |    3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index ce8013702560..7f571a8bdcfb 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -1798,8 +1798,7 @@ static void sci_baud_calc_hscif(unsigned int bps, unsigned long freq,
+@@ -1772,8 +1772,7 @@ static void sci_baud_calc_hscif(unsigned
  			/* integerized formulas from HSCIF documentation */
  			br = DIV_ROUND_CLOSEST(freq, (sr *
  					      (1 << (2 * c + 1)) * bps)) - 1;
@@ -31,6 +29,3 @@ index ce8013702560..7f571a8bdcfb 100644
  			err = DIV_ROUND_CLOSEST(freq, ((br + 1) * bps * sr *
  					       (1 << (2 * c + 1)) / 1000)) -
  					       1000;
--- 
-2.1.2
-

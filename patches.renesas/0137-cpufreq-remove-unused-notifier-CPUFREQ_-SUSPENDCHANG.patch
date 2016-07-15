@@ -23,9 +23,8 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  arch/x86/kernel/tsc.c                 |    3 +--
  drivers/cpufreq/cpufreq.c             |    3 +--
  drivers/pcmcia/sa11xx_base.c          |    3 ---
- drivers/tty/serial/sh-sci.c           |    3 +--
  include/linux/cpufreq.h               |    2 --
- 11 files changed, 7 insertions(+), 25 deletions(-)
+ 10 files changed, 6 insertions(+), 23 deletions(-)
 
 --- a/Documentation/cpu-freq/core.txt
 +++ b/Documentation/cpu-freq/core.txt
@@ -132,18 +131,6 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	}
  
  	return 0;
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -1041,8 +1041,7 @@ static int sci_notifier(struct notifier_
- 
- 	sci_port = container_of(self, struct sci_port, freq_transition);
- 
--	if ((phase == CPUFREQ_POSTCHANGE) ||
--	    (phase == CPUFREQ_RESUMECHANGE)) {
-+	if (phase == CPUFREQ_POSTCHANGE) {
- 		struct uart_port *port = &sci_port->port;
- 
- 		spin_lock_irqsave(&port->lock, flags);
 --- a/include/linux/cpufreq.h
 +++ b/include/linux/cpufreq.h
 @@ -306,8 +306,6 @@ cpufreq_verify_within_cpu_limits(struct

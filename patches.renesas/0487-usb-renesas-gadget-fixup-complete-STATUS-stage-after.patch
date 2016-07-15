@@ -14,14 +14,12 @@ Signed-off-by: Felipe Balbi <balbi@ti.com>
 (cherry picked from commit 3fe15505296cb563362e2cf6d3aed73e123e0df0)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/usb/renesas_usbhs/fifo.c | 8 ++++++++
+ drivers/usb/renesas_usbhs/fifo.c |    8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/drivers/usb/renesas_usbhs/fifo.c b/drivers/usb/renesas_usbhs/fifo.c
-index d49f9c326035..4fd36530bfa3 100644
 --- a/drivers/usb/renesas_usbhs/fifo.c
 +++ b/drivers/usb/renesas_usbhs/fifo.c
-@@ -681,6 +681,14 @@ usbhs_fifo_read_end:
+@@ -682,6 +682,14 @@ usbhs_fifo_read_end:
  		usbhs_pipe_number(pipe),
  		pkt->length, pkt->actual, *is_done, pkt->zero);
  
@@ -36,6 +34,3 @@ index d49f9c326035..4fd36530bfa3 100644
  usbhs_fifo_read_busy:
  	usbhsf_fifo_unselect(pipe, fifo);
  
--- 
-2.1.2
-

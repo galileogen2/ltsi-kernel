@@ -10,14 +10,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit ff43da00e0d407cd8e7faaf2ac150001d29827e4)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 8 ++++----
+ drivers/tty/serial/sh-sci.c |    8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 60a8f7db2948..c93154f690a6 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -2423,25 +2423,25 @@ struct sci_port_info {
+@@ -2393,25 +2393,25 @@ struct sci_port_info {
  static const struct of_device_id of_sci_match[] = {
  	{
  		.compatible = "renesas,scif",
@@ -47,6 +45,3 @@ index 60a8f7db2948..c93154f690a6 100644
  			.type = PORT_HSCIF,
  			.regtype = SCIx_HSCIF_REGTYPE,
  		},
--- 
-2.1.2
-

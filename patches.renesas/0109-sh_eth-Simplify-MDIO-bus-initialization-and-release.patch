@@ -13,14 +13,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit bd920ff553ba17f19372501a14e432d9d92b102b)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 30 +++++++++++-------------------
+ drivers/net/ethernet/renesas/sh_eth.c |   30 +++++++++++-------------------
  1 file changed, 11 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 088d8c3edb89..7067fdeb5bb3 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2597,29 +2597,24 @@ static void sh_eth_tsu_init(struct sh_eth_private *mdp)
+@@ -2598,29 +2598,24 @@ static void sh_eth_tsu_init(struct sh_et
  }
  
  /* MDIO bus release function */
@@ -55,7 +53,7 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  	struct device *dev = &mdp->pdev->dev;
  
  	/* create bit control struct for PHY */
-@@ -2649,7 +2644,7 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2650,7 +2645,7 @@ static int sh_mdio_init(struct net_devic
  	mdp->mii_bus->name = "sh_mii";
  	mdp->mii_bus->parent = dev;
  	snprintf(mdp->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
@@ -64,7 +62,7 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  
  	/* PHY IRQ */
  	mdp->mii_bus->irq = devm_kzalloc(dev, sizeof(int) * PHY_MAX_ADDR,
-@@ -2659,10 +2654,9 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2660,10 +2655,9 @@ static int sh_mdio_init(struct net_devic
  		goto out_free_bus;
  	}
  
@@ -78,7 +76,7 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  	} else {
  		for (i = 0; i < PHY_MAX_ADDR; i++)
  			mdp->mii_bus->irq[i] = PHY_POLL;
-@@ -2675,8 +2669,6 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2676,8 +2670,6 @@ static int sh_mdio_init(struct net_devic
  	if (ret)
  		goto out_free_bus;
  
@@ -87,7 +85,7 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  	return 0;
  
  out_free_bus:
-@@ -2921,7 +2913,7 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2922,7 +2914,7 @@ static int sh_eth_drv_probe(struct platf
  		goto out_napi_del;
  
  	/* mdio bus init */
@@ -96,7 +94,7 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  	if (ret) {
  		dev_err(&ndev->dev, "failed to initialise MDIO\n");
  		goto out_unregister;
-@@ -2955,7 +2947,7 @@ static int sh_eth_drv_remove(struct platform_device *pdev)
+@@ -2956,7 +2948,7 @@ static int sh_eth_drv_remove(struct plat
  	struct net_device *ndev = platform_get_drvdata(pdev);
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  
@@ -105,6 +103,3 @@ index 088d8c3edb89..7067fdeb5bb3 100644
  	unregister_netdev(ndev);
  	netif_napi_del(&mdp->napi);
  	pm_runtime_disable(&pdev->dev);
--- 
-2.1.2
-

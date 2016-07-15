@@ -17,11 +17,9 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 702eca02b7c8574b42359512ebccfa777a71f66e)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 59 +++++++++++++++++++++++------------
+ drivers/net/ethernet/renesas/sh_eth.c |   59 ++++++++++++++++++++++------------
  1 file changed, 39 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index b1afdaa7a466..5242fe81ecc7 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
 @@ -3,6 +3,7 @@
@@ -40,7 +38,7 @@ index b1afdaa7a466..5242fe81ecc7 100644
  
  #include "sh_eth.h"
  
-@@ -1775,22 +1777,37 @@ static void sh_eth_adjust_link(struct net_device *ndev)
+@@ -1776,22 +1778,37 @@ static void sh_eth_adjust_link(struct ne
  /* PHY init function */
  static int sh_eth_phy_init(struct net_device *ndev)
  {
@@ -85,7 +83,7 @@ index b1afdaa7a466..5242fe81ecc7 100644
  		return PTR_ERR(phydev);
  	}
  
-@@ -2652,13 +2669,19 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2653,13 +2670,19 @@ static int sh_mdio_init(struct net_devic
  		goto out_free_bus;
  	}
  
@@ -111,7 +109,7 @@ index b1afdaa7a466..5242fe81ecc7 100644
  	if (ret)
  		goto out_free_bus;
  
-@@ -2733,7 +2756,6 @@ static struct sh_eth_plat_data *sh_eth_parse_dt(struct device *dev)
+@@ -2734,7 +2757,6 @@ static struct sh_eth_plat_data *sh_eth_p
  {
  	struct device_node *np = dev->of_node;
  	struct sh_eth_plat_data *pdata;
@@ -119,7 +117,7 @@ index b1afdaa7a466..5242fe81ecc7 100644
  	const char *mac_addr;
  
  	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-@@ -2742,11 +2764,6 @@ static struct sh_eth_plat_data *sh_eth_parse_dt(struct device *dev)
+@@ -2743,11 +2765,6 @@ static struct sh_eth_plat_data *sh_eth_p
  
  	pdata->phy_interface = of_get_phy_mode(np);
  
@@ -131,7 +129,7 @@ index b1afdaa7a466..5242fe81ecc7 100644
  	mac_addr = of_get_mac_address(np);
  	if (mac_addr)
  		memcpy(pdata->mac_addr, mac_addr, ETH_ALEN);
-@@ -2910,8 +2927,10 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2911,8 +2928,10 @@ static int sh_eth_drv_probe(struct platf
  
  	/* mdio bus init */
  	ret = sh_mdio_init(ndev, pdev->id, pd);
@@ -143,6 +141,3 @@ index b1afdaa7a466..5242fe81ecc7 100644
  
  	/* print device information */
  	pr_info("Base address at 0x%x, %pM, IRQ %d.\n",
--- 
-2.1.2
-

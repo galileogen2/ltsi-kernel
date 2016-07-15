@@ -10,14 +10,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit d3dfe5d9b4c8b3156b28f99f7a4a59ad8be09b15)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 2 +-
+ drivers/tty/serial/sh-sci.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 22a508a638b9..634ecae2efd4 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -1955,7 +1955,7 @@ static void sci_pm(struct uart_port *port, unsigned int state,
+@@ -1928,7 +1928,7 @@ static void sci_pm(struct uart_port *por
  	struct sci_port *sci_port = to_sci_port(port);
  
  	switch (state) {
@@ -26,6 +24,3 @@ index 22a508a638b9..634ecae2efd4 100644
  		sci_port_disable(sci_port);
  		break;
  	default:
--- 
-2.1.2
-

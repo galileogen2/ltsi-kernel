@@ -12,15 +12,13 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 730c8c69bc8d4640336885e20e719b0842d0fcb2)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 4 ++--
- drivers/net/ethernet/renesas/sh_eth.h | 3 +--
+ drivers/net/ethernet/renesas/sh_eth.c |    4 ++--
+ drivers/net/ethernet/renesas/sh_eth.h |    3 +--
  2 files changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 957f0ffe31c4..6f1884d7804b 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2112,8 +2112,8 @@ static int sh_eth_start_xmit(struct sk_buff *skb, struct net_device *ndev)
+@@ -2113,8 +2113,8 @@ static int sh_eth_start_xmit(struct sk_b
  				 skb->len + 2);
  	txdesc->addr = dma_map_single(&ndev->dev, skb->data, skb->len,
  				      DMA_TO_DEVICE);
@@ -31,8 +29,6 @@ index 957f0ffe31c4..6f1884d7804b 100644
  	else
  		txdesc->buffer_length = skb->len;
  
-diff --git a/drivers/net/ethernet/renesas/sh_eth.h b/drivers/net/ethernet/renesas/sh_eth.h
-index a096b4bf9799..b37c427144ee 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.h
 +++ b/drivers/net/ethernet/renesas/sh_eth.h
 @@ -27,8 +27,7 @@
@@ -45,6 +41,3 @@ index a096b4bf9799..b37c427144ee 100644
  #define SH_ETH_TSU_TIMEOUT_MS	500
  #define SH_ETH_TSU_CAM_ENTRIES	32
  
--- 
-2.1.2
-

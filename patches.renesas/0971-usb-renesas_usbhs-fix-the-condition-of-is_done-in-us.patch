@@ -17,14 +17,12 @@ Signed-off-by: Felipe Balbi <balbi@ti.com>
 (cherry picked from commit c0ed8b23b257a84d103764cdbd490ee5e2749da3)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/usb/renesas_usbhs/fifo.c | 17 +++++++++++++++--
+ drivers/usb/renesas_usbhs/fifo.c |   17 +++++++++++++++--
  1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/usb/renesas_usbhs/fifo.c b/drivers/usb/renesas_usbhs/fifo.c
-index 3efece3c72a3..1564829951c0 100644
 --- a/drivers/usb/renesas_usbhs/fifo.c
 +++ b/drivers/usb/renesas_usbhs/fifo.c
-@@ -889,16 +889,29 @@ usbhsf_pio_prepare_push:
+@@ -890,16 +890,29 @@ usbhsf_pio_prepare_push:
  static int usbhsf_dma_push_done(struct usbhs_pkt *pkt, int *is_done)
  {
  	struct usbhs_pipe *pipe = pkt->pipe;
@@ -56,6 +54,3 @@ index 3efece3c72a3..1564829951c0 100644
  	return 0;
  }
  
--- 
-2.1.2
-

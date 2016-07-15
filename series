@@ -159,7 +159,6 @@ patches.renesas/0127-sh-pfc-r8a7790-Fix-definition-of-IPSR5.patch
 patches.renesas/0128-sh-pfc-r8a7791-Fix-definition-of-MOD_SEL3.patch
 patches.renesas/0129-serial-sh-sci-Fix-cast-warning.patch
 patches.renesas/0130-serial-sh-sci-Fix-compatible-string-in-DT-bindings-e.patch
-patches.renesas/0131-serial-sh-sci-Add-missing-call-to-uart_remove_one_po.patch
 patches.renesas/0132-serial-sh-sci-Replace-printk-by-pr_.patch
 patches.renesas/0133-serial-sh-sci-Remove-useless-casts.patch
 patches.renesas/0134-serial-sh-sci-Add-more-register-documentation.patch

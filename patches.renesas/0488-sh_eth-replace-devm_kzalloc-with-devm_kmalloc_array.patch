@@ -14,14 +14,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 86b5d251d5ac4dda51a022b34cb29b4ce65a8cd5)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 4 ++--
+ drivers/net/ethernet/renesas/sh_eth.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 08ed9a30c3a7..2a29caa30479 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2641,8 +2641,8 @@ static int sh_mdio_init(struct sh_eth_private *mdp,
+@@ -2642,8 +2642,8 @@ static int sh_mdio_init(struct sh_eth_pr
  		 pdev->name, pdev->id);
  
  	/* PHY IRQ */
@@ -32,6 +30,3 @@ index 08ed9a30c3a7..2a29caa30479 100644
  	if (!mdp->mii_bus->irq) {
  		ret = -ENOMEM;
  		goto out_free_bus;
--- 
-2.1.2
-

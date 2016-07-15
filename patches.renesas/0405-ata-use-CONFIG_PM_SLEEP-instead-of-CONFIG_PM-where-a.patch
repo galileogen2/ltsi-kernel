@@ -1145,7 +1145,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  	.suspend		= ata_pci_device_suspend,
  	.resume			= sil_pci_device_resume,
  #endif
-@@ -803,7 +803,7 @@ static int sil_init_one(struct pci_dev *
+@@ -806,7 +806,7 @@ static int sil_init_one(struct pci_dev *
  				 &sil_sht);
  }
  

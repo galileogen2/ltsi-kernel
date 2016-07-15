@@ -11,14 +11,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 179d80aff82bf8dff9db30589fe5a2297c454d35)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 18 ++++++------------
+ drivers/net/ethernet/renesas/sh_eth.c |   18 ++++++------------
  1 file changed, 6 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 10af820e1d45..26936b91f63f 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1094,20 +1094,16 @@ static void sh_eth_ring_free(struct net_device *ndev)
+@@ -1094,20 +1094,16 @@ static void sh_eth_ring_free(struct net_
  
  	/* Free Rx skb ringbuffer */
  	if (mdp->rx_skbuff) {
@@ -43,7 +41,7 @@ index 10af820e1d45..26936b91f63f 100644
  	}
  	kfree(mdp->tx_skbuff);
  	mdp->tx_skbuff = NULL;
-@@ -2077,13 +2073,11 @@ static void sh_eth_tx_timeout(struct net_device *ndev)
+@@ -2078,13 +2074,11 @@ static void sh_eth_tx_timeout(struct net
  		rxdesc = &mdp->rx_ring[i];
  		rxdesc->status = 0;
  		rxdesc->addr = 0xBADF00D0;
@@ -59,6 +57,3 @@ index 10af820e1d45..26936b91f63f 100644
  		mdp->tx_skbuff[i] = NULL;
  	}
  
--- 
-2.1.2
-

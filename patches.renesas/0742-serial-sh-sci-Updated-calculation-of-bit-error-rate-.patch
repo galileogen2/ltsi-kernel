@@ -12,14 +12,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit b7d66397f4d282ddf2a2fe516fc9329c5a063459)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 8 +++++---
+ drivers/tty/serial/sh-sci.c |    8 +++++---
  1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 88236da0ddf7..ce8013702560 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -1796,11 +1796,13 @@ static void sci_baud_calc_hscif(unsigned int bps, unsigned long freq,
+@@ -1770,11 +1770,13 @@ static void sci_baud_calc_hscif(unsigned
  	for (sr = 8; sr <= 32; sr++) {
  		for (c = 0; c <= 3; c++) {
  			/* integerized formulas from HSCIF documentation */
@@ -36,6 +34,3 @@ index 88236da0ddf7..ce8013702560 100644
  			if (min_err > err) {
  				min_err = err;
  				*brr = br;
--- 
-2.1.2
-

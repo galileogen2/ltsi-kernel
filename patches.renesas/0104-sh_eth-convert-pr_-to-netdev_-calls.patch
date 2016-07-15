@@ -11,14 +11,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit f75f14ec2f7b552dc87b4b57b2a19e487378f774)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 9 +++++----
+ drivers/net/ethernet/renesas/sh_eth.c |    9 +++++----
  1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 4d3b5b704b39..32daff7fa2d1 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -421,7 +421,8 @@ static void sh_eth_select_mii(struct net_device *ndev)
+@@ -421,7 +421,8 @@ static void sh_eth_select_mii(struct net
  		value = 0x0;
  		break;
  	default:
@@ -28,7 +26,7 @@ index 4d3b5b704b39..32daff7fa2d1 100644
  		value = 0x1;
  		break;
  	}
-@@ -868,7 +869,7 @@ static int sh_eth_check_reset(struct net_device *ndev)
+@@ -868,7 +869,7 @@ static int sh_eth_check_reset(struct net
  		cnt--;
  	}
  	if (cnt <= 0) {
@@ -37,7 +35,7 @@ index 4d3b5b704b39..32daff7fa2d1 100644
  		ret = -ETIMEDOUT;
  	}
  	return ret;
-@@ -2938,8 +2939,8 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2939,8 +2940,8 @@ static int sh_eth_drv_probe(struct platf
  	}
  
  	/* print device information */
@@ -48,6 +46,3 @@ index 4d3b5b704b39..32daff7fa2d1 100644
  
  	platform_set_drvdata(pdev, ndev);
  
--- 
-2.1.2
-

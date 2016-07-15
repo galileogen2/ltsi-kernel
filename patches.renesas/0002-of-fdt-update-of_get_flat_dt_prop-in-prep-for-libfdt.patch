@@ -153,7 +153,7 @@ Conflicts:
 --- a/arch/powerpc/kernel/prom.c
 +++ b/arch/powerpc/kernel/prom.c
 @@ -162,7 +162,7 @@ static struct ibm_pa_feature {
- 	{CPU_FTR_REAL_LE, PPC_FEATURE_TRUE_LE, 5, 0, 0},
+ 	{CPU_FTR_REAL_LE, 0, PPC_FEATURE_TRUE_LE, 5, 0, 0},
  };
  
 -static void __init scan_features(unsigned long node, unsigned char *ftrs,

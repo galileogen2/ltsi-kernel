@@ -13,14 +13,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit f738a13d8365b0f824f3f20450b413f55374f175)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 30 +++++++++---------------------
+ drivers/net/ethernet/renesas/sh_eth.c |   30 +++++++++---------------------
  1 file changed, 9 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 5fc66a52c471..1043bbb30061 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -887,7 +887,7 @@ static int sh_eth_reset(struct net_device *ndev)
+@@ -887,7 +887,7 @@ static int sh_eth_reset(struct net_devic
  
  		ret = sh_eth_check_reset(ndev);
  		if (ret)
@@ -29,7 +27,7 @@ index 5fc66a52c471..1043bbb30061 100644
  
  		/* Table Init */
  		sh_eth_write(ndev, 0x0, TDLAR);
-@@ -914,7 +914,6 @@ static int sh_eth_reset(struct net_device *ndev)
+@@ -914,7 +914,6 @@ static int sh_eth_reset(struct net_devic
  			     EDMR);
  	}
  
@@ -37,7 +35,7 @@ index 5fc66a52c471..1043bbb30061 100644
  	return ret;
  }
  
-@@ -1278,7 +1277,7 @@ static int sh_eth_dev_init(struct net_device *ndev, bool start)
+@@ -1279,7 +1278,7 @@ static int sh_eth_dev_init(struct net_de
  	/* Soft Reset */
  	ret = sh_eth_reset(ndev);
  	if (ret)
@@ -46,7 +44,7 @@ index 5fc66a52c471..1043bbb30061 100644
  
  	if (mdp->cd->rmiimode)
  		sh_eth_write(ndev, 0x1, RMIIMODE);
-@@ -1357,7 +1356,6 @@ static int sh_eth_dev_init(struct net_device *ndev, bool start)
+@@ -1358,7 +1357,6 @@ static int sh_eth_dev_init(struct net_de
  		netif_start_queue(ndev);
  	}
  
@@ -54,7 +52,7 @@ index 5fc66a52c471..1043bbb30061 100644
  	return ret;
  }
  
-@@ -2619,10 +2617,8 @@ static int sh_mdio_init(struct sh_eth_private *mdp,
+@@ -2620,10 +2618,8 @@ static int sh_mdio_init(struct sh_eth_pr
  
  	/* create bit control struct for PHY */
  	bitbang = devm_kzalloc(dev, sizeof(struct bb_info), GFP_KERNEL);
@@ -67,7 +65,7 @@ index 5fc66a52c471..1043bbb30061 100644
  
  	/* bitbang init */
  	bitbang->addr = mdp->addr + mdp->reg_offset[PIR];
-@@ -2635,10 +2631,8 @@ static int sh_mdio_init(struct sh_eth_private *mdp,
+@@ -2636,10 +2632,8 @@ static int sh_mdio_init(struct sh_eth_pr
  
  	/* MII controller setting */
  	mdp->mii_bus = alloc_mdio_bitbang(&bitbang->ctrl);
@@ -80,7 +78,7 @@ index 5fc66a52c471..1043bbb30061 100644
  
  	/* Hook up MII support for ethtool */
  	mdp->mii_bus->name = "sh_mii";
-@@ -2673,8 +2667,6 @@ static int sh_mdio_init(struct sh_eth_private *mdp,
+@@ -2674,8 +2668,6 @@ static int sh_mdio_init(struct sh_eth_pr
  
  out_free_bus:
  	free_mdio_bitbang(mdp->mii_bus);
@@ -89,7 +87,7 @@ index 5fc66a52c471..1043bbb30061 100644
  	return ret;
  }
  
-@@ -2787,15 +2779,12 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2788,15 +2780,12 @@ static int sh_eth_drv_probe(struct platf
  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
  	if (unlikely(res == NULL)) {
  		dev_err(&pdev->dev, "invalid resource\n");
@@ -108,7 +106,7 @@ index 5fc66a52c471..1043bbb30061 100644
  
  	/* The sh Ether-specific entries in the device structure. */
  	ndev->base_addr = res->start;
-@@ -2936,7 +2925,6 @@ out_release:
+@@ -2937,7 +2926,6 @@ out_release:
  	if (ndev)
  		free_netdev(ndev);
  
@@ -116,6 +114,3 @@ index 5fc66a52c471..1043bbb30061 100644
  	return ret;
  }
  
--- 
-2.1.2
-

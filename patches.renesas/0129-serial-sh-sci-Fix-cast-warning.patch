@@ -14,14 +14,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit 3af4e960b8a12b3f07033f1c12504305e6d4df1a)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 2 +-
+ drivers/tty/serial/sh-sci.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index be33d2b0613b..1668523d31fb 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -2018,7 +2018,7 @@ static int sci_remap_port(struct uart_port *port)
+@@ -1991,7 +1991,7 @@ static int sci_remap_port(struct uart_po
  		 * need to do any remapping, just cast the cookie
  		 * directly.
  		 */
@@ -30,6 +28,3 @@ index be33d2b0613b..1668523d31fb 100644
  	}
  
  	return 0;
--- 
-2.1.2
-

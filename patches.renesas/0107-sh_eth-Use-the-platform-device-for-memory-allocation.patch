@@ -19,14 +19,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit aa8d422510969b705656e49fc0166d862aca9246)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 7 +++----
+ drivers/net/ethernet/renesas/sh_eth.c |    7 +++----
  1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 062a70f85068..361ac103297b 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2620,10 +2620,10 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2621,10 +2621,10 @@ static int sh_mdio_init(struct net_devic
  	int ret, i;
  	struct bb_info *bitbang;
  	struct sh_eth_private *mdp = netdev_priv(ndev);
@@ -39,7 +37,7 @@ index 062a70f85068..361ac103297b 100644
  	if (!bitbang) {
  		ret = -ENOMEM;
  		goto out;
-@@ -2652,8 +2652,7 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2653,8 +2653,7 @@ static int sh_mdio_init(struct net_devic
  		 mdp->pdev->name, id);
  
  	/* PHY IRQ */
@@ -49,6 +47,3 @@ index 062a70f85068..361ac103297b 100644
  					 GFP_KERNEL);
  	if (!mdp->mii_bus->irq) {
  		ret = -ENOMEM;
--- 
-2.1.2
-

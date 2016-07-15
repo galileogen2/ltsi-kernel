@@ -80,7 +80,7 @@ Conflicts:
  	if (ret) {
 --- a/drivers/i2c/busses/i2c-exynos5.c
 +++ b/drivers/i2c/busses/i2c-exynos5.c
-@@ -621,10 +621,8 @@ static int exynos5_i2c_probe(struct plat
+@@ -623,10 +623,8 @@ static int exynos5_i2c_probe(struct plat
  	int ret;
  
  	i2c = devm_kzalloc(&pdev->dev, sizeof(struct exynos5_i2c), GFP_KERNEL);

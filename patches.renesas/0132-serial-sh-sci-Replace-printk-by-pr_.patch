@@ -12,14 +12,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit 6c13d5d27c5ecd7a2ce7c104c7726b0d7aa7d7b5)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 7 +++----
+ drivers/tty/serial/sh-sci.c |    7 +++----
  1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 0cb52376f97d..60a8f7db2948 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -428,7 +428,7 @@ static int sci_probe_regmap(struct plat_sci_port *cfg)
+@@ -425,7 +425,7 @@ static int sci_probe_regmap(struct plat_
  		cfg->regtype = SCIx_HSCIF_REGTYPE;
  		break;
  	default:
@@ -28,7 +26,7 @@ index 0cb52376f97d..60a8f7db2948 100644
  		return -EINVAL;
  	}
  
-@@ -2389,8 +2389,7 @@ static inline int sci_probe_earlyprintk(struct platform_device *pdev)
+@@ -2362,8 +2362,7 @@ static inline int sci_probe_earlyprintk(
  
  #endif /* CONFIG_SERIAL_SH_SCI_CONSOLE */
  
@@ -38,7 +36,7 @@ index 0cb52376f97d..60a8f7db2948 100644
  
  static struct uart_driver sci_uart_driver = {
  	.owner		= THIS_MODULE,
-@@ -2616,7 +2615,7 @@ static int __init sci_init(void)
+@@ -2576,7 +2575,7 @@ static int __init sci_init(void)
  {
  	int ret;
  
@@ -47,6 +45,3 @@ index 0cb52376f97d..60a8f7db2948 100644
  
  	ret = uart_register_driver(&sci_uart_driver);
  	if (likely(ret == 0)) {
--- 
-2.1.2
-

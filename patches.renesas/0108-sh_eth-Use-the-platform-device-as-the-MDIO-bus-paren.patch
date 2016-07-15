@@ -14,14 +14,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit a5bd60608936fbb84471a80592401ce29a68de71)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 2 +-
+ drivers/net/ethernet/renesas/sh_eth.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 361ac103297b..088d8c3edb89 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2647,7 +2647,7 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2648,7 +2648,7 @@ static int sh_mdio_init(struct net_devic
  
  	/* Hook up MII support for ethtool */
  	mdp->mii_bus->name = "sh_mii";
@@ -30,6 +28,3 @@ index 361ac103297b..088d8c3edb89 100644
  	snprintf(mdp->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
  		 mdp->pdev->name, id);
  
--- 
-2.1.2
-

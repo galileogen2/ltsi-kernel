@@ -13,14 +13,12 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 (cherry picked from commit 9b971cd206c019fc6aeeb7e04136a49f9312df4a)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/tty/serial/sh-sci.c | 38 ++++++++++++++++++--------------------
+ drivers/tty/serial/sh-sci.c |   38 ++++++++++++++++++--------------------
  1 file changed, 18 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 634ecae2efd4..7ee5a79222ff 100644
 --- a/drivers/tty/serial/sh-sci.c
 +++ b/drivers/tty/serial/sh-sci.c
-@@ -788,7 +788,7 @@ static int sci_handle_errors(struct uart_port *port)
+@@ -785,7 +785,7 @@ static int sci_handle_errors(struct uart
  		if (tty_insert_flip_char(tport, 0, TTY_OVERRUN))
  			copied++;
  
@@ -29,7 +27,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  	}
  
  	if (status & SCxSR_FER(port)) {
-@@ -830,7 +830,7 @@ static int sci_handle_errors(struct uart_port *port)
+@@ -827,7 +827,7 @@ static int sci_handle_errors(struct uart
  		if (tty_insert_flip_char(tport, 0, TTY_PARITY))
  			copied++;
  
@@ -38,7 +36,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  	}
  
  	if (copied)
-@@ -1292,7 +1292,8 @@ static void sci_dma_rx_complete(void *arg)
+@@ -1265,7 +1265,8 @@ static void sci_dma_rx_complete(void *ar
  	unsigned long flags;
  	int count;
  
@@ -48,7 +46,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  
  	spin_lock_irqsave(&port->lock, flags);
  
-@@ -1368,8 +1369,8 @@ static void sci_submit_rx(struct sci_port *s)
+@@ -1341,8 +1342,8 @@ static void sci_submit_rx(struct sci_por
  			sci_rx_dma_release(s, true);
  			return;
  		}
@@ -59,7 +57,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  	}
  
  	s->active_rx = s->cookie_rx[0];
-@@ -1428,8 +1429,8 @@ static void work_fn_rx(struct work_struct *work)
+@@ -1401,8 +1402,8 @@ static void work_fn_rx(struct work_struc
  
  	s->active_rx = s->cookie_rx[!new];
  
@@ -70,7 +68,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  }
  
  static void work_fn_tx(struct work_struct *work)
-@@ -1482,8 +1483,8 @@ static void work_fn_tx(struct work_struct *work)
+@@ -1455,8 +1456,8 @@ static void work_fn_tx(struct work_struc
  		return;
  	}
  
@@ -81,7 +79,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  
  	dma_async_issue_pending(chan);
  }
-@@ -1602,8 +1603,8 @@ static bool filter(struct dma_chan *chan, void *slave)
+@@ -1575,8 +1576,8 @@ static bool filter(struct dma_chan *chan
  {
  	struct sh_dmae_slave *param = slave;
  
@@ -92,7 +90,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  
  	chan->private = &param->shdma_slave;
  	return true;
-@@ -1632,8 +1633,7 @@ static void sci_request_dma(struct uart_port *port)
+@@ -1605,8 +1606,7 @@ static void sci_request_dma(struct uart_
  	dma_cap_mask_t mask;
  	int nent;
  
@@ -102,7 +100,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  
  	if (s->cfg->dma_slave_tx <= 0 || s->cfg->dma_slave_rx <= 0)
  		return;
-@@ -1661,7 +1661,8 @@ static void sci_request_dma(struct uart_port *port)
+@@ -1634,7 +1634,8 @@ static void sci_request_dma(struct uart_
  		if (!nent)
  			sci_tx_dma_release(s, false);
  		else
@@ -112,7 +110,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  				sg_dma_len(&s->sg_tx), port->state->xmit.buf,
  				&sg_dma_address(&s->sg_tx));
  
-@@ -1935,8 +1936,7 @@ static void sci_set_termios(struct uart_port *port, struct ktermios *termios,
+@@ -1908,8 +1909,7 @@ static void sci_set_termios(struct uart_
  	if (s->chan_rx) {
  		s->rx_timeout = (port->timeout - HZ / 50) * s->buf_len_rx * 3 /
  			port->fifosize / 2;
@@ -122,7 +120,7 @@ index 634ecae2efd4..7ee5a79222ff 100644
  			s->rx_timeout * 1000 / HZ, port->timeout);
  		if (s->rx_timeout < msecs_to_jiffies(20))
  			s->rx_timeout = msecs_to_jiffies(20);
-@@ -2503,11 +2503,9 @@ static int sci_probe_single(struct platform_device *dev,
+@@ -2473,11 +2473,9 @@ static int sci_probe_single(struct platf
  
  	/* Sanity check */
  	if (unlikely(index >= SCI_NPORTS)) {
@@ -136,6 +134,3 @@ index 634ecae2efd4..7ee5a79222ff 100644
  		return -EINVAL;
  	}
  
--- 
-2.1.2
-

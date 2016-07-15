@@ -13,14 +13,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 8d5009f6a9d9f4ef62a39bf68b53379b2b766c1c)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 33 +++++++++++----------------------
+ drivers/net/ethernet/renesas/sh_eth.c |   33 +++++++++++----------------------
  1 file changed, 11 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 185f185b5f6d..062a70f85068 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1571,8 +1571,7 @@ ignore_link:
+@@ -1572,8 +1572,7 @@ ignore_link:
  		/* Unused write back interrupt */
  		if (intr_status & EESR_TABT) {	/* Transmit Abort int */
  			ndev->stats.tx_aborted_errors++;
@@ -30,7 +28,7 @@ index 185f185b5f6d..062a70f85068 100644
  		}
  	}
  
-@@ -1581,45 +1580,38 @@ ignore_link:
+@@ -1582,45 +1581,38 @@ ignore_link:
  		if (intr_status & EESR_RFRMER) {
  			/* Receive Frame Overflow int */
  			ndev->stats.rx_frame_errors++;
@@ -82,7 +80,7 @@ index 185f185b5f6d..062a70f85068 100644
  	}
  
  	mask = EESR_TWB | EESR_TABT | EESR_ADE | EESR_TDE | EESR_TFE;
-@@ -2078,11 +2070,9 @@ static void sh_eth_tx_timeout(struct net_device *ndev)
+@@ -2079,11 +2071,9 @@ static void sh_eth_tx_timeout(struct net
  
  	netif_stop_queue(ndev);
  
@@ -97,7 +95,7 @@ index 185f185b5f6d..062a70f85068 100644
  
  	/* tx_errors count up */
  	ndev->stats.tx_errors++;
-@@ -2117,8 +2107,7 @@ static int sh_eth_start_xmit(struct sk_buff *skb, struct net_device *ndev)
+@@ -2118,8 +2108,7 @@ static int sh_eth_start_xmit(struct sk_b
  	spin_lock_irqsave(&mdp->lock, flags);
  	if ((mdp->cur_tx - mdp->dirty_tx) >= (mdp->num_tx_ring - 4)) {
  		if (!sh_eth_txfree(ndev)) {
@@ -107,6 +105,3 @@ index 185f185b5f6d..062a70f85068 100644
  			netif_stop_queue(ndev);
  			spin_unlock_irqrestore(&mdp->lock, flags);
  			return NETDEV_TX_BUSY;
--- 
-2.1.2
-

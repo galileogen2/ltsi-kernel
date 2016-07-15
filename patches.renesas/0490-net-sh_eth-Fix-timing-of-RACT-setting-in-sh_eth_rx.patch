@@ -19,14 +19,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 1b72a0fc9c308d9f3255c177945cf383c3c82b0e)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 1 -
+ drivers/net/ethernet/renesas/sh_eth.c |    1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 1b34ac0a2420..10af820e1d45 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1460,7 +1460,6 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status, int *quota)
+@@ -1461,7 +1461,6 @@ static int sh_eth_rx(struct net_device *
  			ndev->stats.rx_packets++;
  			ndev->stats.rx_bytes += pkt_len;
  		}
@@ -34,6 +32,3 @@ index 1b34ac0a2420..10af820e1d45 100644
  		entry = (++mdp->cur_rx) % mdp->num_rx_ring;
  		rxdesc = &mdp->rx_ring[entry];
  	}
--- 
-2.1.2
-
