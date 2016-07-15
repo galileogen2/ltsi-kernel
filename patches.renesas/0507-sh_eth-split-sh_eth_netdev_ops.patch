@@ -15,14 +15,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 8f728d7934c77f63e89abcc96b46a7a98416d5c1)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 29 ++++++++++++++++++++---------
+ drivers/net/ethernet/renesas/sh_eth.c |   29 ++++++++++++++++++++---------
  1 file changed, 20 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index f5cb5416..a651f766 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2497,7 +2497,7 @@ static const u16 *sh_eth_get_register_offset(int register_type)
+@@ -2498,7 +2498,7 @@ static const u16 *sh_eth_get_register_of
  	return reg_offset;
  }
  
@@ -31,7 +29,7 @@ index f5cb5416..a651f766 100644
  	.ndo_open		= sh_eth_open,
  	.ndo_stop		= sh_eth_close,
  	.ndo_start_xmit		= sh_eth_start_xmit,
-@@ -2509,6 +2509,21 @@ static struct net_device_ops sh_eth_netdev_ops = {
+@@ -2510,6 +2510,21 @@ static struct net_device_ops sh_eth_netd
  	.ndo_change_mtu		= eth_change_mtu,
  };
  
@@ -53,7 +51,7 @@ index f5cb5416..a651f766 100644
  static int sh_eth_drv_probe(struct platform_device *pdev)
  {
  	int ret, devno = 0;
-@@ -2579,14 +2594,10 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2580,14 +2595,10 @@ static int sh_eth_drv_probe(struct platf
  	sh_eth_set_default_cpu_data(mdp->cd);
  
  	/* set function */
@@ -72,6 +70,3 @@ index f5cb5416..a651f766 100644
  	SET_ETHTOOL_OPS(ndev, &sh_eth_ethtool_ops);
  	ndev->watchdog_timeo = TX_TIMEOUT;
  
--- 
-1.8.4.3.gca3854a
-

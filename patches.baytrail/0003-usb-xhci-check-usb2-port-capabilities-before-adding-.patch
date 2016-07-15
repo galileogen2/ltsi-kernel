@@ -34,9 +34,9 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	kfree(xhci->rh_bw);
 +	kfree(xhci->ext_caps);
  
- 	xhci->page_size = 0;
- 	xhci->page_shift = 0;
-@@ -2047,7 +2048,7 @@ static void xhci_set_hc_event_deq(struct
+ 	xhci->usb2_ports = NULL;
+ 	xhci->usb3_ports = NULL;
+@@ -2052,7 +2053,7 @@ static void xhci_set_hc_event_deq(struct
  }
  
  static void xhci_add_in_port(struct xhci_hcd *xhci, unsigned int num_ports,
@@ -45,7 +45,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  {
  	u32 temp, port_offset, port_count;
  	int i;
-@@ -2072,6 +2073,10 @@ static void xhci_add_in_port(struct xhci
+@@ -2077,6 +2078,10 @@ static void xhci_add_in_port(struct xhci
  		/* WTF? "Valid values are ‘1’ to MaxPorts" */
  		return;
  
@@ -56,7 +56,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	/* Check the host's USB2 LPM capability */
  	if ((xhci->hci_version == 0x96) && (major_revision != 0x03) &&
  			(temp & XHCI_L1C)) {
-@@ -2129,10 +2134,11 @@ static void xhci_add_in_port(struct xhci
+@@ -2134,10 +2139,11 @@ static void xhci_add_in_port(struct xhci
   */
  static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
  {
@@ -70,7 +70,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
  	addr = &xhci->cap_regs->hcc_params;
  	offset = XHCI_HCC_EXT_CAPS(xhci_readl(xhci, addr));
-@@ -2165,13 +2171,32 @@ static int xhci_setup_port_arrays(struct
+@@ -2170,13 +2176,32 @@ static int xhci_setup_port_arrays(struct
  	 * See section 5.3.6 for offset calculation.
  	 */
  	addr = &xhci->cap_regs->hc_capbase + offset;

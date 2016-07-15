@@ -15,14 +15,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 3b4c5cbf42bda976ab70354e7786a0808265d9d5)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 6 ++++++
+ drivers/net/ethernet/renesas/sh_eth.c |    6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 5ffaf56a0706..8bced1c44378 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2663,6 +2663,12 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2664,6 +2664,12 @@ static int sh_eth_drv_probe(struct platf
  	pm_runtime_enable(&pdev->dev);
  	pm_runtime_resume(&pdev->dev);
  
@@ -35,6 +33,3 @@ index 5ffaf56a0706..8bced1c44378 100644
  	/* get PHY ID */
  	mdp->phy_id = pd->phy;
  	mdp->phy_interface = pd->phy_interface;
--- 
-1.8.5.rc3
-

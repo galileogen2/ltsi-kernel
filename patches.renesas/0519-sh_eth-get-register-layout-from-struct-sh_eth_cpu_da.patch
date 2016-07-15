@@ -13,15 +13,13 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit a3153d8c41132d6fda080a4b3e53b7ee25d3c125)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 22 +++++++++++++++++++++-
- drivers/net/ethernet/renesas/sh_eth.h |  1 +
+ drivers/net/ethernet/renesas/sh_eth.c |   22 +++++++++++++++++++++-
+ drivers/net/ethernet/renesas/sh_eth.h |    1 +
  2 files changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 52ab996a..ebce05b1 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -378,6 +378,8 @@ static struct sh_eth_cpu_data r8a777x_data = {
+@@ -378,6 +378,8 @@ static struct sh_eth_cpu_data r8a777x_da
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_r8a777x,
  
@@ -30,7 +28,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_PSRTO | ECSR_LCHNG | ECSR_ICD,
  	.ecsipr_value	= ECSIPR_PSRTOIP | ECSIPR_LCHNGIP | ECSIPR_ICDIP,
  	.eesipr_value	= 0x01ff009f,
-@@ -398,6 +400,8 @@ static struct sh_eth_cpu_data r8a7790_data = {
+@@ -398,6 +400,8 @@ static struct sh_eth_cpu_data r8a7790_da
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_r8a777x,
  
@@ -39,7 +37,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_PSRTO | ECSR_LCHNG | ECSR_ICD,
  	.ecsipr_value	= ECSIPR_PSRTOIP | ECSIPR_LCHNGIP | ECSIPR_ICDIP,
  	.eesipr_value	= 0x01ff009f,
-@@ -435,6 +439,8 @@ static struct sh_eth_cpu_data sh7724_data = {
+@@ -435,6 +439,8 @@ static struct sh_eth_cpu_data sh7724_dat
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_sh7724,
  
@@ -48,7 +46,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_PSRTO | ECSR_LCHNG | ECSR_ICD,
  	.ecsipr_value	= ECSIPR_PSRTOIP | ECSIPR_LCHNGIP | ECSIPR_ICDIP,
  	.eesipr_value	= 0x01ff009f,
-@@ -473,6 +479,8 @@ static struct sh_eth_cpu_data sh7757_data = {
+@@ -473,6 +479,8 @@ static struct sh_eth_cpu_data sh7757_dat
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_sh7757,
  
@@ -57,7 +55,7 @@ index 52ab996a..ebce05b1 100644
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
  	.rmcr_value	= 0x00000001,
  
-@@ -541,6 +549,8 @@ static struct sh_eth_cpu_data sh7757_data_giga = {
+@@ -541,6 +549,8 @@ static struct sh_eth_cpu_data sh7757_dat
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_giga,
  
@@ -66,7 +64,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_ICD | ECSR_MPD,
  	.ecsipr_value	= ECSIPR_LCHNGIP | ECSIPR_ICDIP | ECSIPR_MPDIP,
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
-@@ -599,6 +609,8 @@ static struct sh_eth_cpu_data sh7734_data = {
+@@ -599,6 +609,8 @@ static struct sh_eth_cpu_data sh7734_dat
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_gether,
  
@@ -75,7 +73,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_ICD | ECSR_MPD,
  	.ecsipr_value	= ECSIPR_LCHNGIP | ECSIPR_ICDIP | ECSIPR_MPDIP,
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
-@@ -626,6 +638,8 @@ static struct sh_eth_cpu_data sh7763_data = {
+@@ -626,6 +638,8 @@ static struct sh_eth_cpu_data sh7763_dat
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_gether,
  
@@ -84,7 +82,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_ICD | ECSR_MPD,
  	.ecsipr_value	= ECSIPR_LCHNGIP | ECSIPR_ICDIP | ECSIPR_MPDIP,
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
-@@ -663,6 +677,8 @@ static struct sh_eth_cpu_data r8a7740_data = {
+@@ -663,6 +677,8 @@ static struct sh_eth_cpu_data r8a7740_da
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_gether,
  
@@ -93,7 +91,7 @@ index 52ab996a..ebce05b1 100644
  	.ecsr_value	= ECSR_ICD | ECSR_MPD,
  	.ecsipr_value	= ECSIPR_LCHNGIP | ECSIPR_ICDIP | ECSIPR_MPDIP,
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
-@@ -685,6 +701,8 @@ static struct sh_eth_cpu_data r8a7740_data = {
+@@ -685,6 +701,8 @@ static struct sh_eth_cpu_data r8a7740_da
  };
  
  static struct sh_eth_cpu_data sh7619_data = {
@@ -102,7 +100,7 @@ index 52ab996a..ebce05b1 100644
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
  
  	.apr		= 1,
-@@ -694,6 +712,8 @@ static struct sh_eth_cpu_data sh7619_data = {
+@@ -694,6 +712,8 @@ static struct sh_eth_cpu_data sh7619_dat
  };
  
  static struct sh_eth_cpu_data sh771x_data = {
@@ -111,7 +109,7 @@ index 52ab996a..ebce05b1 100644
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
  	.tsu		= 1,
  };
-@@ -2643,10 +2663,10 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2644,10 +2664,10 @@ static int sh_eth_drv_probe(struct platf
  	mdp->edmac_endian = pd->edmac_endian;
  	mdp->no_ether_link = pd->no_ether_link;
  	mdp->ether_link_active_low = pd->ether_link_active_low;
@@ -123,8 +121,6 @@ index 52ab996a..ebce05b1 100644
  	sh_eth_set_default_cpu_data(mdp->cd);
  
  	/* set function */
-diff --git a/drivers/net/ethernet/renesas/sh_eth.h b/drivers/net/ethernet/renesas/sh_eth.h
-index da93f5cf..1e785281 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.h
 +++ b/drivers/net/ethernet/renesas/sh_eth.h
 @@ -454,6 +454,7 @@ struct sh_eth_cpu_data {
@@ -135,6 +131,3 @@ index da93f5cf..1e785281 100644
  	unsigned long eesipr_value;
  
  	/* optional initialize value */
--- 
-1.8.4.3.gca3854a
-

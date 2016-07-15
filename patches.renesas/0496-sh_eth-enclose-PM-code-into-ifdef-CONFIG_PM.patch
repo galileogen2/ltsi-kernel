@@ -15,14 +15,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 540ad1b888ad9564520c1c8c48ad675f76ffce62)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 9 +++++++--
+ drivers/net/ethernet/renesas/sh_eth.c |    9 +++++++--
  1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index cae8576a..0a7990a1 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -2685,6 +2685,7 @@ static int sh_eth_drv_remove(struct platform_device *pdev)
+@@ -2686,6 +2686,7 @@ static int sh_eth_drv_remove(struct plat
  	return 0;
  }
  
@@ -30,7 +28,7 @@ index cae8576a..0a7990a1 100644
  static int sh_eth_runtime_nop(struct device *dev)
  {
  	/*
-@@ -2698,17 +2699,21 @@ static int sh_eth_runtime_nop(struct device *dev)
+@@ -2699,17 +2700,21 @@ static int sh_eth_runtime_nop(struct dev
  	return 0;
  }
  
@@ -54,6 +52,3 @@ index cae8576a..0a7990a1 100644
  	},
  };
  
--- 
-1.8.4.3.gca3854a
-

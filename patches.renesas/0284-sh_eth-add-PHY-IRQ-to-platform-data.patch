@@ -12,15 +12,13 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (Queued by David Miller for v3.14 but not yet in Linus's tree)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 6 ++++--
- include/linux/sh_eth.h                | 1 +
+ drivers/net/ethernet/renesas/sh_eth.c |    6 ++++--
+ include/linux/sh_eth.h                |    1 +
  2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 7f6dc6d8642e..2b8ef6ec0025 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1685,8 +1685,8 @@ static int sh_eth_phy_init(struct net_device *ndev)
+@@ -1686,8 +1686,8 @@ static int sh_eth_phy_init(struct net_de
  		return PTR_ERR(phydev);
  	}
  
@@ -31,7 +29,7 @@ index 7f6dc6d8642e..2b8ef6ec0025 100644
  
  	mdp->phydev = phydev;
  
-@@ -2544,6 +2544,8 @@ static int sh_mdio_init(struct net_device *ndev, int id,
+@@ -2545,6 +2545,8 @@ static int sh_mdio_init(struct net_devic
  
  	for (i = 0; i < PHY_MAX_ADDR; i++)
  		mdp->mii_bus->irq[i] = PHY_POLL;
@@ -40,11 +38,9 @@ index 7f6dc6d8642e..2b8ef6ec0025 100644
  
  	/* register mdio bus */
  	ret = mdiobus_register(mdp->mii_bus);
-diff --git a/include/linux/sh_eth.h b/include/linux/sh_eth.h
-index 15b2ea9381bd..8c3dc4cf838c 100644
 --- a/include/linux/sh_eth.h
 +++ b/include/linux/sh_eth.h
-@@ -7,6 +7,7 @@ enum {EDMAC_LITTLE_ENDIAN, EDMAC_BIG_ENDIAN};
+@@ -7,6 +7,7 @@ enum {EDMAC_LITTLE_ENDIAN, EDMAC_BIG_END
  
  struct sh_eth_plat_data {
  	int phy;
@@ -52,6 +48,3 @@ index 15b2ea9381bd..8c3dc4cf838c 100644
  	int edmac_endian;
  	phy_interface_t phy_interface;
  	void (*set_mdio_gate)(void *addr);
--- 
-1.8.5.rc3
-

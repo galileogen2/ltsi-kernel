@@ -12,15 +12,13 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 3719109d61ca96746c733538ec776d02a6952640)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 85 ++++++++++++++++++++++++++++++-----
- drivers/net/ethernet/renesas/sh_eth.h |  1 +
+ drivers/net/ethernet/renesas/sh_eth.c |   85 +++++++++++++++++++++++++++++-----
+ drivers/net/ethernet/renesas/sh_eth.h |    1 
  2 files changed, 74 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index cc9886cb..0389ac0e 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1247,7 +1247,7 @@ static int sh_eth_txfree(struct net_device *ndev)
+@@ -1248,7 +1248,7 @@ static int sh_eth_txfree(struct net_devi
  }
  
  /* Packet receive function */
@@ -29,7 +27,7 @@ index cc9886cb..0389ac0e 100644
  {
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  	struct sh_eth_rxdesc *rxdesc;
-@@ -1255,6 +1255,7 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status)
+@@ -1256,6 +1256,7 @@ static int sh_eth_rx(struct net_device *
  	int entry = mdp->cur_rx % mdp->num_rx_ring;
  	int boguscnt = (mdp->dirty_rx + mdp->num_rx_ring) - mdp->cur_rx;
  	struct sk_buff *skb;
@@ -37,7 +35,7 @@ index cc9886cb..0389ac0e 100644
  	u16 pkt_len = 0;
  	u32 desc_status;
  
-@@ -1266,6 +1267,12 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status)
+@@ -1267,6 +1268,12 @@ static int sh_eth_rx(struct net_device *
  		if (--boguscnt < 0)
  			break;
  
@@ -50,7 +48,7 @@ index cc9886cb..0389ac0e 100644
  		if (!(desc_status & RDFEND))
  			ndev->stats.rx_length_errors++;
  
-@@ -1353,7 +1360,7 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status)
+@@ -1354,7 +1361,7 @@ static int sh_eth_rx(struct net_device *
  		sh_eth_write(ndev, EDRRR_R, EDRRR);
  	}
  
@@ -59,7 +57,7 @@ index cc9886cb..0389ac0e 100644
  }
  
  static void sh_eth_rcv_snd_disable(struct net_device *ndev)
-@@ -1495,7 +1502,7 @@ static irqreturn_t sh_eth_interrupt(int irq, void *netdev)
+@@ -1496,7 +1503,7 @@ static irqreturn_t sh_eth_interrupt(int
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  	struct sh_eth_cpu_data *cd = mdp->cd;
  	irqreturn_t ret = IRQ_NONE;
@@ -68,7 +66,7 @@ index cc9886cb..0389ac0e 100644
  
  	spin_lock(&mdp->lock);
  
-@@ -1506,25 +1513,41 @@ static irqreturn_t sh_eth_interrupt(int irq, void *netdev)
+@@ -1507,25 +1514,41 @@ static irqreturn_t sh_eth_interrupt(int
  	 * and we need to fully handle it in sh_eth_error() in order to quench
  	 * it as it doesn't get cleared by just writing 1 to the ECI bit...
  	 */
@@ -118,7 +116,7 @@ index cc9886cb..0389ac0e 100644
  
  other_irq:
  	spin_unlock(&mdp->lock);
-@@ -1532,6 +1555,33 @@ other_irq:
+@@ -1533,6 +1556,33 @@ other_irq:
  	return ret;
  }
  
@@ -152,7 +150,7 @@ index cc9886cb..0389ac0e 100644
  /* PHY state control function */
  static void sh_eth_adjust_link(struct net_device *ndev)
  {
-@@ -1843,6 +1893,8 @@ static int sh_eth_open(struct net_device *ndev)
+@@ -1844,6 +1894,8 @@ static int sh_eth_open(struct net_device
  	if (ret)
  		goto out_free_irq;
  
@@ -161,7 +159,7 @@ index cc9886cb..0389ac0e 100644
  	return ret;
  
  out_free_irq:
-@@ -1938,6 +1990,8 @@ static int sh_eth_close(struct net_device *ndev)
+@@ -1939,6 +1991,8 @@ static int sh_eth_close(struct net_devic
  {
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  
@@ -170,7 +168,7 @@ index cc9886cb..0389ac0e 100644
  	netif_stop_queue(ndev);
  
  	/* Disable interrupts by clearing the interrupt mask. */
-@@ -2627,10 +2681,12 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2628,10 +2682,12 @@ static int sh_eth_drv_probe(struct platf
  		}
  	}
  
@@ -184,7 +182,7 @@ index cc9886cb..0389ac0e 100644
  
  	/* mdio bus init */
  	ret = sh_mdio_init(ndev, pdev->id, pd);
-@@ -2648,6 +2704,9 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2649,6 +2705,9 @@ static int sh_eth_drv_probe(struct platf
  out_unregister:
  	unregister_netdev(ndev);
  
@@ -194,7 +192,7 @@ index cc9886cb..0389ac0e 100644
  out_release:
  	/* net_dev free */
  	if (ndev)
-@@ -2660,9 +2719,11 @@ out:
+@@ -2661,9 +2720,11 @@ out:
  static int sh_eth_drv_remove(struct platform_device *pdev)
  {
  	struct net_device *ndev = platform_get_drvdata(pdev);
@@ -206,8 +204,6 @@ index cc9886cb..0389ac0e 100644
  	pm_runtime_disable(&pdev->dev);
  	free_netdev(ndev);
  	platform_set_drvdata(pdev, NULL);
-diff --git a/drivers/net/ethernet/renesas/sh_eth.h b/drivers/net/ethernet/renesas/sh_eth.h
-index 117b3241..99beb393 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.h
 +++ b/drivers/net/ethernet/renesas/sh_eth.h
 @@ -505,6 +505,7 @@ struct sh_eth_private {
@@ -218,6 +214,3 @@ index 117b3241..99beb393 100644
  	/* MII transceiver section. */
  	u32 phy_id;					/* PHY ID */
  	struct mii_bus *mii_bus;	/* MDIO bus control */
--- 
-1.8.4.3.gca3854a
-

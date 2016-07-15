@@ -27,7 +27,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  };
  
  static struct sh_eth_cpu_data sh7619_data = {
-@@ -1262,7 +1263,6 @@ static int sh_eth_rx(struct net_device *
+@@ -1263,7 +1264,6 @@ static int sh_eth_rx(struct net_device *
  		if (!(desc_status & RDFEND))
  			ndev->stats.rx_length_errors++;
  
@@ -35,7 +35,7 @@ Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
  		/*
  		 * In case of almost all GETHER/ETHERs, the Receive Frame State
  		 * (RFS) bits in the Receive Descriptor 0 are from bit 9 to
-@@ -1270,8 +1270,8 @@ static int sh_eth_rx(struct net_device *
+@@ -1271,8 +1271,8 @@ static int sh_eth_rx(struct net_device *
  		 * bits are from bit 25 to bit 16. So, the driver needs right
  		 * shifting by 16.
  		 */

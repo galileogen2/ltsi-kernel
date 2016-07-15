@@ -9,14 +9,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 7db8e0c14c9cb4adb667b4c558d8ffec8d5b40f2)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 3 +++
+ drivers/net/ethernet/renesas/sh_eth.c |    3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index c6dad5f6..fb8479f4 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1342,6 +1342,9 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status, int *quota)
+@@ -1343,6 +1343,9 @@ static int sh_eth_rx(struct net_device *
  			mdp->rx_skbuff[entry] = NULL;
  			if (mdp->cd->rpadir)
  				skb_reserve(skb, NET_IP_ALIGN);
@@ -26,6 +24,3 @@ index c6dad5f6..fb8479f4 100644
  			skb_put(skb, pkt_len);
  			skb->protocol = eth_type_trans(skb, ndev);
  			netif_rx(skb);
--- 
-1.8.4.3.gca3854a
-

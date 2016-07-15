@@ -16,14 +16,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 9f86134155047720a3685cda21467f68695152d2)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 20 ++++++++------------
+ drivers/net/ethernet/renesas/sh_eth.c |   20 ++++++++------------
  1 file changed, 8 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 1dba3c9d..c821339a 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -433,7 +433,6 @@ static struct sh_eth_cpu_data sh_eth_my_cpu_data = {
+@@ -433,7 +433,6 @@ static struct sh_eth_cpu_data sh_eth_my_
  };
  #elif defined(CONFIG_CPU_SUBTYPE_SH7757)
  #define SH_ETH_HAS_BOTH_MODULES	1
@@ -31,7 +29,7 @@ index 1dba3c9d..c821339a 100644
  static int sh_eth_check_reset(struct net_device *ndev);
  
  static void sh_eth_set_rate(struct net_device *ndev)
-@@ -595,7 +594,6 @@ static struct sh_eth_cpu_data *sh_eth_get_cpu_data(struct sh_eth_private *mdp)
+@@ -595,7 +594,6 @@ static struct sh_eth_cpu_data *sh_eth_ge
  }
  
  #elif defined(CONFIG_CPU_SUBTYPE_SH7734) || defined(CONFIG_CPU_SUBTYPE_SH7763)
@@ -39,7 +37,7 @@ index 1dba3c9d..c821339a 100644
  static int sh_eth_check_reset(struct net_device *ndev);
  static void sh_eth_reset_hw_crc(struct net_device *ndev);
  
-@@ -696,7 +694,6 @@ static void sh_eth_reset_hw_crc(struct net_device *ndev)
+@@ -696,7 +694,6 @@ static void sh_eth_reset_hw_crc(struct n
  }
  
  #elif defined(CONFIG_ARCH_R8A7740)
@@ -47,7 +45,7 @@ index 1dba3c9d..c821339a 100644
  static int sh_eth_check_reset(struct net_device *ndev);
  
  static void sh_eth_chip_reset(struct net_device *ndev)
-@@ -794,7 +791,6 @@ static struct sh_eth_cpu_data sh_eth_my_cpu_data = {
+@@ -794,7 +791,6 @@ static struct sh_eth_cpu_data sh_eth_my_
  };
  #elif defined(CONFIG_CPU_SUBTYPE_SH7710) || defined(CONFIG_CPU_SUBTYPE_SH7712)
  #define SH_ETH_RESET_DEFAULT	1
@@ -55,7 +53,7 @@ index 1dba3c9d..c821339a 100644
  static struct sh_eth_cpu_data sh_eth_my_cpu_data = {
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
  	.tsu		= 1,
-@@ -2116,7 +2112,6 @@ static int sh_eth_do_ioctl(struct net_device *ndev, struct ifreq *rq,
+@@ -2117,7 +2113,6 @@ static int sh_eth_do_ioctl(struct net_de
  	return phy_mii_ioctl(phydev, rq, cmd);
  }
  
@@ -63,7 +61,7 @@ index 1dba3c9d..c821339a 100644
  /* For TSU_POSTn. Please refer to the manual about this (strange) bitfields */
  static void *sh_eth_tsu_get_post_reg_offset(struct sh_eth_private *mdp,
  					    int entry)
-@@ -2459,7 +2454,6 @@ static int sh_eth_vlan_rx_kill_vid(struct net_device *ndev,
+@@ -2460,7 +2455,6 @@ static int sh_eth_vlan_rx_kill_vid(struc
  
  	return 0;
  }
@@ -71,7 +69,7 @@ index 1dba3c9d..c821339a 100644
  
  /* SuperH's TSU register init function */
  static void sh_eth_tsu_init(struct sh_eth_private *mdp)
-@@ -2598,16 +2592,11 @@ static const u16 *sh_eth_get_register_offset(int register_type)
+@@ -2599,16 +2593,11 @@ static const u16 *sh_eth_get_register_of
  	return reg_offset;
  }
  
@@ -89,7 +87,7 @@ index 1dba3c9d..c821339a 100644
  	.ndo_tx_timeout		= sh_eth_tx_timeout,
  	.ndo_do_ioctl		= sh_eth_do_ioctl,
  	.ndo_validate_addr	= eth_validate_addr,
-@@ -2688,6 +2677,13 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2689,6 +2678,13 @@ static int sh_eth_drv_probe(struct platf
  	sh_eth_set_default_cpu_data(mdp->cd);
  
  	/* set function */
@@ -103,6 +101,3 @@ index 1dba3c9d..c821339a 100644
  	ndev->netdev_ops = &sh_eth_netdev_ops;
  	SET_ETHTOOL_OPS(ndev, &sh_eth_ethtool_ops);
  	ndev->watchdog_timeo = TX_TIMEOUT;
--- 
-1.8.4.3.gca3854a
-

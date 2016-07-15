@@ -15,14 +15,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (Queued by David Miller for v3.14 but not yet in Linus's tree)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 5 -----
+ drivers/net/ethernet/renesas/sh_eth.c |    5 -----
  1 file changed, 5 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index 2b8ef6ec0025..6551b72776ce 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1703,11 +1703,6 @@ static int sh_eth_phy_start(struct net_device *ndev)
+@@ -1704,11 +1704,6 @@ static int sh_eth_phy_start(struct net_d
  	if (ret)
  		return ret;
  
@@ -34,6 +32,3 @@ index 2b8ef6ec0025..6551b72776ce 100644
  	phy_start(mdp->phydev);
  
  	return 0;
--- 
-1.8.5.rc3
-

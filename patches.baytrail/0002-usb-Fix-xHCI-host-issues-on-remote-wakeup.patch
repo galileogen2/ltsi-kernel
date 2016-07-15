@@ -133,7 +133,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  
 --- a/drivers/usb/host/xhci-mem.c
 +++ b/drivers/usb/host/xhci-mem.c
-@@ -2448,6 +2448,8 @@ int xhci_mem_init(struct xhci_hcd *xhci,
+@@ -2453,6 +2453,8 @@ int xhci_mem_init(struct xhci_hcd *xhci,
  	for (i = 0; i < USB_MAXCHILDREN; ++i) {
  		xhci->bus_state[0].resume_done[i] = 0;
  		xhci->bus_state[1].resume_done[i] = 0;

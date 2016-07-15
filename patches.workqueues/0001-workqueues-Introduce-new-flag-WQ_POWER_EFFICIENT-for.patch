@@ -139,7 +139,7 @@ Signed-off-by: Mark Brown <broonie@linaro.org>
  static bool wq_numa_enabled;		/* unbound NUMA affinity enabled */
  
  /* buf for wq_update_unbound_numa_attrs(), protected by CPU hotplug exclusion */
-@@ -4184,6 +4193,10 @@ struct workqueue_struct *__alloc_workque
+@@ -4213,6 +4222,10 @@ struct workqueue_struct *__alloc_workque
  	struct workqueue_struct *wq;
  	struct pool_workqueue *pwq;
  

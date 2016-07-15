@@ -14,15 +14,13 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit 24549e2a0f33628b5160eac16c6aebf1cfaf22f1)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- arch/sh/boards/board-sh7757lcr.c      |  8 ++++----
- drivers/net/ethernet/renesas/sh_eth.c | 28 ++++++++--------------------
+ arch/sh/boards/board-sh7757lcr.c      |    8 ++++----
+ drivers/net/ethernet/renesas/sh_eth.c |   28 ++++++++--------------------
  2 files changed, 12 insertions(+), 24 deletions(-)
 
-diff --git a/arch/sh/boards/board-sh7757lcr.c b/arch/sh/boards/board-sh7757lcr.c
-index 41f86702..4f114d1c 100644
 --- a/arch/sh/boards/board-sh7757lcr.c
 +++ b/arch/sh/boards/board-sh7757lcr.c
-@@ -82,7 +82,7 @@ static struct sh_eth_plat_data sh7757_eth0_pdata = {
+@@ -82,7 +82,7 @@ static struct sh_eth_plat_data sh7757_et
  };
  
  static struct platform_device sh7757_eth0_device = {
@@ -31,7 +29,7 @@ index 41f86702..4f114d1c 100644
  	.resource	= sh_eth0_resources,
  	.id		= 0,
  	.num_resources	= ARRAY_SIZE(sh_eth0_resources),
-@@ -111,7 +111,7 @@ static struct sh_eth_plat_data sh7757_eth1_pdata = {
+@@ -111,7 +111,7 @@ static struct sh_eth_plat_data sh7757_et
  };
  
  static struct platform_device sh7757_eth1_device = {
@@ -40,7 +38,7 @@ index 41f86702..4f114d1c 100644
  	.resource	= sh_eth1_resources,
  	.id		= 1,
  	.num_resources	= ARRAY_SIZE(sh_eth1_resources),
-@@ -157,7 +157,7 @@ static struct sh_eth_plat_data sh7757_eth_giga0_pdata = {
+@@ -157,7 +157,7 @@ static struct sh_eth_plat_data sh7757_et
  };
  
  static struct platform_device sh7757_eth_giga0_device = {
@@ -49,7 +47,7 @@ index 41f86702..4f114d1c 100644
  	.resource	= sh_eth_giga0_resources,
  	.id		= 2,
  	.num_resources	= ARRAY_SIZE(sh_eth_giga0_resources),
-@@ -192,7 +192,7 @@ static struct sh_eth_plat_data sh7757_eth_giga1_pdata = {
+@@ -192,7 +192,7 @@ static struct sh_eth_plat_data sh7757_et
  };
  
  static struct platform_device sh7757_eth_giga1_device = {
@@ -58,11 +56,9 @@ index 41f86702..4f114d1c 100644
  	.resource	= sh_eth_giga1_resources,
  	.id		= 3,
  	.num_resources	= ARRAY_SIZE(sh_eth_giga1_resources),
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index bdc3f20f..9da357f1 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -433,10 +433,9 @@ static struct sh_eth_cpu_data sh_eth_my_cpu_data = {
+@@ -433,10 +433,9 @@ static struct sh_eth_cpu_data sh_eth_my_
  	.rpadir		= 1,
  	.rpadir_value	= 0x00020000, /* NET_IP_ALIGN assumed to be 2 */
  };
@@ -75,7 +71,7 @@ index bdc3f20f..9da357f1 100644
  {
  	struct sh_eth_private *mdp = netdev_priv(ndev);
  
-@@ -453,9 +452,9 @@ static void sh_eth_set_rate(struct net_device *ndev)
+@@ -453,9 +452,9 @@ static void sh_eth_set_rate(struct net_d
  }
  
  /* SH7757 */
@@ -88,7 +84,7 @@ index bdc3f20f..9da357f1 100644
  
  	.eesipr_value	= DMAC_M_RFRMER | DMAC_M_ECI | 0x003fffff,
  	.rmcr_value	= 0x00000001,
-@@ -521,7 +520,7 @@ static void sh_eth_set_rate_giga(struct net_device *ndev)
+@@ -521,7 +520,7 @@ static void sh_eth_set_rate_giga(struct
  }
  
  /* SH7757(GETHERC) */
@@ -97,7 +93,7 @@ index bdc3f20f..9da357f1 100644
  	.chip_reset	= sh_eth_chip_reset_giga,
  	.set_duplex	= sh_eth_set_duplex,
  	.set_rate	= sh_eth_set_rate_giga,
-@@ -552,15 +551,6 @@ static struct sh_eth_cpu_data sh_eth_my_cpu_data_giga = {
+@@ -552,15 +551,6 @@ static struct sh_eth_cpu_data sh_eth_my_
  	.tsu		= 1,
  };
  
@@ -113,7 +109,7 @@ index bdc3f20f..9da357f1 100644
  static void sh_eth_chip_reset(struct net_device *ndev)
  {
  	struct sh_eth_private *mdp = netdev_priv(ndev);
-@@ -2588,11 +2578,7 @@ static int sh_eth_drv_probe(struct platform_device *pdev)
+@@ -2589,11 +2579,7 @@ static int sh_eth_drv_probe(struct platf
  	mdp->reg_offset = sh_eth_get_register_offset(pd->register_type);
  
  	/* set cpu data */
@@ -125,7 +121,7 @@ index bdc3f20f..9da357f1 100644
  	if (id->driver_data)
  		mdp->cd = (struct sh_eth_cpu_data *)id->driver_data;
  	sh_eth_set_default_cpu_data(mdp->cd);
-@@ -2714,6 +2700,8 @@ static struct platform_device_id sh_eth_id_table[] = {
+@@ -2715,6 +2701,8 @@ static struct platform_device_id sh_eth_
  	{ "sh7619-ether", (kernel_ulong_t)&sh7619_data },
  	{ "sh771x-ether", (kernel_ulong_t)&sh771x_data },
  	{ "sh7734-gether", (kernel_ulong_t)&sh7734_data },
@@ -134,6 +130,3 @@ index bdc3f20f..9da357f1 100644
  	{ "sh7763-gether", (kernel_ulong_t)&sh7763_data },
  	{ "r8a7740-gether", (kernel_ulong_t)&r8a7740_data },
  	{ CARDNAME },
--- 
-1.8.4.3.gca3854a
-

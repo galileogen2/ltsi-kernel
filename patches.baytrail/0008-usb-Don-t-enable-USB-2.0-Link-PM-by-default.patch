@@ -85,7 +85,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 
 --- a/drivers/usb/core/driver.c
 +++ b/drivers/usb/core/driver.c
-@@ -1794,6 +1794,9 @@ int usb_set_usb2_hardware_lpm(struct usb
+@@ -1798,6 +1798,9 @@ int usb_set_usb2_hardware_lpm(struct usb
  	struct usb_hcd *hcd = bus_to_hcd(udev->bus);
  	int ret = -EPERM;
  
@@ -97,7 +97,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  		if (!ret)
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -5247,6 +5247,7 @@ static int usb_reset_and_verify_device(s
+@@ -5253,6 +5253,7 @@ static int usb_reset_and_verify_device(s
  
  done:
  	/* Now that the alt settings are re-installed, enable LTM and LPM. */
@@ -154,7 +154,7 @@ Signed-off-by: Darren Hart <dvhart@linux.intel.com>
  	if (!xhci->rh_bw)
  		goto no_bw;
  
-@@ -2289,7 +2280,6 @@ int xhci_mem_init(struct xhci_hcd *xhci,
+@@ -2294,7 +2285,6 @@ int xhci_mem_init(struct xhci_hcd *xhci,
  	u32 page_size, temp;
  	int i;
  
