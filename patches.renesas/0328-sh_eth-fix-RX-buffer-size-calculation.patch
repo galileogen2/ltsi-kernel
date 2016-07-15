@@ -11,14 +11,12 @@ Signed-off-by: David S. Miller <davem@davemloft.net>
 (cherry picked from commit cb3685958dd4c46d7646d244063ea3ec8adf3618)
 Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- drivers/net/ethernet/renesas/sh_eth.c | 4 ++--
+ drivers/net/ethernet/renesas/sh_eth.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/renesas/sh_eth.c b/drivers/net/ethernet/renesas/sh_eth.c
-index d8334d8a53b3..a484d8beb855 100644
 --- a/drivers/net/ethernet/renesas/sh_eth.c
 +++ b/drivers/net/ethernet/renesas/sh_eth.c
-@@ -1127,7 +1127,7 @@ static void sh_eth_ring_format(struct net_device *ndev)
+@@ -1127,7 +1127,7 @@ static void sh_eth_ring_format(struct ne
  	struct sh_eth_txdesc *txdesc = NULL;
  	int rx_ringsize = sizeof(*rxdesc) * mdp->num_rx_ring;
  	int tx_ringsize = sizeof(*txdesc) * mdp->num_tx_ring;
@@ -27,7 +25,7 @@ index d8334d8a53b3..a484d8beb855 100644
  	dma_addr_t dma_addr;
  
  	mdp->cur_rx = 0;
-@@ -1450,7 +1450,7 @@ static int sh_eth_rx(struct net_device *ndev, u32 intr_status, int *quota)
+@@ -1451,7 +1451,7 @@ static int sh_eth_rx(struct net_device *
  	struct sk_buff *skb;
  	u16 pkt_len = 0;
  	u32 desc_status;
@@ -36,6 +34,3 @@ index d8334d8a53b3..a484d8beb855 100644
  	dma_addr_t dma_addr;
  
  	boguscnt = min(boguscnt, *quota);
--- 
-2.6.2
-

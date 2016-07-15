@@ -343,7 +343,6 @@ patches.renesas/0322-usb-renesas_usbhs-Change-USBHS_TYPE_R8A779x-to-USBHS.patch
 patches.renesas/0323-usb-renesas_usbhs-Add-support-for-R-Car-E2.patch
 patches.renesas/0324-usb-renesas_usbhs-fix-build-warning-if-64-bit-archit.patch
 patches.renesas/0325-usb-renesas_usbhs-Add-support-for-R-Car-H3.patch
-patches.renesas/0327-sh_eth-fix-RX-buffer-size-alignment.patch
 patches.renesas/0328-sh_eth-fix-RX-buffer-size-calculation.patch
 patches.renesas/0329-Revert-staging-board-disable-as-it-breaks-the-build.patch
 patches.renesas/0330-staging-board-Initialize-staging-board-code-earlier.patch

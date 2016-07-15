@@ -282,7 +282,7 @@ Conflicts:
  	ret = intel_gpio_probe(pctrl, irq);
 --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common.c
 +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common.c
-@@ -1165,9 +1165,9 @@ int mtk_pctrl_init(struct platform_devic
+@@ -1167,9 +1167,9 @@ int mtk_pctrl_init(struct platform_devic
  	mtk_pctrl_desc.npins = pctl->devdata->npins;
  	pctl->dev = &pdev->dev;
  	pctl->pctl_dev = pinctrl_register(&mtk_pctrl_desc, &pdev->dev, pctl);
@@ -451,7 +451,7 @@ Conflicts:
  	for (bank = 0; bank < info->ctrl->nr_banks; ++bank) {
 --- a/drivers/pinctrl/pinctrl-single.c
 +++ b/drivers/pinctrl/pinctrl-single.c
-@@ -1921,9 +1921,9 @@ static int pcs_probe(struct platform_dev
+@@ -1924,9 +1924,9 @@ static int pcs_probe(struct platform_dev
  		goto free;
  
  	pcs->pctl = pinctrl_register(&pcs->desc, pcs->dev, pcs);
@@ -616,7 +616,7 @@ Conflicts:
  	if (ret) {
 --- a/drivers/pinctrl/samsung/pinctrl-exynos5440.c
 +++ b/drivers/pinctrl/samsung/pinctrl-exynos5440.c
-@@ -822,9 +822,9 @@ static int exynos5440_pinctrl_register(s
+@@ -823,9 +823,9 @@ static int exynos5440_pinctrl_register(s
  		return ret;
  
  	pctl_dev = pinctrl_register(ctrldesc, &pdev->dev, priv);
@@ -627,7 +627,7 @@ Conflicts:
 +		return PTR_ERR(pctl_dev);
  	}
  
- 	grange.name = "exynos5440-pctrl-gpio-range";
+ 	priv->range.name = "exynos5440-pctrl-gpio-range";
 --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
 +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
 @@ -873,9 +873,9 @@ static int samsung_pinctrl_register(stru
