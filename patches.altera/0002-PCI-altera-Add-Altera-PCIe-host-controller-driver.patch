@@ -13,18 +13,15 @@ Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
 Reviewed-by: Marc Zyngier <marc.zyngier@arm.com>
 Acked-by: Rob Herring <robh@kernel.org> (DT binding)
 ---
- .../devicetree/bindings/pci/altera-pcie.txt        |  49 ++
- MAINTAINERS                                        |   8 +
- drivers/pci/host/Kconfig                           |   9 +
- drivers/pci/host/Makefile                          |   1 +
- drivers/pci/host/pcie-altera.c                     | 612 +++++++++++++++++++++
+ Documentation/devicetree/bindings/pci/altera-pcie.txt |   49 +
+ MAINTAINERS                                           |    8 
+ drivers/pci/host/Kconfig                              |    9 
+ drivers/pci/host/Makefile                             |    1 
+ drivers/pci/host/pcie-altera.c                        |  612 ++++++++++++++++++
  5 files changed, 679 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
  create mode 100644 drivers/pci/host/pcie-altera.c
 
-diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
-new file mode 100644
-index 000000000000..2951a6a50704
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/pci/altera-pcie.txt
 @@ -0,0 +1,49 @@
@@ -77,11 +74,9 @@ index 000000000000..2951a6a50704
 +		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
 +			    0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
 +	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 31535b79d7ab..05cfb55c0dc5 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -7498,6 +7498,14 @@ F:	include/linux/pci*
+@@ -7509,6 +7509,14 @@ F:	include/linux/pci*
  F:	arch/x86/pci/
  F:	arch/x86/kernel/quirks.c
  
@@ -96,8 +91,6 @@ index 31535b79d7ab..05cfb55c0dc5 100644
  PCI DRIVER FOR ARM VERSATILE PLATFORM
  M:	Rob Herring <robh@kernel.org>
  L:	linux-pci@vger.kernel.org
-diff --git a/drivers/pci/host/Kconfig b/drivers/pci/host/Kconfig
-index 1dfb567b3522..cfdbb72d4003 100644
 --- a/drivers/pci/host/Kconfig
 +++ b/drivers/pci/host/Kconfig
 @@ -125,4 +125,13 @@ config PCIE_IPROC_PLATFORM
@@ -114,18 +107,13 @@ index 1dfb567b3522..cfdbb72d4003 100644
 +	  FPGA.
 +
  endmenu
-diff --git a/drivers/pci/host/Makefile b/drivers/pci/host/Makefile
-index f733b4e27642..f26e5a25ef3a 100644
 --- a/drivers/pci/host/Makefile
 +++ b/drivers/pci/host/Makefile
-@@ -15,3 +15,4 @@ obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o
+@@ -15,3 +15,4 @@ obj-$(CONFIG_PCI_LAYERSCAPE) += pci-laye
  obj-$(CONFIG_PCI_VERSATILE) += pci-versatile.o
  obj-$(CONFIG_PCIE_IPROC) += pcie-iproc.o
  obj-$(CONFIG_PCIE_IPROC_PLATFORM) += pcie-iproc-platform.o
 +obj-$(CONFIG_PCIE_ALTERA) += pcie-altera.o
-diff --git a/drivers/pci/host/pcie-altera.c b/drivers/pci/host/pcie-altera.c
-new file mode 100644
-index 000000000000..5d018092a484
 --- /dev/null
 +++ b/drivers/pci/host/pcie-altera.c
 @@ -0,0 +1,612 @@
@@ -741,6 +729,3 @@ index 000000000000..5d018092a484
 +MODULE_AUTHOR("Ley Foon Tan <lftan@altera.com>");
 +MODULE_DESCRIPTION("Altera PCIe host controller driver");
 +MODULE_LICENSE("GPL v2");
--- 
-2.6.3
-

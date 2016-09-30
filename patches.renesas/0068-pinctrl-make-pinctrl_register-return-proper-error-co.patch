@@ -254,7 +254,7 @@ Conflicts:
  
 --- a/drivers/pinctrl/intel/pinctrl-cherryview.c
 +++ b/drivers/pinctrl/intel/pinctrl-cherryview.c
-@@ -1533,9 +1533,9 @@ static int chv_pinctrl_probe(struct plat
+@@ -1547,9 +1547,9 @@ static int chv_pinctrl_probe(struct plat
  	pctrl->pctldesc.npins = pctrl->community->npins;
  
  	pctrl->pctldev = pinctrl_register(&pctrl->pctldesc, &pdev->dev, pctrl);
@@ -367,7 +367,7 @@ Conflicts:
  	platform_set_drvdata(pdev, pinctrl);
 --- a/drivers/pinctrl/pinctrl-amd.c
 +++ b/drivers/pinctrl/pinctrl-amd.c
-@@ -789,9 +789,9 @@ static int amd_gpio_probe(struct platfor
+@@ -769,9 +769,9 @@ static int amd_gpio_probe(struct platfor
  	amd_pinctrl_desc.name = dev_name(&pdev->dev);
  	gpio_dev->pctrl = pinctrl_register(&amd_pinctrl_desc,
  					&pdev->dev, gpio_dev);

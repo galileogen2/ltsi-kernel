@@ -16,7 +16,7 @@ Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4089,6 +4089,13 @@ F:	include/linux/fmc*.h
+@@ -4099,6 +4099,13 @@ F:	include/linux/fmc*.h
  F:	include/linux/ipmi-fru.h
  K:	fmc_d.*register
  
